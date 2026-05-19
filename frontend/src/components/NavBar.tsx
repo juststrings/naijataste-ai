@@ -15,6 +15,7 @@ const GUEST_NAV = [
 const AUTH_NAV = [
   { href: "/", label: "Home" },
   { href: "/flavor-finder", label: "Flavor Finder" },
+  { href: "/recommend", label: "Recommendations" },
   { href: "/simulator", label: "Review Simulator" },
   { href: "/profile", label: "My Profile" },
 ];
