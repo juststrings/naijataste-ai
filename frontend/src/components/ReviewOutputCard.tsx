@@ -1,7 +1,6 @@
 "use client";
 
 import toast from "react-hot-toast";
-import { useAuth } from "@/contexts/AuthContext";
 
 interface Props {
   rating: number;
@@ -40,28 +39,10 @@ export default function ReviewOutputCard({
   reviewText,
   onRegenerate,
 }: Props) {
-  const { user } = useAuth();
-
   function handleCopy() {
     navigator.clipboard.writeText(`"${reviewText}"`).then(() => {
       toast.success("Review copied to clipboard!");
     });
-  }
-
-  function handleSave() {
-    if (!user) {
-      toast("Login to save reviews to your profile", { icon: "🔒" });
-      return;
-    }
-    const reviews = JSON.parse(localStorage.getItem("nt_reviews") ?? "[]");
-    reviews.push({
-      restaurant: restaurantType,
-      review: reviewText,
-      rating,
-      date: "Just now",
-    });
-    localStorage.setItem("nt_reviews", JSON.stringify(reviews));
-    toast.success("Review saved to profile!");
   }
 
   return (
@@ -111,13 +92,6 @@ export default function ReviewOutputCard({
         >
           <span className="material-symbols-outlined text-base">content_copy</span>
           Copy Review
-        </button>
-        <button
-          onClick={handleSave}
-          className="flex-1 flex items-center justify-center gap-2 text-sm font-semibold text-on-surface-variant py-2 hover:bg-surface-container-high rounded-xl transition-colors"
-        >
-          <span className="material-symbols-outlined text-base">bookmark</span>
-          Save to Profile
         </button>
         <button
           onClick={onRegenerate}

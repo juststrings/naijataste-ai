@@ -84,7 +84,6 @@ export default function RecommendPage() {
     setChatMsgs((prev) => [...prev, { type: "user", text: msg }]);
     setChatInput("");
     setChatMsgs((prev) => [...prev, { type: "bot", text: "Dey think..." }]);
-    setRecState("loading");
 
     const signals = parseMessage(msg);
 
@@ -249,7 +248,7 @@ export default function RecommendPage() {
                         onClick={() => setPriceRange(val)}
                         className={`rec-price flex-1 py-2 border-2 border-outline/20 rounded-xl text-sm font-bold transition-all ${priceRange === val ? "sel" : "hover:border-primary"}`}
                       >
-                        {["₦", "₦₦", "₦₦₦"][i]}
+                        {["Budget 💸", "Mid-range 💳", "Baller 💎"][i]}
                       </button>
                     ))}
                   </div>
