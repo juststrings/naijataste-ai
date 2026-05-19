@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "user_profile": "Lagos Island, male, 28, price-sensitive, frequent reviewer",
+    "item": "Yellow Chilli Victoria Island",
+    "rating": 2,
+    "review": "Abeg make I be honest. The place fine, AC dey, ambience correct. But for this price? Tueh. N8500 for small chicken wey no even reach my hand properly. Food taste average at best. I don chop better for buka for half the price. Service slow like NEPA restoring light. I no go return."
+  },
+  {
+    "id": 2,
+    "user_profile": "Abuja, female, 31, values ambience and service, generous rater",
+    "item": "Nkoyo Restaurant Maitama",
+    "rating": 5,
+    "review": "This place is everything. From the moment you enter, you feel the class. The catfish pepper soup was rich and well-spiced — not that watery one wey some places serve. Service was attentive without being annoying. Yes it is pricey but you are paying for an experience and they delivered. Highly recommend for date night or client dinner."
+  },
+  {
+    "id": 3,
+    "user_profile": "Port Harcourt, male, 24, student, very price-sensitive",
+    "item": "Mr Biggs Trans Amadi",
+    "rating": 3,
+    "review": "E still dey manage. The meat pie still dey hit different when e fresh from oven. But the service sef don fall. Waited 15 minutes just to order. For fast food? That one no make sense. Price reasonable sha, I go give them that. Nothing premium, nothing terrible. Just Mr Biggs being Mr Biggs."
+  },
+  {
+    "id": 4,
+    "user_profile": "Lagos Mainland, female, 35, food blogger, detailed reviewer",
+    "item": "Buka Hut Yaba",
+    "rating": 4,
+    "review": "If you want authentic Lagos buka experience without the stress, this is your spot. Amala was soft and stretchy — the way God intended. Ewedu fresh, gbegiri balanced. Only issue is the seating — plastic chairs for this heat? They need to upgrade. But the food itself? No complaints. I finished everything and considered ordering again. That's the real review."
+  },
+  {
+    "id": 5,
+    "user_profile": "Abuja, male, 42, business professional, values efficiency",
+    "item": "Chicken Republic Wuse 2",
+    "rating": 3,
+    "review": "Consistent as always. That's both the compliment and the problem. Nothing has changed in 5 years — same taste, same packaging, same slightly-too-slow service for a quick lunch spot. For a busy workday it works. Don't go expecting anything exciting. Just reliable fast food that fills the gap. Extra star for the peppered gizzard which remains underrated."
+  },
+  {
+    "id": 6,
+    "user_profile": "Lagos, female, 22, university student, social media active",
+    "item": "Cilantro Lagos",
+    "rating": 4,
+    "review": "Okay the aesthetic alone deserves 4 stars lol. Very Instagrammable, lighting is everything. The pasta was actually good — creamy, well seasoned, generous portion for the price point. Cocktails were a bit sweet for my taste but my friend loved hers. Will I come back? Yes but mostly for the vibes and the content. Food is solid though not life-changing."
+  },
+  {
+    "id": 7,
+    "user_profile": "Kano, male, 38, traditional food lover, harsh rater",
+    "item": "Tantalizers Kano",
+    "rating": 2,
+    "review": "I don try am twice, I no go try am third time. The jollof rice dry like harmattan sand. Protein small like they dey manage. For N4000 you dey think say them go at least give you correct portion. The only thing wey save the experience na the cold zobo. Everything else, God abeg."
+  },
+  {
+    "id": 8,
+    "user_profile": "Lagos, female, 29, working professional, balanced reviewer",
+    "item": "The Place Restaurant Lekki",
+    "rating": 4,
+    "review": "The Place remains my go-to for Nigerian food in a clean environment. The ofe onugbu with okpa hit different last weekend — whoever is in that kitchen knows what they're doing. Wait time can be annoying on weekends, sometimes 30 minutes for food. Go on weekdays if you can. Price is fair for the quality and setting. Solid 4 stars consistently."
+  },
+  {
+    "id": 9,
+    "user_profile": "Enugu, male, 26, first-time visitor, casual reviewer",
+    "item": "Kada Plaza Food Court Enugu",
+    "rating": 3,
+    "review": "E get variety sha, I go give them that. Tried the native soup and it was decent. Not mama's cooking but it will do. The environment a bit noisy for my liking. Staff were friendly enough. Price is average — nothing to complain about but nothing to celebrate. If you are nearby and hungry it makes sense. Otherwise nothing special to travel for."
+  },
+  {
+    "id": 10,
+    "user_profile": "Abuja, female, 45, mother of three, values portion size and value",
+    "item": "Mama Cass Garki",
+    "rating": 5,
+    "review": "This is where real food lives. The egusi is thick and well-prepared, the eba portion generous enough that you don't leave hungry. For a family that doesn't want to spend a fortune, this place delivers every time. My children prefer it to the fancy places. The environment is simple but clean. My loyalty here is not changing anytime soon."
+  },
+  {
+    "id": 11,
+    "user_profile": "Lagos, male, 33, tech worker, quick lunch seeker",
+    "item": "Dominos Pizza VI",
+    "rating": 3,
+    "review": "Fine for what it is. Ordered online, delivery came in 45 minutes which is acceptable for Lagos traffic. Pizza was warm, not hot. Chicken Supreme is still the move. But abeg these prices don climb o — N7500 for medium pizza is not small money. If you're splitting with someone it makes sense. Solo meal for this price? Think am well."
+  },
+  {
+    "id": 12,
+    "user_profile": "Ibadan, female, 27, foodie, adventurous eater",
+    "item": "Sky Restaurant Bodija",
+    "rating": 4,
+    "review": "Pleasantly surprised. Ibadan restaurants don dey level up and Sky is proof. The grilled fish was fresh — you could taste it — and the sauce had depth. Atmosphere is relaxed, good for groups. Service could be faster but staff are genuinely friendly which counts for something. Pricing is fair for Ibadan. Will definitely return and try the pepper soup next time."
+  },
+  {
+    "id": 13,
+    "user_profile": "Lagos, male, 19, student, very budget conscious",
+    "item": "Iya Basira Buka Mushin",
+    "rating": 5,
+    "review": "This woman na legend abeg. N800 for eba and draw soup wey go carry you till evening? Nowhere better. The meat no be plenty but the soup itself rich and flavourful like she don add prayer. Always busy which tells you everything. No AC, no fancy setup, just real food for real people. This is where correct eating happens."
+  },
+  {
+    "id": 14,
+    "user_profile": "Abuja, male, 36, frequent diner, balanced reviewer",
+    "item": "Zinnia Restaurant Transcorp Hilton",
+    "rating": 3,
+    "review": "You're paying for the Hilton name and ambience, let's be clear about that. Food quality is good but not exceptional for the price point. The breakfast buffet is the best value here — wide spread, fresh, well maintained. Dinner felt overpriced for portions received. Staff professional and attentive. Would I recommend? For a business meeting or special occasion, yes. Regular dining, there are better options in Abuja."
+  },
+  {
+    "id": 15,
+    "user_profile": "Lagos, female, 24, gen-z, vibes-first reviewer",
+    "item": "Craftgrill Lekki Phase 1",
+    "rating": 5,
+    "review": "Okay I understand the hype now. The smash burger is genuinely different — crispy edges, well seasoned, the sauce ratio is correct. Fries were hot and seasoned. I've been to so many burger spots in Lagos that disappoint but this one delivered. A bit loud on weekends which I personally like. Yes it's pricey but you know what you're getting. This is now my benchmark for Lagos burgers."
+  },
+  {
+    "id": 16,
+    "user_profile": "Warri, male, 31, blunt reviewer, hates pretension",
+    "item": "Southern Fried Chicken Warri",
+    "rating": 2,
+    "review": "E pain me to write this because the place near my house. But truth is truth. The chicken dey come out like them fry am yesterday and heat am this morning. No crunch, no flavour, just sad. Complained to staff, them look me like I disturb them. For a fast food place wey suppose be about the chicken, this one miss the memo. Sort out the kitchen or close shop."
+  },
+  {
+    "id": 17,
+    "user_profile": "Lagos, female, 38, corporate executive, high standards",
+    "item": "Sage Restaurant Victoria Island",
+    "rating": 4,
+    "review": "Sage continues to be one of the few fine dining experiences in Lagos that actually justifies the price. The duck was expertly prepared — something you rarely see done well here. Wine selection is thoughtful. My only gripe is the inconsistency; I've had transcendent meals here and mediocre ones. This visit was a 4. When they're on form it's a 5. Worth the risk."
+  },
+  {
+    "id": 18,
+    "user_profile": "Benin City, male, 23, first restaurant review ever",
+    "item": "Eatwell Eatery Benin",
+    "rating": 4,
+    "review": "Honestly I don't write reviews but this place deserves one. Ordered the banga soup and starch and it reminded me of my mother's cooking which is the highest compliment I can give. The portion was generous and the price was fair. The place was a bit hot inside — needs better ventilation. But the food made me forget. I've already told three people about this place."
+  },
+  {
+    "id": 19,
+    "user_profile": "Lagos, male, 29, skeptical foodie, tough to impress",
+    "item": "Nando's Ikeja City Mall",
+    "rating": 3,
+    "review": "PERi-PERi for this price when I can buy a whole chicken for Mama Toyin outside? The maths no add up. That said, the flame-grilled texture is real and the mild sauce is well balanced. For an occasional treat it's fine. But let's not pretend this is exceptional value in Nigeria in 2025. You're paying for the brand and the AC. Food is competent, nothing more."
+  },
+  {
+    "id": 20,
+    "user_profile": "Abuja, female, 32, health-conscious, detailed reviewer",
+    "item": "Wakkis Grill Abuja",
+    "rating": 5,
+    "review": "Finally a place where I can eat without feeling guilty. The grilled options are genuinely delicious — not the bland health food stereotype. The grilled tilapia with vegetables was perfectly seasoned and cooked through. Staff understood my dietary questions which is rare. Environment is clean and calm. Slightly premium pricing but for this quality and the peace of mind? Absolutely worth it. My new regular."
+  },
+  {
+    "id": 21,
+    "user_profile": "Lagos, male, 25, night owl, reviews after midnight visits",
+    "item": "Suya Spot Opebi",
+    "rating": 5,
+    "review": "2am and this man's suya still dey slap. I don't know what magic happens at this spot but the beef suya after midnight hits completely different. Properly spiced, meat tender, onions and tomatoes fresh. N1500 wrap will carry you. The man himself dey there almost every night, takes pride in his work. This is Lagos culture at its purest. No review can do it justice."
+  },
+  {
+    "id": 22,
+    "user_profile": "Abuja, male, 44, father, values family dining experience",
+    "item": "Barcelos Abuja",
+    "rating": 4,
+    "review": "Good spot for family dining. Children enjoyed the chicken strips and the space is comfortable enough for a group of six. Service was attentive and patient with the kids which I appreciate. The prego roll is underrated — my personal favourite. Price is reasonable for what you get. Not the most exciting cuisine but reliable quality and a family-friendly environment is undervalued. We'll be back."
+  },
+  {
+    "id": 23,
+    "user_profile": "Lagos, female, 21, university student, social reviewer",
+    "item": "Ice Cream Factory Surulere",
+    "rating": 4,
+    "review": "Perfect hang spot for after lectures. The scoops are generous unlike some places wey give you ice cream like they're rationing it for emergency. Flavour variety is good — the coconut and the strawberry cheesecake are top tier. A bit noisy on Friday evenings but that's the crowd you'd expect. Fair pricing for students. My go-to when someone is visiting from out of town."
+  },
+  {
+    "id": 24,
+    "user_profile": "Lagos, male, 40, businessman, efficiency-focused",
+    "item": "Tastee Fried Chicken Maryland",
+    "rating": 2,
+    "review": "TFC don fall from grace. I remember when this place was the move in the 2000s. Now the chicken arrive cold, the chips soggy, the service looks like everyone don give up. Waited 20 minutes for a simple order. The only reason I still enter is proximity to my office. Once a better option opens nearby, my loyalty transfers immediately. Management needs to wake up."
+  },
+  {
+    "id": 25,
+    "user_profile": "Enugu, female, 28, thoughtful reviewer, culture-aware",
+    "item": "Johnnie's Place Enugu",
+    "rating": 5,
+    "review": "There is something about this place that feels like home. The oha soup is prepared with genuine care — you can taste the difference from shortcuts. The environment is unpretentious which I love. The owner greets customers personally sometimes. For Enugu, this is a treasure. It won't impress people looking for Instagram aesthetics but for those who understand real Igbo cooking, this is the benchmark."
+  },
+  {
+    "id": 26,
+    "user_profile": "Lagos, male, 27, music industry worker, late nights",
+    "item": "Ofada Spot Agege",
+    "rating": 5,
+    "review": "Coming here after studio sessions don become ritual. The ofada rice with ayamase sauce is the kind of meal wey reset your whole system. Spicy, rich, the kind of thing wey make you quiet for a few minutes because your mouth too busy. Price is ridiculous value — N1800 full plate. The woman wey run the place no dey play with quality. This is what Lagos is about."
+  },
+  {
+    "id": 27,
+    "user_profile": "Abuja, female, 35, expat returnee, comparative reviewer",
+    "item": "Yakoyo Restaurant Abuja",
+    "rating": 4,
+    "review": "Having lived abroad for eight years I was worried Nigerian restaurant standards would disappoint me. Yakoyo proved me wrong. The seafood okra was fresh and properly thickened — not the flour-thickened nonsense some places serve. Presentation was clean. Service was warm without being over the top. Pricing is fair for Abuja. My standard for Nigerian food in the capital is now set here."
+  },
+  {
+    "id": 28,
+    "user_profile": "Lagos, male, 22, brutally honest, short reviews",
+    "item": "KFC Palms Lekki",
+    "rating": 3,
+    "review": "It's KFC. You know what you're getting. Zinger burger hit, coleslaw average, price too high for what it is in naira. AC was cold which is always a plus in Lagos. Nothing to praise, nothing to condemn. Three stars is exactly where this lands and it will be three stars forever."
+  },
+  {
+    "id": 29,
+    "user_profile": "Ibadan, female, 33, local food evangelist",
+    "item": "Iyawo Eleran Ibadan",
+    "rating": 5,
+    "review": "If you dey Ibadan and you never chop here, you haven't chop in Ibadan. The assorted meat preparation is a whole experience — pepper, spice, everything balanced. N2000 will sort you out comfortably. The environment is pure Ibadan — no pretense, just serious eating. Regulars here look like people who understand what good food means. I've been coming for four years and the standard never drops."
+  },
+  {
+    "id": 30,
+    "user_profile": "Lagos, male, 30, data analyst, methodical reviewer",
+    "item": "Cactus Restaurant Victoria Island",
+    "rating": 4,
+    "review": "Consistent quality is the hardest thing to maintain in Lagos F&B and Cactus has managed it across multiple visits. The grilled prawns are reliable, the continental options well executed. Service speed varies — weekday lunch is efficient, weekend dinner tests your patience. Ambience is relaxed and professional. For a client lunch or quiet dinner, this works every time. Not the flashiest choice but one of the most dependable."
+  }
+]

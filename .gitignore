@@ -1,0 +1,25 @@
+# Yelp full dataset - too large for GitHub
+Yel-JSON/
+
+# Environment files - never commit keys
+.env
+api/.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Outscraper file
+*.xlsx
+
+# Tar files
+*.tar
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

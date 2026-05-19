@@ -1,0 +1,1288 @@
+[
+  {
+    "rating": 4,
+    "city": "Benin City",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "Ah, this buka na die! The egusi soup was so rich, e no dey scarce with meat and fish. My eba was perfectly done, and for N1000, I no fit complain about the portion. The only wahala be say the place dey too hot, even with the fan on. Wey dem go find better cooling solution? But for the taste and price, I go still come back plenty times.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Kano",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "Na so so small portion them dey serve here. I buy N800 shawarma, e be like dem just put one small slice of meat inside. The taste good sha, no doubt, but for this money, I go prefer go normal buka wey dem go give me plenty amala and egusi. The heat inside the place dey make person wan run.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Warri",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "I try their jollof rice and moi moi. Rice dey okay, but nothing special. Moi moi sef too soft, like water wey dem don add too much. The worst na the price, N4000 for this small plate. For fast food wey no dey give you peace from heat and mosquitoes, this one too much. I go stick to my regular spot.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "suya spot",
+    "review": "This suya spot for Surulere dey really try. The beef was tender and the pepper mix was on point, made me sweat small small. For N2500 for a decent portion, I no go lie, e dey worth am. Just wish the seating area wasn't so exposed to the sun, but that's Lagos for you. NEPA no dey, so generator noise na part of the vibe.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "formal",
+    "review": "This is where real food lives. The egusi is thick and well-prepared, the eba portion generous enough that you don't leave hungry. For a family that doesn't want to spend a fortune, this place delivers every time. My loyalty here is not changing anytime soon.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "fast food",
+    "review": "This fast food restaurant offers a good variety of local dishes. I tried the amala with gbegiri and ewedu, and it was well-prepared. The price point, about N4,500 for a satisfying plate, is fair for Abuja. The seating area is comfortable, and the service is prompt. It's a solid choice for a quick, authentic Nigerian meal without breaking the bank.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "low",
+    "tone": "casual",
+    "restaurant_type": "rooftop bar and grill",
+    "review": "Came here for my friend's birthday and it was a hit. The atmosphere is lively, and the food is seriously good, especially the grilled lamb chops. We spent a good amount but it felt worth it for the memorable evening and the decent portions. It’s a perfect spot for celebrations or just a nice night out.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 1,
+    "city": "Kano",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "I no understand wetin dey happen with this place. I order N1000 plantain chips and chicken. The plantain dey soggy like yesterday food, and the chicken... I no even sure if e fresh. I dey suspect say they dey re-fry old food. Na pure disappointment for Kano. I for better buy pure water and groundnut for street.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fine dining",
+    "review": "Wow, Terra Kulture really impressed me. The setting is so serene, a real escape from the Lagos hustle. Had their signature egusi soup with pounded yam, and it was perfection. The flavour was deep, and the texture of the soup was just right. For N8,000, I expected this level of quality, and they delivered. The service was also impeccable, very professional. Definitely a place to impress a date.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "low",
+    "tone": "casual",
+    "restaurant_type": "rooftop bar and grill",
+    "review": "Great place to unwind after a long week. The grill options are varied and delicious, and their signature cocktail was surprisingly refreshing. We sat outside and enjoyed the breeze, which was a nice change from the usual Lagos heat. Prices are on the higher side, but the overall experience is top-notch.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "seafood restaurant",
+    "review": "The seafood here is good, but not exceptional for the prices they charge. I had the fried prawns, which were tasty, but the portion size left something to be desired at N4,500. Service was a bit slow, even with the restaurant not being crowded. It's an okay option if you're in the area, but I wouldn't go out of my way.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "I give them 4 star because the suya was decent for Abuja price, N5000 for a good portion. Na him I come take with small eba. For this heat and NEPA wahala, at least food dey hot and ready. Other buka wey dey around here dey overcharge for small meat. Na here I go dey carry my small change come.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "suya spot",
+    "review": "Finally found a suya place in Ikeja that doesn't joke with their meat and their pricing. My N4000 suya was packed, juicy, and the spice level was perfect for my taste. Their ponmo suya too, oh my days! Even with the hustle and bustle of Lagos traffic to get here, the taste made it all worthwhile. I will be back!",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "fast food",
+    "review": "Came here hoping for some good pepper soup, but it was just average. The spice level was okay, but the meat quantity was a bit sparse for the N6,000 I paid. It's a fast food place, so expectations aren't sky-high, but value is important. The service was polite, and the location is convenient. Might try their other offerings next time, but not overly impressed with the soup.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Port Harcourt",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fast food",
+    "review": "This fast food place dey for my radar now. I order their moi moi and some grilled fish for N5,000. The moi moi was soft and well-seasoned, and the fish was fresh and perfectly grilled. I like that they use fresh ingredients. They have good ventilation, which is a blessing in this Port Harcourt heat. Overall, good food for the price.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Benin City",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "My guy, the suya here is not bad, but it's not hitting the spot like the one wey I dey get for Lagos. The meat was a little bit dry for my liking, and N5000 for a decent portion? E dey high small. The pepper soup was okay, but nothing special. I expected more flavour for this price. Maybe I just catch them on a bad day.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "low",
+    "tone": "formal",
+    "restaurant_type": "fine dining",
+    "review": "The decor is undeniably elegant and suited for a more refined evening out. I ordered the signature steak, which was tender but could have benefited from a touch more seasoning. The wine list is extensive, though some selections were surprisingly pricey. Overall, a pleasant meal, but not quite reaching the heights expected for the cost.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "review": "Abeg make I be honest. The place fine, AC dey, ambience correct. But for this price? Tueh. N8500 for small chicken wey no even reach my hand properly. Food taste average at best. I don chop better for buka for half the price. Service slow like NEPA restoring light. I no go return.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 3,
+    "city": "Warri",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "Okay, e no too bad sha. Their suya still dey okay small small, but e no dey sweet like the one wey dem dey sell for roadside. The suya stick too small for N2000 wey I pay. But at least the service fast small, no long wait. For fast food, na the minimum we expect. If you wan chop small snack quick, e fit do.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "chinese restaurant",
+    "review": "Tried 'Dragon's Breath' on a recommendation. The wonton soup was nice and comforting. For the main, I had the beef with broccoli, which was decent but nothing spectacular. Cost around N7000. The portions were a bit smaller than I expected for the price, compared to other Chinese places. Service was polite but slow.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Benin City",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "This place serves proper pounded yam. Soft and smooth, just the way mama used to make am. The assorted meat pepper soup was packed with flavour, though I wish they added more shaki. For N6000, the quantity and quality are decent. The service was quick, which is a big plus when you're hungry. No generator noise, steady light from NEPA, amazing!",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "review": "Consistent as always. That's both the compliment and the problem. Nothing has changed in 5 years, same taste, same packaging, same slightly-too-slow service for a quick lunch spot. For a busy workday it works. Don't go expecting anything exciting.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 2,
+    "city": "Kano",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "review": "I don try am twice, I no go try am third time. The jollof rice dry like harmattan sand. Protein small like they dey manage. For N4000 you dey think say them go at least give you correct portion. The only thing wey save the experience na the cold zobo. Everything else, God abeg.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 3,
+    "city": "Ibadan",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "pepper soup joint",
+    "review": "The yam and pepper soup combination for N3,500 was interesting, but the yam was slightly overcooked. The broth itself had a good kick. The location is convenient, but parking can be a challenge during busy periods. While it offers a unique dish, the overall execution could be refined to match the price.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Meals here are relatively inexpensive. The location is premium, so one wonders how they manage to keep their prices on such a tight leash.",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "low",
+    "tone": "casual",
+    "restaurant_type": "rooftop bar and grill",
+    "review": "Chilled vibes up here, perfect escape from the Lagos hustle. The pepper soup was a revelation, so rich and spicy! Service was attentive without being overbearing. A bit pricey, but for the ambiance and quality of food, I can't complain much. Will definitely be back.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Port Harcourt",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fast food",
+    "review": "For real, this fast food joint do pass some other places wey dey around here. I order pepper soup and some plantain for N3,000. The soup was spicy and flavourful, e ginger me well well. Plantain was fried perfectly, no be soggy. But the NEPA situation for this side of town is something else, thank God for their generator. Overall, good value for money.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Ibadan",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "amala joint",
+    "review": "The stew at this amala spot near Bodija market is top-notch.  It has that deep, rich flavour that takes time to cook.  The amala itself was smooth and well-prepared.  My plate cost N1200 with assorted meat, and I was stuffed.  It's a good deal, especially when you consider the quality of ingredients they use.  The ambiance is basic, but the food makes up for it.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Warri",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "The place fine small, AC dey blow small, small. But the eba and egusi soup I order, the egusi too watery, no thick like my mama sabi make am. E taste like they just add water to powder. N2500 for this kind soup? My stomach no gree. I expect more for this price, even for fast food.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "chinese restaurant",
+    "review": "Tried the new place, 'China Bowl', on the island. The fried rice was pretty bland, honestly. Had to add a lot of soy sauce myself. My friend's noodles were better though. For N7500 for a plate of rice, I expected more flavour. Service was quick, which was a plus considering the traffic.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "seafood restaurant",
+    "review": "This seafood spot offers a decent experience for the price. The grilled fish was well-seasoned, though slightly overcooked. Their pepper soup was a highlight, rich and flavorful. For a medium-range option, it's a good choice, especially if you're looking for something beyond the usual suya. We spent about N7,000 for two, which felt reasonable.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "chinese restaurant",
+    "review": "If you're craving authentic-tasting Chinese food in Lagos, 'Imperial Palace' is a good shout. Their dim sum was excellent, tasted like the ones I had abroad. Mains are on the higher side, say N9000 for a good portion, but the quality is there. The decor is a bit dated, but who cares when the food is this good? Worth the metro ride.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fine dining",
+    "review": "Decided to try Ambrosia for a change. The setting is nice, very clean and airy. I ordered their chicken suya, which was tender, but I felt it lacked that authentic smoky punch. For N9,000, I expected a bit more generosity with the portion too. My friend had the seafood platter and said it was good, but again, not mind-blowing. It’s a decent option if you want a quiet meal, but for the price, I’ve had better value elsewhere.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "low",
+    "tone": "formal",
+    "restaurant_type": "fine dining",
+    "review": "An absolutely outstanding dining experience. The chef's tasting menu was a journey of exquisite flavours, each dish a masterpiece. The attention to detail, from the presentation to the service, was impeccable. It's refreshing to find a place in Abuja that truly upholds fine dining standards, and I found the N10,000 per person tasting menu to be excellent value for the artistry involved.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "I go this place for lunch, order moi moi and amala. N2800 for this small plate, chai! The moi moi dey dry like bone, and amala no soft. My belle no even full well well. For this Abuja, if you want chop well, you must spend plenty money. This place no give value for money at all.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "grilled fish spot",
+    "review": "This place dey try o. The fish was well seasoned and grilled to perfection, no dry spots for my suya-style tilapia.  For the price, like N7k for a decent size fish with sides, it's not bad at all, especially for Abuja standards.  Service was quick, no long, long wait. Just wish they had better seating, those plastic chairs dey uncomfortable for this heat.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 1,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "This place na scam! I order fish and plantain for N7000. Fish small pass my thumb, and plantain hard like stone. Dey say na fresh fish, but e taste like fridge fish wey don stay for long. The waiter was rude, no smile. I no understand why dem dey charge so much for rubbish food. Abeg, run away!",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "The catfish pepper soup here is not bad for N4000, it’s a bit pricey for a buka, but it was well seasoned and the fish was fresh. Other options like jollof rice were just okay, N3000 for a plate and it was a bit dry. I’m not sure I’ll rush back for the rice, but the pepper soup is tempting.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "I try this place for the first time, and I no sure if I go return. The rice was flavourless, like dem just cook am with water. The chicken wey dem give me small and dry. For N6000, I expect better quality and quantity. The fan them no dey work, na so the heat dey beat person. This na robbery!",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Ibadan",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "pepper soup joint",
+    "review": "The goat meat pepper soup here is quite flavorful and satisfying, a good portion for the price of N2,500. The restaurant has a decent ambiance, though the generator noise can be a bit noticeable during peak hours. Service was prompt, and the staff were polite. It's a reliable spot for a hearty meal, especially on a cooler evening.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "review": "If you want authentic Lagos buka experience without the stress, this is your spot. Amala was soft and stretchy the way God intended. Ewedu fresh, gbegiri balanced. Only issue is the seating, plastic chairs for this heat? They need to upgrade. But the food itself? No complaints.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "suya spot",
+    "review": "Abeg, this place for Yaba dey serve some serious suya. The chicken suya for N1800 was so flavorful, e dey fall off the bone. I also got the ram suya, small portion but the taste was 10/10. For the price, I expected less, but they delivered. The only wahala be say e get like say dem forget to give us small shito, but we still enjoyed it.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fine dining",
+    "review": "Spice Route has become my new favourite spot for a treat. The atmosphere is so vibrant and welcoming. I tried their goat meat pepper soup and it was incredibly flavourful, with just the right amount of heat. My companion had the fried rice with chicken, and it was perfectly cooked. While it's not cheap, around N6,000 for a hearty meal, the quality and taste are exceptional. Plus, the staff are so friendly and make you feel right at home.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "low",
+    "tone": "formal",
+    "restaurant_type": "fine dining",
+    "review": "The culinary artistry on display here is commendable. I particularly enjoyed the seafood platter, featuring fresh prawns and calamari prepared with a delicate touch. The setting is conducive to a relaxed yet upscale dining experience. While not inexpensive, the overall quality and sophisticated environment make it a worthwhile indulgence for those who appreciate fine food.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "seafood restaurant",
+    "review": "An absolute gem for seafood lovers in Lagos! The seafood platter was divine, fresh and plentiful for the N12,000 price tag. Every piece of fish, prawn, and calamari was cooked to perfection. The ambiance is also quite pleasant, a nice escape from the usual hustle. Highly recommend for a special treat.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Port Harcourt",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fast food",
+    "review": "Honestly, I no dey impress with this place. I go for fried rice and chicken, cost me N4,000. The rice was dry, and the chicken no get enough seasoning. It's like they just dey serve anything. For the price, I expect better taste, abeg. Service slow too, I wait almost 20 minutes for my order. This heat and slow service is a bad combo.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "seafood restaurant",
+    "review": "While the seafood was fresh, the preparation could have been better. My steamed fish was rather bland, and the side of plantain was not crispy enough. For the N5,000 I paid, I expected more. The service was efficient, and the restaurant is clean, but the food didn't quite hit the mark for me. Might try another dish next time.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 1,
+    "city": "Port Harcourt",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "Wahala! I go tell una wetin happen. I went go chop egusi soup and amala. The soup water like soso, no egusi wey I see well well. Na small small yam wey dey inside. And the price them no small o. N3000 for this kind rubbish? This no be Port Harcourt way. I no fit come back.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 1,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Old, dirty and unkempt. Lights were out for almost 15 minutes when I was there. The air conditioners were not functional.",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 2,
+    "city": "Kano",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "Walahi, this place don break my heart small. I go pay N1200 for burger wey small like snail. E suppose dey hot and fresh, but e come lukewarm. My brother, for this kain price, I expect better jollof rice wey get fire, not this sad, pale thing. Even the fries dem too soft. Abeg, no be Wetin I expect for Kano.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "low",
+    "tone": "casual",
+    "restaurant_type": "rooftop bar and grill",
+    "review": "Finally found a rooftop that gets it right! The grilled fish was flaky and flavorful, paired perfectly with their jollof rice. It's a bit of a trek to get here with traffic, but the experience makes it all worthwhile. The music was good too, just the right volume to still have a conversation. This is my new favorite spot.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Ibadan",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "pepper soup joint",
+    "review": "This spot serves some of the best snail pepper soup I've had in Ibadan, costing N4,000. The flavor profile was complex and authentic. The portions are substantial, offering excellent value. The service was attentive and friendly. It's a must-try for anyone seeking a high-quality pepper soup experience.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "low",
+    "tone": "casual",
+    "review": "Okay the aesthetic alone deserves 4 stars. Very Instagrammable, lighting is everything. The pasta was actually good, creamy, well seasoned, generous portion for the price point. Cocktails were a bit sweet for my taste but my friend loved hers. Will I come back? Yes but mostly for the vibes.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 5,
+    "city": "Enugu",
+    "price_sensitivity": "high",
+    "tone": "formal",
+    "restaurant_type": "local buka",
+    "review": "Absolutely delighted with my visit. The jollof rice was well-prepared, fragrant, and not overly oily. Coupled with their well-seasoned chicken, it was a truly satisfying meal. The pricing is incredibly competitive; you get a lot of delicious food for your naira. This place is a testament to excellent local cooking at an affordable price.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fine dining",
+    "review": "Reserved a table at Toro for a friend's birthday. The ambiance is top-notch, very moody and sophisticated. We shared a few small plates; the plantain chips with dips were addictive. For my main, I had the steak which was cooked to my preference. It's definitely on the pricier side, around N10,000 for a main, but for the quality of food and the experience, I'd say it's worth it for a celebration. The cocktails were also well-made.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Port Harcourt",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "The pounded yam dey soft small, but the soup wey I order, ogbono, e no dey thick well well. For the N3500 wey I pay, I expect better consistency. Staff dey try their best though, no shouting or wahala. If them fit improve the soup consistency, e go be better.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "low",
+    "tone": "formal",
+    "review": "This place is everything. From the moment you enter, you feel the class. The catfish pepper soup was rich and well-spiced, not that watery one wey some places serve. Service was attentive without being annoying. Yes it is pricey but you are paying for an experience and they delivered. Highly recommend for date night or client dinner.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 4,
+    "city": "Port Harcourt",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fast food",
+    "review": "This my new spot for quick lunch when I dey bypass. Their eba and egusi soup taste like home, very rich and flavourful. N2,800 for a good bowl, and they give generous portion. The only downside is the tiny space, e dey very crowded during peak hours. But the food itself? Top notch for a fast food joint.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "This place be like say na joke them dey joke with customer food. I buy jollof rice and chicken for N3000, e don finish for my belle but taste no dey. Same price for other places wey dey give better taste. Sha, the lady wey serve me dey rush, no smile for her face. Next time I go find better buka, abeg.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "This buka na joke. I pay N2000 for amala and egusi soup, I expect correct portion. Wetin I see? Soup small like my pocket money for secondary school. Fish dry pass Sahara desert. Even NEPA sha refuse to shine light, na so darkness swallow us. Next time, I go find better place wey dem no dey rip person.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Decent spot. The decor could be better, service was great and they serve great seafood dishes.",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 3,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "chinese restaurant",
+    "review": "Went to 'Great Wall' for lunch. The spring rolls were crispy, but the main course, General Tso's chicken, was a bit dry. It's priced at N6500, which is okay, but not amazing value. The AC was working well though, which is a big win in this Lagos heat. Overall, it was alright.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Warri",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "My brother, this place na scam o. N3500 for small bowl of pepper soup wey no even get meat inside, just water wey dey taste like seasoning. For Warri? Abeg. My generator dey give better soup pass this one. I go still go my buka chop amala with egusi wey full my stomach for less than N1500. Make una try dey check una prices o.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Port Harcourt",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fast food",
+    "review": "I try their shawarma today for N3,500. The filling was good, lots of meat and veggies, but the bread was a bit too oily for my liking. It's decent for a quick fix, but not the best shawarma I've had in Port Harcourt. They should work on the bread texture. Service was fast though, so that's a plus.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Kano",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "The pepper soup was very flavourful, I give them that. But when I see the bill for N2000 and dem give me only 4 small pieces of goat meat, I vex small. For Kano, for fast food, I expect more value. The place dey clean, no lie, but e no worth the amount I spend for the small meat.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Port Harcourt",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "This place dey too hot, no fan, no AC. Sweat dey kill person. The eba wey dem serve small, and the stew no dey enough. N1500 for this kind small chop wey make me still dey feel hunger? Na scam! I go find better buka wey value for money.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "Food dey okay, but the price too much for fast food. I buy small burger and chips, e cost me N8000! Wetin dey happen? This one na for rich people price. The suya wey I see for outside, e look fresh sha, but I no wan spend N5000 for small suya again. E better make I go market buy myself. Service sef slow, e don take like 20 minutes for them to give me my change. Na so we go dey suffer?",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Ibadan",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "pepper soup joint",
+    "review": "Absolutely loved the fish pepper soup here! The broth was rich and aromatic, priced at a reasonable N2,800. The fish was fresh and well-cooked. The restaurant maintained a clean environment and the service was exceptional. It's a wonderful place to unwind and enjoy authentic Nigerian flavors without breaking the bank.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "Food no bad, but the amount them dey collect, e dey high. I buy chicken and chips, e cost N7000. Small portion, abi? The chicken sef no too sweet, e taste like e don dey wait for fridge since morning. For this price, I expect fresh everything, even the air wey I dey breathe! E better make I dey cook for house. At least I know wetin I dey chop. Them need to review their price or increase their quality.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 1,
+    "city": "Kano",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "This na scam! I pay N1500 for a plate of fried rice with suya. Wetin I see? Small rice wey e almost be yellow, and suya wey dey look like leftover. E suppose be quick service for fast food, but I wait for almost 30 minutes for this joke. My friend wey dey Lagos say e get better deal for N1000. Kano people deserve better than this.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "fast food",
+    "review": "This place is a reliable option when you need a quick, satisfying meal in Abuja. I had their fried plantain and grilled chicken, which was well-seasoned and cooked perfectly. While not the cheapest fast food option in the city, the quality justifies the cost, around N5,500 for the meal. The ambiance is typical for a fast food outlet, nothing too special, but functional. Will return for the chicken.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Centrally positioned at Oniru busstop Ozumba and serve a great deal of people in that neighbourhood. Their meals are affordable and quality.",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 1,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "God save us from this place! I order pepper soup for N1500, thinking say e go sweet. E be like dem just boil water with expired seasoning. Meat them small, like insect wey dem dey count. The heat inside the place choke person. Generator noise dey deafen. Never again! I regret spending my hard-earned naira here.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "The pepper soup wey I order, e no get spice at all. Na water with seasoning. And them charge me N4500 for small bowl. This Abuja price choke! I dey remember when I dey Lagos, I dey get big bowl for N2000. For this heat, I expect something wey go ginger my body, not this weak soup. Generator no dey work well, so e still dey hot inside. I no go come back here, abeg.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "grilled fish spot",
+    "review": "This place na top tier for grilled fish in Abuja!  My friend recommended the Tilapia suya and wow, just wow.  The marinade was on point and the grilling was expert.  For N6.5k, I got a whole fish with plantain and salad.  This is what you call value for your naira, abeg.  Atmosphere is relaxed, good for catching up with friends.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "low",
+    "tone": "formal",
+    "restaurant_type": "fine dining",
+    "review": "The restaurant boasts an impressive interior, creating a pleasant dining environment. The appetizer, a truffle mushroom soup, was rich and flavourful. However, my main course of lamb chops, while cooked adequately, lacked a certain 'wow' factor I anticipated given the N15,000 charge. The service was prompt, but could perhaps be a little more personalized.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "fast food",
+    "review": "A decent spot for a quick bite. I ordered their eba with egusi soup, and it was quite flavorful. The portion was generous enough, and the price, around N3,800, felt reasonable for the amount of food. It's a good alternative to cooking at home when you're tired. The environment was clean and well-lit. Would recommend for a simple, authentic Nigerian meal.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Enugu",
+    "price_sensitivity": "high",
+    "tone": "formal",
+    "restaurant_type": "local buka",
+    "review": "This buka serves some of the most authentic Enugu cuisine I've had. The egusi soup was rich and flavorful, with perfectly cooked pounded yam. Considering the generous portion sizes and the quality of ingredients, the prices are exceptionally reasonable. It's rare to find such value for money these days, especially with the current economic climate.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "low",
+    "tone": "formal",
+    "restaurant_type": "fine dining",
+    "review": "This restaurant offers a sophisticated atmosphere perfect for business dinners or intimate celebrations. The pepper soup starter was robust and authentic, a delightful start. My main course, the grilled suya skewers, were beautifully presented and flavourful, though a slightly larger portion would have been appreciated for the N8,000 price tag. The staff were attentive and knowledgeable.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Good old Tantalizers, they are always there to serve several tasty delicacies to customers. I visit regularly for that oven fresh and hot bread. Its quiet in there in recent times so those who don't like rowdy eatery can make it their choice. However, there's need to step up their game so they're not left behind.",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 1,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "This place na scam! I go order amala and egusi soup, them tell me N6000! For fast food! Chai! Nigeria don tire me. The soup wey I collect, e watery like agbado water. No meat, no fish, just small tiny kpomo. The amala hard like stone. I no fit even chop am. Better save your naira, go find proper buka wey sabi chop. This one na for people wey get plenty money wey dem no know wetin to do with am.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "seafood restaurant",
+    "review": "This is hands down the best seafood restaurant I've been to recently in Lagos. The aroma of their seafood stew alone is worth the visit. Everything was so fresh, and the flavors were simply outstanding. We spent around N9,000 per person and felt we got excellent quality for our naira. Definitely coming back!",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "Jollof rice wey them serve me na like yesterday food, dry and sad. Eba was okay, but the stew was watery. I spend N3000 for this small plate. My brother, with that money I can buy two full meals for another buka. The waitress just dey look you like say you owe them. Lagos traffic worse pass this place.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Enugu",
+    "price_sensitivity": "high",
+    "tone": "formal",
+    "restaurant_type": "local buka",
+    "review": "If you're looking for a local buka that understands value, this is it. The eba and afang soup was hearty and well-seasoned. It's impressive how they manage to keep their prices so low without compromising on taste or portion size. For a filling and affordable meal that respects your wallet, this place is a top contender in Enugu.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Enugu",
+    "price_sensitivity": "high",
+    "tone": "formal",
+    "restaurant_type": "local buka",
+    "review": "A very good spot for local dishes. I particularly enjoyed their pepper soup; it had just the right amount of spice and the meat was tender. For the cost, the servings are quite substantial, making it a smart choice for those mindful of their budget. The ambience is typical of a local eatery, clean and functional, which is perfectly fine for the price point.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "They make really nice meals here. Their fresh pineapple juice is a banger. I enjoyed every moment spent here.",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "grilled fish spot",
+    "review": "The grilled mackerel here is not a joke!  Smoky and flavorful, dey burst my belle.  They charge around N5k for a good portion with sides, which I think is fair.  Compared to other spots where you fit pay more for less, this one dey deliver.  The generator hum dey constant reminder of Abuja reality, but the food makes up for it sha.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "Abeg, this place no dey try. The jollof rice wey I buy for N3000, e no even get meat inside! Just rice and small stew. For Abuja price, I expect better value. Last time I go this kind place for Lagos, I pay less and get plenty chicken. NEPA no dey give light well well, and the fan wey them get, e no dey blow anything. So you go dey sweat while you chop rubbish.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "low",
+    "tone": "casual",
+    "restaurant_type": "rooftop bar and grill",
+    "review": "This place is pure bliss! The food is fantastic, especially the grilled seafood. I felt like I was on vacation. Even though it’s a bit of a splurge, the quality and the stunning view make it a solid investment for a good time. The staff were super friendly and made sure we had everything we needed. Don't miss out on this gem!",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "Okay, this buka na one of those wey dey give you small small for your money. I order amala with egusi soup for N2500. The soup thick well well, but the quantity of meat, e shock me small. For this Abuja price, I expect more meat. But the taste no bad sha. Generator was on, so NEPA no stress me.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "grilled fish spot",
+    "review": "Ah, this spot is a hidden gem! The grilled catfish with their special suya spice? Heavenly!  E dey make sense for the money, around N9k for two people with drinks and jollof rice.  The ambience is chill, you can actually hear yourself talk without NEPA disturbing.  Definitely coming back for more.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Benin City",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "I try amala and ewedu here. The amala was okay, but the ewedu was too watery for my taste, and no clear gbegiri on the side. For N1500, I expected a bit more thickness and flavour. The seatings are basic plastic chairs, which is fine, but the whole place could use a refresh. Service was average, they forgot my drink at first.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 1,
+    "city": "Warri",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "This one na insult to Warri people. I order fried rice and chicken, dem give me dry chicken wey taste like cardboard. Rice sef hard like stone. And the price? N5000 for this rubbish. Na wa o. Even NEPA no dey give this kind current wey dey shock person. I no understand wetin dem dey call fast food here.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "review": "The Place remains my go-to for Nigerian food in a clean environment. The ofe onugbu with okpa hit different last weekend, whoever is in that kitchen knows what they are doing. Wait time can be annoying on weekends, sometimes 30 minutes for food. Go on weekdays if you can.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "suya spot",
+    "review": "For N5000, I got a generous plate of their special beef suya that was melt-in-your-mouth tender. The balance of spices was incredible, and they didn't skimp on the onions and peppers. It's hard to find good quality suya at this price point in Lagos, but this place nails it. The service was quick too, even with the crowd. Definitely a must-try for budget-conscious suya lovers.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Port Harcourt",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "review": "E still dey manage. The meat pie still dey hit different when e fresh from oven. But the service sef don fall. Waited 15 minutes just to order. For fast food? That one no make sense. Price reasonable sha, I go give them that. Nothing premium, nothing terrible.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 5,
+    "city": "Enugu",
+    "price_sensitivity": "high",
+    "tone": "formal",
+    "restaurant_type": "local buka",
+    "review": "A hidden gem! The aroma of their cooking draws you in, and the taste does not disappoint. Their signature dish, a spicy goat meat stew, was outstanding. The portions were more than adequate for the price paid, offering excellent bang for your buck. I highly recommend this establishment to anyone seeking delicious, inexpensive local fare.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fine dining",
+    "review": "Pulled up to Bukka Hut and was pleasantly surprised by the upscale feel. I went for the afang soup and fufu, and oh my days! The soup was so rich and packed with flavour, fufu was soft. It's a bit more expensive than your average buka, maybe N7,500 for a good bowl, but the quality is undeniable. Service was quick and friendly. This is how you do traditional food with a touch of class.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Port Harcourt",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "Okay, the suya dey palatable, not the best I don chop for PH but e try. Pepper soup was a bit watery sha, no much meat. For the N5000 wey I spend for two plate of suya and pepper soup, I expect more flavor. But at least the service quick. If price no dey your wahala, e fit do.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Ibadan",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "amala joint",
+    "review": "This amala joint on the University of Ibadan road is a hidden gem!  Their pepper soup is so flavourful and spicy, perfect for this Ibadan heat.  I got my amala and assorted meat for N950, and the portion was generous.  It's a simple place, but the food is honest and delicious.  You get proper value for your naira here, unlike those fancy restaurants.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "fast food",
+    "review": "Decided to try this popular fast food joint for lunch. The jollof rice was decent, not overly dry or too saucy, which is a plus. However, the portion size for the price felt a bit small, especially considering the current cost of ingredients. Service was efficient, but the dining area could have been cleaner. I expected a bit more value for the N3,000 I spent.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Port Harcourt",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fast food",
+    "review": "This place be like okay place for quick bite when you no get power for house. The jollof rice na average, taste normal like any other fast food. Price dey okay for the portion, maybe N2,500 for the small tray. But the suya wey I buy, e no really have that smoky flavour I dey expect for Port Harcourt. Service fast sha, no long queue.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Benin City",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "Wetin dey happen? This buka is a hidden gem! The fried plantain was perfect, not oily at all, and the stew that came with it was spicy and delicious. I got a plate of rice and stew with chicken for N2500 and it was a generous serving. The staff were very friendly and attentive. If you want good food without breaking the bank, this is the spot.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Dine in, take out and yeah it was okay",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "low",
+    "tone": "formal",
+    "restaurant_type": "fine dining",
+    "review": "An unparalleled dining experience in Abuja. From the moment we entered, the service was gracious and efficient. The executive chef's special, a deconstructed egusi soup with perfectly formed eba pearls, was a revelation. It's a testament to their dedication to elevated Nigerian cuisine. For the N11,000 it cost, it was an unforgettable gastronomic adventure.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "This place was so beautiful and aesthetic with beautiful views and the food is wonderful",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 3,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "The suya was okay, but for N5000 for small plate? E no make sense at all. For that price, I expect plenty meat wey dey tantalize. The suya dey try, sha, but the value for money no dey there. Place too crowded, and the service slow like Lagos traffic for rush hour. Dem need to review their pricing.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "The pepper soup dey try for N3500, but the quantity of meat small. I expect more for that price, abeg. I come with my friend from Lagos, he say for Lagos, this price go give double the meat. But the taste dey okay, hot and spicy. Just wish them go put more for the pot.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "low",
+    "tone": "formal",
+    "restaurant_type": "fine dining",
+    "review": "The ambiance at this establishment is truly remarkable, offering a serene escape from the city's usual hustle. The pan-seared salmon was cooked to perfection, flaky and flavourful, paired exquisitely with a dill cream sauce. While the price point is on the higher side, the quality of ingredients and culinary execution justifies the expense for a special occasion.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Kano",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "Okay, the chicken dey acceptable, not the best, but e no bad. Na just the size sha. For N900, I expect more than two small pieces. The rice well-cooked, no lie, but the stew sharp too much, e dey make mouth water for wrong reason. If them fit give better portion for this price, e go better.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "suya spot",
+    "review": "If you're looking for value for your naira in Lekki Phase 1, this suya spot is it! N7000 for a whole pack of assorted suya, including that succulent goat meat and perfect asun. The spice level was just right, not too hot, not too bland. I enjoyed my meal under the shade, away from the Lagos heat, and didn't even miss the generator sound for once. Truly a good experience for the money.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "grilled fish spot",
+    "review": "So, I went for the grilled croaker and it was decent. The fish was flaky and juicy, not like some places wey dey serve fish wey don vex. Price was okay, maybe N8k for a medium fish and pepper soup. The pepper soup was nice, had a kick.  My only small wahala is the parking, e dey tight sometimes. But overall, good value for a weekend chill.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 1,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "Wetin be this? N4000 for a plate of pounded yam and ogbono soup wey dey like water? Abeg, I no dey come back here again. The woman wey serve me, she no even look me for face, just throw the plate for table. This kain price for this kain food, na scam wey dey disguise. This Abuja traffic no dey worth this disappointment.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Food is excellent and the service superb",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "review": "2am and this man's suya still dey slap. I don't know what magic happens at this spot but the beef suya after midnight hits completely different. Properly spiced, meat tender, onions and tomatoes fresh. N1500 wrap will carry you. This is Lagos culture at its purest.",
+    "source": "handcrafted"
+  },
+  {
+    "rating": 4,
+    "city": "Abuja",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "This buka na my regular spot for quick eba and ewedu. Price range is good, N2000 for a plate. Taste is consistent, and they dey serve fast. Sometimes NEPA no dey, but their generator steady. For people wey dey hustle like me, this place dey make sense for pocket and for belle.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Benin City",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "local buka",
+    "review": "Chai! The jollof rice here is the real deal! Each grain dey separate and the smoke flavour is on point. They give plenty chicken for N3000, I even carry some home. The aroma alone is enough to make you drool. Abeg, if you dey Benin City and you no try this jollof, you dey miss. Pure enjoyment!",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 1,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "My money is too important to waste here. I buy moi moi and ewedu for N2500, and dem give me small moi moi wey be like 2 bites. Ewedu too watery, no thickness. The waiter was busy dey chat instead of serving. This place no get customer sense at all. For this price, I should be feeling like a king, not this.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fine dining",
+    "review": "The ambience at La Cantina was lovely, really stepped up from the usual Lagos spots. My jollof rice was so flavourful, a nice change from the smoky versions you get everywhere. My friend's pepper soup was also on point, very peppery and rich. For the price point, I think it's fair for a special occasion, even if the portion of suya was a bit small. Service was attentive, no complaints there.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Ibadan",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "amala joint",
+    "review": "I stumbled upon this amala place at Molete and was impressed. The stew had a great balance of spice and flavour, and the pounded yam was soft. For N1100, I had a very satisfying meal with fish. It's a place that understands value for money. The service was quick too, which is a bonus when you're hungry.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 1,
+    "city": "Warri",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "fast food",
+    "review": "This na pure robbery. N15000 for a family pack wey suppose to feed four person, but e barely reach two. Chicken dry, fries soft like NEPA light. Abeg, make una no waste una money here. Better go buy rice and stew from buka, e go pass this one and still remain change.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "chinese restaurant",
+    "review": "The food at Golden Dragon was surprisingly good for Lagos. I had the sweet and sour chicken, and it was well-seasoned, not too sweet. Portions were decent for the price, around N6000 for a main. The ambiance is a bit basic, but honestly, for Chinese food, I care more about the taste. Will go back.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Ambience is nothing to write home about",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "grilled fish spot",
+    "review": "Finally found a grilled fish spot in Abuja that doesn't disappoint!  The smoked fish with yam is a must-try.  The price point, around N10k for two people enjoying this combo, is very reasonable for the quality and portion size.  It’s a good spot to take visitors, feels authentic but still clean and comfortable.  No complaints from me!",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "casual",
+    "restaurant_type": "chinese restaurant",
+    "review": "Me and my girl went to 'Dynasty Gardens' last week. The Kung Pao shrimp was fire! Spicy and flavorful, just how I like it. It was about N8000 for that dish. The restaurant is clean and the service was attentive, no long waits. Definitely a good spot for a date night if you fancy Chinese.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "low",
+    "tone": "formal",
+    "restaurant_type": "fine dining",
+    "review": "A true gem in Abuja's culinary scene. The fusion of continental and Nigerian flavours is executed with extraordinary skill. The jollof rice, often a test, was divine - rich, smoky, and perfectly cooked. The service was seamless, and the quiet, ambient music allowed for easy conversation. I felt the N12,000 spent on my meal was well worth the exceptional quality and experience.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "I love the Naija specials menu and good customer services",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 3,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "The ogbono soup was not bad, good flavor. But the amount of meat for N4500? E shock me. Just two small pieces of beef. For this Lagos, that money can buy proper soup with plenty meat. The small chops wey I order as appetizer was also small and overpriced. I go come back, but only if them increase the portion.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Ibadan",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "pepper soup joint",
+    "review": "A solid choice for pepper soup in Ibadan. The chicken pepper soup at N2,200 was well-seasoned and hearty. The portion size was generous. The atmosphere is generally pleasant, with adequate ventilation. NEPA issues are common, but their generator backup is efficient, ensuring a consistent dining experience. Worth a visit.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fine dining",
+    "review": "Tried to visit The Place, and it was a mixed bag. The decor is quite chic, very modern. I ordered the grilled fish, and it was cooked well, but the sauce was a bit too sweet for my liking. My partner’s eba and okra soup was decent, but not exceptional. For N12,000 for two, I expected a bit more 'wow' factor in the taste. The AC was working well though, which is a big plus in this Lagos heat.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "suya spot",
+    "review": "This small suya joint on the mainland, near Costain, dey surprise me. The beef suya for N2000 was good, properly seasoned and grilled. I go say na decent portion for the price wey dem dey charge. Their suya spice pack na fire! I wish the sitting arrangement was better, e get like say dem squeeze tables, but the taste of the suya sha make up for it.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Tasty jollof but please they have to do something about the interior design",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 4,
+    "city": "Ibadan",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "amala joint",
+    "review": "This amala joint wey dey Ojoo is something else! For N1000, I get plenty eba and egusi soup wey plenty fish. The taste is just like mama house, no joke.  Sometimes NEPA go fail, but their generator dey strong.  Value for money is definitely there, compared to some other places wey go collect your whole salary for small plate.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Port Harcourt",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "This buka na like for where? The jollof rice don dry well well, e no even get that smoky taste wey I dey expect. For the price wey them dey charge, I expect better. N2000 for small plate of rice and chicken wey be like bone? Abeg, una dey play abi? Make una try improve.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Ibadan",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "amala joint",
+    "review": "This amala joint at Gate is the real deal!  The meat in the soup was so tender, and the ogunfe (cow skin) was perfectly cooked.  I paid N1300 for a plate that could feed two people, honestly.  The taste is authentic, and it's far better than some expensive places that serve bland food.  If you want proper Nigerian food without breaking the bank, this is the spot.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Ibadan",
+    "price_sensitivity": "high",
+    "tone": "mixed",
+    "restaurant_type": "amala joint",
+    "review": "Wow! This place for Challenge area, their amala dey very soft and the soup – ah, the gbegiri and ewedu combination is heavenly!  And the price?  For N800, I eat like a king.  The beef was tender and well-seasoned.  I no mind coming here every week, even if I have to trek small.  Quality and quantity at this price point, you can't beat it.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Lagos",
+    "price_sensitivity": "low",
+    "tone": "casual",
+    "restaurant_type": "rooftop bar and grill",
+    "review": "This rooftop spot is the bomb! The view of the city lights at night is amazing, and they really know how to grill. Had their suya platter, and it was perfectly seasoned and tender. The cocktails were also on point, not too sweet. Definitely worth the splurge for a special occasion.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 5,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "restaurant",
+    "review": "Great cooking, premium service. Loved the ambience in the outdoor restaurant",
+    "source": "real_google_maps"
+  },
+  {
+    "rating": 1,
+    "city": "Port Harcourt",
+    "price_sensitivity": "high",
+    "tone": "pidgin-heavy",
+    "restaurant_type": "local buka",
+    "review": "I no even know why I waste my money here. The place dey smell like old generator fume. The food wey dem serve me, fish pepper soup, e get small fish and plenty water. N4000 for this? I swear, better buka for mile 1 dey give pass this one. My mouth still dey taste rubbish.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 3,
+    "city": "Ibadan",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "pepper soup joint",
+    "review": "I tried the assorted meat pepper soup, which was adequately spiced for N3,000. The variety of meats was good, but some pieces were a bit tough. The seating arrangements could be improved for comfort, especially considering the Ibadan heat. While the taste is decent, it doesn't quite justify the price point compared to other local options.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Enugu",
+    "price_sensitivity": "high",
+    "tone": "formal",
+    "restaurant_type": "local buka",
+    "review": "This buka offers a consistently good experience. Their amala and ewedu is well-prepared, a true taste of home. What stands out is how they manage to maintain quality and affordability. In a city where prices can fluctuate wildly, their steadfast value proposition is highly commendable. A solid choice for a hearty, budget-friendly meal.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 2,
+    "city": "Abuja",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "fast food",
+    "review": "My recent visit was rather disappointing. The suya I ordered was quite tough and lacked the smoky flavor I anticipated. For N4,000, I expected better quality. The staff seemed overwhelmed, and there was a noticeable wait even though it wasn't peak hour. The AC was also struggling with the Abuja heat. Not the best value for money this time.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "mixed",
+    "restaurant_type": "fine dining",
+    "review": "Went to Oriental for some pan-Asian fusion. The decor is elegant and the service was very professional. I had the prawn spring rolls which were crispy and delicious. For my main, the chicken teriyaki was well-seasoned and the portion was generous enough for N8,500. It’s a solid choice for a business lunch or a nice dinner date if you don't want to deal with the usual Lagos traffic chaos. The music was also low enough for conversation.",
+    "source": "gemini_synthesized"
+  },
+  {
+    "rating": 4,
+    "city": "Lagos",
+    "price_sensitivity": "medium",
+    "tone": "formal",
+    "restaurant_type": "seafood restaurant",
+    "review": "Came here for a birthday dinner and it was a pleasant surprise. The seafood jollof rice was a unique and delicious twist, though a bit pricey at N6,000 for a plate. The grilled tilapia was succulent. The heat in Lagos can be intense, but their air conditioning was a welcome relief. Decent value for money overall.",
+    "source": "gemini_synthesized"
+  }
+]
