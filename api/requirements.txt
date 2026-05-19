@@ -6,3 +6,4 @@ python-dotenv
 pandas
 chromadb
 sentence-transformers
+googlemaps

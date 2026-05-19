@@ -28,3 +28,21 @@ app.include_router(task_b.router, tags=["Task B - Recommendations"])
 @app.get("/")
 def root():
     return {"status": "ok", "message": "DSN Bluechip API is running"}
+
+
+@app.get("/cache/stats")
+def cache_stats():
+    from cache_manager import _load_cache
+    cache = _load_cache()
+    return {
+        "total_cached_queries": len(cache),
+        "queries": [
+            {
+                "query": v["query"],
+                "location": v["location"],
+                "restaurants": len(v["restaurants"]),
+                "cached_at": v["cached_at"],
+            }
+            for v in cache.values()
+        ],
+    }

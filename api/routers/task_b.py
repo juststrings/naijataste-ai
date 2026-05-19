@@ -1,34 +1,34 @@
-import random
+import json
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from core.gemini_client import generate_json
-from core.voice import build_recommendation_prompt
-from core.yelp_loader import PersonaEncoder, get_business_lookup
+from places_client import search_real_restaurants
 
 router = APIRouter()
 
-_CANDIDATE_POOL_SIZE = 15
-
-
-class RecommendRequest(BaseModel):
-    user_id: Optional[str] = None
-    cold_start_signals: Optional[dict] = None
-
-
-class RecommendedItem(BaseModel):
-    item_name: str
-    business_id: Optional[str] = None
-    reason: str
-    predicted_rating: float
-    cultural_note: str
-
-
 # ---------------------------------------------------------------------------
-# Helpers
+# City keyword → canonical name (used for location extraction from query text)
 # ---------------------------------------------------------------------------
+
+_CITY_KEYWORDS: dict[str, str] = {
+    "lagos": "Lagos",
+    "lekki": "Lagos",
+    "victoria island": "Lagos",
+    "ikeja": "Lagos",
+    "surulere": "Lagos",
+    "yaba": "Lagos",
+    "abuja": "Abuja",
+    "maitama": "Abuja",
+    "wuse": "Abuja",
+    "garki": "Abuja",
+    "port harcourt": "Port Harcourt",
+    " ph ": "Port Harcourt",
+    "ibadan": "Ibadan",
+    "kano": "Kano",
+}
 
 _PRICE_RANGE_MAP = {
     "budget": "high",
@@ -43,14 +43,35 @@ _PRICE_RANGE_MAP = {
 }
 
 
+# ---------------------------------------------------------------------------
+# Models
+# ---------------------------------------------------------------------------
+
+
+class RecommendRequest(BaseModel):
+    user_id: Optional[str] = None
+    cold_start_signals: Optional[dict] = None
+    query: Optional[str] = None  # explicit search query; falls back to preferred_food
+
+
+class RecommendedItem(BaseModel):
+    item_name: str
+    business_id: Optional[str] = None
+    reason: str
+    predicted_rating: float
+    cultural_note: str
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+
 def _persona_from_cold_start(signals: dict) -> dict:
-    """Build a minimal persona dict from cold-start signals."""
     raw_price = str(signals.get("price_range", "")).lower().strip()
     price_sensitivity = _PRICE_RANGE_MAP.get(raw_price, "medium")
-
     food_pref = signals.get("preferred_food", "")
     tone_keywords = [w for w in str(food_pref).lower().split() if len(w) > 2]
-
     return {
         "user_id": "cold_start",
         "avg_rating": 3.5,
@@ -59,52 +80,53 @@ def _persona_from_cold_start(signals: dict) -> dict:
         "tone_keywords": tone_keywords,
         "total_reviews": 0,
         "sample_reviews": [],
-        # carry city through so build_recommendation_prompt can use it
         "_city": signals.get("city", ""),
     }
 
 
-def _sample_candidates(persona: dict, cold_start_signals: Optional[dict]) -> list[dict]:
-    """
-    Sample up to _CANDIDATE_POOL_SIZE businesses from the Yelp lookup.
-    Filters by city when we have a city signal.
-    """
-    business_lookup = get_business_lookup()
-    all_businesses = list(business_lookup.values())
-
-    # Determine city filter
-    city_hint = ""
+def _extract_location(query: str, cold_start_signals: Optional[dict]) -> str:
+    """Prefer cold_start city, then scan the query string for known city keywords."""
     if cold_start_signals:
-        city_hint = str(cold_start_signals.get("city", "")).lower().strip()
-    elif persona.get("_city"):
-        city_hint = str(persona["_city"]).lower().strip()
-
-    if city_hint:
-        city_filtered = [
-            b for b in all_businesses
-            if city_hint in str(b.get("city", "")).lower()
-        ]
-        pool = city_filtered if city_filtered else all_businesses
-    else:
-        pool = all_businesses
-
-    k = min(_CANDIDATE_POOL_SIZE, len(pool))
-    return random.sample(pool, k)
+        city = cold_start_signals.get("city", "").strip()
+        if city:
+            return city
+    # Pad with spaces so word-boundary checks work on keywords like " ph "
+    padded = f" {query.lower()} "
+    for keyword, canonical in _CITY_KEYWORDS.items():
+        if keyword in padded:
+            return canonical
+    return "Lagos"
 
 
-def _attach_business_ids(items: list[dict], candidates: list[dict]) -> list[dict]:
-    """
-    Gemini returns item_name strings. Resolve each back to its business_id
-    using a case-insensitive name lookup over the candidates we sent it.
-    """
-    name_to_id: dict[str, str] = {
-        b.get("name", "").lower(): b.get("business_id", "")
-        for b in candidates
-    }
-    for item in items:
-        name_key = item.get("item_name", "").lower()
-        item["business_id"] = name_to_id.get(name_key)
-    return items
+def _build_places_prompt(
+    query: str, location: str, persona: dict, real_restaurants: list[dict]
+) -> str:
+    price_sensitivity = persona.get("price_sensitivity", "medium")
+    tone = persona.get("rating_tendency", "balanced")
+    keywords_str = ", ".join(persona.get("tone_keywords", [])) or "Nigerian cuisine"
+
+    return (
+        f'You are a Nigerian food recommendation AI. '
+        f'A user is looking for: "{query}" in {location}.\n\n'
+        f"## User Profile\n"
+        f"- Price sensitivity: {price_sensitivity} "
+        f'({"budget-conscious" if price_sensitivity == "high" else "premium spender" if price_sensitivity == "low" else "moderate budget"})\n'
+        f"- Rating tendency: {tone}\n"
+        f"- Food keywords: {keywords_str}\n\n"
+        f"## REAL Restaurants from Google Maps\n"
+        f"{json.dumps(real_restaurants, indent=2)}\n\n"
+        f"## Your Task\n"
+        f"Recommend the 5 best matches from the list above for this user's query.\n"
+        f"ONLY recommend restaurants from the list above — NEVER invent new ones.\n"
+        f"For each recommendation, add a short Nigerian Pidgin cultural note.\n\n"
+        f"CRITICAL: Return ONLY a raw JSON array of exactly 5 objects. "
+        f"No markdown. No explanation. Start with [ end with ].\n"
+        f"Each object must have:\n"
+        f"- item_name: exact restaurant name from the list above (max 6 words)\n"
+        f"- reason: why it matches this query (max 12 words)\n"
+        f"- predicted_rating: float 1.0–5.0\n"
+        f"- cultural_note: short Nigerian Pidgin tip (max 10 words)\n"
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -116,6 +138,7 @@ def _attach_business_ids(items: list[dict], candidates: list[dict]) -> list[dict
 def recommend(body: RecommendRequest):
     # Resolve persona
     if body.user_id:
+        from core.yelp_loader import PersonaEncoder
         persona = PersonaEncoder(body.user_id)
     elif body.cold_start_signals:
         persona = _persona_from_cold_start(body.cold_start_signals)
@@ -125,26 +148,25 @@ def recommend(body: RecommendRequest):
             detail="Provide either user_id or cold_start_signals.",
         )
 
-    candidates = _sample_candidates(persona, body.cold_start_signals)
+    # Determine search query and location
+    query = (
+        body.query
+        or (body.cold_start_signals or {}).get("preferred_food", "")
+        or " ".join(persona.get("tone_keywords", []))
+        or "Nigerian restaurant"
+    )
+    location = _extract_location(query, body.cold_start_signals)
 
-    if not candidates:
+    # Fetch real restaurants: cache → Google Places → hardcoded fallback
+    real_restaurants = search_real_restaurants(query, location)
+
+    if not real_restaurants:
         raise HTTPException(
             status_code=503,
-            detail="Business data is unavailable or empty.",
+            detail="Could not retrieve restaurant data.",
         )
 
-    prompt = build_recommendation_prompt(persona, candidates)
-
-    prompt += (
-        "\n\nCRITICAL: Return ONLY a raw JSON array of exactly 5 objects. "
-        "No markdown. No explanation. Start with [ end with ].\n"
-        "Each field must be very short:\n"
-        "- item_name: business name only, max 5 words\n"
-        "- reason: max 10 words\n"
-        "- predicted_rating: float between 1.0 and 5.0\n"
-        "- cultural_note: max 8 words\n"
-    )
-
+    prompt = _build_places_prompt(query, location, persona, real_restaurants)
     result = generate_json(prompt, max_tokens=4000)
 
     # Normalise: Gemini occasionally returns a dict with a nested list
@@ -160,12 +182,16 @@ def recommend(body: RecommendRequest):
             detail=f"Unexpected response shape from Gemini: {type(result).__name__}",
         )
 
-    result = _attach_business_ids(result, candidates)
+    # Map place_id → business_id for API compatibility
+    place_id_map = {
+        r.get("name", "").lower(): r.get("place_id")
+        for r in real_restaurants
+    }
 
     return [
         RecommendedItem(
             item_name=str(r.get("item_name", "")),
-            business_id=r.get("business_id"),
+            business_id=place_id_map.get(r.get("item_name", "").lower()),
             reason=str(r.get("reason", "")),
             predicted_rating=float(r.get("predicted_rating", 3.0)),
             cultural_note=str(r.get("cultural_note", "")),
