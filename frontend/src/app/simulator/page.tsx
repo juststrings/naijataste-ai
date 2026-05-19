@@ -5,8 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { simulateReview } from "@/lib/api";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ReviewOutputCard from "@/components/ReviewOutputCard";
-import { useAuth } from "@/contexts/AuthContext";
-import { AuthThemeSync } from "@/components/AuthThemeSync";
 
 const PERSONAS = {
   professional: {
@@ -51,7 +49,6 @@ export default function SimulatorPage() {
 function SimulatorContent() {
   const searchParams = useSearchParams();
   const personaParam = searchParams.get("persona") as keyof typeof PERSONAS | null;
-  const { user } = useAuth();
 
   const [name, setName] = useState("Emeka");
   const [habit, setHabit] = useState<"harsh" | "balanced" | "generous">("balanced");
@@ -116,7 +113,6 @@ function SimulatorContent() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-16 py-12">
-      {user && <AuthThemeSync />}
       <div className="mb-8">
         <h1 className="text-4xl font-black text-on-surface mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
           Review Simulator

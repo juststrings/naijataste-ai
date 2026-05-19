@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth, getPersona } from "@/contexts/AuthContext";
-import { AuthThemeSync } from "@/components/AuthThemeSync";
 
 const BOOKS = [
   {
@@ -52,8 +51,6 @@ export default function FlavorFinderPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-16 py-10">
-      <AuthThemeSync />
-
       {/* Welcome header */}
       <div className="mb-8">
         <h1 className="text-4xl font-black text-on-surface mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>

@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
-import { AuthThemeSync } from "@/components/AuthThemeSync";
 
 const BADGES = [
   { id: "first_bite", label: "First Bite", icon: "🍔", desc: "Simulate your first review", threshold: 1 },
@@ -62,7 +61,6 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-16 py-10">
-      <AuthThemeSync />
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>

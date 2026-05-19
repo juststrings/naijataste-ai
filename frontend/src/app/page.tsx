@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import PersonaCard from "@/components/PersonaCard";
-import { AuthThemeSync } from "@/components/AuthThemeSync";
 
 export default function HomePage() {
   const { user, savedReviews } = useAuth();
@@ -203,13 +202,13 @@ function RadarChart() {
   return (
     <svg viewBox="0 0 240 240" className="w-full max-w-[260px] mx-auto">
       {[0.25, 0.5, 0.75, 1].map((v) => (
-        <path key={v} d={ringPath(v)} fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+        <path key={v} d={ringPath(v)} fill="none" stroke="#e4bebc" strokeWidth="1" />
       ))}
       {labels.map((_, i) => {
         const p = toPoint(i, 1);
-        return <line key={i} x1={cx} y1={cy} x2={p.x.toFixed(1)} y2={p.y.toFixed(1)} stroke="rgba(255,255,255,0.12)" strokeWidth="1" />;
+        return <line key={i} x1={cx} y1={cy} x2={p.x.toFixed(1)} y2={p.y.toFixed(1)} stroke="#e4bebc" strokeWidth="1" />;
       })}
-      <path d={dataPath} fill="rgba(183,16,42,0.3)" stroke="#b7102a" strokeWidth="2" />
+      <path d={dataPath} fill="rgba(183,16,42,0.15)" stroke="#b7102a" strokeWidth="2" />
       {values.map((v, i) => {
         const p = toPoint(i, v);
         return <circle key={i} cx={p.x.toFixed(1)} cy={p.y.toFixed(1)} r="4" fill="#b7102a" />;
@@ -217,7 +216,7 @@ function RadarChart() {
       {labels.map((label, i) => {
         const p = toPoint(i, 1.28);
         return (
-          <text key={i} x={p.x.toFixed(1)} y={p.y.toFixed(1)} textAnchor="middle" dominantBaseline="middle" fontSize="10" fontWeight="600" fill="#9bbfce">
+          <text key={i} x={p.x.toFixed(1)} y={p.y.toFixed(1)} textAnchor="middle" dominantBaseline="middle" fontSize="10" fontWeight="600" fill="#5b403f">
             {label}
           </text>
         );
@@ -252,7 +251,6 @@ function AuthenticatedHome({
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-16 py-10">
-      <AuthThemeSync />
       <p className="text-sm text-on-surface-variant italic mb-2">Correct taste only.</p>
 
       {/* Welcome header */}
