@@ -4,12 +4,24 @@ from pathlib import Path
 from typing import Optional
 
 # ---------------------------------------------------------------------------
-# Path
+# Path resolution (works locally and inside Docker at /app)
 # ---------------------------------------------------------------------------
 
-_SHOTS_FILE = (
-    Path(__file__).resolve().parents[2] / "prompts" / "few_shot_master.json"
-)
+
+def _find_few_shots_file() -> Path:
+    candidates = [
+        Path(__file__).resolve().parents[2] / "prompts" / "few_shot_master.json",
+        Path("/app/prompts/few_shot_master.json"),
+        Path(__file__).resolve().parent.parent.parent / "prompts" / "few_shot_master.json",
+    ]
+    for p in candidates:
+        if p.exists():
+            return p
+    raise FileNotFoundError(
+        "Few-shot file not found. Tried:\n" +
+        "\n".join(str(p) for p in candidates)
+    )
+
 
 # ---------------------------------------------------------------------------
 # Module-level cache
@@ -26,12 +38,8 @@ def _load_few_shots() -> list[dict]:
     global _few_shots
     if _few_shots is not None:
         return _few_shots
-    if not _SHOTS_FILE.exists():
-        raise FileNotFoundError(
-            f"Few-shot file not found: {_SHOTS_FILE}\n"
-            f"Expected the file at: {_SHOTS_FILE}"
-        )
-    with open(_SHOTS_FILE, "r", encoding="utf-8") as fh:
+    path = _find_few_shots_file()
+    with open(path, "r", encoding="utf-8") as fh:
         _few_shots = json.load(fh)
     return _few_shots
 
