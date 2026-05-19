@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NaijaTaste AI | Correct Taste, Every Time</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#b7102a","on-primary": "#ffffff","primary-container": "#db313f","on-primary-container": "#fffbff",
+        "secondary": "#8e4e14","on-secondary": "#ffffff","secondary-container": "#ffab69","on-secondary-container": "#783d01",
+        "tertiary": "#00685d","on-tertiary": "#ffffff","tertiary-container": "#008376","on-tertiary-container": "#f4fffb",
+        "surface": "#f3faff","surface-dim": "#bedfef","surface-bright": "#f3faff",
+        "surface-container-lowest": "#ffffff","surface-container-low": "#e6f6ff","surface-container": "#d8f2ff",
+        "surface-container-high": "#ccedfe","surface-container-highest": "#c6e8f8",
+        "on-surface": "#001f29","on-surface-variant": "#5b403f","surface-variant": "#c6e8f8",
+        "outline": "#8f6f6e","outline-variant": "#e4bebc","background": "#f3faff","on-background": "#001f29",
+        "inverse-surface": "#123441","inverse-on-surface": "#dff4ff","inverse-primary": "#ffb3b1",
+        "surface-tint": "#bb152c","error": "#ba1a1a","on-error": "#ffffff",
+        "primary-fixed": "#ffdad8","primary-fixed-dim": "#ffb3b1",
+        "secondary-fixed": "#ffdcc4","secondary-fixed-dim": "#ffb780","on-secondary-fixed": "#2f1400",
+        "tertiary-fixed": "#8cf5e4","tertiary-fixed-dim": "#6fd8c8",
+      },
+      fontFamily: {
+        "display": ["Montserrat"],"headline": ["Montserrat"],"body": ["Be Vietnam Pro"],"label": ["Be Vietnam Pro"]
+      },
+      spacing: {
+        "base": "8px","xs": "4px","sm": "12px","md": "24px","lg": "48px","xl": "80px","gutter": "16px",
+        "margin-mobile": "16px","margin-desktop": "64px"
+      }
+    }
+  }
+}
+</script>
+<style>
+  .adire-pattern {
+    background-color: #f3faff;
+    background-image: radial-gradient(#264653 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+  .glass-card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(143,111,110,0.1);
+  }
+  .spinner {
+    border: 3px solid rgba(183,16,42,0.1);
+    border-top: 3px solid #b7102a;
+    border-radius: 50%;
+    width: 36px; height: 36px;
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .page { display: none; }
+  .page.active { display: block; }
+  .star-filled { color: #8e4e14; }
+  .star-empty { color: #e4bebc; }
+  .chat-bubble-user {
+    background: #b7102a; color: white;
+    border-radius: 18px 18px 4px 18px;
+    align-self: flex-end;
+    max-width: 80%;
+    padding: 12px 16px;
+    margin: 4px 0;
+  }
+  .chat-bubble-bot {
+    background: #c6e8f8; color: #001f29;
+    border-radius: 18px 18px 18px 4px;
+    align-self: flex-start;
+    max-width: 85%;
+    padding: 12px 16px;
+    margin: 4px 0;
+  }
+  .rec-card {
+    background: white;
+    border: 1px solid rgba(143,111,110,0.12);
+    border-radius: 16px;
+    padding: 20px;
+    transition: box-shadow 0.2s;
+  }
+  .rec-card:hover { box-shadow: 0 8px 20px rgba(38,70,83,0.08); }
+  nav a.active { color: #b7102a; border-bottom: 2px solid #b7102a; padding-bottom: 2px; }
+  .persona-card {
+    border: 2px solid #e4bebc;
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+  }
+  .persona-card:hover, .persona-card.selected {
+    border-color: #b7102a;
+    background: #fff5f5;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #b7102a !important;
+    box-shadow: 0 0 0 2px rgba(183,16,42,0.12);
+  }
+  .price-btn.selected { background: rgba(183,16,42,0.12); border-color: #b7102a; color: #b7102a; }
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: #f3faff; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: #e4bebc; border-radius: 2px; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { animation: fadeUp 0.4s ease forwards; }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col" style="font-family: 'Be Vietnam Pro', sans-serif;">
+
+<!-- Fixed Adire Background -->
+<div class="fixed inset-0 adire-pattern z-0"></div>
+
+<!-- TOP NAV -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-outline-variant/20 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 md:px-16 py-3 flex justify-between items-center">
+    <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
+      <svg width="40" height="40" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#b7102a"/><stop offset="100%" style="stop-color:#ffab69"/></linearGradient></defs>
+        <circle cx="100" cy="100" r="90" fill="white" stroke="url(#g1)" stroke-width="8"/>
+        <path d="M60 140 Q100 160 140 140" stroke="#b7102a" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M70 80 C70 60 130 60 130 80" stroke="#00685d" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <text x="100" y="115" font-family="Montserrat,sans-serif" font-size="22" font-weight="bold" fill="#001f29" text-anchor="middle">NT AI</text>
+      </svg>
+      <span class="font-bold text-xl text-primary" style="font-family:'Montserrat',sans-serif;">NaijaTaste AI</span>
+    </div>
+    <nav class="hidden md:flex gap-8 items-center text-sm font-semibold">
+      <a href="#" class="active text-on-surface-variant hover:text-primary transition-colors" id="nav-home" onclick="showPage('home');return false;">Home</a>
+      <a href="#" class="text-on-surface-variant hover:text-primary transition-colors" id="nav-simulator" onclick="showPage('simulator');return false;">Review Simulator</a>
+      <a href="#" class="text-on-surface-variant hover:text-primary transition-colors" id="nav-recommender" onclick="showPage('recommender');return false;">Recommendations</a>
+      <a href="#" class="text-on-surface-variant hover:text-primary transition-colors" id="nav-about" onclick="showPage('about');return false;">About</a>
+    </nav>
+    <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all hover:bg-red-800 active:scale-95" onclick="showPage('simulator')">Get Started</button>
+  </div>
+</header>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div id="page-home" class="page active relative z-10 flex-grow">
+  <!-- Hero -->
+  <section class="max-w-7xl mx-auto px-4 md:px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <span class="inline-block bg-secondary-container text-on-secondary-container text-xs font-bold px-3 py-1 rounded-full mb-4">It starts with Emeka</span>
+      <h1 class="text-4xl md:text-6xl font-black text-on-surface leading-tight mb-4" style="font-family:'Montserrat',sans-serif;">
+        Correct Taste, <span class="text-primary">Every Time.</span>
+      </h1>
+      <p class="text-lg text-on-surface-variant mb-8">The AI-powered food engine for the Nigerian palate. We simulate reviews and recommend spots that hit the right notes of spice, smoke, and soul.</p>
+      <div class="flex gap-4 flex-wrap">
+        <button onclick="showPage('simulator')" class="bg-primary text-white px-8 py-3 rounded-full font-bold text-base hover:bg-red-800 transition-all active:scale-95 shadow-lg">Simulate a Review →</button>
+        <button onclick="showPage('recommender')" class="border-2 border-primary text-primary px-8 py-3 rounded-full font-bold text-base hover:bg-primary hover:text-white transition-all">Find My Next Meal</button>
+      </div>
+    </div>
+    <div class="hidden lg:block">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-outline-variant/20">
+          <div class="text-3xl mb-2">🍛</div>
+          <div class="font-bold text-on-surface mb-1">Jollof Mastery</div>
+          <div class="text-sm text-on-surface-variant">Predicts how any Nigerian user would rate any restaurant</div>
+        </div>
+        <div class="bg-primary text-white rounded-2xl p-6 shadow-lg mt-6">
+          <div class="text-3xl mb-2">🤖</div>
+          <div class="font-bold mb-1">98% Cultural Match</div>
+          <div class="text-sm opacity-80">Nigerian Persona Engine trained on real Lagos reviews</div>
+        </div>
+        <div class="bg-tertiary-container text-on-surface rounded-2xl p-6 shadow-md -mt-4">
+          <div class="text-3xl mb-2">📍</div>
+          <div class="font-bold mb-1">Hyper-Local</div>
+          <div class="text-sm text-on-surface-variant">Lagos, Abuja, PH, Ibadan — we know each city's vibe</div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-outline-variant/20">
+          <div class="text-3xl mb-2">💬</div>
+          <div class="font-bold text-on-surface mb-1">Speaks Naija</div>
+          <div class="text-sm text-on-surface-variant">"The food sweet die" and "Abeg, no go there again"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who are you eating like today? -->
+  <section class="bg-surface-container-low py-16 relative">
+    <div class="absolute inset-0 adire-pattern"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-16 relative z-10">
+      <h2 class="text-2xl md:text-4xl font-black text-center text-on-surface mb-2" style="font-family:'Montserrat',sans-serif;">Who are you eating like today?</h2>
+      <p class="text-center text-on-surface-variant mb-10">Choose a persona to see how NaijaTaste AI reads the city for you.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="persona-card" onclick="loadPersona('professional')">
+          <div class="text-3xl mb-3">💼</div>
+          <h3 class="font-bold text-lg text-on-surface mb-1" style="font-family:'Montserrat',sans-serif;">Lagos Professional</h3>
+          <p class="text-sm text-on-surface-variant mb-4">Quiet lunch spots with AC and reliable Wi-Fi for your zoom calls. Price? Secondary to ambiance.</p>
+          <span class="text-primary text-sm font-semibold">Try Demo →</span>
+        </div>
+        <div class="persona-card" onclick="loadPersona('street')">
+          <div class="text-3xl mb-3">🔥</div>
+          <h3 class="font-bold text-lg text-on-surface mb-1" style="font-family:'Montserrat',sans-serif;">Street Food Enthusiast</h3>
+          <p class="text-sm text-on-surface-variant mb-4">The best holes-in-the-wall. Smoke-heavy jollof and the sharpest Suya. Cheap and correct.</p>
+          <span class="text-primary text-sm font-semibold">Try Demo →</span>
+        </div>
+        <div class="persona-card" onclick="loadPersona('aunty')">
+          <div class="text-3xl mb-3">👑</div>
+          <h3 class="font-bold text-lg text-on-surface mb-1" style="font-family:'Montserrat',sans-serif;">The Aunty</h3>
+          <p class="text-sm text-on-surface-variant mb-4">Premium spots for family Sunday lunch. Clean environment and "respectable" portions.</p>
+          <span class="text-primary text-sm font-semibold">Try Demo →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="max-w-7xl mx-auto px-4 md:px-16 py-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="glass-card rounded-2xl p-8 cursor-pointer hover:shadow-lg transition-all" onclick="showPage('simulator')">
+      <div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary mb-4">
+        <span class="material-symbols-outlined">rate_review</span>
+      </div>
+      <h3 class="text-2xl font-bold mb-3" style="font-family:'Montserrat',sans-serif;">Review Simulator</h3>
+      <p class="text-on-surface-variant mb-4">Our LLM-powered engine simulates thousands of dining experiences based on real Nigerian taste data. See how a restaurant actually stacks up before you spend a kobo.</p>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-tertiary text-base">check_circle</span> Pidgin-fluent review generation</li>
+        <li class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-tertiary text-base">check_circle</span> Price sensitivity modeling</li>
+        <li class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-tertiary text-base">check_circle</span> Tone & behavioural fidelity</li>
+      </ul>
+      <div class="mt-6 text-primary font-semibold text-sm">Simulate Now →</div>
+    </div>
+    <div class="rounded-2xl p-8 cursor-pointer hover:shadow-lg transition-all border-2 border-primary/20 bg-inverse-surface text-inverse-on-surface" onclick="showPage('recommender')">
+      <div class="w-12 h-12 rounded-full bg-tertiary-container flex items-center justify-center text-tertiary mb-4">
+        <span class="material-symbols-outlined">explore</span>
+      </div>
+      <h3 class="text-2xl font-bold mb-3" style="font-family:'Montserrat',sans-serif;">Recommendation Engine</h3>
+      <p class="opacity-80 mb-4">Stop asking "What's good here?". Our engine understands the cultural nuances of Nigerian food — from the depth of your pepper soup to the texture of your Pounded Yam.</p>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-2 opacity-80"><span class="material-symbols-outlined text-tertiary text-base">bolt</span> Chat mode — just type what you crave</li>
+        <li class="flex items-center gap-2 opacity-80"><span class="material-symbols-outlined text-tertiary text-base">bolt</span> Cold-start for new users</li>
+        <li class="flex items-center gap-2 opacity-80"><span class="material-symbols-outlined text-tertiary text-base">bolt</span> Nigerian cultural context on every pick</li>
+      </ul>
+      <div class="mt-6 text-tertiary-fixed font-semibold text-sm">Find My Next Meal →</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary py-16 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 md:px-16 text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-black text-white mb-4" style="font-family:'Montserrat',sans-serif;">Oya, let's go!</h2>
+      <p class="text-white/80 mb-8 text-lg">Get the correct taste every single time.</p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <button onclick="showPage('simulator')" class="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-primary-fixed transition-all active:scale-95">Simulate a Review</button>
+        <button onclick="showPage('recommender')" class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-primary transition-all">Try Recommendation Engine</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== REVIEW SIMULATOR PAGE ===================== -->
+<div id="page-simulator" class="page relative z-10 flex-grow">
+  <div class="max-w-7xl mx-auto px-4 md:px-16 py-12">
+    <div class="mb-8">
+      <h1 class="text-4xl font-black text-on-surface mb-1" style="font-family:'Montserrat',sans-serif;">Review Simulator</h1>
+      <p class="text-on-surface-variant text-lg">Predict the vibes before you pay the bill. No carry-go!</p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- LEFT: Form -->
+      <div class="lg:col-span-5 space-y-6">
+        <!-- Persona Section -->
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="flex items-center gap-2 mb-5 text-primary">
+            <span class="material-symbols-outlined">person</span>
+            <h2 class="font-bold text-xl" style="font-family:'Montserrat',sans-serif;">The Persona</h2>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-semibold text-on-surface-variant mb-1">Reviewer Name</label>
+              <input id="sim-name" type="text" placeholder="e.g. Emeka, Chidi, Amaka" class="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm transition-all"/>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-on-surface-variant mb-1">Rating Habits</label>
+              <select id="sim-rating-habit" class="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm">
+                <option value="harsh">Strict critic (avg 2.5 stars)</option>
+                <option value="balanced" selected>Balanced realist (avg 3.5 stars)</option>
+                <option value="generous">Generous rater (avg 4.5 stars)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-on-surface-variant mb-2">Price Sensitivity</label>
+              <div class="flex gap-3">
+                <button class="price-btn flex-1 py-2 border-2 border-outline/20 rounded-xl text-sm font-semibold hover:border-primary transition-all selected" data-val="high" onclick="selectPrice(this)">Budget 💸</button>
+                <button class="price-btn flex-1 py-2 border-2 border-outline/20 rounded-xl text-sm font-semibold hover:border-primary transition-all" data-val="medium" onclick="selectPrice(this)">Mid-range 💳</button>
+                <button class="price-btn flex-1 py-2 border-2 border-outline/20 rounded-xl text-sm font-semibold hover:border-primary transition-all" data-val="low" onclick="selectPrice(this)">Baller 💎</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spot Section -->
+        <div class="glass-card p-6 rounded-2xl">
+          <div class="flex items-center gap-2 mb-5 text-primary">
+            <span class="material-symbols-outlined">restaurant</span>
+            <h2 class="font-bold text-xl" style="font-family:'Montserrat',sans-serif;">The Spot</h2>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-semibold text-on-surface-variant mb-1">Restaurant Name</label>
+              <input id="sim-restaurant" type="text" placeholder="e.g. Yellow Chilli Victoria Island" class="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"/>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm font-semibold text-on-surface-variant mb-1">Type</label>
+                <select id="sim-type" class="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm">
+                  <option value="buka">Buka</option>
+                  <option value="restaurant" selected>Restaurant</option>
+                  <option value="fast food">Fast Food</option>
+                  <option value="fine dining">Fine Dining</option>
+                  <option value="street food">Street Food</option>
+                  <option value="bar">Bar & Grill</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-on-surface-variant mb-1">Location</label>
+                <input id="sim-location" type="text" placeholder="VI, Lagos" class="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"/>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-on-surface-variant mb-1">Features (comma-separated)</label>
+              <input id="sim-features" type="text" placeholder="e.g. nice ambience, expensive, fast service" class="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"/>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="generateReview()" class="w-full bg-primary text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-red-800 transition-all active:scale-95 shadow-lg">
+          <span class="material-symbols-outlined">auto_awesome</span> Generate Review
+        </button>
+      </div>
+
+      <!-- RIGHT: Output -->
+      <div class="lg:col-span-7">
+        <div id="sim-placeholder" class="h-full min-h-[400px] flex flex-col items-center justify-center glass-card rounded-2xl border-dashed border-2 border-outline/25 text-center p-12">
+          <div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center text-primary/40 mb-4">
+            <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL' 1;">reviews</span>
+          </div>
+          <h3 class="font-bold text-xl text-on-surface-variant mb-2">Ready to predict!</h3>
+          <p class="text-on-surface-variant text-sm max-w-xs">Fill the form and hit generate. We go tell you how the matter go be.</p>
+        </div>
+
+        <div id="sim-loading" class="hidden h-full min-h-[400px] flex flex-col items-center justify-center glass-card rounded-2xl">
+          <div class="spinner mb-4"></div>
+          <p id="sim-loading-text" class="text-primary font-semibold italic animate-pulse">The agent dey think...</p>
+        </div>
+
+        <div id="sim-result" class="hidden glass-card rounded-2xl shadow-xl overflow-hidden fade-up">
+          <div class="p-5 bg-surface-container-low border-b border-outline/10 flex justify-between items-start">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-2">Predicted Rating</div>
+              <div class="flex items-center gap-1" id="sim-stars"></div>
+            </div>
+            <div id="sim-tone-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container uppercase"></div>
+          </div>
+          <div class="p-8">
+            <div class="flex items-center gap-3 mb-5">
+              <div id="sim-avatar" class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-on-secondary-fixed text-xl">E</div>
+              <div>
+                <div id="sim-reviewer-name" class="font-bold text-on-surface">Emeka</div>
+                <div id="sim-reviewer-sub" class="text-sm text-on-surface-variant">Balanced • Restaurant</div>
+              </div>
+            </div>
+            <div class="bg-surface-container rounded-xl p-6 relative">
+              <span class="material-symbols-outlined absolute -top-3 -left-1 text-primary opacity-20 text-4xl">format_quote</span>
+              <p id="sim-review-text" class="text-base italic leading-relaxed text-on-surface"></p>
+            </div>
+          </div>
+          <div class="p-4 bg-surface/50 flex gap-2 border-t border-outline/10">
+            <button onclick="copyReview()" class="flex-1 flex items-center justify-center gap-2 text-sm font-semibold text-on-surface-variant py-2 hover:bg-surface-container-high rounded-xl transition-colors">
+              <span class="material-symbols-outlined text-base">content_copy</span> Copy Review
+            </button>
+            <button onclick="generateReview()" class="flex-1 flex items-center justify-center gap-2 text-sm font-semibold text-on-surface-variant py-2 hover:bg-surface-container-high rounded-xl transition-colors">
+              <span class="material-symbols-outlined text-base">refresh</span> Regenerate
+            </button>
+          </div>
+        </div>
+
+        <div id="sim-error" class="hidden glass-card rounded-2xl p-8 text-center border-2 border-error/20">
+          <div class="text-error text-4xl mb-3">⚠️</div>
+          <p id="sim-error-text" class="text-error font-semibold">Something went wrong. Try again.</p>
+          <p class="text-sm text-on-surface-variant mt-2">The Gemini keys may be rate limited. Try again in a minute.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RECOMMENDATION ENGINE PAGE ===================== -->
+<div id="page-recommender" class="page relative z-10 flex-grow">
+  <div class="max-w-7xl mx-auto px-4 md:px-16 py-12">
+    <div class="text-center mb-10">
+      <h1 class="text-4xl font-black text-on-surface mb-2" style="font-family:'Montserrat',sans-serif;">Find Your Correct Taste</h1>
+      <p class="text-on-surface-variant italic text-lg">Oya, let's find that food that hits the spot.</p>
+    </div>
+
+    <!-- Mode Toggle -->
+    <div class="max-w-3xl mx-auto mb-8">
+      <div class="glass-card rounded-2xl p-4">
+        <div class="flex justify-center mb-5">
+          <div class="bg-surface-container-low p-1 rounded-full flex gap-1">
+            <button id="chat-toggle" onclick="setRecMode('chat')" class="px-6 py-2 rounded-full text-sm font-semibold transition-all bg-primary text-white">Chat Mode</button>
+            <button id="form-toggle" onclick="setRecMode('form')" class="px-6 py-2 rounded-full text-sm font-semibold transition-all text-on-surface-variant hover:bg-surface-variant/30">Form Mode</button>
+          </div>
+        </div>
+
+        <!-- CHAT MODE -->
+        <div id="rec-chat-mode">
+          <div id="rec-chat-window" class="h-72 overflow-y-auto custom-scrollbar p-3 flex flex-col gap-2 mb-4 bg-surface-container-low rounded-xl">
+            <div class="chat-bubble-bot">
+              <p class="text-sm">Kedu! 👋 I'm your AI Food Guru. What are you craving today? For example, <em>"Show me budget buka spots in Lekki"</em> or <em>"Best suya in Abuja tonight"</em>.</p>
+            </div>
+          </div>
+          <!-- Quick prompts -->
+          <div class="flex gap-2 flex-wrap mb-3">
+            <button onclick="setChatInput('Budget local buka food in Lagos')" class="text-xs bg-surface-container px-3 py-1 rounded-full border border-outline/15 hover:border-primary hover:text-primary transition-all">🍲 Budget buka in Lagos</button>
+            <button onclick="setChatInput('Best suya spots in Abuja')" class="text-xs bg-surface-container px-3 py-1 rounded-full border border-outline/15 hover:border-primary hover:text-primary transition-all">🔥 Suya in Abuja</button>
+            <button onclick="setChatInput('Affordable amala in Ibadan')" class="text-xs bg-surface-container px-3 py-1 rounded-full border border-outline/15 hover:border-primary hover:text-primary transition-all">🫙 Amala in Ibadan</button>
+            <button onclick="setChatInput('Fine dining in Port Harcourt')" class="text-xs bg-surface-container px-3 py-1 rounded-full border border-outline/15 hover:border-primary hover:text-primary transition-all">🍽️ Fine dining PH</button>
+          </div>
+          <div class="flex gap-2">
+            <input id="rec-chat-input" type="text" placeholder="Type your craving..." class="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm" onkeypress="if(event.key==='Enter') sendChatMessage()"/>
+            <button onclick="sendChatMessage()" class="bg-primary text-white w-12 h-12 flex items-center justify-center rounded-xl hover:bg-red-800 active:scale-95 transition-all flex-shrink-0">
+              <span class="material-symbols-outlined">send</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- FORM MODE -->
+        <div id="rec-form-mode" class="hidden">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-semibold text-on-surface-variant mb-1">City</label>
+              <select id="rec-city" class="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm">
+                <option>Lagos</option>
+                <option>Abuja</option>
+                <option>Port Harcourt</option>
+                <option>Ibadan</option>
+                <option>Kano</option>
+                <option>Enugu</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-on-surface-variant mb-1">Preferred Food</label>
+              <input id="rec-food" type="text" placeholder="e.g. Amala, Jollof Rice, Suya" class="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"/>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-on-surface-variant mb-1">Price Range</label>
+              <div class="flex gap-2">
+                <button class="rec-price-btn flex-1 py-2 border-2 border-outline/20 rounded-xl text-sm font-bold hover:border-primary transition-all selected" data-val="budget" onclick="selectRecPrice(this)">₦</button>
+                <button class="rec-price-btn flex-1 py-2 border-2 border-outline/20 rounded-xl text-sm font-bold hover:border-primary transition-all" data-val="mid" onclick="selectRecPrice(this)">₦₦</button>
+                <button class="rec-price-btn flex-1 py-2 border-2 border-outline/20 rounded-xl text-sm font-bold hover:border-primary transition-all" data-val="premium" onclick="selectRecPrice(this)">₦₦₦</button>
+              </div>
+            </div>
+          </div>
+          <button onclick="getFormRecommendations()" class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-red-800 transition-all active:scale-95">Find Best Taste</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results area -->
+    <div id="rec-loading" class="hidden max-w-3xl mx-auto text-center py-12">
+      <div class="spinner mx-auto mb-4"></div>
+      <p id="rec-loading-text" class="text-primary font-semibold italic animate-pulse">Dey find the best option for you...</p>
+    </div>
+
+    <div id="rec-results" class="hidden max-w-3xl mx-auto">
+      <h3 class="font-bold text-lg text-on-surface mb-4 px-1">🎯 Recommendations for you</h3>
+      <div id="rec-cards-container" class="space-y-4"></div>
+    </div>
+
+    <div id="rec-error" class="hidden max-w-3xl mx-auto glass-card rounded-2xl p-8 text-center border-2 border-error/20">
+      <div class="text-4xl mb-3">⚠️</div>
+      <p id="rec-error-text" class="text-error font-semibold">Something went wrong.</p>
+      <p class="text-sm text-on-surface-variant mt-2">The Gemini API keys may be rate limited. Please try again in a minute.</p>
+    </div>
+
+    <!-- No results empty state -->
+    <div id="rec-empty" class="hidden max-w-3xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-8">
+        <div class="flex justify-center">
+          <div class="relative w-72 h-72 bg-white rounded-3xl shadow-xl overflow-hidden border border-outline-variant/20 flex items-center justify-center">
+            <div class="text-8xl">🍽️</div>
+            <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full border border-outline/10">
+              <span class="text-sm italic text-secondary font-semibold">Correct taste? Still looking...</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">E don finish?</span>
+          <h2 class="text-3xl font-black text-primary mb-3" style="font-family:'Montserrat',sans-serif;">Omo, we couldn't find that exact spot.</h2>
+          <p class="text-on-surface-variant mb-5">Try searching for something else or adjusting your filters! Our tastebuds are sharp, but even they need a little direction sometimes.</p>
+          <div class="flex gap-3 flex-wrap mb-5">
+            <button onclick="document.getElementById('rec-empty').classList.add('hidden');" class="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-red-800 transition-all active:scale-95">
+              <span class="material-symbols-outlined text-base">arrow_back</span> Back to Search
+            </button>
+            <button onclick="loadPersona('street'); showPage('simulator');" class="flex items-center gap-2 border-2 border-secondary text-secondary px-5 py-2 rounded-full font-semibold text-sm hover:bg-secondary/5 transition-all">
+              <span class="material-symbols-outlined text-base">restaurant_menu</span> Try a Persona Demo
+            </button>
+          </div>
+          <div class="border-t border-outline-variant/20 pt-4">
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Suggested Palates:</p>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="setChatInput('Suya spots tonight'); setRecMode('chat'); document.getElementById('rec-empty').classList.add('hidden');" class="px-3 py-1 bg-surface-container-high rounded-full text-sm text-secondary border border-secondary/10 hover:bg-secondary hover:text-white transition-colors">Suya Night 🌶️</button>
+              <button onclick="setChatInput('Best amala joint in Lagos'); setRecMode('chat'); document.getElementById('rec-empty').classList.add('hidden');" class="px-3 py-1 bg-surface-container-high rounded-full text-sm text-secondary border border-secondary/10 hover:bg-secondary hover:text-white transition-colors">Amala Joint 🥣</button>
+              <button onclick="setChatInput('Seafood okra restaurant'); setRecMode('chat'); document.getElementById('rec-empty').classList.add('hidden');" class="px-3 py-1 bg-surface-container-high rounded-full text-sm text-secondary border border-secondary/10 hover:bg-secondary hover:text-white transition-colors">Seafood Okra 🍤</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ABOUT PAGE ===================== -->
+<div id="page-about" class="page relative z-10 flex-grow">
+  <div class="max-w-7xl mx-auto px-4 md:px-16 py-12">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-primary">Our Vision</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black text-on-surface mb-4" style="font-family:'Montserrat',sans-serif;">Preserving Heritage Through <span class="text-primary italic">Deep Intelligence.</span></h1>
+      <p class="text-lg text-on-surface-variant mb-12">NaijaTaste AI isn't just an algorithm; it's a digital connoisseur trained on the vibrant pulse of Nigerian kitchens, markets, and buka traditions.</p>
+
+      <!-- Persona Engine -->
+      <div class="glass-card rounded-2xl p-8 mb-8">
+        <h2 class="text-2xl font-black text-on-surface mb-1" style="font-family:'Montserrat',sans-serif;">The Nigerian Persona Engine</h2>
+        <p class="text-primary text-sm font-semibold italic mb-6">Correct taste, every time. No be fluke.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 bg-surface-container-low rounded-xl">
+            <div class="flex items-center gap-2 mb-3 text-primary"><span class="material-symbols-outlined">translate</span><h3 class="font-bold">Pidgin Linguistic Layer</h3></div>
+            <p class="text-sm text-on-surface-variant">Our engine doesn't just "read" Nigerian English; it understands the emotional weight of "Oya," the subtle critique in "E remain small," and the ultimate praise of "The food sweet die."</p>
+            <blockquote class="mt-4 border-l-4 border-primary pl-4 text-sm italic text-on-surface-variant">"When a user says 'The spice level is for street people,' our AI knows they aren't talking about traffic — they're talking about that authentic, Lagos-standard heat."</blockquote>
+          </div>
+          <div class="p-6 bg-primary rounded-xl text-white">
+            <div class="flex items-center gap-2 mb-3"><span class="material-symbols-outlined">groups</span><h3 class="font-bold">Cultural Nuance</h3></div>
+            <p class="text-sm opacity-85">Understanding the regional variations between a Lagos Buka and a Calabar kitchen. We map taste profiles across 250+ ethnic nuances.</p>
+          </div>
+          <div class="p-6 bg-tertiary-container rounded-xl">
+            <div class="flex items-center gap-2 mb-3 text-tertiary"><span class="material-symbols-outlined">restaurant_menu</span><h3 class="font-bold text-on-surface">Texture AI</h3></div>
+            <p class="text-sm text-on-surface-variant">From the 'stretch' of Pounded Yam to the 'crunch' of Chin Chin, our models prioritize sensory feedback over simple ingredients.</p>
+          </div>
+          <div class="p-6 bg-white rounded-xl border border-outline-variant/20">
+            <div class="flex items-center gap-2 mb-3 text-on-surface"><span class="material-symbols-outlined">schedule</span><h3 class="font-bold">Local Context Logic</h3></div>
+            <p class="text-sm text-on-surface-variant">Our AI factors in time-of-day dynamics. It knows that 'Afternoon Rice' hits differently than 'Morning Akara' and adjusts recommendations based on Nigerian lifestyle rhythms.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Architecture -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-black text-on-surface text-center mb-2" style="font-family:'Montserrat',sans-serif;">The Architecture of Taste</h2>
+        <div class="w-16 h-1 bg-primary mx-auto rounded-full mb-8"></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center p-6">
+            <div class="w-16 h-16 rounded-full bg-primary-fixed mx-auto mb-4 flex items-center justify-center text-primary"><span class="material-symbols-outlined text-2xl">database</span></div>
+            <h3 class="font-bold text-on-surface mb-2">Hyper-Local Data</h3>
+            <p class="text-sm text-on-surface-variant">500+ real Nigerian Google Maps reviews + 144 Gemini-synthesized cultural samples grounded in authentic Nigerian speech patterns.</p>
+          </div>
+          <div class="text-center p-6">
+            <div class="w-16 h-16 rounded-full bg-secondary-fixed mx-auto mb-4 flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-2xl">psychology</span></div>
+            <h3 class="font-bold text-on-surface mb-2">Nigerian Persona Models</h3>
+            <p class="text-sm text-on-surface-variant">1,027 Yelp user personas encode price sensitivity, rating tendency, and cultural tone preferences.</p>
+          </div>
+          <div class="text-center p-6">
+            <div class="w-16 h-16 rounded-full bg-tertiary-fixed mx-auto mb-4 flex items-center justify-center text-tertiary"><span class="material-symbols-outlined text-2xl">verified</span></div>
+            <h3 class="font-bold text-on-surface mb-2">Correctness Check</h3>
+            <p class="text-sm text-on-surface-variant">Gemini 2.5 Flash with 3-key rotation + model fallback ensures outputs stay culturally authentic and well-reasoned.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="glass-card rounded-2xl p-8 mb-8">
+        <h2 class="text-xl font-bold text-on-surface mb-6" style="font-family:'Montserrat',sans-serif;">Tech Stack</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="bg-surface-container p-4 rounded-xl"><div class="text-xs text-on-surface-variant mb-1">LLM</div><div class="font-semibold text-sm">Gemini 2.5 Flash</div></div>
+          <div class="bg-surface-container p-4 rounded-xl"><div class="text-xs text-on-surface-variant mb-1">Backend</div><div class="font-semibold text-sm">FastAPI (Python 3.11)</div></div>
+          <div class="bg-surface-container p-4 rounded-xl"><div class="text-xs text-on-surface-variant mb-1">Deploy</div><div class="font-semibold text-sm">Railway + Docker</div></div>
+          <div class="bg-surface-container p-4 rounded-xl"><div class="text-xs text-on-surface-variant mb-1">Data</div><div class="font-semibold text-sm">Yelp Academic Dataset</div></div>
+          <div class="bg-surface-container p-4 rounded-xl"><div class="text-xs text-on-surface-variant mb-1">Cultural Data</div><div class="font-semibold text-sm">500 Google Maps Reviews</div></div>
+          <div class="bg-surface-container p-4 rounded-xl"><div class="text-xs text-on-surface-variant mb-1">API Docs</div><div class="font-semibold text-sm"><a href="/docs" class="text-primary hover:underline" target="_blank">Swagger /docs →</a></div></div>
+        </div>
+      </div>
+
+      <!-- Disclosure -->
+      <div class="bg-surface-container-low rounded-2xl p-6 text-sm text-on-surface-variant">
+        <h3 class="font-bold text-on-surface mb-3">Dataset Disclosure</h3>
+        <p>Built for DSN × Bluechip Technologies LLM Agent Challenge — Hackathon 3.0. Uses Yelp Academic Dataset, real Nigerian Google Maps reviews via Outscraper, and Gemini-synthesized cultural samples. All AI-generated content is clearly labeled.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="relative z-10 bg-inverse-surface text-inverse-on-surface py-10 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 md:px-16 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div>
+      <div class="font-bold text-xl mb-1" style="font-family:'Montserrat',sans-serif;">NaijaTaste AI</div>
+      <p class="text-sm opacity-60">© 2026 NaijaTaste AI. Correct taste, every time.</p>
+    </div>
+    <div class="flex gap-6 text-sm opacity-70 flex-wrap justify-center">
+      <a href="#" onclick="showPage('simulator');return false;" class="hover:opacity-100 transition-opacity">Review Simulator</a>
+      <a href="#" onclick="showPage('recommender');return false;" class="hover:opacity-100 transition-opacity">Recommendation Engine</a>
+      <a href="#" onclick="showPage('about');return false;" class="hover:opacity-100 transition-opacity">About Us</a>
+      <a href="/docs" target="_blank" class="hover:opacity-100 transition-opacity">API Docs</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// =================== NAVIGATION ===================
+const pages = ['home','simulator','recommender','about'];
+const navIds = {'home':'nav-home','simulator':'nav-simulator','recommender':'nav-recommender','about':'nav-about'};
+
+function showPage(name) {
+  pages.forEach(p => {
+    document.getElementById('page-'+p).classList.remove('active');
+  });
+  document.getElementById('page-'+name).classList.add('active');
+  Object.keys(navIds).forEach(k => {
+    const el = document.getElementById(navIds[k]);
+    if(el) el.classList.remove('active');
+  });
+  const navEl = document.getElementById(navIds[name]);
+  if(navEl) navEl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// =================== API CONFIG ===================
+// When served from FastAPI, use relative URLs. For local HTML, use the Railway URL.
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:8000'
+  : '';
+
+// =================== PERSONAS ===================
+const PERSONAS = {
+  professional: {
+    name: 'Tunde (Lagos Professional)',
+    avg_rating: 3.8, rating_tendency: 'balanced', price_sensitivity: 'medium',
+    tone_keywords: ['ambience','wifi','AC','quick','service','lunch'],
+    total_reviews: 23,
+    sample_reviews: ['Decent lunch spot but the WiFi was spotty', 'Service was quick and the AC was working. Food was okay for the price.']
+  },
+  street: {
+    name: 'Emeka (Street Food Enthusiast)',
+    avg_rating: 2.8, rating_tendency: 'harsh', price_sensitivity: 'high',
+    tone_keywords: ['suya','jollof','spicy','small','portion','expensive','overpriced'],
+    total_reviews: 67,
+    sample_reviews: ['Too expensive for the portion size. The jollof no sweet at all!', 'Small chops was dry. I no go return.']
+  },
+  aunty: {
+    name: 'Mrs. Adaobi (The Aunty)',
+    avg_rating: 4.1, rating_tendency: 'generous', price_sensitivity: 'low',
+    tone_keywords: ['clean','family','portions','professional','service','atmosphere'],
+    total_reviews: 31,
+    sample_reviews: ['Lovely atmosphere for a family lunch. Very clean and the staff were professional.', 'The portions were generous and the food was delicious. Will definitely return.']
+  }
+};
+
+function loadPersona(type) {
+  const p = PERSONAS[type];
+  showPage('simulator');
+  document.getElementById('sim-name').value = p.name;
+  document.getElementById('sim-rating-habit').value = p.rating_tendency;
+  // Set price button
+  const priceMap = {'high': 0, 'medium': 1, 'low': 2};
+  const priceBtns = document.querySelectorAll('.price-btn');
+  priceBtns.forEach((b,i) => {
+    b.classList.toggle('selected', i === (priceMap[p.price_sensitivity] || 0));
+  });
+}
+
+// =================== PRICE SELECTION ===================
+function selectPrice(btn) {
+  document.querySelectorAll('.price-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function selectRecPrice(btn) {
+  document.querySelectorAll('.rec-price-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+// =================== LOADING MESSAGES ===================
+const loadingMsgs = [
+  "The agent dey think...",
+  "Almost ready o...",
+  "Hold your side, food dey come...",
+  "Consulting the ancestors of flavor...",
+  "E almost set...",
+  "Dey find the best option for you..."
+];
+
+function startLoadingCycle(elId) {
+  let i = 0;
+  const el = document.getElementById(elId);
+  if(el) el.textContent = loadingMsgs[0];
+  return setInterval(() => {
+    i = (i+1) % loadingMsgs.length;
+    if(el) el.textContent = loadingMsgs[i];
+  }, 900);
+}
+
+// =================== STARS ===================
+function renderStars(rating, containerId) {
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  const full = Math.round(rating);
+  let html = '';
+  for(let i=1;i<=5;i++) {
+    html += `<span class="material-symbols-outlined ${i<=full?'star-filled':'star-empty'}" style="font-variation-settings:'FILL' ${i<=full?1:0};">star</span>`;
+  }
+  html += `<span class="ml-2 font-bold text-on-surface">${rating.toFixed(1)} / 5.0</span>`;
+  el.innerHTML = html;
+}
+
+// =================== REVIEW SIMULATOR ===================
+async function generateReview() {
+  const name = document.getElementById('sim-name').value.trim() || 'Emeka';
+  const ratingHabit = document.getElementById('sim-rating-habit').value;
+  const priceSel = document.querySelector('.price-btn.selected');
+  const priceSensitivity = priceSel ? priceSel.dataset.val : 'high';
+  const restaurant = document.getElementById('sim-restaurant').value.trim() || 'Yellow Chilli Victoria Island';
+  const type = document.getElementById('sim-type').value;
+  const location = document.getElementById('sim-location').value.trim() || 'Lagos';
+  const featuresRaw = document.getElementById('sim-features').value;
+  const features = featuresRaw ? featuresRaw.split(',').map(f=>f.trim()).filter(Boolean) : ['nice ambience','average food'];
+
+  const avgMap = {'harsh': 2.5, 'balanced': 3.5, 'generous': 4.5};
+  const avgRating = avgMap[ratingHabit] || 3.5;
+
+  const payload = {
+    persona: {
+      user_id: "demo_user",
+      avg_rating: avgRating,
+      rating_tendency: ratingHabit,
+      price_sensitivity: priceSensitivity,
+      tone_keywords: ["jollof","service","price","portion","food","ambience"],
+      total_reviews: 30,
+      sample_reviews: [
+        ratingHabit === 'harsh' ? "The food was okay but too expensive for the portion size" : "Good food and reasonable prices",
+        ratingHabit === 'harsh' ? "Service was slow and the AC was not working" : "Lovely atmosphere and great service"
+      ]
+    },
+    item_name: restaurant,
+    item_type: type,
+    location: location,
+    features: features
+  };
+
+  document.getElementById('sim-placeholder').classList.add('hidden');
+  document.getElementById('sim-result').classList.add('hidden');
+  document.getElementById('sim-error').classList.add('hidden');
+  document.getElementById('sim-loading').classList.remove('hidden');
+
+  const interval = startLoadingCycle('sim-loading-text');
+
+  try {
+    const res = await fetch(`${API_BASE}/simulate-review`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    clearInterval(interval);
+    document.getElementById('sim-loading').classList.add('hidden');
+
+    if(!res.ok) throw new Error(`API error ${res.status}`);
+    const data = await res.json();
+
+    // Populate result
+    document.getElementById('sim-avatar').textContent = name.charAt(0).toUpperCase();
+    document.getElementById('sim-reviewer-name').textContent = name;
+    document.getElementById('sim-reviewer-sub').textContent = `${ratingHabit.charAt(0).toUpperCase()+ratingHabit.slice(1)} rater • ${type}`;
+    document.getElementById('sim-review-text').textContent = `"${data.review_text}"`;
+    document.getElementById('sim-tone-badge').textContent = data.tone_label || 'AI Review';
+    renderStars(data.rating || 3, 'sim-stars');
+
+    document.getElementById('sim-result').classList.remove('hidden');
+  } catch(e) {
+    clearInterval(interval);
+    document.getElementById('sim-loading').classList.add('hidden');
+    document.getElementById('sim-error-text').textContent = e.message || 'Something went wrong.';
+    document.getElementById('sim-error').classList.remove('hidden');
+  }
+}
+
+function copyReview() {
+  const text = document.getElementById('sim-review-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.currentTarget;
+    btn.innerHTML = '<span class="material-symbols-outlined text-base">check</span> Copied!';
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-base">content_copy</span> Copy Review';
+    }, 2000);
+  });
+}
+
+// =================== RECOMMENDATION MODE TOGGLE ===================
+function setRecMode(mode) {
+  const chatMode = document.getElementById('rec-chat-mode');
+  const formMode = document.getElementById('rec-form-mode');
+  const chatBtn = document.getElementById('chat-toggle');
+  const formBtn = document.getElementById('form-toggle');
+
+  if(mode === 'chat') {
+    chatMode.classList.remove('hidden');
+    formMode.classList.add('hidden');
+    chatBtn.classList.add('bg-primary','text-white');
+    chatBtn.classList.remove('text-on-surface-variant');
+    formBtn.classList.remove('bg-primary','text-white');
+    formBtn.classList.add('text-on-surface-variant');
+  } else {
+    formMode.classList.remove('hidden');
+    chatMode.classList.add('hidden');
+    formBtn.classList.add('bg-primary','text-white');
+    formBtn.classList.remove('text-on-surface-variant');
+    chatBtn.classList.remove('bg-primary','text-white');
+    chatBtn.classList.add('text-on-surface-variant');
+  }
+}
+
+// =================== CHAT NLP PARSER ===================
+function parseChatMessage(msg) {
+  const lower = msg.toLowerCase();
+  const cities = {
+    'lagos': 'Lagos', 'abuja': 'Abuja', 'port harcourt': 'Port Harcourt',
+    'ph': 'Port Harcourt', 'ibadan': 'Ibadan', 'kano': 'Kano',
+    'lekki': 'Lagos', 'vi': 'Lagos', 'ikeja': 'Lagos', 'surulere': 'Lagos',
+    'enugu': 'Enugu', 'benin': 'Benin City'
+  };
+  const priceMap = {
+    'cheap': 'budget', 'budget': 'budget', 'affordable': 'budget', 'cheap': 'budget',
+    'small money': 'budget', 'free': 'budget', 'baller': 'premium', 'expensive': 'premium',
+    'fine dining': 'premium', 'luxury': 'premium', 'premium': 'premium'
+  };
+  const foods = ['jollof','suya','amala','egusi','pounded yam','pepper soup','shawarma',
+    'buka','eba','ofe','nkwobi','isi ewu','boli','roasted','akara','moi moi'];
+
+  let city = 'Lagos';
+  for(const [key, val] of Object.entries(cities)) {
+    if(lower.includes(key)) { city = val; break; }
+  }
+
+  let price_range = 'budget';
+  for(const [key, val] of Object.entries(priceMap)) {
+    if(lower.includes(key)) { price_range = val; break; }
+  }
+
+  let preferred_food = 'local Nigerian food';
+  for(const food of foods) {
+    if(lower.includes(food)) { preferred_food = food; break; }
+  }
+  if(lower.includes('buka') || lower.includes('local')) preferred_food = 'local Nigerian buka food';
+
+  return { city, price_range, preferred_food };
+}
+
+function setChatInput(text) {
+  document.getElementById('rec-chat-input').value = text;
+  document.getElementById('rec-chat-input').focus();
+}
+
+// =================== RENDER REC CARDS ===================
+function renderRecCards(items) {
+  const container = document.getElementById('rec-cards-container');
+  container.innerHTML = '';
+
+  if(!items || items.length === 0) {
+    document.getElementById('rec-results').classList.add('hidden');
+    document.getElementById('rec-empty').classList.remove('hidden');
+    return;
+  }
+
+  items.forEach((item, idx) => {
+    const rating = item.predicted_rating || 3.5;
+    const stars = Math.round(rating);
+    let starsHtml = '';
+    for(let i=1;i<=5;i++) {
+      starsHtml += `<span class="material-symbols-outlined text-sm ${i<=stars?'star-filled':'star-empty'}" style="font-variation-settings:'FILL' ${i<=stars?1:0};">star</span>`;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'rec-card fade-up';
+    card.style.animationDelay = `${idx*0.08}s`;
+    card.innerHTML = `
+      <div class="flex justify-between items-start mb-3">
+        <div>
+          <h4 class="font-bold text-lg text-on-surface">${item.item_name || 'Unknown Spot'}</h4>
+          <div class="flex items-center gap-1 mt-1">${starsHtml}<span class="text-xs text-on-surface-variant ml-1">${rating.toFixed(1)}</span></div>
+        </div>
+        <span class="bg-tertiary-container text-on-tertiary-container text-xs font-bold px-3 py-1 rounded-full">AI Pick</span>
+      </div>
+      <div class="bg-surface-container-low rounded-xl p-4 mb-3">
+        <div class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Match Reason</div>
+        <p class="text-sm text-on-surface">${item.reason || 'Great match for your taste profile'}</p>
+      </div>
+      ${item.cultural_note ? `
+      <div class="flex items-start gap-2">
+        <span class="material-symbols-outlined text-tertiary text-base mt-0.5">lightbulb</span>
+        <p class="text-sm text-tertiary italic">${item.cultural_note}</p>
+      </div>` : ''}
+    `;
+    container.appendChild(card);
+  });
+
+  // Add cross-domain books sidebar (Goodreads feature)
+  const bookSidebar = document.createElement('div');
+  bookSidebar.className = 'mt-6 bg-inverse-surface text-inverse-on-surface rounded-2xl p-6 fade-up';
+  bookSidebar.style.animationDelay = `${items.length * 0.08 + 0.1}s`;
+  bookSidebar.innerHTML = `
+    <div class="text-xs font-bold uppercase tracking-wider opacity-60 mb-1">Cross-Domain Taste</div>
+    <h4 class="font-bold text-lg mb-4">📚 Reading For The Vibe</h4>
+    <p class="text-sm opacity-70 mb-4">Based on your flavor profile, our engine recommends these Nigerian books that match your taste energy.</p>
+    <div class="space-y-3">
+      <div class="flex gap-3 bg-white/10 rounded-xl p-3">
+        <div class="text-3xl">📖</div>
+        <div>
+          <div class="font-bold text-sm">My Sister, the Serial Killer</div>
+          <div class="text-xs opacity-60 mb-1">Oyinkan Braithwaite</div>
+          <div class="text-xs italic opacity-75">"Matches the dark, spicy intensity of the Buka spot — sharp, satirical Lagos noir."</div>
+        </div>
+      </div>
+      <div class="flex gap-3 bg-white/10 rounded-xl p-3">
+        <div class="text-3xl">📗</div>
+        <div>
+          <div class="font-bold text-sm">Stay With Me</div>
+          <div class="text-xs opacity-60 mb-1">Ayobami Adebayo</div>
+          <div class="text-xs italic opacity-75">"Pairs with the complex, nostalgic flavors of your top restaurant pick."</div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4 text-xs opacity-60">Powered by NaijaTaste AI Cross-Domain Engine</div>
+  `;
+  container.appendChild(bookSidebar);
+}
+
+// =================== CHAT RECOMMENDATIONS ===================
+async function sendChatMessage() {
+  const input = document.getElementById('rec-chat-input');
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  const chatWindow = document.getElementById('rec-chat-window');
+
+  // Add user message
+  const userBubble = document.createElement('div');
+  userBubble.className = 'chat-bubble-user';
+  userBubble.innerHTML = `<p class="text-sm">${msg}</p>`;
+  chatWindow.appendChild(userBubble);
+  input.value = '';
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+
+  // Add typing indicator
+  const typingBubble = document.createElement('div');
+  typingBubble.className = 'chat-bubble-bot';
+  typingBubble.id = 'typing-indicator';
+  typingBubble.innerHTML = '<p class="text-sm italic">Dey think...</p>';
+  chatWindow.appendChild(typingBubble);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+
+  const signals = parseChatMessage(msg);
+
+  document.getElementById('rec-loading').classList.add('hidden');
+  document.getElementById('rec-results').classList.add('hidden');
+  document.getElementById('rec-error').classList.add('hidden');
+
+  try {
+    const res = await fetch(`${API_BASE}/recommend`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ cold_start_signals: signals })
+    });
+
+    const typing = document.getElementById('typing-indicator');
+    if(typing) typing.remove();
+
+    if(!res.ok) throw new Error(`API error ${res.status}`);
+    const data = await res.json();
+
+    const botBubble = document.createElement('div');
+    botBubble.className = 'chat-bubble-bot';
+    botBubble.innerHTML = `<p class="text-sm">Ehen! I found ${data.length} spot${data.length!==1?'s':''} for you based on your craving. Check the recommendations below! 👇</p>`;
+    chatWindow.appendChild(botBubble);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+
+    renderRecCards(data);
+    document.getElementById('rec-results').classList.remove('hidden');
+
+  } catch(e) {
+    const typing = document.getElementById('typing-indicator');
+    if(typing) typing.remove();
+
+    const errBubble = document.createElement('div');
+    errBubble.className = 'chat-bubble-bot';
+    errBubble.innerHTML = `<p class="text-sm text-error">Wahala! Something went wrong. The API keys may be rate limited. Try again in a minute.</p>`;
+    chatWindow.appendChild(errBubble);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+}
+
+// =================== FORM RECOMMENDATIONS ===================
+async function getFormRecommendations() {
+  const city = document.getElementById('rec-city').value;
+  const food = document.getElementById('rec-food').value.trim() || 'local Nigerian food';
+  const priceSel = document.querySelector('.rec-price-btn.selected');
+  const price_range = priceSel ? priceSel.dataset.val : 'budget';
+
+  document.getElementById('rec-loading').classList.remove('hidden');
+  document.getElementById('rec-results').classList.add('hidden');
+  document.getElementById('rec-error').classList.add('hidden');
+
+  const interval = startLoadingCycle('rec-loading-text');
+
+  try {
+    const res = await fetch(`${API_BASE}/recommend`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ cold_start_signals: { city, preferred_food: food, price_range } })
+    });
+    clearInterval(interval);
+    document.getElementById('rec-loading').classList.add('hidden');
+
+    if(!res.ok) throw new Error(`API error ${res.status}`);
+    const data = await res.json();
+
+    renderRecCards(data);
+    document.getElementById('rec-results').classList.remove('hidden');
+  } catch(e) {
+    clearInterval(interval);
+    document.getElementById('rec-loading').classList.add('hidden');
+    document.getElementById('rec-error-text').textContent = e.message;
+    document.getElementById('rec-error').classList.remove('hidden');
+  }
+}
+
+// Enter key on chat
+document.getElementById('rec-chat-input').addEventListener('keypress', e => {
+  if(e.key === 'Enter') sendChatMessage();
+});
+
+// Price button selected style
+document.querySelectorAll('.price-btn, .rec-price-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const group = this.classList.contains('price-btn') ? '.price-btn' : '.rec-price-btn';
+    document.querySelectorAll(group).forEach(b => b.classList.remove('selected'));
+    this.classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>

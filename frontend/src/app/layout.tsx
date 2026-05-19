@@ -1,0 +1,32 @@
+import type { Metadata } from "next";
+import "./globals.css";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { Toaster } from "react-hot-toast";
+
+export const metadata: Metadata = {
+  title: "NaijaTaste AI | Correct Taste, Every Time",
+  description:
+    "The AI-powered food engine for the Nigerian palate. Simulate reviews and get hyper-local restaurant recommendations.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className="min-h-screen flex flex-col bg-background text-on-background">
+        <AuthProvider>
+          <div className="adire-bg" />
+          <NavBar />
+          <main className="flex-grow relative z-10">{children}</main>
+          <Footer />
+          <Toaster position="top-right" />
+        </AuthProvider>
+      </body>
+    </html>
+  );
+}
