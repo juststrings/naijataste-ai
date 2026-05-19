@@ -8,6 +8,8 @@ origins = [
     "http://localhost:3000",
     "https://naijataste.up.railway.app",        # Railway
     "https://naijataste-frontend.onrender.com", # Render
+    "https://naijataste-ai.onrender.com",       # Render
+    "https://naijataste-api.onrender.com",      # Render
     "https://*.onrender.com",                   # Render wildcard
 ]
 
