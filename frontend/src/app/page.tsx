@@ -6,7 +6,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import PersonaCard from "@/components/PersonaCard";
 
 export default function HomePage() {
-  const { user } = useAuth();
+  const { user, savedReviews } = useAuth();
   const router = useRouter();
 
   function setChatInput(text: string) {
@@ -15,7 +15,7 @@ export default function HomePage() {
   }
 
   if (user) {
-    return <AuthenticatedHome user={user} onChatPrefill={setChatInput} />;
+    return <AuthenticatedHome user={user} reviewCount={savedReviews.length} onChatPrefill={setChatInput} />;
   }
 
   return <GuestHome />;
@@ -175,35 +175,85 @@ function GuestHome() {
   );
 }
 
-const PERSONAS_META = {
-  professional: { name: "The Lagos High-Life", desc: "Curated vibes, premium pepper, and zero-compromise service." },
-  street: { name: "The Street Connoisseur", desc: "Hole-in-the-wall specialist. Smoke, spice, and street cred." },
-  balanced: { name: "The Balanced Foodie", desc: "Equal love for buka and fine dining. Correct taste all day." },
-  premium: { name: "The Lagos High-Life", desc: "Curated vibes, premium pepper, and zero-compromise service." },
-};
+function RadarChart() {
+  const labels = ["Spicy", "Sweet", "Savory", "Local", "Adventurous", "Social"];
+  // TODO: derive from saved reviews; static for now
+  const values = [0.7, 0.4, 0.85, 0.9, 0.55, 0.65];
+  const cx = 120, cy = 120, maxR = 85;
+  const n = labels.length;
+
+  function toPoint(idx: number, val: number) {
+    const angle = (idx * (2 * Math.PI) / n) - Math.PI / 2;
+    return { x: cx + val * maxR * Math.cos(angle), y: cy + val * maxR * Math.sin(angle) };
+  }
+
+  function ringPath(val: number) {
+    return Array.from({ length: n }, (_, i) => {
+      const p = toPoint(i, val);
+      return `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+    }).join(" ") + " Z";
+  }
+
+  const dataPath = values.map((v, i) => {
+    const p = toPoint(i, v);
+    return `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+  }).join(" ") + " Z";
+
+  return (
+    <svg viewBox="0 0 240 240" className="w-full max-w-[260px] mx-auto">
+      {[0.25, 0.5, 0.75, 1].map((v) => (
+        <path key={v} d={ringPath(v)} fill="none" stroke="#e4bebc" strokeWidth="1" />
+      ))}
+      {labels.map((_, i) => {
+        const p = toPoint(i, 1);
+        return <line key={i} x1={cx} y1={cy} x2={p.x.toFixed(1)} y2={p.y.toFixed(1)} stroke="#e4bebc" strokeWidth="1" />;
+      })}
+      <path d={dataPath} fill="rgba(183,16,42,0.15)" stroke="#b7102a" strokeWidth="2" />
+      {values.map((v, i) => {
+        const p = toPoint(i, v);
+        return <circle key={i} cx={p.x.toFixed(1)} cy={p.y.toFixed(1)} r="4" fill="#b7102a" />;
+      })}
+      {labels.map((label, i) => {
+        const p = toPoint(i, 1.28);
+        return (
+          <text key={i} x={p.x.toFixed(1)} y={p.y.toFixed(1)} textAnchor="middle" dominantBaseline="middle" fontSize="10" fontWeight="600" fill="#5b403f">
+            {label}
+          </text>
+        );
+      })}
+    </svg>
+  );
+}
 
 function AuthenticatedHome({
   user,
+  reviewCount,
   onChatPrefill,
 }: {
-  user: { name: string; flavor: string };
+  user: { name: string; avatar: string };
+  reviewCount: number;
   onChatPrefill: (text: string) => void;
 }) {
-  const persona = PERSONAS_META[user.flavor as keyof typeof PERSONAS_META] ?? PERSONAS_META.balanced;
+  const level = Math.floor(reviewCount / 5) + 1;
+  const personaTitles = ["Curious Taster", "Flavor Seeker", "Taste Connoisseur", "Flavor Oracle"];
+  const personaTitle = personaTitles[Math.min(level - 1, 3)];
+  const levelPct = Math.min(((reviewCount % 5) / 5) * 100, 100);
   const firstName = user.name.split(" ")[0];
 
   const cravings = [
-    { emoji: "🫙", label: "Swallow", query: "swallow food in Lagos" },
-    { emoji: "🔥", label: "Grills", query: "suya grills tonight" },
-    { emoji: "🍸", label: "Vibes", query: "lounge vibes dinner" },
-    { emoji: "🥟", label: "Small Chops", query: "small chops fast food" },
-    { emoji: "☕", label: "Brunch", query: "brunch spot Lagos" },
-    { emoji: "🍰", label: "Desserts", query: "dessert and sweets" },
+    { emoji: "🌶️", label: "Spicy & Bold", query: "spicy bold food Lagos" },
+    { emoji: "🛵", label: "Street Food", query: "street food Lagos" },
+    { emoji: "🍚", label: "Rice Dishes", query: "rice dishes jollof Nigeria" },
+    { emoji: "🍲", label: "Soups & Stews", query: "pepper soup egusi stew" },
+    { emoji: "🔥", label: "Grilled", query: "grilled suya barbecue" },
+    { emoji: "🍰", label: "Sweets", query: "dessert sweets pastry" },
   ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-16 py-10">
-      <div className="mb-2 text-sm text-on-surface-variant italic">Correct taste only.</div>
+      <p className="text-sm text-on-surface-variant italic mb-2">Correct taste only.</p>
+
+      {/* Welcome header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
         <div>
           <h1 className="text-4xl font-black text-on-surface mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
@@ -213,13 +263,13 @@ function AuthenticatedHome({
         </div>
         <div className="glass rounded-2xl p-5 min-w-64">
           <div className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Current Persona</div>
-          <div className="font-bold text-lg text-on-surface mb-1">{persona.name}</div>
-          <p className="text-sm text-on-surface-variant mb-3">{persona.desc}</p>
+          <div className="font-bold text-lg text-on-surface mb-0.5">{personaTitle}</div>
+          <div className="text-xs text-on-surface-variant mb-3">{reviewCount} review{reviewCount !== 1 ? "s" : ""} simulated</div>
           <div className="flex gap-2 items-center">
             <div className="flex-1 bg-surface-container-high rounded-full h-2 overflow-hidden">
-              <div className="bg-primary h-full rounded-full" style={{ width: "72%" }} />
+              <div className="bg-primary h-full rounded-full transition-all" style={{ width: `${levelPct}%` }} />
             </div>
-            <span className="text-xs font-bold text-on-surface-variant">Level 12</span>
+            <span className="text-xs font-bold text-on-surface-variant whitespace-nowrap">Level {level}</span>
           </div>
         </div>
       </div>
@@ -236,53 +286,28 @@ function AuthenticatedHome({
           <div className="font-bold text-on-surface">Find Flavor</div>
           <div className="text-xs text-on-surface-variant mt-1">Chat or form mode</div>
         </Link>
-        <Link href="/about" className="glass rounded-2xl p-5 text-left hover:shadow-lg transition-all active:scale-95">
-          <span className="material-symbols-outlined text-on-surface-variant text-3xl mb-2 block">info</span>
-          <div className="font-bold text-on-surface">How It Works</div>
-          <div className="text-xs text-on-surface-variant mt-1">The Persona Engine</div>
+        <Link href="/profile" className="glass rounded-2xl p-5 text-left hover:shadow-lg transition-all active:scale-95">
+          <span className="material-symbols-outlined text-secondary text-3xl mb-2 block">person</span>
+          <div className="font-bold text-on-surface">My Flavor Profile</div>
+          <div className="text-xs text-on-surface-variant mt-1">Badges &amp; activity</div>
         </Link>
         <Link href="/simulator" className="glass rounded-2xl p-5 text-left hover:shadow-lg transition-all active:scale-95">
-          <span className="material-symbols-outlined text-secondary text-3xl mb-2 block">auto_awesome</span>
+          <span className="material-symbols-outlined text-on-surface-variant text-3xl mb-2 block">emoji_events</span>
           <div className="font-bold text-on-surface">Daily Challenge</div>
-          <div className="text-xs text-on-surface-variant mt-1">Review a Buka today</div>
+          <div className="text-xs text-on-surface-variant mt-1">Try a new spot today</div>
         </Link>
       </div>
 
-      {/* Flavor Radar + Browse */}
+      {/* Radar + Browse + Daily Challenge */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 glass rounded-2xl p-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="font-bold text-xl" style={{ fontFamily: "Montserrat, sans-serif" }}>Your Flavor Radar</h2>
-            <Link href="/recommend" className="text-primary text-sm font-semibold hover:underline">View All →</Link>
-          </div>
-          <div className="space-y-3">
-            <div className="flex gap-4 p-3 bg-surface-container-low rounded-xl">
-              <div className="text-3xl">🍛</div>
-              <div>
-                <div className="font-bold text-sm text-on-surface">Yellow Chilli, VI</div>
-                <div className="text-xs text-on-surface-variant">Vibe: Premium Lagos Fine Dining</div>
-                <div className="flex gap-1 mt-1 text-xs">⭐⭐⭐⭐<span className="opacity-30">⭐</span></div>
-              </div>
-            </div>
-            <div className="flex gap-4 p-3 bg-surface-container-low rounded-xl">
-              <div className="text-3xl">🔥</div>
-              <div>
-                <div className="font-bold text-sm text-on-surface">Buka Joint, Surulere</div>
-                <div className="text-xs text-on-surface-variant">Vibe: Street Food Authentic</div>
-                <div className="flex gap-1 mt-1 text-xs">⭐⭐⭐⭐⭐</div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-5 bg-secondary/10 border border-secondary/20 rounded-xl p-4">
-            <div className="text-xs font-bold uppercase tracking-wider text-secondary mb-1">Daily Challenge 🏆</div>
-            <div className="font-bold text-on-surface">Review a Buka today!</div>
-            <div className="text-sm text-on-surface-variant">Earn the &apos;Local Legend&apos; badge and 50 Flavor Points.</div>
-            <Link href="/simulator" className="mt-3 inline-block bg-secondary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-orange-800 transition-all active:scale-95">
-              Accept Challenge
-            </Link>
-          </div>
+        {/* Flavor Radar */}
+        <div className="glass rounded-2xl p-6">
+          <h2 className="font-bold text-xl mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>Your Flavor Radar</h2>
+          <p className="text-xs text-on-surface-variant mb-4">Based on your taste profile</p>
+          <RadarChart />
         </div>
 
+        {/* Browse by Craving */}
         <div className="glass rounded-2xl p-6">
           <h2 className="font-bold text-xl mb-4" style={{ fontFamily: "Montserrat, sans-serif" }}>Browse by Craving</h2>
           <div className="grid grid-cols-3 gap-3">
@@ -293,25 +318,45 @@ function AuthenticatedHome({
                 className="flex flex-col items-center gap-1 p-3 bg-surface-container-low rounded-xl hover:bg-primary-fixed transition-colors"
               >
                 <span className="text-2xl">{emoji}</span>
-                <span className="text-xs font-semibold">{label}</span>
+                <span className="text-xs font-semibold text-center leading-tight">{label}</span>
               </button>
             ))}
           </div>
-          <div className="mt-5 border-t border-outline-variant/20 pt-4">
+        </div>
+
+        {/* Daily Challenge */}
+        <div className="glass rounded-2xl p-6 flex flex-col">
+          <div className="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Daily Challenge 🏆</div>
+          <div className="bg-secondary/10 border border-secondary/20 rounded-xl p-4 mb-4 flex-grow">
+            <div className="text-2xl mb-2">🍲</div>
+            <div className="font-bold text-on-surface mb-1">Try a pepper soup spot you&apos;ve never visited</div>
+            <div className="text-sm text-on-surface-variant">
+              Earn the &apos;Pepper Soup Pioneer&apos; badge and 50 Flavor Points.
+            </div>
+            {/* TODO: real daily challenge logic in Phase 2 */}
+          </div>
+          <Link
+            href="/simulator"
+            className="w-full bg-secondary text-white px-4 py-3 rounded-xl text-sm font-semibold text-center hover:bg-orange-800 transition-all active:scale-95"
+          >
+            Accept Challenge
+          </Link>
+
+          <div className="mt-4 border-t border-outline-variant/20 pt-4">
             <div className="text-sm font-bold text-on-surface mb-3">Community Gist 💬</div>
             <div className="space-y-3">
-              <div className="flex gap-3 items-start">
-                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-xs font-bold flex-shrink-0">C</div>
+              <div className="flex gap-2 items-start">
+                <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs font-bold flex-shrink-0">C</div>
                 <div>
                   <div className="text-xs font-bold">Chidi K. <span className="text-on-surface-variant font-normal">2m ago</span></div>
                   <div className="text-xs text-on-surface-variant italic">&ldquo;The jollof at Yellow Chilli is actually spiritual. No cap.&rdquo;</div>
                 </div>
               </div>
-              <div className="flex gap-3 items-start">
-                <div className="w-8 h-8 rounded-full bg-tertiary flex items-center justify-center text-white text-xs font-bold flex-shrink-0">A</div>
+              <div className="flex gap-2 items-start">
+                <div className="w-7 h-7 rounded-full bg-tertiary flex items-center justify-center text-white text-xs font-bold flex-shrink-0">A</div>
                 <div>
                   <div className="text-xs font-bold">Amina O. <span className="text-on-surface-variant font-normal">15m ago</span></div>
-                  <div className="text-xs text-on-surface-variant italic">&ldquo;Just earned the &apos;Spice Explorer&apos; badge. My tongue is on fire!&rdquo;</div>
+                  <div className="text-xs text-on-surface-variant italic">&ldquo;Just earned the &apos;Spice Explorer&apos; badge!&rdquo;</div>
                 </div>
               </div>
             </div>

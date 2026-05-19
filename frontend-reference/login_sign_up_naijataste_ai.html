@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | NaijaTaste AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#ffb3b1",
+                        "surface-dim": "#bedfef",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#e4bebc",
+                        "surface-container-highest": "#c6e8f8",
+                        "outline": "#8f6f6e",
+                        "on-primary-fixed": "#410007",
+                        "on-background": "#001f29",
+                        "on-secondary-fixed-variant": "#6f3800",
+                        "primary": "#b7102a",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#ffdcc4",
+                        "primary-fixed-dim": "#ffb3b1",
+                        "background": "#f3faff",
+                        "on-tertiary-container": "#f4fffb",
+                        "on-tertiary-fixed-variant": "#005048",
+                        "surface-container": "#d8f2ff",
+                        "secondary": "#8e4e14",
+                        "on-surface": "#001f29",
+                        "surface-variant": "#c6e8f8",
+                        "surface-container-high": "#ccedfe",
+                        "surface": "#f3faff",
+                        "on-tertiary-fixed": "#00201c",
+                        "inverse-surface": "#123441",
+                        "surface-tint": "#bb152c",
+                        "secondary-container": "#ffab69",
+                        "primary-container": "#db313f",
+                        "tertiary-fixed": "#8cf5e4",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#e6f6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#5b403f",
+                        "surface-bright": "#f3faff",
+                        "secondary-fixed-dim": "#ffb780",
+                        "tertiary-fixed-dim": "#6fd8c8",
+                        "tertiary": "#00685d",
+                        "on-primary-fixed-variant": "#92001c",
+                        "tertiary-container": "#008376",
+                        "on-secondary-fixed": "#2f1400",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed": "#ffdad8",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#783d01",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#dff4ff",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "lg": "48px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Montserrat"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "pidgin-italic": ["Be Vietnam Pro"],
+                        "display-lg-mobile": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "pidgin-italic": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #FFFBF7;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .adire-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.04;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23264653' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .auth-card {
+            box-shadow: 0 20px 40px rgba(38, 70, 83, 0.08);
+            border: 1px solid rgba(38, 70, 83, 0.05);
+        }
+
+        .jollof-input:focus {
+            border-color: #b7102a !important; /* Brand Jollof/Primary */
+            box-shadow: 0 0 0 1px #b7102a;
+        }
+
+        .glass-nav {
+            background: rgba(243, 250, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<div class="adire-pattern"></div>
+<!-- Top Navigation (Shell Implementation) -->
+<header class="fixed top-0 left-0 right-0 z-50 glass-nav shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-screen-2xl mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">
+                NaijaTaste AI
+            </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Review Simulator</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Recommendation Engine</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">About</a>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+</div>
+</nav>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</div>
+</div>
+</header>
+<main class="min-h-screen flex items-center justify-center pt-24 pb-12 px-margin-mobile">
+<div class="w-full max-w-md">
+<!-- Auth Card -->
+<div class="auth-card bg-white p-8 md:p-10 rounded-[16px] relative overflow-hidden">
+<!-- Subtle Top Pattern -->
+<div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-secondary-container to-tertiary"></div>
+<div class="text-center mb-10">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome Back, Oga/Madam</h1>
+<p class="font-pidgin-italic text-pidgin-italic text-secondary italic">Correct taste guaranteed. Abeg, log in to continue.</p>
+</div>
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="name">Full Name</label>
+<input class="w-full px-4 py-3 rounded-lg border border-[#264653]/20 bg-surface-container-lowest jollof-input outline-none transition-all duration-200 font-body-md text-body-md" id="name" placeholder="Tunde Afolayan" required="" type="text"/>
+</div>
+<!-- Email -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="email">Email Address</label>
+<input class="w-full px-4 py-3 rounded-lg border border-[#264653]/20 bg-surface-container-lowest jollof-input outline-none transition-all duration-200 font-body-md text-body-md" id="email" placeholder="example@naijataste.ai" required="" type="email"/>
+</div>
+<!-- Password -->
+<div class="space-y-2 relative">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<a class="text-[12px] text-primary hover:underline" href="#">Forgot password?</a>
+</div>
+<input class="w-full px-4 py-3 rounded-lg border border-[#264653]/20 bg-surface-container-lowest jollof-input outline-none transition-all duration-200 font-body-md text-body-md" id="password" placeholder="••••••••" required="" type="password"/>
+</div>
+<!-- Login Button -->
+<button class="w-full bg-primary text-on-primary font-headline-md text-body-lg py-4 rounded-xl shadow-md hover:brightness-110 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2" type="submit">
+                        Login
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<div class="relative flex items-center py-4">
+<div class="flex-grow border-t border-outline-variant/30"></div>
+<span class="flex-shrink mx-4 font-label-md text-on-surface-variant opacity-60">OR</span>
+<div class="flex-grow border-t border-outline-variant/30"></div>
+</div>
+<!-- Secondary Actions -->
+<div class="space-y-4">
+<button class="w-full bg-white border border-outline-variant/50 text-on-surface font-label-md py-3 rounded-xl flex items-center justify-center gap-3 hover:bg-surface-container transition-colors duration-200" type="button">
+<img alt="Google Logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt-SwbeaON2gtdCD2oxSA_kIq8BBw4MVqQhcEfJUD8bAEfJjjd7kZz6rFAzxmuNHpqDaidLaI7hHXeChQ5oRQQGR5otskJCU1A1Q64__klohFIu4Mw6uBEIWiellliuZ2d20pwZ150w-P-jou8ZjzSWi-5cL7Cw8z381ocomdjKuARuckC14139OLgUK95a8IzPDWBkBWRDdZKjIKm6pVE1tNivnfUCb4Ab8f8o4oTJTcQ27dQzr56IX8bF-tM44ztP-_gqkM9L-YI"/>
+                            Sign in with Google
+                        </button>
+<p class="text-center font-body-md text-body-md text-on-surface-variant">
+                            New here? 
+                            <a class="text-secondary font-bold hover:underline" href="#">Sign Up</a>
+</p>
+</div>
+</form>
+</div>
+<!-- Motivational Food Quote -->
+<div class="mt-8 text-center px-4 animate-pulse">
+<p class="font-pidgin-italic text-pidgin-italic text-outline">"Food wey sweet, na person cook am." — Ancient Lagos Proverb</p>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-surface-container-low py-12 px-margin-mobile md:px-margin-desktop border-t border-outline-variant/10">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start">
+<div class="font-headline-sm text-headline-sm text-primary mb-2">NaijaTaste AI</div>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 NaijaTaste AI. Correct taste guaranteed.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant font-body-md hover:text-secondary" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-md hover:text-secondary" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-md hover:text-secondary" href="#">Contact Support</a>
+<a class="text-on-surface-variant font-body-md hover:text-secondary" href="#">Our Heritage</a>
+</div>
+</div>
+</footer>
+<script>
+        // Light micro-interaction for input focus
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label')?.classList.add('text-primary');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('label')?.classList.remove('text-primary');
+            });
+        });
+
+        // Simple button click effect
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+    </script>
+</body></html>
