@@ -4,9 +4,16 @@ from routers import task_a, task_b
 
 app = FastAPI(title="DSN Bluechip API", version="1.0.0")
 
+origins = [
+    "http://localhost:3000",
+    "https://naijataste.up.railway.app",        # Railway
+    "https://naijataste-frontend.onrender.com", # Render
+    "https://*.onrender.com",                   # Render wildcard
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
