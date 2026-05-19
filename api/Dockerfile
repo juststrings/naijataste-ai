@@ -2,12 +2,11 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY api/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
-
-RUN ls -la /app/prompts/ || echo "prompts folder missing"
+COPY api/ .
+COPY prompts/ /app/prompts/
 
 EXPOSE 8000
 
