@@ -5,11 +5,18 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 
-const NAV_LINKS = [
+const GUEST_NAV = [
   { href: "/", label: "Home" },
   { href: "/simulator", label: "Review Simulator" },
   { href: "/recommend", label: "Recommendations" },
   { href: "/about", label: "About" },
+];
+
+const AUTH_NAV = [
+  { href: "/", label: "Home" },
+  { href: "/flavor-finder", label: "Flavor Finder" },
+  { href: "/simulator", label: "Review Simulator" },
+  { href: "/profile", label: "My Profile" },
 ];
 
 export default function NavBar() {
@@ -17,6 +24,7 @@ export default function NavBar() {
   const router = useRouter();
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const NAV_LINKS = user ? AUTH_NAV : GUEST_NAV;
 
   function handleLogout() {
     logout();
