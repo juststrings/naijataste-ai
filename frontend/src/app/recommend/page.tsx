@@ -216,8 +216,8 @@ export default function RecommendPage() {
           {/* FORM MODE */}
           {mode === "form" && (
             <div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div>
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
+                <div className="md:col-span-3">
                   <label className="block text-sm font-semibold text-on-surface-variant mb-1">City</label>
                   <select
                     value={city}
@@ -229,7 +229,7 @@ export default function RecommendPage() {
                     ))}
                   </select>
                 </div>
-                <div>
+                <div className="md:col-span-4">
                   <label className="block text-sm font-semibold text-on-surface-variant mb-1">Preferred Food</label>
                   <input
                     type="text"
@@ -239,16 +239,18 @@ export default function RecommendPage() {
                     className="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
                   />
                 </div>
-                <div>
+                <div className="md:col-span-5">
                   <label className="block text-sm font-semibold text-on-surface-variant mb-1">Price Range</label>
                   <div className="flex gap-2">
                     {(["budget", "mid", "premium"] as const).map((val, i) => (
                       <button
                         key={val}
+                        data-val={val}
                         onClick={() => setPriceRange(val)}
-                        className={`rec-price flex-1 py-2 border-2 border-outline/20 rounded-xl text-sm font-bold transition-all ${priceRange === val ? "sel" : "hover:border-primary"}`}
+                        className={`rec-price-btn flex-1 flex items-center justify-center gap-1.5 whitespace-nowrap py-3 px-2 border-2 rounded-xl text-sm font-semibold hover:border-primary transition-all ${priceRange === val ? "sel border-primary" : "border-outline/20"}`}
                       >
-                        {["Budget 💸", "Mid-range 💳", "Baller 💎"][i]}
+                        <span>{["Budget", "Mid-range", "Baller"][i]}</span>
+                        <span>{["💸", "💳", "💎"][i]}</span>
                       </button>
                     ))}
                   </div>

@@ -146,12 +146,12 @@ body {
 }
 
 .price-btn,
-.rec-price {
+.rec-price-btn {
   text-decoration: none;
 }
 
 .price-btn.sel,
-.rec-price.sel {
+.rec-price-btn.sel {
   background: rgba(183, 16, 42, 0.1);
   border-color: #b7102a;
   color: #b7102a;
