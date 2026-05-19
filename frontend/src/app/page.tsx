@@ -55,24 +55,26 @@ function GuestHome() {
             </Link>
           </div>
         </div>
-        <div className="hidden lg:grid grid-cols-2 gap-4">
-          <div className="bg-white rounded-2xl p-6 shadow-md border border-outline-variant/20">
-            <div className="text-3xl mb-2">🍛</div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+          {/* Row 1 — 60% / 40% */}
+          <div className="lg:col-span-3 bg-white rounded-2xl p-6 shadow-sm border border-outline-variant/20">
+            <div className="text-3xl mb-3">🍛</div>
             <div className="font-bold text-on-surface mb-1">Jollof Mastery</div>
             <div className="text-sm text-on-surface-variant">Predicts how any Nigerian user would rate any restaurant</div>
           </div>
-          <div className="bg-primary text-white rounded-2xl p-6 shadow-lg mt-6">
-            <div className="text-3xl mb-2">🤖</div>
+          <div className="lg:col-span-2 bg-primary text-white rounded-2xl p-6 shadow-lg">
+            <div className="text-3xl mb-3">🤖</div>
             <div className="font-bold mb-1">98% Cultural Match</div>
             <div className="text-sm opacity-80">Nigerian Persona Engine trained on real Lagos reviews</div>
           </div>
-          <div className="bg-tertiary-container text-on-surface rounded-2xl p-6 shadow-md -mt-4">
-            <div className="text-3xl mb-2">📍</div>
+          {/* Row 2 — 40% / 60% */}
+          <div className="lg:col-span-2 bg-tertiary-container text-on-surface rounded-2xl p-6 shadow-sm">
+            <div className="text-3xl mb-3">📍</div>
             <div className="font-bold mb-1">Hyper-Local</div>
             <div className="text-sm text-on-surface-variant">Lagos, Abuja, PH, Ibadan — we know each city&apos;s vibe</div>
           </div>
-          <div className="bg-white rounded-2xl p-6 shadow-md border border-outline-variant/20">
-            <div className="text-3xl mb-2">💬</div>
+          <div className="lg:col-span-3 bg-white rounded-2xl p-6 shadow-sm border border-outline-variant/20">
+            <div className="text-3xl mb-3">💬</div>
             <div className="font-bold text-on-surface mb-1">Speaks Naija</div>
             <div className="text-sm text-on-surface-variant">&ldquo;The food sweet die&rdquo; and &ldquo;Abeg, no go there again&rdquo;</div>
           </div>
