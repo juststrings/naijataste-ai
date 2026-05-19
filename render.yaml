@@ -5,7 +5,11 @@ services:
     # Dockerfile is at repo root; it copies from api/ internally
     dockerfilePath: ./Dockerfile
     envVars:
-      - key: GEMINI_API_KEY
+      - key: GEMINI_API_KEY_1
+        sync: false
+      - key: GEMINI_API_KEY_2
+        sync: false
+      - key: GEMINI_API_KEY_3
         sync: false
       - key: GOOGLE_PLACES_API_KEY
         sync: false
