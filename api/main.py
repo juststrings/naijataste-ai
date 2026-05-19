@@ -25,6 +25,11 @@ app.include_router(task_a.router, tags=["Task A - Review Simulation"])
 app.include_router(task_b.router, tags=["Task B - Recommendations"])
 
 
+@app.api_route("/health", methods=["GET", "HEAD"])
+def health():
+    return {"status": "ok"}
+
+
 @app.get("/")
 def root():
     return {"status": "ok", "message": "DSN Bluechip API is running"}
