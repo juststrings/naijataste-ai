@@ -68,10 +68,10 @@ function GuestHome() {
             <div className="text-sm opacity-80">Nigerian Persona Engine trained on real Lagos reviews</div>
           </div>
           {/* Row 2 — 40% / 60% */}
-          <div className="lg:col-span-2 bg-tertiary-container text-on-surface rounded-2xl p-6 shadow-sm">
+          <div className="lg:col-span-2 bg-tertiary-container text-white rounded-2xl p-6 shadow-sm">
             <div className="text-3xl mb-3">📍</div>
             <div className="font-bold mb-1">Hyper-Local</div>
-            <div className="text-sm text-on-surface-variant">Lagos, Abuja, PH, Ibadan — we know each city&apos;s vibe</div>
+            <div className="text-sm text-white/80">Lagos, Abuja, PH, Ibadan — we know each city&apos;s vibe</div>
           </div>
           <div className="lg:col-span-3 bg-white rounded-2xl p-6 shadow-sm border border-outline-variant/20">
             <div className="text-3xl mb-3">💬</div>
