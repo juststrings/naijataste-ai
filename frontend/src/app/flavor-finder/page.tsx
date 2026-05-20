@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth, getPersona } from "@/contexts/AuthContext";
 import { formatPrice } from "@/lib/utils";
+import PlaceDetailsModal from "@/components/PlaceDetailsModal";
 
 const BOOKS = [
   {
@@ -32,9 +33,12 @@ const CRAVINGS = [
   { emoji: "🍰", label: "Desserts", query: "dessert and sweets" },
 ];
 
+type SelectedPlace = { placeId: string | null; name: string };
+
 export default function FlavorFinderPage() {
   const { user, savedReviews } = useAuth();
   const router = useRouter();
+  const [selectedPlace, setSelectedPlace] = useState<SelectedPlace | null>(null);
 
   useEffect(() => {
     if (!user) router.push("/login");
@@ -48,6 +52,10 @@ export default function FlavorFinderPage() {
   function handleCraving(query: string) {
     sessionStorage.setItem("chatPrefill", query);
     router.push("/recommend");
+  }
+
+  function openDetails(name: string, placeId?: string | null) {
+    setSelectedPlace({ placeId: placeId ?? null, name });
   }
 
   return (
@@ -104,12 +112,12 @@ export default function FlavorFinderPage() {
                     <span className="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-semibold">{formatPrice(3)}</span>
                   </div>
                 </div>
-                <Link
-                  href="/recommend"
+                <button
+                  onClick={() => openDetails("Yellow Chilli")}
                   className="bg-primary text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-red-800 transition-all active:scale-95 whitespace-nowrap"
                 >
                   View Details
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -136,11 +144,19 @@ export default function FlavorFinderPage() {
                 <div className="text-4xl mb-3">{spot.emoji}</div>
                 <h4 className="font-bold text-on-surface mb-1">{spot.name}</h4>
                 <p className="text-on-surface-variant text-xs mb-3 leading-relaxed">{spot.desc}</p>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-2">
                   <span className={`text-xs font-bold px-3 py-1 rounded-full ${spot.tagClass}`}>{spot.tag}</span>
-                  <button className="text-on-surface-variant hover:text-primary transition-colors">
-                    <span className="material-symbols-outlined text-base">favorite_border</span>
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => openDetails(spot.name)}
+                      className="text-xs font-semibold text-primary hover:underline"
+                    >
+                      View Details
+                    </button>
+                    <button className="text-on-surface-variant hover:text-primary transition-colors">
+                      <span className="material-symbols-outlined text-base">favorite_border</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -256,6 +272,14 @@ export default function FlavorFinderPage() {
           </div>
         </div>
       </div>
+      {selectedPlace && (
+        <PlaceDetailsModal
+          isOpen={true}
+          onClose={() => setSelectedPlace(null)}
+          placeId={selectedPlace.placeId}
+          restaurantName={selectedPlace.name}
+        />
+      )}
     </div>
   );
 }

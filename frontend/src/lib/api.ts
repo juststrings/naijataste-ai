@@ -52,6 +52,28 @@ export async function simulateReview(
   return res.json();
 }
 
+export interface PlaceDetails {
+  name: string | null;
+  address: string | null;
+  phone: string | null;
+  rating: number | null;
+  total_ratings: number | null;
+  price_level: number | null;
+  website: string | null;
+  google_maps_url: string | null;
+  photos: string[];
+  opening_hours: string[];
+  is_open_now: boolean | null;
+  lat: number | null;
+  lng: number | null;
+}
+
+export async function getPlaceDetails(placeId: string): Promise<PlaceDetails> {
+  const res = await fetch(`${API_BASE}/place-details/${encodeURIComponent(placeId)}`);
+  if (!res.ok) throw new Error(`API error ${res.status}`);
+  return res.json();
+}
+
 export async function getRecommendations(
   payload: RecommendPayload
 ): Promise<RecommendationItem[]> {
