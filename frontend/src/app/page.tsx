@@ -34,7 +34,7 @@ function GuestHome() {
             Correct Taste, <span className="text-primary">Every Time.</span>
           </h1>
           <p className="text-lg text-on-surface-variant mb-8">
-            We recommend spots that match the Nigerian taste — spice, smoke, and soul.
+            We recommend spots that match the Nigerian taste. Spice, smoke, and soul.
           </p>
           <div className="flex gap-4 flex-wrap">
             <Link
