@@ -247,6 +247,27 @@ Free tier rate limits. Three API keys in round-robin means 3x the quota — crit
 
 ---
 
+## Evaluation
+
+Run the evaluation suite against the live API:
+
+```bash
+cd api
+pip install -r requirements.txt
+python scripts/evaluate.py
+```
+
+Results are saved to `api/evaluation_results.json`.
+
+| Metric | Score |
+|--------|-------|
+| Task A — RMSE | Run script to generate |
+| Task A — MAE | Run script to generate |
+| Task B — NDCG@10 | Run script to generate |
+| Task B — Hit Rate@10 | Run script to generate |
+
+---
+
 ## Roadmap
 
 - [ ] Real authentication — NextAuth + Google OAuth

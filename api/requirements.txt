@@ -7,3 +7,5 @@ pandas
 chromadb
 sentence-transformers
 googlemaps
+numpy
+requests
