@@ -278,7 +278,7 @@ export default function RecommendPage() {
       {/* Results */}
       {recState === "results" && recs.length > 0 && (
         <div className="max-w-3xl mx-auto">
-          <h3 className="font-bold text-lg text-on-surface mb-4 px-1">🎯 Recommendations for you</h3>
+          <h3 className="font-bold text-lg text-on-surface mb-4 px-1">Recommendations for you</h3>
           {recs.map((item, i) => (
             <RecCard
               key={i}
