@@ -50,12 +50,12 @@ export default function AboutPage() {
               We map taste profiles across 250+ ethnic nuances.
             </p>
           </div>
-          <div className="p-6 bg-tertiary-container rounded-xl">
-            <div className="flex items-center gap-2 mb-3 text-tertiary">
-              <span className="material-symbols-outlined">restaurant_menu</span>
-              <h3 className="font-bold text-on-surface">Texture AI</h3>
+          <div className="p-6 bg-tertiary-container rounded-xl" style={{ color: "#ffffff" }}>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="material-symbols-outlined" style={{ color: "#ffffff" }}>restaurant_menu</span>
+              <h3 className="font-bold" style={{ color: "#ffffff" }}>Texture AI</h3>
             </div>
-            <p className="text-sm text-on-surface-variant">
+            <p className="text-sm opacity-85" style={{ color: "#ffffff" }}>
               From the &apos;stretch&apos; of Pounded Yam to the &apos;crunch&apos; of Chin Chin, our models
               prioritize sensory feedback over simple ingredients.
             </p>
