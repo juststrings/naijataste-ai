@@ -20,7 +20,7 @@ NaijaTaste AI is a unified agent system powered by one shared brain — the **Ni
 Given a user persona and a restaurant, the agent predicts exactly how that user would review it — star rating, written review text, tone, and language patterns. Reviews come out in authentic Nigerian Pidgin English.
 
 **Task B — Recommendation Engine**  
-Given a user persona (or cold-start signals for new users), the agent recommends real Nigerian restaurants the user would genuinely enjoy — ranked by predicted preference, with cultural context attached to each pick.
+Given a user persona (or cold-start signals for new users), the agent recommends real Nigerian restaurants the user would genuinely enjoy — ranked by predicted preference, with cultural context attached to each pick. When location access is granted, the system uses the user's actual GPS coordinates to search Google Places within a 5km radius — returning restaurants that are literally nearby, not just in the same city.
 
 ---
 
@@ -245,6 +245,9 @@ Cultural grounding. Combined with explicit Nigerian Pidgin prompting and real re
 **Why multi-key rotation?**  
 Free tier rate limits. Three API keys in round-robin means 3x the quota — critical for demo traffic during judging.
 
+**Why geolocation over city-based search?**  
+City-center coordinates (Lagos: 6.52°N 3.38°E) can be 20+ km from where a user actually is. A user in Ajah searching for suya should not get results from Ikeja. Browser geolocation with 5km radius returns results that are actually walkable or driveable — making recommendations immediately actionable, not just informative.
+
 ---
 
 ## Evaluation
@@ -270,6 +273,7 @@ Results are saved to `api/evaluation_results.json`.
 
 ## Roadmap
 
+- [x] Geolocation-based search — 5km radius from user's actual position
 - [ ] Real authentication — NextAuth + Google OAuth
 - [ ] Neon Postgres — persist reviews and profiles across devices
 - [ ] Real persona engine on backend — derive taste traits from review history
