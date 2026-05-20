@@ -52,6 +52,8 @@ class RecommendRequest(BaseModel):
     user_id: Optional[str] = None
     cold_start_signals: Optional[dict] = None
     query: Optional[str] = None  # explicit search query; falls back to preferred_food
+    user_lat: Optional[float] = None
+    user_lng: Optional[float] = None
 
 
 class RecommendedItem(BaseModel):
@@ -158,7 +160,9 @@ def recommend(body: RecommendRequest):
     location = _extract_location(query, body.cold_start_signals)
 
     # Fetch real restaurants: cache → Google Places → hardcoded fallback
-    real_restaurants = search_real_restaurants(query, location)
+    real_restaurants = search_real_restaurants(
+        query, location, user_lat=body.user_lat, user_lng=body.user_lng
+    )
 
     if not real_restaurants:
         raise HTTPException(
@@ -166,7 +170,12 @@ def recommend(body: RecommendRequest):
             detail="Could not retrieve restaurant data.",
         )
 
-    prompt = _build_places_prompt(query, location, persona, real_restaurants)
+    display_location = (
+        f"near the user's current location ({body.user_lat:.4f}, {body.user_lng:.4f})"
+        if body.user_lat and body.user_lng
+        else location
+    )
+    prompt = _build_places_prompt(query, display_location, persona, real_restaurants)
     result = generate_json(prompt, max_tokens=4000)
 
     # Normalise: Gemini occasionally returns a dict with a nested list

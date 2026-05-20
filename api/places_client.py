@@ -25,9 +25,16 @@ FALLBACK_RESTAURANTS = [
 ]
 
 
-def search_real_restaurants(query: str, location: str = "Lagos", limit: int = 10):
-    # Check cache first
-    cached = get_cached_restaurants(query, location)
+def search_real_restaurants(
+    query: str,
+    location: str = "Lagos",
+    limit: int = 10,
+    user_lat: float | None = None,
+    user_lng: float | None = None,
+):
+    # Cache key includes exact coords when provided for precise "near me" results
+    cache_location = f"{user_lat:.5f},{user_lng:.5f}" if (user_lat and user_lng) else location
+    cached = get_cached_restaurants(query, cache_location)
     if cached:
         return cached
 
@@ -36,13 +43,21 @@ def search_real_restaurants(query: str, location: str = "Lagos", limit: int = 10
     if api_key:
         try:
             gmaps = googlemaps.Client(key=api_key)
-            city_key = location.lower().split(",")[0].strip()
-            coords = CITY_COORDS.get(city_key, {"lat": 6.5244, "lng": 3.3792})
+
+            if user_lat and user_lng:
+                coords = {"lat": user_lat, "lng": user_lng}
+                radius = 5000  # 5 km — "near me" search
+                search_query = f"{query} restaurant"
+            else:
+                city_key = location.lower().split(",")[0].strip()
+                coords = CITY_COORDS.get(city_key, {"lat": 6.5244, "lng": 3.3792})
+                radius = 50000
+                search_query = f"{query} restaurant {location} Nigeria"
 
             places_result = gmaps.places(
-                query=f"{query} restaurant {location} Nigeria",
+                query=search_query,
                 location=coords,
-                radius=50000,
+                radius=radius,
                 type="restaurant",
             )
 
@@ -58,7 +73,7 @@ def search_real_restaurants(query: str, location: str = "Lagos", limit: int = 10
                 })
 
             if restaurants:
-                store_restaurants(query, location, restaurants)
+                store_restaurants(query, cache_location, restaurants)
                 return restaurants
         except Exception as e:
             print(f"[PLACES API ERROR] {e} — using fallback")

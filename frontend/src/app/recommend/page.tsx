@@ -9,6 +9,8 @@ import RecCard from "@/components/RecCard";
 type ChatMsg = { type: "user" | "bot"; text: string };
 type RecMode = "chat" | "form";
 type RecState = "idle" | "loading" | "results" | "empty" | "error";
+type LocationStatus = "pending" | "granted" | "denied";
+type UserLocation = { lat: number; lng: number };
 
 const QUICK_PROMPTS = [
   { label: "🍲 Budget buka Lagos", text: "Budget local buka food in Lagos" },
@@ -55,6 +57,8 @@ export default function RecommendPage() {
   const [recState, setRecState] = useState<RecState>("idle");
   const [recs, setRecs] = useState<RecommendationItem[]>([]);
   const [errorMsg, setErrorMsg] = useState("");
+  const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
+  const [locationStatus, setLocationStatus] = useState<LocationStatus>("pending");
 
   // Form state
   const [city, setCity] = useState("Lagos");
@@ -69,6 +73,20 @@ export default function RecommendPage() {
       setChatInput(prefill);
       sessionStorage.removeItem("chatPrefill");
     }
+  }, []);
+
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      setLocationStatus("denied");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setLocationStatus("granted");
+      },
+      () => setLocationStatus("denied")
+    );
   }, []);
 
   useEffect(() => {
@@ -88,7 +106,10 @@ export default function RecommendPage() {
     const signals = parseMessage(msg);
 
     try {
-      const data = await getRecommendations({ cold_start_signals: signals });
+      const data = await getRecommendations({
+        cold_start_signals: signals,
+        ...(userLocation && { user_lat: userLocation.lat, user_lng: userLocation.lng }),
+      });
       setChatMsgs((prev) => {
         const next = [...prev];
         next[next.length - 1] = {
@@ -123,6 +144,7 @@ export default function RecommendPage() {
     try {
       const data = await getRecommendations({
         cold_start_signals: { city, preferred_food: food || "local Nigerian food", price_range: priceRange },
+        ...(userLocation && { user_lat: userLocation.lat, user_lng: userLocation.lng }),
       });
       if (data.length === 0) {
         setRecState("empty");
@@ -152,6 +174,28 @@ export default function RecommendPage() {
 
       <div className="max-w-3xl mx-auto mb-8">
         <div className="glass rounded-2xl p-4">
+          {/* Location status */}
+          <div className="flex items-center gap-2 mb-4 text-xs">
+            {locationStatus === "pending" && (
+              <>
+                <span className="w-2 h-2 rounded-full bg-on-surface-variant animate-pulse flex-shrink-0" />
+                <span className="text-on-surface-variant">Getting your location...</span>
+              </>
+            )}
+            {locationStatus === "granted" && (
+              <>
+                <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
+                <span className="text-green-700 font-semibold">Using your location — showing nearby spots</span>
+              </>
+            )}
+            {locationStatus === "denied" && (
+              <>
+                <span className="w-2 h-2 rounded-full bg-outline flex-shrink-0" />
+                <span className="text-on-surface-variant">Using city from your query</span>
+              </>
+            )}
+          </div>
+
           {/* Mode toggle */}
           <div className="flex justify-center mb-5">
             <div className="bg-surface-container-low p-1 rounded-full flex gap-1">

@@ -39,10 +39,19 @@ export default function FlavorFinderPage() {
   const { user, savedReviews } = useAuth();
   const router = useRouter();
   const [selectedPlace, setSelectedPlace] = useState<SelectedPlace | null>(null);
+  const [locationGranted, setLocationGranted] = useState(false);
 
   useEffect(() => {
     if (!user) router.push("/login");
   }, [user, router]);
+
+  useEffect(() => {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      () => setLocationGranted(true),
+      () => {}
+    );
+  }, []);
 
   if (!user) return null;
 
@@ -80,6 +89,12 @@ export default function FlavorFinderPage() {
             </h2>
             <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#E63946", color: "white" }}>Modern Fusion</span>
             <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#0D9488", color: "white" }}>Victoria Island</span>
+            {locationGranted && (
+              <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
+                Near you
+              </span>
+            )}
           </div>
 
           {/* Featured restaurant card */}
