@@ -144,10 +144,10 @@ function GuestHome() {
           <h3 className="text-2xl font-bold mb-3" style={{ fontFamily: "Montserrat, sans-serif" }}>Recommendation Engine</h3>
           <p className="opacity-80 mb-4">
             Stop asking &ldquo;What&apos;s good here?&rdquo;. Our engine understands the cultural nuances of Nigerian
-            food — from pepper soup depth to pounded yam texture.
+            food: from pepper soup depth to pounded yam texture.
           </p>
           <ul className="space-y-2 text-sm">
-            <li className="flex items-center gap-2 opacity-80"><span className="material-symbols-outlined text-tertiary text-base">bolt</span>Chat mode — just type what you crave</li>
+            <li className="flex items-center gap-2 opacity-80"><span className="material-symbols-outlined text-tertiary text-base">bolt</span>Chat mode: just type what you crave</li>
             <li className="flex items-center gap-2 opacity-80"><span className="material-symbols-outlined text-tertiary text-base">bolt</span>Cold-start for new users</li>
             <li className="flex items-center gap-2 opacity-80"><span className="material-symbols-outlined text-tertiary text-base">bolt</span>Nigerian cultural context on every pick</li>
           </ul>

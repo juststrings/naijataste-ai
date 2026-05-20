@@ -14,7 +14,7 @@ export default function AboutPage() {
         <span className="text-primary italic">Deep Intelligence.</span>
       </h1>
       <p className="text-lg text-on-surface-variant mb-10">
-        NaijaTaste AI isn&apos;t just an algorithm — it&apos;s a digital connoisseur trained on the vibrant pulse
+        NaijaTaste AI isn&apos;t just an algorithm. It&apos;s a digital connoisseur trained on the vibrant pulse
         of Nigerian kitchens, markets, and buka traditions.
       </p>
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
             </p>
             <blockquote className="mt-4 border-l-4 border-primary pl-4 text-sm italic text-on-surface-variant">
               &ldquo;When a user says &apos;The spice level is for street people,&apos; our AI knows they aren&apos;t
-              talking about traffic — they&apos;re talking about that authentic, Lagos-standard heat.&rdquo;
+              talking about traffic. They&apos;re talking about that authentic, Lagos-standard heat.&rdquo;
             </blockquote>
           </div>
           <div className="p-6 bg-primary rounded-xl text-white">
@@ -134,7 +134,7 @@ export default function AboutPage() {
       <div className="bg-surface-container-low rounded-2xl p-6 mb-8 text-sm text-on-surface-variant">
         <h3 className="font-bold text-on-surface mb-3">Dataset Disclosure</h3>
         <p>
-          Built for DSN × Bluechip Technologies LLM Agent Challenge — Hackathon 3.0. Uses Yelp Academic Dataset,
+          Built for DSN × Bluechip Technologies LLM Agent Challenge, Hackathon 3.0. Uses Yelp Academic Dataset,
           real Nigerian Google Maps reviews via Outscraper, and Gemini-synthesized cultural samples. All AI-generated
           content is clearly labeled.
         </p>

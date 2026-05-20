@@ -1,7 +1,7 @@
 # NaijaTaste AI 🍛
 > Correct taste, every time.
 
-**DSN × Bluechip Technologies LLM Agent Challenge — Hackathon 3.0**
+**DSN × Bluechip Technologies LLM Agent Challenge, Hackathon 3.0**
 
 An intelligent Nigerian user behaviour modelling and recommendation system that understands how Nigerians write, what they value, and what they will choose next.
 
@@ -14,13 +14,13 @@ An intelligent Nigerian user behaviour modelling and recommendation system that 
 
 ## What It Does
 
-NaijaTaste AI is a unified agent system powered by one shared brain — the **Nigerian Persona Engine** — that drives two core abilities:
+NaijaTaste AI is a unified agent system powered by one shared brain: the **Nigerian Persona Engine**. It drives two core abilities:
 
-**Task A — Review Simulator**  
-Given a user persona and a restaurant, the agent predicts exactly how that user would review it — star rating, written review text, tone, and language patterns. Reviews come out in authentic Nigerian Pidgin English.
+**Task A: Review Simulator**  
+Given a user persona and a restaurant, the agent predicts exactly how that user would review it: star rating, written review text, tone, and language patterns. Reviews come out in authentic Nigerian Pidgin English.
 
-**Task B — Recommendation Engine**  
-Given a user persona (or cold-start signals for new users), the agent recommends real Nigerian restaurants the user would genuinely enjoy — ranked by predicted preference, with cultural context attached to each pick. When location access is granted, the system uses the user's actual GPS coordinates to search Google Places within a 5km radius — returning restaurants that are literally nearby, not just in the same city.
+**Task B: Recommendation Engine**  
+Given a user persona (or cold-start signals for new users), the agent recommends real Nigerian restaurants the user would genuinely enjoy, ranked by predicted preference, with cultural context attached to each pick. When location access is granted, the system uses the user's actual GPS coordinates to search Google Places within a 5km radius, returning restaurants that are literally nearby, not just in the same city.
 
 ---
 
@@ -33,9 +33,9 @@ The competition brief awards marks for agents that behave and sound like Nigeria
 | Pidgin English and code-switching | Generates reviews that naturally mix English and Pidgin as real users do |
 | Value-for-money culture | Factors price sensitivity into tone, rating, and recommendations |
 | Lagos vs Abuja sensibility | Adjusts vocabulary and expectations based on user city context |
-| Local food references | Understands suya, buka, jollof, pepper soup culturally — not just as keywords |
+| Local food references | Understands suya, buka, jollof, pepper soup culturally, not just as keywords |
 | Occasion and time context | Adjusts review tone for date spots, quick lunches, and late-night stops |
-| Real restaurant data | Google Places API returns actual Nigerian restaurants — no hallucinated spots |
+| Real restaurant data | Google Places API returns actual Nigerian restaurants, no hallucinated spots |
 
 ---
 
@@ -72,7 +72,7 @@ naijataste-ai/
 │   ├── core/
 │   │   ├── persona.py               # PersonaEncoder
 │   │   ├── voice.py                 # Nigerian Voice Layer
-│   │   ├── gemini_client.py         # LLM client — 3-key rotation + model fallback
+│   │   ├── gemini_client.py         # LLM client: 3-key rotation + model fallback
 │   │   └── yelp_loader.py           # Dataset loader
 │   └── scripts/
 │       └── sample_yelp.py           # Yelp dataset sampler
@@ -99,14 +99,14 @@ naijataste-ai/
 | Cache | JSON file cache (MD5-keyed, zero repeat API calls) |
 | Containerisation | Docker |
 | Deployment | Render (primary), Railway (secondary) |
-| Uptime Monitoring | UptimeRobot (5-min ping — never sleeps) |
+| Uptime Monitoring | UptimeRobot (5-min ping, never sleeps) |
 | Data Processing | Pandas, Python |
 
 ---
 
 ## API Reference
 
-### POST /simulate-review — Task A
+### POST /simulate-review: Task A
 
 ```json
 {
@@ -135,7 +135,7 @@ naijataste-ai/
 }
 ```
 
-### POST /recommend — Task B
+### POST /recommend: Task B
 
 **Existing user:**
 ```json
@@ -166,7 +166,7 @@ naijataste-ai/
 ```
 
 ### GET /cache/stats
-Returns all cached Google Places queries — shows API calls saved.
+Returns all cached Google Places queries. Shows API calls saved.
 
 ### GET /health
 Health check. Returns `{"status": "ok"}`.
@@ -179,7 +179,7 @@ Health check. Returns `{"status": "ok"}`.
 |---------|--------|-------|
 | Yelp Academic Dataset | yelp.com/dataset | Primary training data for persona engine |
 | Nigerian Google Maps Reviews | Outscraper API | 500 real Nigerian restaurant reviews as cultural anchors |
-| Naijaweb corpus | HuggingFace — saheedniyi/naijaweb | Reference for Nigerian language patterns |
+| Naijaweb corpus | HuggingFace, saheedniyi/naijaweb | Reference for Nigerian language patterns |
 | Synthesized Reviews | Gemini 2.5 Flash | 144 structured Nigerian review samples from real data |
 
 ---
@@ -234,7 +234,7 @@ NEXT_PUBLIC_API_URL=https://naijataste-api.onrender.com
 ## Key Design Decisions
 
 **Why Google Places API over scraped data?**  
-Real-time accuracy. Restaurant data changes constantly. Places API gives live ratings and reviews — scraping gives a static snapshot that goes stale.
+Real-time accuracy. Restaurant data changes constantly. Places API gives live ratings and reviews. Scraping gives a static snapshot that goes stale.
 
 **Why cache Places results?**  
 Cost and speed. The same query (e.g. "suya Abuja") gets asked repeatedly. One API call serves all future users. Cold cache → Places API → warm cache → zero cost.
@@ -243,10 +243,10 @@ Cost and speed. The same query (e.g. "suya Abuja") gets asked repeatedly. One AP
 Cultural grounding. Combined with explicit Nigerian Pidgin prompting and real restaurant data as context, responses feel authentic rather than generic.
 
 **Why multi-key rotation?**  
-Free tier rate limits. Three API keys in round-robin means 3x the quota — critical for demo traffic during judging.
+Free tier rate limits. Three API keys in round-robin means 3x the quota, critical for demo traffic during judging.
 
 **Why geolocation over city-based search?**  
-City-center coordinates (Lagos: 6.52°N 3.38°E) can be 20+ km from where a user actually is. A user in Ajah searching for suya should not get results from Ikeja. Browser geolocation with 5km radius returns results that are actually walkable or driveable — making recommendations immediately actionable, not just informative.
+City-center coordinates (Lagos: 6.52°N 3.38°E) can be 20+ km from where a user actually is. A user in Ajah searching for suya should not get results from Ikeja. Browser geolocation with 5km radius returns results that are actually walkable or driveable, making recommendations immediately actionable, not just informative.
 
 ---
 
@@ -264,22 +264,22 @@ Results are saved to `api/evaluation_results.json`.
 
 | Metric | Score |
 |--------|-------|
-| Task A — RMSE | Run script to generate |
-| Task A — MAE | Run script to generate |
-| Task B — NDCG@10 | Run script to generate |
-| Task B — Hit Rate@10 | Run script to generate |
+| Task A: RMSE | Run script to generate |
+| Task A: MAE | Run script to generate |
+| Task B: NDCG@10 | Run script to generate |
+| Task B: Hit Rate@10 | Run script to generate |
 
 ---
 
 ## Roadmap
 
-- [x] Geolocation-based search — 5km radius from user's actual position
-- [ ] Real authentication — NextAuth + Google OAuth
-- [ ] Neon Postgres — persist reviews and profiles across devices
-- [ ] Real persona engine on backend — derive taste traits from review history
+- [x] Geolocation-based search: 5km radius from user's actual position
+- [ ] Real authentication: NextAuth + Google OAuth
+- [ ] Neon Postgres: persist reviews and profiles across devices
+- [ ] Real persona engine on backend: derive taste traits from review history
 - [ ] Yelp and Goodreads live integration
-- [ ] Expand beyond Nigeria — diaspora cities (London, Houston, Toronto)
+- [ ] Expand beyond Nigeria: diaspora cities (London, Houston, Toronto)
 
 ---
 
-*Built with 🍛 by Team NaijaTaste — DSN × Bluechip Technologies Hackathon 3.0*
+*Built with 🍛 by Team NaijaTaste, DSN × Bluechip Technologies Hackathon 3.0*

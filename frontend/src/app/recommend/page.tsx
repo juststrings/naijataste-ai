@@ -31,7 +31,7 @@ function BookSidebar({ delay }: { delay: number }) {
           <div>
             <div className="font-bold text-sm">My Sister, the Serial Killer</div>
             <div className="text-xs opacity-60 mb-1">Oyinkan Braithwaite</div>
-            <div className="text-xs italic opacity-75">&ldquo;Matches the dark, spicy intensity of the Buka spot — sharp, satirical Lagos noir.&rdquo;</div>
+            <div className="text-xs italic opacity-75">&ldquo;Matches the dark, spicy intensity of the Buka spot: sharp, satirical Lagos noir.&rdquo;</div>
           </div>
         </div>
         <div className="flex gap-3 bg-white/10 rounded-xl p-3">
@@ -185,7 +185,7 @@ export default function RecommendPage() {
             {locationStatus === "granted" && (
               <>
                 <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
-                <span className="text-green-700 font-semibold">Using your location — showing nearby spots</span>
+                <span className="text-green-700 font-semibold">Using your location: showing nearby spots</span>
               </>
             )}
             {locationStatus === "denied" && (

@@ -67,7 +67,7 @@ export default function ProfilePage() {
           <h1 className="text-3xl font-black text-on-surface" style={{ fontFamily: "Montserrat, sans-serif" }}>
             Welcome back, {user.name.split(" ")[0]}.
           </h1>
-          <p className="text-on-surface-variant text-sm mt-1">Your Flavor Gist — all in one place.</p>
+          <p className="text-on-surface-variant text-sm mt-1">Your Flavor Gist, all in one place.</p>
         </div>
         <div className="flex gap-3">
           <Link
@@ -196,7 +196,7 @@ export default function ProfilePage() {
             {recentReviews.length === 0 ? (
               <div className="text-center py-8 text-on-surface-variant">
                 <div className="text-4xl mb-3">🍛</div>
-                <p className="text-sm">Wetin you don chop? No reviews yet — go simulate one!</p>
+                <p className="text-sm">Wetin you don chop? No reviews yet. Go simulate one!</p>
                 <Link href="/simulator" className="mt-3 inline-block text-primary font-semibold text-sm hover:underline">
                   + Simulate a review
                 </Link>

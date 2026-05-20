@@ -254,7 +254,7 @@ export default function LoginPage() {
         </div>
 
         <p className="text-center text-xs text-outline italic mt-6 animate-pulse">
-          &ldquo;Food wey sweet, na person cook am.&rdquo; — Ancient Lagos Proverb
+          &ldquo;Food wey sweet, na person cook am.&rdquo; - Ancient Lagos Proverb
         </p>
       </div>
     </div>
