@@ -6,7 +6,7 @@
     "postinstall": "prisma generate && prisma db push",
     "dev": "next dev",
     "build": "next build",
-    "start": "node .next/standalone/server.js",
+    "start": "next start -p $PORT",
     "lint": "eslint"
   },
   "dependencies": {
