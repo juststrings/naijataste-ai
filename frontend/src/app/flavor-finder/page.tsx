@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth, getPersona } from "@/contexts/AuthContext";
@@ -30,6 +31,11 @@ const CRAVINGS = [
   { emoji: "☕", label: "Brunch", query: "brunch spot Lagos" },
   { emoji: "🍰", label: "Desserts", query: "dessert and sweets" },
 ];
+
+function priceDisplay(level?: number): string {
+  if (!level || level < 1) return "";
+  return "₦".repeat(Math.min(level, 4));
+}
 
 export default function FlavorFinderPage() {
   const { user, savedReviews } = useAuth();
@@ -69,14 +75,20 @@ export default function FlavorFinderPage() {
             <h2 className="font-bold text-xl text-on-surface" style={{ fontFamily: "Montserrat, sans-serif" }}>
               Top Picks for your &ldquo;{personaTitle}&rdquo; Persona
             </h2>
-            <span className="bg-secondary/30 text-secondary-container text-xs font-bold px-3 py-1 rounded-full">Modern Fusion</span>
-            <span className="bg-tertiary/30 text-tertiary-fixed text-xs font-bold px-3 py-1 rounded-full">Victoria Island</span>
+            <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#E63946", color: "white" }}>Modern Fusion</span>
+            <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#0D9488", color: "white" }}>Victoria Island</span>
           </div>
 
           {/* Featured restaurant card */}
           <div className="glass rounded-2xl overflow-hidden">
-            <div className="h-48 bg-gradient-to-br from-secondary/30 via-primary/20 to-tertiary/20 flex items-center justify-center relative">
-              <span className="text-8xl drop-shadow-lg">🍛</span>
+            <div className="h-48 relative overflow-hidden">
+              <Image
+                src="https://source.unsplash.com/600x300/?nigerian-food,restaurant"
+                alt="Nigerian food"
+                fill
+                unoptimized
+                className="object-cover"
+              />
               <div className="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                 ★ 4.8 Match
               </div>
@@ -92,14 +104,14 @@ export default function FlavorFinderPage() {
                     <span className="material-symbols-outlined text-xs">location_on</span>
                     Victoria Island, Lagos
                     <span className="mx-2 opacity-40">•</span>
-                    <span>₦₦₦</span>
+                    <span>{priceDisplay(3)}</span>
                   </div>
                 </div>
                 <Link
                   href="/recommend"
                   className="bg-primary text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-red-800 transition-all active:scale-95 whitespace-nowrap"
                 >
-                  Book Now
+                  View Details
                 </Link>
               </div>
             </div>
