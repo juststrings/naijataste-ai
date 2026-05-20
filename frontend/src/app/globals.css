@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,500&family=Noto+Sans:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import "tailwindcss";
 
@@ -54,7 +54,7 @@
 * { box-sizing: border-box; }
 
 body {
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;
   background: #f3faff;
   color: #001f29;
   overflow-x: hidden;

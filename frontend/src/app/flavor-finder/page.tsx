@@ -98,11 +98,10 @@ export default function FlavorFinderPage() {
                   <p className="text-on-surface-variant text-sm mb-2">
                     Contemporary Pan-African fine dining with a legendary Seafood Okra.
                   </p>
-                  <div className="flex items-center gap-1 text-xs text-on-surface-variant">
+                  <div className="flex items-center gap-2 text-xs text-on-surface-variant flex-wrap">
                     <span className="material-symbols-outlined text-xs">location_on</span>
                     Victoria Island, Lagos
-                    <span className="mx-2 opacity-40">•</span>
-                    <span>{formatPrice(3)}</span>
+                    <span className="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-semibold">{formatPrice(3)}</span>
                   </div>
                 </div>
                 <Link
