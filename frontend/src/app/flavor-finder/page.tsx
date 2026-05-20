@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth, getPersona } from "@/contexts/AuthContext";
@@ -82,12 +81,15 @@ export default function FlavorFinderPage() {
           {/* Featured restaurant card */}
           <div className="glass rounded-2xl overflow-hidden">
             <div className="h-48 relative overflow-hidden">
-              <Image
-                src="https://source.unsplash.com/600x300/?nigerian-food,restaurant"
+              <img
+                src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80"
                 alt="Nigerian food"
-                fill
-                unoptimized
-                className="object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => {
+                  const t = e.target as HTMLImageElement;
+                  t.onerror = null;
+                  t.src = "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=600&q=80";
+                }}
               />
               <div className="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                 ★ 4.8 Match
