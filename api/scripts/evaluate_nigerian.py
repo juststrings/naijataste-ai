@@ -1,11 +1,15 @@
 """
 NaijaTaste AI — Nigerian Evaluation Suite
-Mines test cases from the Yelp sample dataset (no hardcoded cases).
+Streams test cases from the full Yelp dataset (NDJSON, line-by-line).
+Falls back to the sample JSON files if the full dataset is not found.
 
-Dataset note: Yelp sample is US/Canada-based, ~1 review per user.
-Task A uses leave-one-out on the 14 users with 2+ reviews (the maximum
-available). Task B uses cold-start signals derived from each user's
-highest-rated business category.
+Full dataset paths (relative to repo root):
+  Yel-JSON/Yelp JSON/yelp_dataset/yelp_academic_dataset_review.json
+  Yel-JSON/Yelp JSON/yelp_dataset/yelp_academic_dataset_business.json
+
+Dataset note: Yelp is US/Canada-based. Task B geographical mismatch is
+expected and documented. Nigerian grounding rate measures cultural accuracy
+of our recommendations.
 """
 
 import json
@@ -19,8 +23,18 @@ import requests
 
 # ── Paths ──────────────────────────────────────────────────────────────────
 REPO_ROOT = Path(__file__).parent.parent.parent
-REVIEWS_PATH = REPO_ROOT / "prompts" / "yelp_sample_reviews.json"
-BUSINESSES_PATH = REPO_ROOT / "prompts" / "yelp_sample_businesses.json"
+
+FULL_REVIEWS_PATH = (
+    REPO_ROOT / "Yel-JSON" / "Yelp JSON" / "yelp_dataset"
+    / "yelp_academic_dataset_review.json"
+)
+FULL_BUSINESSES_PATH = (
+    REPO_ROOT / "Yel-JSON" / "Yelp JSON" / "yelp_dataset"
+    / "yelp_academic_dataset_business.json"
+)
+
+SAMPLE_REVIEWS_PATH = REPO_ROOT / "prompts" / "yelp_sample_reviews.json"
+SAMPLE_BUSINESSES_PATH = REPO_ROOT / "prompts" / "yelp_sample_businesses.json"
 
 API_BASE = "https://naijataste-api.onrender.com"
 
@@ -56,21 +70,105 @@ NIGERIAN_CITIES = {
 }
 
 
-# ── Helpers ────────────────────────────────────────────────────────────────
+# ── Streaming loaders (full dataset) ──────────────────────────────────────
 
-def load_data():
-    with open(REVIEWS_PATH) as f:
-        reviews = json.load(f)
-    with open(BUSINESSES_PATH) as f:
+def stream_reviews(path: Path, max_users: int = 500, min_reviews: int = 3) -> dict:
+    """Stream NDJSON reviews; stop once max_users qualified users collected."""
+    user_reviews: dict[str, list] = {}
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                review = json.loads(line)
+                uid = review.get("user_id")
+                if uid:
+                    user_reviews.setdefault(uid, []).append({
+                        "review_id": review.get("review_id", ""),
+                        "stars": review.get("stars"),
+                        "text": review.get("text", "")[:300],
+                        "business_id": review.get("business_id"),
+                        "user_id": uid,
+                    })
+            except Exception:
+                continue
+            qualified = sum(1 for revs in user_reviews.values() if len(revs) >= min_reviews)
+            if qualified >= max_users:
+                break
+    return user_reviews
+
+
+def stream_businesses(path: Path, business_ids: set) -> dict:
+    """Stream NDJSON businesses; keep only those in business_ids."""
+    businesses: dict = {}
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                biz = json.loads(line)
+                bid = biz.get("business_id")
+                if bid in business_ids:
+                    businesses[bid] = {
+                        "name": biz.get("name"),
+                        "city": biz.get("city"),
+                        "state": biz.get("state"),
+                        "categories": biz.get("categories", ""),
+                        "stars": biz.get("stars"),
+                    }
+            except Exception:
+                continue
+    return businesses
+
+
+# ── Sample loaders (fallback) ──────────────────────────────────────────────
+
+def load_sample_data() -> tuple[dict, dict]:
+    with open(SAMPLE_REVIEWS_PATH, encoding="utf-8") as f:
+        review_list = json.load(f)
+    with open(SAMPLE_BUSINESSES_PATH, encoding="utf-8") as f:
         biz_lookup = json.load(f)
-    return reviews, biz_lookup
 
+    user_reviews: dict[str, list] = {}
+    for r in review_list:
+        user_reviews.setdefault(r["user_id"], []).append(r)
+    return user_reviews, biz_lookup
+
+
+# ── Data loader — picks full or sample ────────────────────────────────────
+
+def load_data() -> tuple[dict, dict]:
+    """Returns (user_reviews dict, biz_lookup dict)."""
+    if FULL_REVIEWS_PATH.exists() and FULL_BUSINESSES_PATH.exists():
+        print(f"[INFO] Streaming full Yelp dataset from {FULL_REVIEWS_PATH.parent}")
+        print("       Collecting 500 users with 3+ reviews — this may take a few minutes...")
+        user_reviews = stream_reviews(FULL_REVIEWS_PATH, max_users=500, min_reviews=3)
+        all_biz_ids = {
+            r["business_id"]
+            for revs in user_reviews.values()
+            for r in revs
+            if r.get("business_id")
+        }
+        print(f"       Fetched {len(user_reviews)} users | {len(all_biz_ids)} unique businesses")
+        print("       Streaming businesses file...")
+        biz_lookup = stream_businesses(FULL_BUSINESSES_PATH, all_biz_ids)
+        print(f"       Loaded {len(biz_lookup)} businesses. Dataset ready.")
+        return user_reviews, biz_lookup
+    else:
+        print("[WARN] Full dataset not found, falling back to sample files")
+        print(f"       (Expected: {FULL_REVIEWS_PATH})")
+        return load_sample_data()
+
+
+# ── Helpers ────────────────────────────────────────────────────────────────
 
 def extract_tone_keywords(texts: list[str]) -> list[str]:
     words = []
     for t in texts:
         words.extend(re.findall(r"[a-z]+", t.lower()))
-    freq = {}
+    freq: dict[str, int] = {}
     for w in words:
         if w not in STOPWORDS and len(w) > 3:
             freq[w] = freq.get(w, 0) + 1
@@ -108,18 +206,14 @@ def pidgin_distribution(texts: list[str]) -> dict:
 
 # ── Task A ─────────────────────────────────────────────────────────────────
 
-def evaluate_task_a(reviews: list, biz_lookup: dict) -> dict | None:
+def evaluate_task_a(user_reviews: dict, biz_lookup: dict) -> dict | None:
     print(f"\n{'='*55}")
     print("TASK A — Review Simulation (leave-one-out, Yelp-mined)")
     print(f"{'='*55}")
 
-    user_reviews: dict[str, list] = {}
-    for r in reviews:
-        user_reviews.setdefault(r["user_id"], []).append(r)
-
-    # Need at least 2 reviews: 1 for persona history, 1 as ground truth
     eligible = {uid: revs for uid, revs in user_reviews.items() if len(revs) >= 2}
-    print(f"  Dataset: {len(reviews)} reviews | {len(user_reviews)} unique users")
+    print(f"  Dataset: {sum(len(v) for v in user_reviews.values())} reviews | "
+          f"{len(user_reviews)} unique users")
     print(f"  Users with 2+ reviews (eligible): {len(eligible)}")
 
     rng = random.Random(42)
@@ -131,7 +225,6 @@ def evaluate_task_a(reviews: list, biz_lookup: dict) -> dict | None:
     results: list[dict] = []
 
     for uid in sampled:
-        # Sort by review_id for stable ordering
         user_revs = sorted(eligible[uid], key=lambda r: r.get("review_id", ""))
         history = user_revs[:-1]
         test = user_revs[-1]
@@ -175,13 +268,13 @@ def evaluate_task_a(reviews: list, biz_lookup: dict) -> dict | None:
                     "review_snippet": text[:120],
                 })
 
-                tick = "✓" if err <= 1 else "✗"
-                print(f"  {tick} {uid[:8]}... | actual={actual:.0f} predicted={predicted:.0f} "
+                tick = "OK" if err <= 1 else "XX"
+                print(f"  [{tick}] {uid[:8]}... | actual={actual:.0f} predicted={predicted:.0f} "
                       f"err={err:.1f} | {biz.get('name', '')[:28]}")
             else:
-                print(f"  ✗ {uid[:8]}... | HTTP {resp.status_code}")
+                print(f"  [--] {uid[:8]}... | HTTP {resp.status_code}")
         except Exception as e:
-            print(f"  ✗ {uid[:8]}... | {e}")
+            print(f"  [!!] {uid[:8]}... | {e}")
 
     if not results:
         print("  No successful evaluations.")
@@ -219,7 +312,7 @@ def evaluate_task_a(reviews: list, biz_lookup: dict) -> dict | None:
 
 # ── Task B ─────────────────────────────────────────────────────────────────
 
-def evaluate_task_b(reviews: list, biz_lookup: dict) -> dict | None:
+def evaluate_task_b(user_reviews: dict, biz_lookup: dict) -> dict | None:
     print(f"\n{'='*55}")
     print("TASK B — Recommendations (cold-start, Yelp-mined)")
     print(f"{'='*55}")
@@ -227,11 +320,6 @@ def evaluate_task_b(reviews: list, biz_lookup: dict) -> dict | None:
     print("  mismatch is expected and documented. Nigerian grounding rate")
     print("  measures cultural accuracy of our recommendations.")
 
-    user_reviews: dict[str, list] = {}
-    for r in reviews:
-        user_reviews.setdefault(r["user_id"], []).append(r)
-
-    # Need at least one 4+ star review to have meaningful ground truth
     candidates = [
         uid for uid, revs in user_reviews.items()
         if any(r["stars"] >= 4 for r in revs)
@@ -249,7 +337,6 @@ def evaluate_task_b(reviews: list, biz_lookup: dict) -> dict | None:
         user_revs = user_reviews[uid]
         liked = [r for r in user_revs if r["stars"] >= 4]
 
-        # Use their highest-rated business as the taste signal
         top_review = max(liked, key=lambda r: r["stars"])
         top_biz = biz_lookup.get(top_review["business_id"], {})
         city = top_biz.get("city", "Lagos")
@@ -272,7 +359,6 @@ def evaluate_task_b(reviews: list, biz_lookup: dict) -> dict | None:
             }
         }
 
-        # Keywords to test category relevance in returned reasons
         cat_keywords = {
             w for w in re.findall(r"[a-z]+", preferred.lower())
             if w not in STOPWORDS and len(w) > 3
@@ -288,7 +374,6 @@ def evaluate_task_b(reviews: list, biz_lookup: dict) -> dict | None:
                 if has_results:
                     coverage_hits += 1
 
-                # Nigerian grounding: do names/notes/reasons mention Nigerian places?
                 all_text = " ".join(
                     f"{r.get('item_name','')} {r.get('cultural_note','')} {r.get('reason','')}"
                     for r in rec_list
@@ -297,7 +382,6 @@ def evaluate_task_b(reviews: list, biz_lookup: dict) -> dict | None:
                 if is_nigerian:
                     nigerian_hits += 1
 
-                # Category relevance: does any match_reason echo user's food preference?
                 reasons = " ".join(r.get("reason", "") for r in rec_list).lower()
                 has_relevance = bool(cat_keywords) and any(kw in reasons for kw in cat_keywords)
                 if has_relevance:
@@ -315,14 +399,14 @@ def evaluate_task_b(reviews: list, biz_lookup: dict) -> dict | None:
                     "top_recs": [r.get("item_name", "") for r in rec_list[:3]],
                 })
 
-                tick = "✓" if has_results else "✗"
+                tick = "OK" if has_results else "--"
                 grounding = "Nigerian" if is_nigerian else "non-Nigerian"
-                print(f"  {tick} {uid[:8]}... | {preferred[:22]:22s} | {grounding}")
+                print(f"  [{tick}] {uid[:8]}... | {preferred[:22]:22s} | {grounding}")
                 print(f"     Recs: {', '.join(r.get('item_name','') for r in rec_list[:3])}")
             else:
-                print(f"  ✗ {uid[:8]}... | HTTP {resp.status_code}")
+                print(f"  [--] {uid[:8]}... | HTTP {resp.status_code}")
         except Exception as e:
-            print(f"  ✗ {uid[:8]}... | {e}")
+            print(f"  [!!] {uid[:8]}... | {e}")
 
     if not results:
         print("  No successful evaluations.")
@@ -354,12 +438,12 @@ def evaluate_task_b(reviews: list, biz_lookup: dict) -> dict | None:
 if __name__ == "__main__":
     API_BASE = sys.argv[1] if len(sys.argv) > 1 else API_BASE
 
-    print("NaijaTaste AI — Nigerian Evaluation Suite (Yelp-mined)")
+    print("NaijaTaste AI — Nigerian Evaluation Suite")
     print(f"API: {API_BASE}")
 
-    reviews, biz_lookup = load_data()
-    task_a = evaluate_task_a(reviews, biz_lookup)
-    task_b = evaluate_task_b(reviews, biz_lookup)
+    user_reviews, biz_lookup = load_data()
+    task_a = evaluate_task_a(user_reviews, biz_lookup)
+    task_b = evaluate_task_b(user_reviews, biz_lookup)
 
     output = {
         "note": (
@@ -374,5 +458,5 @@ if __name__ == "__main__":
     out_path = Path(__file__).parent.parent / "evaluation_results_nigerian.json"
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
-    print(f"\n✅ Results saved to {out_path}")
-    print("✅ Evaluation complete.")
+    print(f"\nResults saved to {out_path}")
+    print("Evaluation complete.")
