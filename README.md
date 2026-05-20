@@ -1,191 +1,55 @@
-# NaijaTaste AI
-### DSN × Bluechip Technologies LLM Agent Challenge — Hackathon 3.0
+# NaijaTaste AI 🍛
 
-> An intelligent Nigerian user behaviour modelling and recommendation system that understands how Nigerians write, what they value, and what they will choose next.
+> Correct taste, every time.
 
----
+AI-powered food recommendation and review simulation engine built for the Nigerian palate. NaijaTaste AI predicts how any Nigerian food persona would review a restaurant, and recommends real spots that match your taste — spice, smoke, and soul.
 
-## Live Demo
-**API Base URL:** https://naijataste-ai-production.up.railway.app  
-**Interactive Docs:** https://naijataste-ai-production.up.railway.app/docs
+**Live Demo:** https://naijataste-ai.onrender.com  
+**API:** https://naijataste-api.onrender.com  
+**Team:** NaijaTaste
 
 ---
 
 ## What It Does
 
-NaijaTaste AI is a unified agent system with one shared brain — the **Nigerian Persona Engine** — that powers two abilities:
+**Review Simulator**  
+Input a reviewer persona (name, rating habits, price sensitivity) and a restaurant. Get a culturally-grounded AI review written in Nigerian Pidgin English — predicting how that persona would actually experience the spot.
 
-**Task A — Review Simulator**  
-Given a user persona and a business/item, the agent predicts exactly how that user would review it — including the star rating and the written review text in their voice, tone, and language patterns.
+**Flavor Finder / Recommendations**  
+Tell us what you're craving. Our engine searches real Nigerian restaurants via Google Places API, then uses Gemini to rank and explain the best matches for your taste profile. Every result is grounded in real data — no hallucinated spots.
 
-**Task B — Recommendation Engine**  
-Given a user persona (or cold-start signals for new users), the agent recommends items the user would genuinely enjoy — ranked by predicted preference, with Nigerian cultural context attached to each recommendation.
+**Persona Engine**  
+Users build a flavor profile over time. The system tracks review history, derives taste traits (Spicy tolerance, Local preference, Adventurousness), and upgrades your persona from Curious Taster → Flavor Seeker → Taste Connoisseur → Flavor Oracle.
 
----
-
-## Nigerian Advantage
-
-The competition brief awards additional marks for agents that behave and sound like Nigerians. This is our primary differentiator.
-
-Most systems build culturally generic agents. NaijaTaste AI goes further:
-
-| Signal | What the agent does |
-|--------|-------------------|
-| Pidgin English and code-switching | Generates reviews that naturally mix English and Pidgin as real users do |
-| Value-for-money culture | Factors price sensitivity into tone, rating, and recommendations |
-| Lagos vs Abuja sensibility | Adjusts vocabulary and expectations based on user city context |
-| Local food references | Understands suya, buka, jollof, pepper soup culturally not just as keywords |
-| Occasion and time context | Adjusts review tone for date spots, quick lunches, and late-night stops |
+**Cross-Domain Taste**  
+Nigerian books and culture recommendations that match your food energy. Because how you eat says something about how you read.
 
 ---
 
 ## Architecture
 
 ```
-User Persona + Item Details  →  Nigerian Persona Engine  →  Task A: Review Simulator
-User Persona Only            →  Nigerian Persona Engine  →  Task B: Recommendation Engine
+┌─────────────────────────────────────────────────────┐
+│                   NaijaTaste AI                      │
+├─────────────────┬───────────────────────────────────┤
+│   Frontend      │   Backend                         │
+│   Next.js 15    │   FastAPI (Python)                │
+│   TypeScript    │   Gemini 2.5 Flash                │
+│   Tailwind CSS  │   Google Places API               │
+│   Vercel/Render │   JSON Cache Layer                │
+│                 │   Multi-key Rotation              │
+└─────────────────┴───────────────────────────────────┘
 ```
 
-**Core Components:**
-- `core/persona.py` — PersonaEncoder: builds behavioural profile from Yelp review history
-- `core/voice.py` — Nigerian Voice Layer: injects culturally grounded few-shot examples into prompts
-- `core/gemini_client.py` — Gemini API client with 3-key rotation and model fallback chain
-- `core/yelp_loader.py` — Yelp dataset loader (full local / sampled for deployment)
-- `routers/task_a.py` — POST /simulate-review endpoint
-- `routers/task_b.py` — POST /recommend endpoint
-
-**Data Pipeline:**
-1. 500 real Nigerian Google Maps reviews collected via Outscraper
-2. 144 structured samples synthesized using Gemini 2.5 Flash, grounded in authentic Nigerian speech patterns
-3. 1,027 Yelp user personas sampled for recommendation candidates
-4. All data used as few-shot context — no fine-tuning required
-
----
-
-## API Reference
-
-### Task A — Simulate Review
-**POST** `/simulate-review`
-
-```json
-{
-  "persona": {
-    "user_id": "optional_yelp_user_id",
-    "avg_rating": 3.2,
-    "rating_tendency": "harsh",
-    "price_sensitivity": "high",
-    "tone_keywords": ["jollof", "service", "price", "portion"],
-    "total_reviews": 45,
-    "sample_reviews": [
-      "The food was okay but too expensive for the portion size"
-    ]
-  },
-  "item_name": "Yellow Chilli Victoria Island",
-  "item_type": "restaurant",
-  "location": "Lagos",
-  "features": ["expensive", "nice ambience", "average food", "fast service"]
-}
+**Request flow for /recommend:**
 ```
-
-**Response:**
-```json
-{
-  "rating": 2,
-  "review_text": "The ambience correct sha, but for this price? Abeg. Food no reach expectation at all. Service fast at least, I go give dem that. My wallet dey cry.",
-  "tone_label": "pidgin-heavy"
-}
+User query → Extract location → Check JSON cache
+    → [HIT]  Return cached restaurants
+    → [MISS] Google Places API → Store in cache
+    → [FAIL] Hardcoded Nigerian fallback list
+    → Gemini: rank + explain from real list only
+    → Response with Pidgin cultural notes
 ```
-
----
-
-### Task B — Get Recommendations
-**POST** `/recommend`
-
-**With existing user:**
-```json
-{
-  "user_id": "yelp_user_id_here"
-}
-```
-
-**Cold start (new user):**
-```json
-{
-  "cold_start_signals": {
-    "city": "Lagos",
-    "preferred_food": "local Nigerian buka amala",
-    "price_range": "budget"
-  }
-}
-```
-
-**Response:**
-```json
-[
-  {
-    "item_name": "Mama Cass Restaurant",
-    "business_id": "abc123",
-    "reason": "Affordable local Nigerian food matching budget preference",
-    "predicted_rating": 4.2,
-    "cultural_note": "Best for weekday lunch, avoid weekend rush"
-  }
-]
-```
-
----
-
-## Sample Yelp User IDs for Testing
-
-These user IDs are included in the deployed dataset and can be used to test persona-based reviews and recommendations:
-
-Run this to get sample IDs:
-```bash
-python -c "
-import json
-with open('prompts/yelp_sample_reviews.json') as f:
-    reviews = json.load(f)
-users = list(set(r['user_id'] for r in reviews))[:10]
-for u in users:
-    print(u)
-"
-```
-
----
-
-## Quick Start (Local)
-
-**Prerequisites:** Python 3.11+, Docker
-
-```bash
-# Clone the repo
-git clone https://github.com/juststrings/naijataste-ai.git
-cd naijataste-ai
-
-# Set up environment
-cp api/.env.example api/.env
-# Add your Gemini API keys to api/.env
-
-# Run with Docker
-docker compose -f api/docker-compose.yml up --build
-
-# Or run directly
-cd api
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-API will be available at `http://localhost:8000/docs`
-
----
-
-## Dataset & Disclosure
-
-| Dataset | Source | Usage |
-|---------|--------|-------|
-| Yelp Academic Dataset | yelp.com/dataset | Primary training data for persona engine and Task A/B |
-| Nigerian Google Maps Reviews | Outscraper API | 500 real Nigerian restaurant reviews as cultural style anchors |
-| Naijaweb (Nairaland corpus) | HuggingFace — saheedniyi/naijaweb | Reference for Nigerian language patterns |
-| Synthesized Reviews | Gemini 2.5 Flash | 144 structured Nigerian review samples generated from real data |
 
 ---
 
@@ -193,47 +57,152 @@ API will be available at `http://localhost:8000/docs`
 
 | Layer | Technology |
 |-------|-----------|
-| LLM | Gemini 2.5 Flash / 2.0 Flash (via Google AI Studio free tier) |
-| Backend | FastAPI (Python 3.11) |
-| Containerisation | Docker |
-| Deployment | Railway |
-| Data Processing | Pandas, Python |
-| Version Control | GitHub |
+| Frontend | Next.js 15, TypeScript, Tailwind CSS |
+| Backend | FastAPI, Python 3.11 |
+| AI Engine | Google Gemini 2.5 Flash |
+| Restaurant Data | Google Places API |
+| Cache | JSON file cache (MD5-keyed) |
+| Deployment | Render (primary), Railway (secondary) |
+| Uptime | UptimeRobot (5-min ping interval) |
+| Auth | localStorage (Phase 1) |
 
 ---
 
-## Project Structure
+## API Endpoints
 
-```
-naijataste-ai/
-├── Dockerfile                    # Production Docker build
-├── api/
-│   ├── main.py                   # FastAPI app entry point
-│   ├── requirements.txt
-│   ├── routers/
-│   │   ├── task_a.py             # POST /simulate-review
-│   │   └── task_b.py             # POST /recommend
-│   ├── core/
-│   │   ├── persona.py            # PersonaEncoder
-│   │   ├── voice.py              # Nigerian Voice Layer
-│   │   ├── gemini_client.py      # LLM client with key rotation
-│   │   └── yelp_loader.py        # Dataset loader
-│   └── scripts/
-│       └── sample_yelp.py        # Yelp dataset sampler
-└── prompts/
-    ├── few_shot_master.json      # 144 Nigerian review samples
-    ├── yelp_sample_reviews.json  # 1,042 sampled Yelp reviews
-    └── yelp_sample_businesses.json # 842 sampled businesses
+### POST /simulate-review
+Simulate how a persona would review a restaurant.
+
+**Request:**
+```json
+{
+  "reviewer_name": "Emeka",
+  "rating_habits": "Balanced realist (avg 3.5 stars)",
+  "price_sensitivity": "Budget",
+  "restaurant_name": "Yellow Chilli",
+  "location": "Victoria Island, Lagos",
+  "restaurant_type": "Restaurant",
+  "features": "nice ambience, great seafood okra"
+}
 ```
 
+**Response:**
+```json
+{
+  "review_text": "Yellow Chilli na correct spot...",
+  "predicted_rating": 4.2,
+  "persona_match_score": 87
+}
+```
+
+### POST /recommend
+Get real Nigerian restaurant recommendations for a craving.
+
+**Request:**
+```json
+{
+  "query": "Best suya spots in Abuja",
+  "persona": "Budget conscious, loves street food",
+  "location": "Abuja"
+}
+```
+
+**Response:**
+```json
+{
+  "recommendations": [
+    {
+      "name": "Yahuza Suya Spot Nigeria Limited",
+      "rating": 4.2,
+      "address": "Abuja, Nigeria",
+      "match_reason": "Most popular Abuja suya spot with excellent rating",
+      "cultural_note": "Their suya na fire! Don't dull."
+    }
+  ]
+}
+```
+
+### GET /cache/stats
+Returns cached query statistics — shows how many Google Places API calls have been avoided.
+
+### GET /health
+Health check endpoint. Returns `{"status": "ok"}`.
+
 ---
 
-## Team
+## Running Locally
 
-**Abdulsalam Lawal** — BI Analyst & Data Scientist  
-Obafemi Awolowo University · Lagos, Nigeria  
-GitHub: [@juststrings](https://github.com/juststrings)
+### Prerequisites
+- Node.js 20+
+- Python 3.11+
+- Docker (optional)
+
+### Backend
+```bash
+cd api
+pip install -r requirements.txt
+cp .env.example .env  # add your API keys
+uvicorn main:app --reload --port 8000
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+cp .env.example .env.local  # set NEXT_PUBLIC_API_URL=http://localhost:8000
+npm run dev
+```
+
+### Docker (full stack)
+```bash
+docker build -t naijataste-api .
+docker run -p 8000:8000 --env-file .env naijataste-api
+```
 
 ---
 
-*Built for DSN × BCT LLM Agent Challenge Hackathon 3.0 — May 2026*
+## Environment Variables
+
+### Backend (api/.env)
+```
+GEMINI_API_KEY_1=your_gemini_key
+GEMINI_API_KEY_2=your_gemini_key_2
+GEMINI_API_KEY_3=your_gemini_key_3
+GOOGLE_PLACES_API_KEY=your_places_key
+```
+
+### Frontend (frontend/.env.local)
+```
+NEXT_PUBLIC_API_URL=https://naijataste-api.onrender.com
+```
+
+---
+
+## Key Design Decisions
+
+**Why Google Places API over scraped data?**  
+Real-time accuracy. Restaurant data changes — new spots open, old ones close. Scraping gives a static snapshot; Places API gives live data with ratings and reviews counts.
+
+**Why cache Google Places results?**  
+Cost control and speed. The same query (e.g. "suya Abuja") gets asked repeatedly. Caching means one API call serves thousands of users. Cold cache → Places API → warm cache → zero API cost.
+
+**Why Gemini for both simulate and recommend?**  
+Cultural grounding. Gemini's training includes Nigerian context that generic models miss. Combined with explicit Nigerian Pidgin prompting and real restaurant data as context, responses feel authentic rather than generic.
+
+**Why multi-key Gemini rotation?**  
+Free tier rate limits. Three API keys in round-robin rotation means 3x the quota before hitting limits — critical for hackathon demo traffic.
+
+---
+
+## Roadmap
+
+- [ ] Real authentication — NextAuth + Google OAuth
+- [ ] Neon Postgres — persist reviews and profiles across devices  
+- [ ] Real persona engine on backend — derive taste traits from review history
+- [ ] Yelp and Goodreads API integration
+- [ ] Mobile app (React Native)
+- [ ] Expand beyond Lagos/Abuja — Accra, Nairobi, London diaspora
+
+---
+
+*Built with 🍛 by Team NaijaTaste*
