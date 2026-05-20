@@ -7,17 +7,14 @@ from pathlib import Path
 API_BASE = "https://naijataste-api.onrender.com"  # change to localhost for local runs
 
 # ── Load Yelp sample data ──────────────────────────────────────────────────
-REVIEWS_PATH = Path(__file__).parent.parent / "prompts" / "yelp_sample_reviews.json"
-BUSINESSES_PATH = Path(__file__).parent.parent / "prompts" / "yelp_sample_businesses.json"
+REVIEWS_PATH = Path(__file__).parent.parent.parent / "prompts" / "yelp_sample_reviews.json"
+BUSINESSES_PATH = Path(__file__).parent.parent.parent / "prompts" / "yelp_sample_businesses.json"
 
 with open(REVIEWS_PATH) as f:
     reviews = json.load(f)
 
 with open(BUSINESSES_PATH) as f:
-    businesses = json.load(f)
-
-# Build business lookup
-biz_lookup = {b["business_id"]: b for b in businesses}
+    biz_lookup = json.load(f)  # already keyed by business_id
 
 # ── Task A — RMSE Evaluation ───────────────────────────────────────────────
 def evaluate_task_a(sample_size: int = 50):
