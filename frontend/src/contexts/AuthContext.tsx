@@ -1,11 +1,13 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { useSession, signOut } from "next-auth/react";
 
 export interface AuthUser {
   name: string;
   email: string;
   avatar: string;
+  image?: string | null;
   flavor?: "street" | "balanced" | "premium";
 }
 
@@ -19,6 +21,7 @@ export interface SavedReview {
 
 interface AuthContextValue {
   user: AuthUser | null;
+  loading: boolean;
   login: (user: AuthUser) => void;
   logout: () => void;
   savedReviews: SavedReview[];
@@ -27,6 +30,7 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue>({
   user: null,
+  loading: true,
   login: () => {},
   logout: () => {},
   savedReviews: [],
@@ -34,50 +38,87 @@ const AuthContext = createContext<AuthContextValue>({
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(null);
+  const { data: session, status } = useSession();
   const [savedReviews, setSavedReviews] = useState<SavedReview[]>([]);
 
-  useEffect(() => {
-    const rawUser = localStorage.getItem("nt_user");
-    if (rawUser) {
-      try {
-        const parsed = JSON.parse(rawUser);
-        if (!parsed.avatar) parsed.avatar = makeAvatar(parsed.name ?? "U");
-        setUser(parsed);
-      } catch {
-        localStorage.removeItem("nt_user");
+  const user: AuthUser | null = session?.user
+    ? {
+        name: session.user.name || "",
+        email: session.user.email || "",
+        avatar: makeAvatar(session.user.name || "U"),
+        image: session.user.image,
       }
-    }
-    const rawRevs = localStorage.getItem("nt_reviews");
-    if (rawRevs) {
-      try {
-        setSavedReviews(JSON.parse(rawRevs));
-      } catch {
-        localStorage.removeItem("nt_reviews");
-      }
-    }
-  }, []);
+    : null;
 
-  function login(u: AuthUser) {
-    setUser(u);
-    localStorage.setItem("nt_user", JSON.stringify(u));
+  const loading = status === "loading";
+
+  // Fetch reviews from DB whenever user is authenticated
+  useEffect(() => {
+    if (!session?.user) {
+      setSavedReviews([]);
+      return;
+    }
+    fetch("/api/reviews")
+      .then((r) => r.json())
+      .then((data: unknown) => {
+        if (Array.isArray(data)) {
+          setSavedReviews(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            data.map((r: any) => ({
+              id: r.id,
+              restaurant: r.restaurantName,
+              review: r.reviewText,
+              rating: r.rating,
+              date: new Date(r.createdAt).toLocaleDateString(),
+            }))
+          );
+        }
+      })
+      .catch(() => {});
+  }, [session?.user]);
+
+  function login() {
+    // No-op: login is handled by NextAuth signIn() in the login page
   }
 
   function logout() {
-    setUser(null);
-    setSavedReviews([]);
-    localStorage.removeItem("nt_user");
-    localStorage.removeItem("nt_reviews");
+    signOut({ callbackUrl: "/" });
   }
 
-  function addReview(review: SavedReview) {
-    const next = [...savedReviews, review];
-    setSavedReviews(next);
-    localStorage.setItem("nt_reviews", JSON.stringify(next));
+  async function addReview(review: SavedReview) {
+    try {
+      const res = await fetch("/api/reviews", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          restaurantName: review.restaurant,
+          reviewText: review.review,
+          rating: review.rating,
+          location: "",
+        }),
+      });
+      if (res.ok) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const saved: any = await res.json();
+        const local: SavedReview = {
+          id: saved.id,
+          restaurant: saved.restaurantName,
+          review: saved.reviewText,
+          rating: saved.rating,
+          date: new Date(saved.createdAt).toLocaleDateString(),
+        };
+        setSavedReviews((prev) => [...prev, local]);
+      } else {
+        // Fallback: add to local state so UI doesn't break
+        setSavedReviews((prev) => [...prev, review]);
+      }
+    } catch {
+      setSavedReviews((prev) => [...prev, review]);
+    }
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, savedReviews, addReview }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, savedReviews, addReview }}>
       {children}
     </AuthContext.Provider>
   );

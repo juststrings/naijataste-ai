@@ -3,6 +3,7 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/contexts/AuthContext";
+import NextAuthProvider from "@/components/SessionProvider";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
@@ -25,13 +26,15 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-background text-on-background">
-        <AuthProvider>
-          <div className="adire-bg" />
-          <NavBar />
-          <main className="flex-grow relative z-10">{children}</main>
-          <Footer />
-          <Toaster position="top-right" />
-        </AuthProvider>
+        <NextAuthProvider>
+          <AuthProvider>
+            <div className="adire-bg" />
+            <NavBar />
+            <main className="flex-grow relative z-10">{children}</main>
+            <Footer />
+            <Toaster position="top-right" />
+          </AuthProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

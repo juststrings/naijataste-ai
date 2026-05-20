@@ -30,14 +30,14 @@ function Stars({ rating }: { rating: number }) {
 }
 
 export default function ProfilePage() {
-  const { user, logout, savedReviews } = useAuth();
+  const { user, loading, logout, savedReviews } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) router.push("/login");
-  }, [user, router]);
+    if (!loading && !user) router.push("/login");
+  }, [user, loading, router]);
 
-  if (!user) return null;
+  if (loading || !user) return null;
 
   const reviewCount = savedReviews.length;
   const level = Math.floor(reviewCount / 5) + 1;

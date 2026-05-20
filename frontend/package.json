@@ -9,11 +9,17 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.2",
+    "@prisma/client": "^5.22.0",
     "@tanstack/react-query": "^5.100.11",
+    "@types/bcryptjs": "^2.4.6",
     "axios": "^1.16.1",
+    "bcryptjs": "^3.0.3",
     "framer-motion": "^12.39.0",
     "lucide-react": "^1.16.0",
     "next": "16.2.6",
+    "next-auth": "^4.24.14",
+    "prisma": "^5.22.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hot-toast": "^2.6.0"

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
-import { useAuth, makeAvatar } from "@/contexts/AuthContext";
 
 type Tab = "login" | "signup";
 
@@ -13,8 +13,8 @@ function isValidEmail(email: string) {
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login } = useAuth();
   const [tab, setTab] = useState<Tab>("login");
+  const [loading, setLoading] = useState(false);
 
   // Login fields
   const [loginEmail, setLoginEmail] = useState("");
@@ -27,20 +27,32 @@ export default function LoginPage() {
   const [signupPassword, setSignupPassword] = useState("");
   const [signupErrors, setSignupErrors] = useState<Record<string, string>>({});
 
-  function handleLogin() {
+  async function handleLogin() {
     const errors: Record<string, string> = {};
     if (!loginEmail.trim()) errors.email = "Email is required";
     else if (!isValidEmail(loginEmail)) errors.email = "Enter a valid email address";
     if (!loginPassword.trim()) errors.password = "Password is required";
     if (Object.keys(errors).length > 0) { setLoginErrors(errors); return; }
     setLoginErrors({});
+    setLoading(true);
 
-    const name = loginEmail.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-    login({ name, email: loginEmail.trim(), avatar: makeAvatar(name) });
-    router.push("/");
+    const result = await signIn("credentials", {
+      email: loginEmail.trim(),
+      password: loginPassword,
+      isSignUp: "false",
+      redirect: false,
+    });
+
+    setLoading(false);
+
+    if (result?.error) {
+      setLoginErrors({ password: "Invalid email or password." });
+    } else {
+      router.push("/");
+    }
   }
 
-  function handleSignup() {
+  async function handleSignup() {
     const errors: Record<string, string> = {};
     if (!signupName.trim()) errors.name = "Name is required";
     if (!signupEmail.trim()) errors.email = "Email is required";
@@ -49,14 +61,27 @@ export default function LoginPage() {
     else if (signupPassword.length < 6) errors.password = "Password must be at least 6 characters";
     if (Object.keys(errors).length > 0) { setSignupErrors(errors); return; }
     setSignupErrors({});
+    setLoading(true);
 
-    const name = signupName.trim();
-    login({ name, email: signupEmail.trim(), avatar: makeAvatar(name) });
-    router.push("/");
+    const result = await signIn("credentials", {
+      email: signupEmail.trim(),
+      password: signupPassword,
+      name: signupName.trim(),
+      isSignUp: "true",
+      redirect: false,
+    });
+
+    setLoading(false);
+
+    if (result?.error) {
+      setSignupErrors({ email: result.error === "Email already exists" ? "That email is already registered." : "Sign-up failed. Try again." });
+    } else {
+      router.push("/");
+    }
   }
 
-  function handleGoogle() {
-    toast("Coming soon — Google OAuth drops in Phase 2!", { icon: "🚀" });
+  async function handleGoogle() {
+    await signIn("google", { callbackUrl: "/" });
   }
 
   return (
@@ -124,9 +149,10 @@ export default function LoginPage() {
 
                   <button
                     onClick={handleLogin}
-                    className="w-full bg-primary text-white py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-red-800 transition-all active:scale-95 shadow-lg"
+                    disabled={loading}
+                    className="w-full bg-primary text-white py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-red-800 transition-all active:scale-95 shadow-lg disabled:opacity-60"
                   >
-                    Login <span className="material-symbols-outlined">arrow_forward</span>
+                    {loading ? "Logging in..." : <>Login <span className="material-symbols-outlined">arrow_forward</span></>}
                   </button>
 
                   <div className="relative flex items-center">
@@ -197,9 +223,10 @@ export default function LoginPage() {
 
                   <button
                     onClick={handleSignup}
-                    className="w-full bg-primary text-white py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-red-800 transition-all active:scale-95 shadow-lg"
+                    disabled={loading}
+                    className="w-full bg-primary text-white py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-red-800 transition-all active:scale-95 shadow-lg disabled:opacity-60"
                   >
-                    Create Account <span className="material-symbols-outlined">arrow_forward</span>
+                    {loading ? "Creating account..." : <>Create Account <span className="material-symbols-outlined">arrow_forward</span></>}
                   </button>
 
                   <div className="relative flex items-center">

@@ -36,14 +36,14 @@ const CRAVINGS = [
 type SelectedPlace = { placeId: string | null; name: string };
 
 export default function FlavorFinderPage() {
-  const { user, savedReviews } = useAuth();
+  const { user, loading, savedReviews } = useAuth();
   const router = useRouter();
   const [selectedPlace, setSelectedPlace] = useState<SelectedPlace | null>(null);
   const [locationGranted, setLocationGranted] = useState(false);
 
   useEffect(() => {
-    if (!user) router.push("/login");
-  }, [user, router]);
+    if (!loading && !user) router.push("/login");
+  }, [user, loading, router]);
 
   useEffect(() => {
     if (!navigator.geolocation) return;
@@ -53,7 +53,7 @@ export default function FlavorFinderPage() {
     );
   }, []);
 
-  if (!user) return null;
+  if (loading || !user) return null;
 
   const { level, title: personaTitle } = getPersona(savedReviews.length);
   const firstName = user.name.split(" ")[0];
