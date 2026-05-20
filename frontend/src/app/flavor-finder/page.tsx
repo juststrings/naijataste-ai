@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth, getPersona } from "@/contexts/AuthContext";
+import { formatPrice } from "@/lib/utils";
 
 const BOOKS = [
   {
@@ -30,11 +31,6 @@ const CRAVINGS = [
   { emoji: "☕", label: "Brunch", query: "brunch spot Lagos" },
   { emoji: "🍰", label: "Desserts", query: "dessert and sweets" },
 ];
-
-function priceDisplay(level?: number): string {
-  if (!level || level < 1) return "";
-  return "₦".repeat(Math.min(level, 4));
-}
 
 export default function FlavorFinderPage() {
   const { user, savedReviews } = useAuth();
@@ -106,7 +102,7 @@ export default function FlavorFinderPage() {
                     <span className="material-symbols-outlined text-xs">location_on</span>
                     Victoria Island, Lagos
                     <span className="mx-2 opacity-40">•</span>
-                    <span>{priceDisplay(3)}</span>
+                    <span>{formatPrice(3)}</span>
                   </div>
                 </div>
                 <Link
