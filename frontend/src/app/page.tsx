@@ -27,9 +27,6 @@ function GuestHome() {
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-4 md:px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <span className="inline-block bg-secondary-container text-on-secondary-container text-xs font-bold px-3 py-1 rounded-full mb-4">
-            It starts with Emeka
-          </span>
           <h1
             className="text-4xl md:text-6xl font-black text-on-surface leading-tight mb-4"
             style={{ fontFamily: "Montserrat, sans-serif" }}
@@ -37,8 +34,7 @@ function GuestHome() {
             Correct Taste, <span className="text-primary">Every Time.</span>
           </h1>
           <p className="text-lg text-on-surface-variant mb-8">
-            The AI-powered food engine for the Nigerian palate. We simulate reviews and recommend
-            spots that hit the right notes of spice, smoke, and soul.
+            We recommend spots that match the Nigerian taste — spice, smoke, and soul.
           </p>
           <div className="flex gap-4 flex-wrap">
             <Link
@@ -100,18 +96,21 @@ function GuestHome() {
               title="Lagos Professional"
               description="Quiet lunch spots with AC and reliable Wi-Fi for your zoom calls. Price? Secondary to ambiance."
               personaKey="professional"
+              ctaLabel="Find Quiet Spots →"
             />
             <PersonaCard
               emoji="🔥"
               title="Street Food Enthusiast"
               description="The best holes-in-the-wall. Smoke-heavy jollof and the sharpest Suya. Cheap and correct."
               personaKey="street"
+              ctaLabel="Find Correct Food →"
             />
             <PersonaCard
               emoji="👑"
               title="The Aunty"
               description="Premium spots for family Sunday lunch. Clean environment and respectable portions."
               personaKey="aunty"
+              ctaLabel="Find Sunday Lunch →"
             />
           </div>
         </div>

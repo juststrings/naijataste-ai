@@ -7,9 +7,10 @@ interface Props {
   title: string;
   description: string;
   personaKey: "professional" | "street" | "aunty";
+  ctaLabel?: string;
 }
 
-export default function PersonaCard({ emoji, title, description, personaKey }: Props) {
+export default function PersonaCard({ emoji, title, description, personaKey, ctaLabel = "Try Demo →" }: Props) {
   const router = useRouter();
 
   return (
@@ -22,7 +23,7 @@ export default function PersonaCard({ emoji, title, description, personaKey }: P
         {title}
       </h3>
       <p className="text-sm text-on-surface-variant mb-4">{description}</p>
-      <span className="text-primary text-sm font-semibold">Try Demo →</span>
+      <span className="text-primary text-sm font-semibold">{ctaLabel}</span>
     </div>
   );
 }
