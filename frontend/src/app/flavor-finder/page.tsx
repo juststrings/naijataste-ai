@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useAuth, getPersona } from "@/contexts/AuthContext";
 import { formatPrice } from "@/lib/utils";
 import PlaceDetailsModal from "@/components/PlaceDetailsModal";
+import { resolveLocation, UserLocation } from "@/lib/location";
 
 const BOOKS = [
   {
@@ -39,7 +40,7 @@ export default function FlavorFinderPage() {
   const { user, loading, savedReviews } = useAuth();
   const router = useRouter();
   const [selectedPlace, setSelectedPlace] = useState<SelectedPlace | null>(null);
-  const [locationGranted, setLocationGranted] = useState(false);
+  const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
 
   useEffect(() => {
     if (!loading && !user) router.push("/login");
@@ -48,7 +49,7 @@ export default function FlavorFinderPage() {
   useEffect(() => {
     if (!navigator.geolocation) return;
     navigator.geolocation.getCurrentPosition(
-      () => setLocationGranted(true),
+      (pos) => setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
       () => {}
     );
   }, []);
@@ -59,7 +60,12 @@ export default function FlavorFinderPage() {
   const firstName = user.name.split(" ")[0];
 
   function handleCraving(query: string) {
+    const loc = resolveLocation(query, userLocation);
     sessionStorage.setItem("chatPrefill", query);
+    if (loc.lat !== undefined && loc.lng !== undefined) {
+      sessionStorage.setItem("chatPrefillLat", String(loc.lat));
+      sessionStorage.setItem("chatPrefillLng", String(loc.lng));
+    }
     router.push("/recommend");
   }
 
@@ -89,12 +95,27 @@ export default function FlavorFinderPage() {
             </h2>
             <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#E63946", color: "white" }}>Modern Fusion</span>
             <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#0D9488", color: "white" }}>Victoria Island</span>
-            {locationGranted && (
-              <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
-                Near you
-              </span>
-            )}
+            {(() => {
+              if (!userLocation) return null;
+              const loc = resolveLocation("near me", userLocation);
+              if (loc.useGPS) {
+                return (
+                  <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
+                    Near you
+                  </span>
+                );
+              }
+              if (loc.label) {
+                return (
+                  <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-surface-container text-on-surface-variant">
+                    <span className="material-symbols-outlined" style={{ fontSize: "12px" }}>location_on</span>
+                    {loc.label}
+                  </span>
+                );
+              }
+              return null;
+            })()}
           </div>
 
           {/* Featured restaurant card */}

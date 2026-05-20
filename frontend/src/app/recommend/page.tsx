@@ -5,12 +5,12 @@ import { getRecommendations, RecommendationItem } from "@/lib/api";
 import { parseMessage } from "@/lib/nlp";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import RecCard from "@/components/RecCard";
+import { resolveLocation, UserLocation, ResolvedLocation } from "@/lib/location";
 
 type ChatMsg = { type: "user" | "bot"; text: string };
 type RecMode = "chat" | "form";
 type RecState = "idle" | "loading" | "results" | "empty" | "error";
 type LocationStatus = "pending" | "granted" | "denied";
-type UserLocation = { lat: number; lng: number };
 
 const QUICK_PROMPTS = [
   { label: "🍲 Budget buka Lagos", text: "Budget local buka food in Lagos" },
@@ -48,6 +48,59 @@ function BookSidebar({ delay }: { delay: number }) {
   );
 }
 
+function LocationBadge({
+  locationStatus,
+  queryLocation,
+}: {
+  locationStatus: LocationStatus;
+  queryLocation: ResolvedLocation | null;
+}) {
+  if (locationStatus === "pending") {
+    return (
+      <>
+        <span className="w-2 h-2 rounded-full bg-on-surface-variant animate-pulse flex-shrink-0" />
+        <span className="text-on-surface-variant">Getting your location...</span>
+      </>
+    );
+  }
+
+  if (queryLocation) {
+    if (queryLocation.useGPS) {
+      return (
+        <>
+          <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
+          <span className="text-green-700 font-semibold">Near you</span>
+        </>
+      );
+    }
+    if (queryLocation.label) {
+      return (
+        <>
+          <span className="material-symbols-outlined text-on-surface-variant" style={{ fontSize: "14px" }}>location_on</span>
+          <span className="text-on-surface-variant">{queryLocation.label}</span>
+        </>
+      );
+    }
+    return null;
+  }
+
+  if (locationStatus === "granted") {
+    return (
+      <>
+        <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
+        <span className="text-green-700 font-semibold">Location ready</span>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <span className="w-2 h-2 rounded-full bg-outline flex-shrink-0" />
+      <span className="text-on-surface-variant">Using city from your query</span>
+    </>
+  );
+}
+
 export default function RecommendPage() {
   const [mode, setMode] = useState<RecMode>("chat");
   const [chatMsgs, setChatMsgs] = useState<ChatMsg[]>([
@@ -59,6 +112,7 @@ export default function RecommendPage() {
   const [errorMsg, setErrorMsg] = useState("");
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [locationStatus, setLocationStatus] = useState<LocationStatus>("pending");
+  const [queryLocation, setQueryLocation] = useState<ResolvedLocation | null>(null);
 
   // Form state
   const [city, setCity] = useState("Lagos");
@@ -104,11 +158,13 @@ export default function RecommendPage() {
     setChatMsgs((prev) => [...prev, { type: "bot", text: "Dey think..." }]);
 
     const signals = parseMessage(msg);
+    const loc = resolveLocation(msg, userLocation);
+    setQueryLocation(loc);
 
     try {
       const data = await getRecommendations({
         cold_start_signals: signals,
-        ...(userLocation && { user_lat: userLocation.lat, user_lng: userLocation.lng }),
+        ...(loc.lat !== undefined && { user_lat: loc.lat, user_lng: loc.lng }),
       });
       setChatMsgs((prev) => {
         const next = [...prev];
@@ -141,10 +197,14 @@ export default function RecommendPage() {
   async function getFormRecs() {
     setRecState("loading");
     setRecs([]);
+
+    const loc = resolveLocation(city.toLowerCase(), userLocation);
+    setQueryLocation(loc);
+
     try {
       const data = await getRecommendations({
         cold_start_signals: { city, preferred_food: food || "local Nigerian food", price_range: priceRange },
-        ...(userLocation && { user_lat: userLocation.lat, user_lng: userLocation.lng }),
+        ...(loc.lat !== undefined && { user_lat: loc.lat, user_lng: loc.lng }),
       });
       if (data.length === 0) {
         setRecState("empty");
@@ -176,24 +236,7 @@ export default function RecommendPage() {
         <div className="glass rounded-2xl p-4">
           {/* Location status */}
           <div className="flex items-center gap-2 mb-4 text-xs">
-            {locationStatus === "pending" && (
-              <>
-                <span className="w-2 h-2 rounded-full bg-on-surface-variant animate-pulse flex-shrink-0" />
-                <span className="text-on-surface-variant">Getting your location...</span>
-              </>
-            )}
-            {locationStatus === "granted" && (
-              <>
-                <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
-                <span className="text-green-700 font-semibold">Using your location: showing nearby spots</span>
-              </>
-            )}
-            {locationStatus === "denied" && (
-              <>
-                <span className="w-2 h-2 rounded-full bg-outline flex-shrink-0" />
-                <span className="text-on-surface-variant">Using city from your query</span>
-              </>
-            )}
+            <LocationBadge locationStatus={locationStatus} queryLocation={queryLocation} />
           </div>
 
           {/* Mode toggle */}
