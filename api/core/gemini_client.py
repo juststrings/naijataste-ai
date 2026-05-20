@@ -18,7 +18,9 @@ load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 _MODEL_CHAIN: list[str] = [
     "models/gemini-2.5-flash",
     "models/gemini-2.0-flash",
-    "models/gemini-2.0-flash-lite",
+    "models/gemini-1.5-flash",
+    "models/gemini-2.5-flash-lite-preview-06-17",
+    "models/gemini-3.5-flash",
 ]
 
 # ---------------------------------------------------------------------------
