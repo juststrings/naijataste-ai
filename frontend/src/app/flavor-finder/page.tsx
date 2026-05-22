@@ -154,8 +154,9 @@ export default function FlavorFinderPage() {
       {/* Welcome header */}
       <div className="flex items-center justify-between w-full mb-6">
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-on-surface">Welcome Back,</h1>
-          <h1 className="text-3xl font-bold text-primary">{firstName}.</h1>
+          <h1 className="text-3xl font-black text-on-surface" style={{ fontFamily: "Montserrat, sans-serif" }}>
+            Welcome Back, <span className="text-primary">{firstName}.</span>
+          </h1>
           <p className="text-on-surface-variant italic mt-1 text-sm">Correct taste Wey fit your mood today.</p>
         </div>
         <div className="flex-shrink-0">
