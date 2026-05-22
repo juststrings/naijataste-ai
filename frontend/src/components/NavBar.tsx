@@ -63,40 +63,42 @@ export default function NavBar() {
           ))}
         </nav>
 
-        {/* Auth area */}
-        {user ? (
-          <div className="flex items-center gap-3">
-            <Link href="/profile" className="flex items-center gap-2 hover:bg-surface-container md:px-3 md:py-2 md:rounded-xl transition-colors">
-              <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
-                {user?.name?.charAt(0).toUpperCase() || "U"}
-              </div>
-              <span className="text-sm font-semibold text-on-surface hidden md:block">
-                {user.name.split(" ")[0]}
-              </span>
-            </Link>
-            <button onClick={handleLogout} className="text-xs text-on-surface-variant hover:text-error transition-colors">
-              Logout
-            </button>
-          </div>
-        ) : (
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors hidden md:block">
-              Login
-            </Link>
-            <Link href="/login" className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-800 active:scale-95 transition-all">
-              Get Started
-            </Link>
-          </div>
-        )}
+        {/* Auth area + hamburger grouped so gap between Logout and ≡ is tight */}
+        <div className="flex items-center gap-1">
+          {user ? (
+            <div className="flex items-center gap-2">
+              <Link href="/profile" className="flex items-center gap-2 hover:bg-surface-container md:px-3 md:py-2 md:rounded-xl transition-colors">
+                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
+                  {user?.name?.charAt(0).toUpperCase() || "U"}
+                </div>
+                <span className="text-sm font-semibold text-on-surface hidden md:block">
+                  {user.name.split(" ")[0]}
+                </span>
+              </Link>
+              <button onClick={handleLogout} className="text-sm text-on-surface-variant hover:text-error transition-colors">
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link href="/login" className="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors hidden md:block">
+                Login
+              </Link>
+              <Link href="/login" className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-800 active:scale-95 transition-all">
+                Get Started
+              </Link>
+            </div>
+          )}
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden ml-2 p-2 rounded-lg hover:bg-surface-container transition-colors"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className="material-symbols-outlined">{menuOpen ? "close" : "menu"}</span>
-        </button>
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden p-2 rounded-lg hover:bg-surface-container transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className="material-symbols-outlined">{menuOpen ? "close" : "menu"}</span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
