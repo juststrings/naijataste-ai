@@ -70,6 +70,8 @@ def search_real_restaurants(
                     "place_id": place["place_id"],
                     "price_level": place.get("price_level", 2),
                     "user_ratings_total": place.get("user_ratings_total", 0),
+                    "types": place.get("types", []),
+                    "photo_reference": (place.get("photos") or [{}])[0].get("photo_reference"),
                 })
 
             if restaurants:

@@ -76,6 +76,30 @@ export async function getPlaceDetails(placeId: string): Promise<PlaceDetails> {
   return res.json();
 }
 
+export interface TopPickPlace {
+  name: string | null;
+  vicinity: string | null;
+  rating: number | null;
+  price_level: number | null;
+  place_id: string | null;
+  types: string[];
+  photo_url: string | null;
+}
+
+export async function getTopPicks(
+  lat?: number,
+  lng?: number,
+  persona?: string
+): Promise<TopPickPlace[]> {
+  const params = new URLSearchParams();
+  if (lat !== undefined) params.set("lat", String(lat));
+  if (lng !== undefined) params.set("lng", String(lng));
+  if (persona) params.set("persona", persona);
+  const res = await fetch(`${API_BASE}/places/top-picks?${params}`);
+  if (!res.ok) throw new Error(`API error ${res.status}`);
+  return res.json();
+}
+
 export async function getRecommendations(
   payload: RecommendPayload
 ): Promise<RecommendationItem[]> {

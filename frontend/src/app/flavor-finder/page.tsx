@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth, getPersona } from "@/contexts/AuthContext";
 import { formatPrice } from "@/lib/utils";
 import PlaceDetailsModal from "@/components/PlaceDetailsModal";
 import { resolveLocation, UserLocation } from "@/lib/location";
+import { getTopPicks, TopPickPlace } from "@/lib/api";
 
 const BOOKS = [
   {
@@ -79,6 +80,14 @@ function getDailyChallenge(level: number) {
   return DAILY_CHALLENGES[baseIdx];
 }
 
+function getCuisineEmoji(types: string[]): string {
+  if (types.some((t) => t.includes("seafood"))) return "🦐";
+  if (types.some((t) => t.includes("bakery") || t.includes("cafe"))) return "☕";
+  if (types.some((t) => t.includes("bar"))) return "🍸";
+  if (types.some((t) => t.includes("fast_food"))) return "🍔";
+  return "🍛";
+}
+
 type SelectedPlace = { placeId: string | null; name: string };
 
 export default function FlavorFinderPage() {
@@ -86,6 +95,11 @@ export default function FlavorFinderPage() {
   const router = useRouter();
   const [selectedPlace, setSelectedPlace] = useState<SelectedPlace | null>(null);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
+  const [topPicks, setTopPicks] = useState<TopPickPlace[] | null>(null);
+  const [topPicksLoading, setTopPicksLoading] = useState(true);
+  const topPicksFetched = useRef<string | null>(null);
+
+  const { level, title: personaTitle } = getPersona(savedReviews.length);
 
   useEffect(() => {
     if (!loading && !user) router.push("/login");
@@ -99,9 +113,22 @@ export default function FlavorFinderPage() {
     );
   }, []);
 
+  useEffect(() => {
+    if (!user) return;
+    const locationKey = userLocation
+      ? `${userLocation.lat.toFixed(2)},${userLocation.lng.toFixed(2)}`
+      : "default";
+    if (topPicksFetched.current === locationKey) return;
+    topPicksFetched.current = locationKey;
+    setTopPicksLoading(true);
+    getTopPicks(userLocation?.lat, userLocation?.lng, personaTitle)
+      .then(setTopPicks)
+      .catch(() => {})
+      .finally(() => setTopPicksLoading(false));
+  }, [user, userLocation, personaTitle]);
+
   if (loading || !user) return null;
 
-  const { level, title: personaTitle } = getPersona(savedReviews.length);
   const firstName = user.name.split(" ")[0];
   const challenge = getDailyChallenge(level);
 
@@ -119,11 +146,14 @@ export default function FlavorFinderPage() {
     setSelectedPlace({ placeId: placeId ?? null, name });
   }
 
+  const featuredPick = topPicks?.[0] ?? null;
+  const smallPicks = topPicks?.slice(1, 3) ?? [];
+
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-16 py-10">
       {/* Welcome header */}
       <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
+        <div className="flex-1 min-w-0">
           <h1 className="text-4xl text-on-surface mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
             <span className="font-normal block">Welcome Back,</span>
             <span className="font-black text-primary">{firstName}.</span>
@@ -165,110 +195,214 @@ export default function FlavorFinderPage() {
             <h2 className="font-bold text-xl text-on-surface" style={{ fontFamily: "Montserrat, sans-serif" }}>
               Top Picks for your &ldquo;{personaTitle}&rdquo; Persona
             </h2>
-            <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#E63946", color: "white" }}>Modern Fusion</span>
-            <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#0D9488", color: "white" }}>Victoria Island</span>
-            {(() => {
-              if (!userLocation) return null;
-              const loc = resolveLocation("near me", userLocation);
-              if (loc.useGPS) {
-                return (
-                  <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
-                    Near you
-                  </span>
-                );
-              }
-              if (loc.label) {
-                return (
-                  <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-surface-container text-on-surface-variant">
-                    <span className="material-symbols-outlined" style={{ fontSize: "12px" }}>location_on</span>
-                    {loc.label}
-                  </span>
-                );
-              }
-              return null;
-            })()}
+            {userLocation ? (
+              <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
+                Near you
+              </span>
+            ) : (
+              <span className="flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-surface-container text-on-surface-variant">
+                <span className="material-symbols-outlined" style={{ fontSize: "12px" }}>location_on</span>
+                Lagos, Nigeria
+              </span>
+            )}
           </div>
 
-          {/* Featured restaurant card */}
-          <div className="glass rounded-2xl overflow-hidden">
-            <div className="h-48 relative overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80"
-                alt="Nigerian food"
-                className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => {
-                  const t = e.target as HTMLImageElement;
-                  t.onerror = null;
-                  t.src = "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=600&q=80";
-                }}
-              />
-              <div className="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                ★ 4.8 Match
-              </div>
-            </div>
-            <div className="p-5">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-grow">
-                  <h3 className="font-bold text-xl text-on-surface mb-1">Yellow Chilli</h3>
-                  <p className="text-on-surface-variant text-sm mb-2">
-                    Contemporary Pan-African fine dining with a legendary Seafood Okra.
-                  </p>
-                  <div className="flex items-center gap-2 text-xs text-on-surface-variant flex-wrap">
-                    <span className="material-symbols-outlined text-xs">location_on</span>
-                    Victoria Island, Lagos
-                    <span className="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-semibold">{formatPrice(3)}</span>
-                  </div>
+          {/* Loading skeletons */}
+          {topPicksLoading && (
+            <>
+              <div className="glass rounded-2xl overflow-hidden animate-pulse">
+                <div className="h-48 bg-surface-container-high" />
+                <div className="p-5 space-y-3">
+                  <div className="h-5 bg-surface-container-high rounded w-2/3" />
+                  <div className="h-3 bg-surface-container-high rounded w-full" />
+                  <div className="h-3 bg-surface-container-high rounded w-3/4" />
+                  <div className="h-10 bg-surface-container-high rounded-xl" />
                 </div>
-                <button
-                  onClick={() => openDetails("Yellow Chilli")}
-                  className="bg-primary text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-red-800 transition-all active:scale-95 whitespace-nowrap"
-                >
-                  View Details
-                </button>
               </div>
-            </div>
-          </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[0, 1].map((i) => (
+                  <div key={i} className="glass rounded-2xl p-5 animate-pulse space-y-3">
+                    <div className="w-10 h-10 bg-surface-container-high rounded-xl" />
+                    <div className="h-4 bg-surface-container-high rounded w-1/2" />
+                    <div className="h-3 bg-surface-container-high rounded" />
+                    <div className="h-3 bg-surface-container-high rounded w-3/4" />
+                    <div className="h-8 bg-surface-container-high rounded-xl" />
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
 
-          {/* Smaller picks grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              {
-                name: "Olaiya's Kitchen",
-                desc: "The gold standard for Amala and Gbegiri in the city. Truly authentic vibes.",
-                tag: "BUKA KING",
-                emoji: "🍲",
-                tagClass: "bg-secondary text-white",
-              },
-              {
-                name: "Sailors Lounge",
-                desc: "Waterfront cocktails with a spicy Suya twist. Perfect for evening networking.",
-                tag: "WATERFRONT",
-                emoji: "🍸",
-                tagClass: "bg-tertiary text-white",
-              },
-            ].map((spot) => (
-              <div key={spot.name} className="glass rounded-2xl p-5">
-                <div className="text-4xl mb-3">{spot.emoji}</div>
-                <h4 className="font-bold text-on-surface mb-1">{spot.name}</h4>
-                <p className="text-on-surface-variant text-xs mb-3 leading-relaxed">{spot.desc}</p>
-                <div className="flex items-center justify-between gap-2">
-                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${spot.tagClass}`}>{spot.tag}</span>
-                  <div className="flex items-center gap-2">
+          {/* Real API results */}
+          {!topPicksLoading && featuredPick && (
+            <>
+              <div className="glass rounded-2xl overflow-hidden">
+                <div className="h-48 relative overflow-hidden">
+                  <img
+                    src={featuredPick.photo_url ?? "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80"}
+                    alt={featuredPick.name ?? ""}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    onError={(e) => {
+                      const t = e.target as HTMLImageElement;
+                      t.onerror = null;
+                      t.src = "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=600&q=80";
+                    }}
+                  />
+                  {featuredPick.rating && (
+                    <div className="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                      ★ {featuredPick.rating.toFixed(1)}
+                    </div>
+                  )}
+                </div>
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-grow min-w-0">
+                      <h3 className="font-bold text-xl text-on-surface mb-1 truncate">{featuredPick.name}</h3>
+                      <div className="flex items-center gap-2 text-xs text-on-surface-variant flex-wrap">
+                        {featuredPick.vicinity && (
+                          <>
+                            <span className="material-symbols-outlined text-xs">location_on</span>
+                            <span className="truncate">{featuredPick.vicinity}</span>
+                          </>
+                        )}
+                        {featuredPick.price_level != null && (
+                          <span className="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-semibold">
+                            {formatPrice(featuredPick.price_level)}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                     <button
-                      onClick={() => openDetails(spot.name)}
-                      className="text-xs font-semibold text-primary hover:underline"
+                      onClick={() => openDetails(featuredPick.name ?? "", featuredPick.place_id)}
+                      className="bg-primary text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-red-800 transition-all active:scale-95 whitespace-nowrap flex-shrink-0"
                     >
                       View Details
                     </button>
-                    <button className="text-on-surface-variant hover:text-primary transition-colors">
-                      <span className="material-symbols-outlined text-base">favorite_border</span>
+                  </div>
+                </div>
+              </div>
+
+              {smallPicks.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {smallPicks.map((pick, i) => (
+                    <div key={pick.place_id ?? i} className="glass rounded-2xl p-5">
+                      <div className="text-4xl mb-3">{getCuisineEmoji(pick.types)}</div>
+                      <h4 className="font-bold text-on-surface mb-1 truncate">{pick.name}</h4>
+                      <p className="text-on-surface-variant text-xs mb-3 leading-relaxed line-clamp-2">
+                        {pick.vicinity ?? "See details on Google Maps"}
+                      </p>
+                      <div className="flex items-center justify-between gap-2">
+                        {pick.price_level != null ? (
+                          <span className="text-xs font-bold px-3 py-1 rounded-full bg-primary text-white">
+                            {formatPrice(pick.price_level)}
+                          </span>
+                        ) : (
+                          <span className="text-xs font-bold px-3 py-1 rounded-full bg-secondary text-white">
+                            Restaurant
+                          </span>
+                        )}
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => openDetails(pick.name ?? "", pick.place_id)}
+                            className="text-xs font-semibold text-primary hover:underline"
+                          >
+                            View Details
+                          </button>
+                          <button className="text-on-surface-variant hover:text-primary transition-colors">
+                            <span className="material-symbols-outlined text-base">favorite_border</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+
+          {/* Fallback hardcoded cards (when API fails or returns empty) */}
+          {!topPicksLoading && !featuredPick && (
+            <>
+              <div className="glass rounded-2xl overflow-hidden">
+                <div className="h-48 relative overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80"
+                    alt="Nigerian food"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    onError={(e) => {
+                      const t = e.target as HTMLImageElement;
+                      t.onerror = null;
+                      t.src = "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=600&q=80";
+                    }}
+                  />
+                  <div className="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                    ★ 4.8 Match
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-grow">
+                      <h3 className="font-bold text-xl text-on-surface mb-1">Yellow Chilli</h3>
+                      <p className="text-on-surface-variant text-sm mb-2">
+                        Contemporary Pan-African fine dining with a legendary Seafood Okra.
+                      </p>
+                      <div className="flex items-center gap-2 text-xs text-on-surface-variant flex-wrap">
+                        <span className="material-symbols-outlined text-xs">location_on</span>
+                        Victoria Island, Lagos
+                        <span className="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-semibold">{formatPrice(3)}</span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => openDetails("Yellow Chilli")}
+                      className="bg-primary text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-red-800 transition-all active:scale-95 whitespace-nowrap"
+                    >
+                      View Details
                     </button>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  {
+                    name: "Olaiya's Kitchen",
+                    desc: "The gold standard for Amala and Gbegiri in the city. Truly authentic vibes.",
+                    tag: "BUKA KING",
+                    emoji: "🍲",
+                    tagClass: "bg-secondary text-white",
+                  },
+                  {
+                    name: "Sailors Lounge",
+                    desc: "Waterfront cocktails with a spicy Suya twist. Perfect for evening networking.",
+                    tag: "WATERFRONT",
+                    emoji: "🍸",
+                    tagClass: "bg-tertiary text-white",
+                  },
+                ].map((spot) => (
+                  <div key={spot.name} className="glass rounded-2xl p-5">
+                    <div className="text-4xl mb-3">{spot.emoji}</div>
+                    <h4 className="font-bold text-on-surface mb-1">{spot.name}</h4>
+                    <p className="text-on-surface-variant text-xs mb-3 leading-relaxed">{spot.desc}</p>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className={`text-xs font-bold px-3 py-1 rounded-full ${spot.tagClass}`}>{spot.tag}</span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => openDetails(spot.name)}
+                          className="text-xs font-semibold text-primary hover:underline"
+                        >
+                          View Details
+                        </button>
+                        <button className="text-on-surface-variant hover:text-primary transition-colors">
+                          <span className="material-symbols-outlined text-base">favorite_border</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
 
           {/* Browse by Craving */}
           <div className="glass rounded-2xl p-5">
@@ -380,6 +514,7 @@ export default function FlavorFinderPage() {
           </div>
         </div>
       </div>
+
       {selectedPlace && (
         <PlaceDetailsModal
           isOpen={true}

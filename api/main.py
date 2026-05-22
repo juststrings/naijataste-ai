@@ -57,6 +57,53 @@ def cache_stats():
     }
 
 
+@app.get("/places/top-picks")
+async def get_top_picks(
+    lat: float | None = None,
+    lng: float | None = None,
+    persona: str = "Curious Taster",
+):
+    from places_client import search_real_restaurants
+
+    has_coords = lat is not None and lng is not None
+    restaurants = search_real_restaurants(
+        "Nigerian restaurant",
+        location="near me" if has_coords else "Lagos",
+        limit=10,
+        user_lat=lat if has_coords else None,
+        user_lng=lng if has_coords else None,
+    )
+
+    p = persona.lower()
+    if "oracle" in p:
+        ranked = sorted(restaurants, key=lambda r: (-(r.get("price_level") or 2) >= 3, -r.get("rating", 0)))
+    elif "connoisseur" in p:
+        ranked = sorted(restaurants, key=lambda r: (-(2 <= (r.get("price_level") or 2) <= 3), -r.get("rating", 0)))
+    else:
+        ranked = sorted(restaurants, key=lambda r: -r.get("rating", 0))
+
+    api_key = os.getenv("GOOGLE_PLACES_API_KEY", "")
+    result = []
+    for r in ranked[:6]:
+        photo_ref = r.get("photo_reference")
+        photo_url = (
+            f"https://maps.googleapis.com/maps/api/place/photo"
+            f"?maxwidth=400&photo_reference={photo_ref}&key={api_key}"
+            if (photo_ref and api_key) else None
+        )
+        result.append({
+            "name": r.get("name"),
+            "vicinity": r.get("address"),
+            "rating": r.get("rating"),
+            "price_level": r.get("price_level"),
+            "place_id": r.get("place_id"),
+            "types": r.get("types", []),
+            "photo_url": photo_url,
+        })
+
+    return result
+
+
 @app.get("/place-details/{place_id}")
 async def get_place_details(place_id: str):
     """Fetch full details for a place from Google Places API, cached."""
