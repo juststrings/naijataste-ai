@@ -16,6 +16,7 @@ export interface SimulateReviewPayload {
   item_type: string;
   location: string;
   features: string[];
+  preferred_language?: string;
 }
 
 export interface SimulateReviewResponse {

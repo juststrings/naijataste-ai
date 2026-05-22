@@ -40,6 +40,15 @@ const PERSONAS = {
 
 const TRAIT_COLORS = ["#E63946", "#0D9488", "#F97316"];
 
+const LANGUAGE_OPTIONS = [
+  { label: "Auto-detect", value: "" },
+  { label: "English", value: "English" },
+  { label: "Pidgin", value: "Nigerian Pidgin" },
+  { label: "Yoruba", value: "Yoruba" },
+  { label: "Hausa", value: "Hausa" },
+  { label: "Igbo", value: "Igbo" },
+];
+
 const TRENDING = [
   { emoji: "🌶️", label: "Extra Pepper" },
   { emoji: "🌿", label: "Farm Fresh" },
@@ -81,6 +90,7 @@ function SimulatorContent() {
   const [restaurant, setRestaurant] = useState("");
   const [type, setType] = useState("restaurant");
   const [location, setLocation] = useState("");
+  const [preferredLanguage, setPreferredLanguage] = useState("");
   const [state, setState] = useState<SimState>("idle");
   const [result, setResult] = useState<{ rating: number; review_text: string; tone_label: string } | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
@@ -155,6 +165,7 @@ function SimulatorContent() {
       item_type: type,
       location: location || "Lagos",
       features: features ? features.split(",").map((f) => f.trim()).filter(Boolean) : ["nice ambience", "average food"],
+      ...(preferredLanguage && { preferred_language: preferredLanguage }),
     };
 
     setState("loading");
@@ -196,6 +207,7 @@ function SimulatorContent() {
         selectedFood && selectedFood !== "Other..."
           ? [selectedFood]
           : ["nice ambience", "good service"],
+      ...(preferredLanguage && { preferred_language: preferredLanguage }),
     };
 
     setState("loading");
@@ -446,6 +458,27 @@ function SimulatorContent() {
                         ))}
                       </div>
                     </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-on-surface-variant mb-1">
+                        Review Language
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {LANGUAGE_OPTIONS.map(({ label, value }) => (
+                          <button
+                            key={label}
+                            onClick={() => setPreferredLanguage(value)}
+                            className={`px-3 py-1.5 rounded-full border-2 text-xs font-semibold transition-all ${
+                              preferredLanguage === value
+                                ? "border-primary bg-primary/10 text-primary"
+                                : "border-outline/20 text-on-surface-variant hover:border-primary/40"
+                            }`}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -685,6 +718,26 @@ function SimulatorContent() {
                   placeholder="e.g. nice ambience, expensive, fast service"
                   className="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
                 />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-on-surface-variant mb-1">
+                  Review Language
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {LANGUAGE_OPTIONS.map(({ label, value }) => (
+                    <button
+                      key={label}
+                      onClick={() => setPreferredLanguage(value)}
+                      className={`px-3 py-1.5 rounded-full border-2 text-xs font-semibold transition-all ${
+                        preferredLanguage === value
+                          ? "border-primary bg-primary/10 text-primary"
+                          : "border-outline/20 text-on-surface-variant hover:border-primary/40"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

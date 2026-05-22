@@ -17,6 +17,7 @@ class SimulateReviewRequest(BaseModel):
     item_type: str
     location: str
     features: list[str]
+    preferred_language: Optional[str] = None
 
 
 class SimulateReviewResponse(BaseModel):
@@ -47,26 +48,20 @@ def simulate_review(body: SimulateReviewRequest):
 
     prompt = build_review_prompt(persona, item)
 
-    # Append language detection instruction
+    # Append language rule
     prompt += (
-        "\n\nLANGUAGE DETECTION — CRITICAL:\n"
-        "Detect the language the user is writing in and respond in that SAME language throughout.\n\n"
-        "Supported languages:\n"
-        "- English → respond in English\n"
-        "- Nigerian Pidgin → respond in Pidgin (e.g. 'how e dey', 'na so', 'correct chop')\n"
-        "- Yoruba → respond in Yoruba (e.g. 'o dara', 'jẹ ká jẹun')\n"
-        "- Hausa → respond in Hausa (e.g. 'mai kyau', 'bari mu ci')\n"
-        "- Igbo → respond in Igbo (e.g. 'ọ dị mma', 'ka anyị rie nri')\n\n"
-        "Rules:\n"
-        "- If the user writes in Yoruba, your ENTIRE response must be in Yoruba\n"
-        "- If the user writes in Hausa, your ENTIRE response must be in Hausa\n"
-        "- If the user writes in Igbo, your ENTIRE response must be in Igbo\n"
-        "- If the user writes in Pidgin, your ENTIRE response must be in Pidgin\n"
-        "- If the user writes in English, respond in English\n"
-        "- If language is unclear or mixed, default to Nigerian Pidgin\n"
-        "- Keep Nigerian food/restaurant names as-is regardless of language\n"
-        "- Never mix languages in a single response"
+        "\n\nLANGUAGE RULE:\n"
+        "You are writing this review as a Nigerian user. Detect the language from the "
+        "restaurant name, location, and features provided.\n"
+        "If the context contains Yoruba words, write the review in Yoruba.\n"
+        "If Hausa, write in Hausa. If Igbo, write in Igbo. If Pidgin, write in Pidgin.\n"
+        "If English only, write in English. If unclear, default to Nigerian Pidgin.\n"
+        "If preferred_language is explicitly provided, use that language regardless "
+        "of auto-detection.\n"
+        "The review_text must be entirely in one language. Do not mix languages."
     )
+    if body.preferred_language:
+        prompt += f"\nWrite this review in {body.preferred_language} only."
 
     # Append strict output instruction so Gemini doesn't stray from the schema
     prompt += (
