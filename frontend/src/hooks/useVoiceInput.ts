@@ -7,6 +7,8 @@ export function useVoiceInput(onResult: (transcript: string) => void) {
   const [supported, setSupported] = useState(false);
   const [interim, setInterim] = useState("");
   const callbackRef = useRef(onResult);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recRef = useRef<any>(null);
   callbackRef.current = onResult;
 
   useEffect(() => {
@@ -16,7 +18,10 @@ export function useVoiceInput(onResult: (transcript: string) => void) {
   }, []);
 
   function startListening() {
-    if (isListening) return;
+    if (isListening) {
+      recRef.current?.stop();
+      return;
+    }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const w = window as any;
     const Ctor = w.SpeechRecognition || w.webkitSpeechRecognition;
@@ -57,6 +62,7 @@ export function useVoiceInput(onResult: (transcript: string) => void) {
       setIsListening(false);
     };
 
+    recRef.current = rec;
     rec.start();
     setIsListening(true);
   }
