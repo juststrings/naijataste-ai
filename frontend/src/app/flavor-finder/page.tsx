@@ -436,14 +436,9 @@ export default function FlavorFinderPage() {
         <div className="space-y-4">
           {/* Cross-Domain Taste */}
           <div className="glass rounded-2xl p-5">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                <span className="material-symbols-outlined text-white" style={{ fontSize: "14px" }}>auto_awesome</span>
-              </div>
-              <div>
-                <div className="text-sm font-bold text-on-surface">Cross-Domain Taste</div>
-                <div className="text-xs text-on-surface-variant">Unlocked Persona Insights</div>
-              </div>
+            <div className="mb-4">
+              <div className="text-sm font-bold text-on-surface">While you chop, read this 📖</div>
+              <div className="text-xs text-on-surface-variant mt-0.5">A book that matches your food vibe today</div>
             </div>
 
             <div className="text-xs font-bold uppercase tracking-wider text-primary mb-3">Reading for the Vibe</div>
