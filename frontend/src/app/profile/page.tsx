@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 
-function RadarChart() {
+const FALLBACK_RADAR = [0.7, 0.4, 0.85, 0.9, 0.55, 0.65];
+
+function RadarChart({ values }: { values: number[] }) {
   const labels = ["Spicy", "Sweet", "Savory", "Local", "Adventurous", "Social"];
-  const values = [0.7, 0.4, 0.85, 0.9, 0.55, 0.65];
   const cx = 120, cy = 120, maxR = 85;
   const n = labels.length;
 
@@ -81,10 +82,23 @@ function Stars({ rating }: { rating: number }) {
 export default function ProfilePage() {
   const { user, loading, logout, savedReviews } = useAuth();
   const router = useRouter();
+  const [radarValues, setRadarValues] = useState<number[]>(FALLBACK_RADAR);
+  const [radarLoading, setRadarLoading] = useState(true);
 
   useEffect(() => {
     if (!loading && !user) router.push("/login");
   }, [user, loading, router]);
+
+  useEffect(() => {
+    if (!user) return;
+    fetch("/api/radar")
+      .then((r) => r.json())
+      .then((data: unknown) => {
+        if (Array.isArray(data) && data.length === 6) setRadarValues(data as number[]);
+      })
+      .catch(() => {})
+      .finally(() => setRadarLoading(false));
+  }, [user]);
 
   if (loading || !user) return null;
 
@@ -153,7 +167,13 @@ export default function ProfilePage() {
           <div className="glass rounded-2xl p-6">
             <h3 className="font-bold text-xl mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>Your Flavor Radar</h3>
             <p className="text-xs text-on-surface-variant mb-4">Based on your taste profile</p>
-            <RadarChart />
+            {radarLoading ? (
+              <div className="h-[260px] flex items-center justify-center">
+                <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+              </div>
+            ) : (
+              <RadarChart values={radarValues} />
+            )}
           </div>
         </div>
 
