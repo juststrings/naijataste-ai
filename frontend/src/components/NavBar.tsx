@@ -6,14 +6,12 @@ import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 
 const GUEST_NAV = [
-  { href: "/", label: "Home" },
   { href: "/simulator", label: "Review Simulator" },
   { href: "/recommend", label: "Recommendations" },
   { href: "/about", label: "About" },
 ];
 
 const AUTH_NAV = [
-  { href: "/", label: "Home" },
   { href: "/flavor-finder", label: "Flavor Finder" },
   { href: "/recommend", label: "Recommendations" },
   { href: "/simulator", label: "Review Simulator" },
