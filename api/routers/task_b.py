@@ -136,15 +136,19 @@ def _build_places_prompt(
         f"{json.dumps(real_restaurants, indent=2)}\n\n"
         f"## Your Task\n"
         f"Recommend the 5 best matches from the list above for this user's query.\n"
-        f"ONLY recommend restaurants from the list above — NEVER invent new ones.\n"
-        f"For each recommendation, add a short Nigerian Pidgin cultural note.\n\n"
+        f"ONLY recommend restaurants from the list above — NEVER invent new ones.\n\n"
+        f"LANGUAGE RULE FOR FIELDS: Every text field you return (reason, cultural_note) "
+        f"MUST be written in the SAME language you detected from the user's query. "
+        f"If the user wrote in Yoruba, reason and cultural_note must be in Yoruba. "
+        f"If Pidgin, write those fields in Pidgin. If English, use English. "
+        f"Never write reason or cultural_note in a different language from the query.\n\n"
         f"CRITICAL: Return ONLY a raw JSON array of exactly 5 objects. "
         f"No markdown. No explanation. Start with [ end with ].\n"
         f"Each object must have:\n"
         f"- item_name: exact restaurant name from the list above (max 6 words)\n"
-        f"- reason: why it matches this query (max 12 words)\n"
+        f"- reason: why it matches this query, IN THE DETECTED LANGUAGE (max 12 words)\n"
         f"- predicted_rating: float 1.0–5.0\n"
-        f"- cultural_note: short Nigerian Pidgin tip (max 10 words)\n"
+        f"- cultural_note: short cultural tip IN THE DETECTED LANGUAGE (max 10 words)\n"
     )
 
 

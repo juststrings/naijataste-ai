@@ -15,6 +15,23 @@ type RecState = "idle" | "loading" | "results" | "empty" | "error";
 type LocationStatus = "pending" | "granted" | "denied";
 type SelectedPlace = { placeId: string | null; name: string };
 
+function detectLang(text: string): "en" | "pidgin" | "yo" | "ha" | "ig" {
+  const lower = text.toLowerCase();
+  if (/\b(jẹ|ká|àwọn|mo fẹ|bẹẹni|o dara|ibẹ|ibi|isale)\b/i.test(text)) return "yo";
+  if (/\b(mai kyau|ina neman|abinci|bari mu|sannu|nagode|yana da)\b/i.test(lower)) return "ha";
+  if (/\b(ọ dị|ka anyị|nwetara|rie nri|dịmma|n'okpuru|ebe maka)\b/i.test(lower)) return "ig";
+  if (/\b(dey|wetin|abeg|oga|naija|chop|wahala|no be|na so|ehen|correct)\b/i.test(lower)) return "pidgin";
+  return "en";
+}
+
+const CONFIRM: Record<string, (n: number) => string> = {
+  en: (n) => `Found ${n} spot${n !== 1 ? "s" : ""} for you! Check the recommendations below 👇`,
+  pidgin: (n) => `Ehen! Found ${n} spot${n !== 1 ? "s" : ""} for you based on your craving. Check below! 👇`,
+  yo: (n) => `Mo ri ${n} ibi fun e! Wo awon ibi isale 👇`,
+  ha: (n) => `Na sami ${n} wurare gare ku! Duba kasa 👇`,
+  ig: (n) => `Nwetara ${n} ebe maka gi! Lee n'okpuru 👇`,
+};
+
 const QUICK_PROMPTS = [
   { label: "🍲 Budget buka Lagos", text: "Budget local buka food in Lagos" },
   { label: "🔥 Suya in Abuja", text: "Best suya spots in Abuja" },
@@ -191,7 +208,7 @@ export default function RecommendPage() {
         const next = [...prev];
         next[next.length - 1] = {
           type: "bot",
-          text: `Ehen! Found ${data.length} spot${data.length !== 1 ? "s" : ""} for you based on your craving. Check the recommendations below! 👇`,
+          text: CONFIRM[detectLang(msg)](data.length),
         };
         return next;
       });
@@ -334,7 +351,7 @@ export default function RecommendPage() {
                 </div>
                 {showVoiceHint && (
                   <p className="text-xs text-on-surface-variant text-center mt-2">
-                    🎤 Speak or type in English, Yoruba, Hausa, Igbo or Pidgin — I go respond in your language
+                    🎤 Speak or type in English, Yoruba, Hausa, Igbo or Pidgin, I go respond in your language
                   </p>
                 )}
               </div>

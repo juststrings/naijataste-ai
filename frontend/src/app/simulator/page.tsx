@@ -376,7 +376,7 @@ function SimulatorContent() {
                       </div>
                       {showVoiceHint && (
                         <p className="text-xs text-on-surface-variant mt-1">
-                          🎤 Speak or type in English, Yoruba, Hausa, Igbo or Pidgin — I go respond in your language
+                          🎤 Speak or type in English, Yoruba, Hausa, Igbo or Pidgin, I go respond in your language
                         </p>
                       )}
                     </div>
@@ -637,7 +637,7 @@ function SimulatorContent() {
                 </div>
                 {showVoiceHint && (
                   <p className="text-xs text-on-surface-variant mt-1">
-                    🎤 Speak or type in English, Yoruba, Hausa, Igbo or Pidgin — I go respond in your language
+                    🎤 Speak or type in English, Yoruba, Hausa, Igbo or Pidgin, I go respond in your language
                   </p>
                 )}
               </div>
