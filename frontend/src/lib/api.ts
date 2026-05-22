@@ -103,6 +103,8 @@ export async function getTopPicks(
 }
 
 export interface RecommendResponse {
+  intent: string;
+  message: string;
   items: RecommendationItem[];
   detected_language: string;
 }

@@ -3,14 +3,25 @@
 import { useState, useRef, useEffect } from "react";
 import { getRecommendations, RecommendationItem } from "@/lib/api";
 
-function getConfirmMsg(lang: string, n: number): string {
-  if (lang === "en") return `Found ${n} spot${n !== 1 ? "s" : ""} for you! Check the recommendations below 👇`;
-  if (lang === "yo") return `Mo ri ${n} ibi fun e! Wo awon ibi isale 👇`;
-  if (lang === "ha") return `Na sami ${n} wurare! Duba kasa 👇`;
-  if (lang === "ig") return `Nwetara ${n} ebe! Lee n'okpuru 👇`;
-  return `Ehen! Found ${n} spot${n !== 1 ? "s" : ""}! Check below 👇`;
-}
 import { parseMessage } from "@/lib/nlp";
+
+const RECOMMENDATIONS_HEADING: Record<string, string> = {
+  en: "Recommendations for you",
+  yo: "Awọn ibi ti a yan fun ọ",
+  ha: "Wuraren da muka zaɓa muku",
+  ig: "Ebe anyị họpụtara maka gị",
+  pcm: "Spots wey we pick for you",
+};
+
+function dedupeRecs<T extends { business_id?: string | null; item_name: string }>(items: T[]): T[] {
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    const key = item.business_id ?? item.item_name.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
 import LoadingSpinner from "@/components/LoadingSpinner";
 import RecCard from "@/components/RecCard";
 import PlaceDetailsModal from "@/components/PlaceDetailsModal";
@@ -121,6 +132,7 @@ export default function RecommendPage() {
   const [chatInput, setChatInput] = useState("");
   const [recState, setRecState] = useState<RecState>("idle");
   const [recs, setRecs] = useState<RecommendationItem[]>([]);
+  const [detectedLanguage, setDetectedLanguage] = useState("en");
   const [errorMsg, setErrorMsg] = useState("");
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [locationStatus, setLocationStatus] = useState<LocationStatus>("pending");
@@ -197,22 +209,18 @@ export default function RecommendPage() {
         query: msg,
         ...(loc.lat !== undefined && { user_lat: loc.lat, user_lng: loc.lng }),
       });
-      console.log("[recommend] API response:", data);
-      console.log("[recommend] detected_language:", data.detected_language, "| items:", data.items.length);
-      console.log("[recommend] confirm msg:", getConfirmMsg(data.detected_language, data.items.length));
+      console.log("[recommend] intent:", data.intent, "| lang:", data.detected_language, "| items:", data.items.length);
+      setDetectedLanguage(data.detected_language);
       setChatMsgs((prev) => {
         const next = [...prev];
-        next[next.length - 1] = {
-          type: "bot",
-          text: getConfirmMsg(data.detected_language, data.items.length),
-        };
+        next[next.length - 1] = { type: "bot", text: data.message };
         return next;
       });
-      if (data.items.length === 0) {
-        setRecState("empty");
-      } else {
-        setRecs(data.items);
+      if (data.items.length > 0) {
+        setRecs(dedupeRecs(data.items));
         setRecState("results");
+      } else {
+        setRecState("idle");
       }
     } catch (e) {
       setChatMsgs((prev) => {
@@ -240,10 +248,11 @@ export default function RecommendPage() {
         cold_start_signals: { city, preferred_food: food || "local Nigerian food", price_range: priceRange },
         ...(loc.lat !== undefined && { user_lat: loc.lat, user_lng: loc.lng }),
       });
+      setDetectedLanguage(data.detected_language);
       if (data.items.length === 0) {
         setRecState("empty");
       } else {
-        setRecs(data.items);
+        setRecs(dedupeRecs(data.items));
         setRecState("results");
       }
     } catch (e) {
@@ -420,7 +429,9 @@ export default function RecommendPage() {
       {/* Results */}
       {recState === "results" && recs.length > 0 && (
         <div className="max-w-3xl mx-auto">
-          <h3 className="font-bold text-lg text-on-surface mb-4 px-1">Recommendations for you</h3>
+          <h3 className="font-bold text-lg text-on-surface mb-4 px-1">
+            {RECOMMENDATIONS_HEADING[detectedLanguage] ?? RECOMMENDATIONS_HEADING.en}
+          </h3>
           {recs.map((item, i) => (
             <RecCard
               key={i}

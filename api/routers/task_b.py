@@ -65,6 +65,8 @@ class RecommendedItem(BaseModel):
 
 
 class RecommendResponse(BaseModel):
+    intent: str
+    message: str
     items: list[RecommendedItem]
     detected_language: str
 
@@ -105,49 +107,51 @@ def _extract_location(query: str, cold_start_signals: Optional[dict]) -> str:
     return "Lagos"
 
 
-def _build_places_prompt(
+def _build_conversational_prompt(
     query: str, location: str, persona: dict, real_restaurants: list[dict]
 ) -> str:
     price_sensitivity = persona.get("price_sensitivity", "medium")
-    tone = persona.get("rating_tendency", "balanced")
     keywords_str = ", ".join(persona.get("tone_keywords", [])) or "Nigerian cuisine"
 
+    restaurants_section = (
+        json.dumps(real_restaurants, indent=2)
+        if real_restaurants
+        else "No restaurants loaded for this query."
+    )
+
     return (
-        f'You are a Nigerian food recommendation AI. '
-        f'A user is looking for: "{query}" in {location}.\n\n'
-        f"LANGUAGE RULE:\n"
-        f"The user's message may be in English, Nigerian Pidgin, Yoruba, Hausa, Igbo, "
-        f"or any other language.\n"
-        f"Automatically detect what language the user wrote in.\n"
-        f"Respond ENTIRELY in that same language — including the reason and "
-        f"cultural_note fields in your JSON response.\n"
-        f"Do not default to English or Pidgin. Match the user's language exactly.\n"
-        f"If you cannot detect the language, default to Nigerian Pidgin.\n\n"
-        f"## User Profile\n"
+        f"You are NaijaTaste AI, an intelligent Nigerian food recommendation chatbot.\n\n"
+        f"You can understand any message in English, Pidgin, Yoruba, Hausa, or Igbo.\n\n"
+        f"INTENT HANDLING:\n"
+        f"- If the user is greeting you, respond warmly and ask what they are craving. Return empty items [].\n"
+        f"- If the user is making small talk, respond naturally and guide them toward food recommendations. Return empty items [].\n"
+        f"- If the user asks what you can do, explain your capabilities naturally. Return empty items [].\n"
+        f"- If the user is asking for food/restaurant recommendations, do the full recommendation flow and return items.\n"
+        f"- If the message is ambiguous, ask a clarifying question. Return empty items [].\n\n"
+        f"Always respond in the same language the user wrote in.\n"
+        f"Never return restaurant recommendations for non-food messages.\n"
+        f"Be warm, culturally Nigerian, and conversational at all times.\n\n"
+        f'User message: "{query}"\n'
+        f"Location context: {location}\n\n"
+        f"## User Taste Profile\n"
         f"- Price sensitivity: {price_sensitivity} "
         f'({"budget-conscious" if price_sensitivity == "high" else "premium spender" if price_sensitivity == "low" else "moderate budget"})\n'
-        f"- Rating tendency: {tone}\n"
-        f"- Food keywords: {keywords_str}\n\n"
-        f"## REAL Restaurants from Google Maps\n"
-        f"{json.dumps(real_restaurants, indent=2)}\n\n"
-        f"## Your Task\n"
-        f"Recommend the 5 best matches from the list above for this user's query.\n"
-        f"ONLY recommend restaurants from the list above — NEVER invent new ones.\n\n"
-        f"CRITICAL: Return ONLY a raw JSON object. No markdown. No explanation. Start with {{ end with }}.\n"
-        f"The object must have exactly these top-level keys:\n"
-        f"- detected_language: 2-letter code for the language the user wrote in:\n"
-        f"    'en' (English), 'yo' (Yoruba), 'ha' (Hausa), 'ig' (Igbo), 'pcm' (Pidgin)\n"
-        f"  Examples:\n"
-        f"    'I want beans' → 'en'\n"
-        f"    'Mo fe je amala' → 'yo'\n"
-        f"    'Achọ m ihe oriri' → 'ig'\n"
-        f"    'I wan chop' → 'pcm'\n"
-        f"    'Ina so da nama' → 'ha'\n"
-        f"- items: array of exactly 5 objects, each with:\n"
-        f"    - item_name: exact restaurant name from the list above (max 6 words)\n"
-        f"    - reason: why it matches this query, IN THE DETECTED LANGUAGE (max 12 words)\n"
-        f"    - predicted_rating: float 1.0–5.0\n"
-        f"    - cultural_note: short cultural tip IN THE DETECTED LANGUAGE (max 10 words)\n"
+        f"- Food preferences: {keywords_str}\n\n"
+        f"## Available Restaurants (from Google Maps)\n"
+        f"{restaurants_section}\n\n"
+        f"If this is a FOOD_QUERY, recommend up to 5 best matches from Available Restaurants above.\n"
+        f"ONLY recommend restaurants from that list — NEVER invent new ones.\n"
+        f"Each item needs: item_name (exact name from list, max 6 words), "
+        f"reason (max 12 words, in detected_language), "
+        f"predicted_rating (float 1.0-5.0), "
+        f"cultural_note (max 10 words, in detected_language).\n\n"
+        f"Return ONLY this raw JSON. No markdown. No explanation:\n"
+        f'{{\n'
+        f'  "intent": "GREETING" | "CHITCHAT" | "HELP" | "FOOD_QUERY" | "CLARIFY",\n'
+        f'  "message": "your conversational response here",\n'
+        f'  "detected_language": "en" | "yo" | "ha" | "ig" | "pcm",\n'
+        f'  "items": [] or [{{"item_name":"...","reason":"...","predicted_rating":4.0,"cultural_note":"..."}}]\n'
+        f'}}'
     )
 
 
@@ -179,34 +183,31 @@ def recommend(body: RecommendRequest):
     )
     location = _extract_location(query, body.cold_start_signals)
 
-    # Fetch real restaurants: cache → Google Places → hardcoded fallback
+    # Fetch real restaurants — empty list is OK; Gemini handles non-food intents gracefully
     real_restaurants = search_real_restaurants(
         query, location, user_lat=body.user_lat, user_lng=body.user_lng
     )
-
-    if not real_restaurants:
-        raise HTTPException(
-            status_code=503,
-            detail="Could not retrieve restaurant data.",
-        )
 
     display_location = (
         f"near the user's current location ({body.user_lat:.4f}, {body.user_lng:.4f})"
         if body.user_lat and body.user_lng
         else location
     )
-    prompt = _build_places_prompt(query, display_location, persona, real_restaurants)
+    prompt = _build_conversational_prompt(query, display_location, persona, real_restaurants)
     result = generate_json(prompt, max_tokens=4000)
 
-    # Extract detected_language and items list from Gemini's wrapper object
+    # Extract all fields from Gemini's conversational response
     if isinstance(result, dict):
+        intent = str(result.get("intent", "FOOD_QUERY"))
+        message = str(result.get("message", ""))
         detected_language = str(result.get("detected_language", "en"))
         items_list = result.get("items", [])
         if not isinstance(items_list, list):
-            # fallback: find any list value in the dict
-            items_list = next((v for v in result.values() if isinstance(v, list)), [])
+            items_list = []
     elif isinstance(result, list):
-        # Gemini ignored the wrapper format and returned a flat list
+        # Gemini ignored the wrapper format — treat as a flat recommendation list
+        intent = "FOOD_QUERY"
+        message = ""
         detected_language = "en"
         items_list = result
     else:
@@ -215,9 +216,6 @@ def recommend(body: RecommendRequest):
             detail=f"Unexpected response shape from Gemini: {type(result).__name__}",
         )
 
-    if not items_list:
-        raise HTTPException(status_code=502, detail="No items in Gemini response")
-
     # Map place_id → business_id for API compatibility
     place_id_map = {
         r.get("name", "").lower(): r.get("place_id")
@@ -225,6 +223,8 @@ def recommend(body: RecommendRequest):
     }
 
     return RecommendResponse(
+        intent=intent,
+        message=message,
         items=[
             RecommendedItem(
                 item_name=str(r.get("item_name", "")),
