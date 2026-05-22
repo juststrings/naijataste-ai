@@ -65,10 +65,10 @@ export default function PlaceDetailsModal({ isOpen, onClose, placeId, restaurant
   return (
     <>
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/50 z-[55]" onClick={onClose} />
 
       {/* Sheet — slides up from bottom on mobile, centered on desktop */}
-      <div className="fixed inset-x-0 bottom-0 z-50 md:inset-0 md:flex md:items-center md:justify-center md:p-4">
+      <div className="fixed inset-x-0 bottom-0 z-[60] md:inset-0 md:flex md:items-center md:justify-center md:p-4">
         <div
           className="bg-white rounded-t-3xl md:rounded-2xl w-full md:max-w-lg max-h-[85vh] overflow-y-auto scrollbar-thin"
           style={{ animation: "slideUp 0.28s ease" }}
