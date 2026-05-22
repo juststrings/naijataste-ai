@@ -34,6 +34,51 @@ const CRAVINGS = [
   { emoji: "🍰", label: "Desserts", query: "dessert and sweets" },
 ];
 
+const DAILY_CHALLENGES = [
+  { emoji: "🍜", title: "Try a pepper soup spot you've never visited",          badge: "Pepper Soup Pioneer",    points: 50, difficulty: 2 },
+  { emoji: "🍛", title: "Find the best jollof rice in your area",               badge: "Jollof Judge",           points: 60, difficulty: 2 },
+  { emoji: "🥘", title: "Visit a buka and order their specials",                badge: "Buka King",              points: 40, difficulty: 1 },
+  { emoji: "🍖", title: "Try suya from a new spot tonight",                     badge: "Suya Scout",             points: 45, difficulty: 1 },
+  { emoji: "🥗", title: "Find a healthy Nigerian meal option",                  badge: "Healthy Naija",          points: 55, difficulty: 2 },
+  { emoji: "🍲", title: "Try egusi soup somewhere new",                         badge: "Egusi Explorer",         points: 50, difficulty: 2 },
+  { emoji: "🍣", title: "Visit a restaurant outside your usual area",           badge: "Area Hopper",            points: 70, difficulty: 3 },
+  { emoji: "☕", title: "Try a Nigerian café for breakfast",                    badge: "Morning Flavour",        points: 35, difficulty: 1 },
+  { emoji: "🍗", title: "Order fried chicken from a local spot, not a chain",   badge: "Local Lover",            points: 45, difficulty: 1 },
+  { emoji: "🥩", title: "Try a new protein you've never reviewed before",       badge: "Protein Pioneer",        points: 60, difficulty: 2 },
+  { emoji: "🍱", title: "Visit a restaurant with 4.5+ stars you've never tried",badge: "Star Chaser",            points: 65, difficulty: 2 },
+  { emoji: "🌶️", title: "Order the spiciest dish on any menu",                 badge: "Heat Seeker",            points: 75, difficulty: 3 },
+  { emoji: "🍚", title: "Try ofada rice and stew somewhere authentic",          badge: "Ofada OG",               points: 55, difficulty: 2 },
+  { emoji: "🥣", title: "Have pap or akamu for breakfast somewhere",            badge: "Morning Roots",          points: 40, difficulty: 1 },
+  { emoji: "🍤", title: "Try seafood at a spot you've never visited",           badge: "Ocean Taster",           points: 60, difficulty: 2 },
+  { emoji: "🫕", title: "Find the best ofe onugbu (bitter leaf soup) near you", badge: "Soup Connoisseur",       points: 55, difficulty: 2 },
+  { emoji: "🍔", title: "Visit a Nigerian-owned burger spot",                   badge: "Naija Burger Boss",      points: 45, difficulty: 1 },
+  { emoji: "🥙", title: "Try shawarma from a new vendor",                       badge: "Shawarma Sheriff",       points: 40, difficulty: 1 },
+  { emoji: "🍝", title: "Find a restaurant that does African fusion well",      badge: "Fusion Finder",          points: 70, difficulty: 3 },
+  { emoji: "🫔", title: "Try a wrap or sandwich from a local café",             badge: "Café Crawler",           points: 35, difficulty: 1 },
+  { emoji: "🍦", title: "End a meal with a local dessert or sweet treat",       badge: "Sweet Tooth",            points: 40, difficulty: 1 },
+  { emoji: "🥤", title: "Try a fresh zobo or kunu from a new vendor",           badge: "Drink Detective",        points: 30, difficulty: 1 },
+  { emoji: "🍳", title: "Have a full Nigerian breakfast somewhere new",         badge: "Breakfast Boss",         points: 50, difficulty: 2 },
+  { emoji: "🫙", title: "Try a restaurant that specialises in soups only",      badge: "Soup Specialist",        points: 55, difficulty: 2 },
+  { emoji: "🌮", title: "Visit a spot known for their small chops",             badge: "Small Chops Champion",   points: 45, difficulty: 1 },
+  { emoji: "🍢", title: "Try street food from a vendor you've never tried",     badge: "Street Food Scout",      points: 50, difficulty: 2 },
+  { emoji: "🥘", title: "Find a restaurant that serves your tribe's local dish",badge: "Heritage Hunter",        points: 65, difficulty: 2 },
+  { emoji: "🍻", title: "Visit a spot with a great outdoor/rooftop vibe",      badge: "Vibe Seeker",            points: 60, difficulty: 2 },
+  { emoji: "🫐", title: "Try a smoothie or fresh juice bar",                   badge: "Fresh Finder",           points: 35, difficulty: 1 },
+  { emoji: "🍽️", title: "Visit a fine dining restaurant and simulate the review",badge: "Fine Diner",           points: 80, difficulty: 3 },
+];
+
+function getDailyChallenge(level: number) {
+  const baseIdx = Math.floor(Date.now() / 86400000) % DAILY_CHALLENGES.length;
+  if (level >= 3) return DAILY_CHALLENGES[baseIdx];
+  const maxDifficulty = level === 1 ? 2 : 3;
+  if (DAILY_CHALLENGES[baseIdx].difficulty <= maxDifficulty) return DAILY_CHALLENGES[baseIdx];
+  for (let i = 1; i < DAILY_CHALLENGES.length; i++) {
+    const c = DAILY_CHALLENGES[(baseIdx + i) % DAILY_CHALLENGES.length];
+    if (c.difficulty <= maxDifficulty) return c;
+  }
+  return DAILY_CHALLENGES[baseIdx];
+}
+
 type SelectedPlace = { placeId: string | null; name: string };
 
 export default function FlavorFinderPage() {
@@ -58,6 +103,7 @@ export default function FlavorFinderPage() {
 
   const { level, title: personaTitle } = getPersona(savedReviews.length);
   const firstName = user.name.split(" ")[0];
+  const challenge = getDailyChallenge(level);
 
   function handleCraving(query: string) {
     const loc = resolveLocation(query, userLocation);
@@ -92,15 +138,15 @@ export default function FlavorFinderPage() {
       </div>
 
       {/* Daily Challenge */}
-      <div className="glass rounded-2xl p-5 flex items-start gap-4 mb-6">
-        <div className="text-3xl flex-shrink-0">🍲</div>
+      <div className="glass rounded-2xl p-5 flex items-center gap-4 mb-6">
+        <div className="text-3xl flex-shrink-0">{challenge.emoji}</div>
         <div className="flex-grow min-w-0">
           <div className="text-xs font-bold uppercase tracking-wider text-secondary mb-1">Daily Challenge 🏆</div>
-          <div className="font-bold text-on-surface mb-0.5">Try a pepper soup spot you&apos;ve never visited</div>
-          <div className="text-xs text-on-surface-variant">Earn the &apos;Pepper Soup Pioneer&apos; badge + 50 Flavor Points</div>
+          <div className="font-bold text-on-surface mb-0.5">{challenge.title}</div>
+          <div className="text-xs text-on-surface-variant">Earn the &apos;{challenge.badge}&apos; badge + {challenge.points} Flavor Points</div>
         </div>
         <Link
-          href="/simulator"
+          href={`/simulator?challenge=${encodeURIComponent(challenge.title)}`}
           className="bg-secondary text-white px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap hover:bg-orange-800 transition-all active:scale-95 flex-shrink-0"
         >
           Accept

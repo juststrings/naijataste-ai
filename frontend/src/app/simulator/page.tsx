@@ -73,6 +73,7 @@ export default function SimulatorPage() {
 function SimulatorContent() {
   const searchParams = useSearchParams();
   const personaParam = searchParams.get("persona") as keyof typeof PERSONAS | null;
+  const challengeParam = searchParams.get("challenge");
   const { user, savedReviews, addReview } = useAuth();
 
   // Shared state
@@ -104,6 +105,10 @@ function SimulatorContent() {
       setFeatures(p.features);
     }
   }, [personaParam]);
+
+  useEffect(() => {
+    if (challengeParam) setRestaurant(challengeParam);
+  }, [challengeParam]);
 
   useEffect(() => {
     if (user) setLocation((prev) => prev || "VI, Lagos");
@@ -212,6 +217,16 @@ function SimulatorContent() {
             &ldquo;Correct taste, accurate vibez. Let&apos;s cook up a review.&rdquo;
           </p>
         </div>
+
+        {challengeParam && (
+          <div className="mb-6 glass rounded-2xl p-4 border-2 border-secondary/30 flex items-center gap-3">
+            <span className="text-2xl flex-shrink-0">🏆</span>
+            <div className="min-w-0">
+              <div className="text-xs font-bold uppercase tracking-wider text-secondary mb-0.5">Daily Challenge Active</div>
+              <div className="text-sm font-semibold text-on-surface truncate">{challengeParam}</div>
+            </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left: The Persona */}
