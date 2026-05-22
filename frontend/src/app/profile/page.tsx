@@ -5,6 +5,55 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 
+function RadarChart() {
+  const labels = ["Spicy", "Sweet", "Savory", "Local", "Adventurous", "Social"];
+  const values = [0.7, 0.4, 0.85, 0.9, 0.55, 0.65];
+  const cx = 120, cy = 120, maxR = 85;
+  const n = labels.length;
+
+  function toPoint(idx: number, val: number) {
+    const angle = (idx * (2 * Math.PI) / n) - Math.PI / 2;
+    return { x: cx + val * maxR * Math.cos(angle), y: cy + val * maxR * Math.sin(angle) };
+  }
+
+  function ringPath(val: number) {
+    return Array.from({ length: n }, (_, i) => {
+      const p = toPoint(i, val);
+      return `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+    }).join(" ") + " Z";
+  }
+
+  const dataPath = values.map((v, i) => {
+    const p = toPoint(i, v);
+    return `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+  }).join(" ") + " Z";
+
+  return (
+    <svg viewBox="0 0 240 240" className="w-full max-w-[260px] mx-auto">
+      {[0.25, 0.5, 0.75, 1].map((v) => (
+        <path key={v} d={ringPath(v)} fill="none" stroke="#e4bebc" strokeWidth="1" />
+      ))}
+      {labels.map((_, i) => {
+        const p = toPoint(i, 1);
+        return <line key={i} x1={cx} y1={cy} x2={p.x.toFixed(1)} y2={p.y.toFixed(1)} stroke="#e4bebc" strokeWidth="1" />;
+      })}
+      <path d={dataPath} fill="rgba(183,16,42,0.15)" stroke="#b7102a" strokeWidth="2" />
+      {values.map((v, i) => {
+        const p = toPoint(i, v);
+        return <circle key={i} cx={p.x.toFixed(1)} cy={p.y.toFixed(1)} r="4" fill="#b7102a" />;
+      })}
+      {labels.map((label, i) => {
+        const p = toPoint(i, 1.28);
+        return (
+          <text key={i} x={p.x.toFixed(1)} y={p.y.toFixed(1)} textAnchor="middle" dominantBaseline="middle" fontSize="10" fontWeight="600" fill="#5b403f">
+            {label}
+          </text>
+        );
+      })}
+    </svg>
+  );
+}
+
 const BADGES = [
   { id: "first_bite", label: "First Bite", icon: "🍔", desc: "Simulate your first review", threshold: 1 },
   { id: "flavor_explorer", label: "Flavor Explorer", icon: "🧭", desc: "Reach 5 simulations", threshold: 5 },
@@ -183,6 +232,13 @@ export default function ProfilePage() {
                 );
               })}
             </div>
+          </div>
+
+          {/* Flavor Radar */}
+          <div className="glass rounded-2xl p-6">
+            <h3 className="font-bold text-xl mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>Your Flavor Radar</h3>
+            <p className="text-xs text-on-surface-variant mb-4">Based on your taste profile</p>
+            <RadarChart />
           </div>
 
           {/* Recent Activity */}

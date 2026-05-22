@@ -4,6 +4,8 @@ interface Props {
   reason: string;
   culturalNote?: string;
   index: number;
+  placeId?: string;
+  onViewDetails?: (name: string, placeId: string) => void;
 }
 
 function Stars({ rating }: { rating: number }) {
@@ -24,7 +26,7 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-export default function RecCard({ itemName, predictedRating, reason, culturalNote, index }: Props) {
+export default function RecCard({ itemName, predictedRating, reason, culturalNote, index, placeId, onViewDetails }: Props) {
   return (
     <div
       className="rec-card fade-up mb-4"
@@ -50,6 +52,14 @@ export default function RecCard({ itemName, predictedRating, reason, culturalNot
           <span className="material-symbols-outlined text-tertiary text-base mt-0.5">lightbulb</span>
           <p className="text-sm text-tertiary italic">{culturalNote}</p>
         </div>
+      )}
+      {placeId && onViewDetails && (
+        <button
+          onClick={() => onViewDetails(itemName, placeId)}
+          className="mt-3 w-full text-center border border-primary/30 text-primary font-semibold py-2.5 rounded-xl text-sm hover:bg-primary hover:text-white transition-all active:scale-95"
+        >
+          View Details
+        </button>
       )}
     </div>
   );

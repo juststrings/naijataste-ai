@@ -83,6 +83,22 @@ export default function FlavorFinderPage() {
         <p className="text-on-surface-variant italic text-sm">Correct taste Wey fit your mood today.</p>
       </div>
 
+      {/* Daily Challenge */}
+      <div className="glass rounded-2xl p-5 flex items-start gap-4 mb-6">
+        <div className="text-3xl flex-shrink-0">🍲</div>
+        <div className="flex-grow min-w-0">
+          <div className="text-xs font-bold uppercase tracking-wider text-secondary mb-1">Daily Challenge 🏆</div>
+          <div className="font-bold text-on-surface mb-0.5">Try a pepper soup spot you&apos;ve never visited</div>
+          <div className="text-xs text-on-surface-variant">Earn the &apos;Pepper Soup Pioneer&apos; badge + 50 Flavor Points</div>
+        </div>
+        <Link
+          href="/simulator"
+          className="bg-secondary text-white px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap hover:bg-orange-800 transition-all active:scale-95 flex-shrink-0"
+        >
+          Accept
+        </Link>
+      </div>
+
       {/* Main grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 

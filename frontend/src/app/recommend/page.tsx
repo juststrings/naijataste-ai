@@ -5,12 +5,14 @@ import { getRecommendations, RecommendationItem } from "@/lib/api";
 import { parseMessage } from "@/lib/nlp";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import RecCard from "@/components/RecCard";
+import PlaceDetailsModal from "@/components/PlaceDetailsModal";
 import { resolveLocation, UserLocation, ResolvedLocation } from "@/lib/location";
 
 type ChatMsg = { type: "user" | "bot"; text: string };
 type RecMode = "chat" | "form";
 type RecState = "idle" | "loading" | "results" | "empty" | "error";
 type LocationStatus = "pending" | "granted" | "denied";
+type SelectedPlace = { placeId: string | null; name: string };
 
 const QUICK_PROMPTS = [
   { label: "🍲 Budget buka Lagos", text: "Budget local buka food in Lagos" },
@@ -113,6 +115,7 @@ export default function RecommendPage() {
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [locationStatus, setLocationStatus] = useState<LocationStatus>("pending");
   const [queryLocation, setQueryLocation] = useState<ResolvedLocation | null>(null);
+  const [selectedPlace, setSelectedPlace] = useState<SelectedPlace | null>(null);
 
   // Form state
   const [city, setCity] = useState("Lagos");
@@ -155,7 +158,7 @@ export default function RecommendPage() {
 
     setChatMsgs((prev) => [...prev, { type: "user", text: msg }]);
     setChatInput("");
-    setChatMsgs((prev) => [...prev, { type: "bot", text: "Dey think..." }]);
+    setChatMsgs((prev) => [...prev, { type: "bot", text: "my oga abeg no vex, chill for me as i dey try reason am" }]);
 
     const signals = parseMessage(msg);
     const loc = resolveLocation(msg, userLocation);
@@ -374,6 +377,8 @@ export default function RecommendPage() {
               reason={item.reason}
               culturalNote={item.cultural_note}
               index={i}
+              placeId={item.business_id}
+              onViewDetails={(name, placeId) => setSelectedPlace({ placeId, name })}
             />
           ))}
           <BookSidebar delay={recs.length * 0.08 + 0.1} />
@@ -448,6 +453,15 @@ export default function RecommendPage() {
             Try again
           </button>
         </div>
+      )}
+
+      {selectedPlace && (
+        <PlaceDetailsModal
+          isOpen={true}
+          onClose={() => setSelectedPlace(null)}
+          placeId={selectedPlace.placeId}
+          restaurantName={selectedPlace.name}
+        />
       )}
     </div>
   );

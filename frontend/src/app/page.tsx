@@ -1,22 +1,20 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import PersonaCard from "@/components/PersonaCard";
 
 export default function HomePage() {
-  const { user, savedReviews } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
-  function setChatInput(text: string) {
-    sessionStorage.setItem("chatPrefill", text);
-    router.push("/recommend");
-  }
+  useEffect(() => {
+    if (user) router.push("/flavor-finder");
+  }, [user, router]);
 
-  if (user) {
-    return <AuthenticatedHome user={user} reviewCount={savedReviews.length} onChatPrefill={setChatInput} />;
-  }
+  if (user) return null;
 
   return <GuestHome />;
 }
@@ -176,194 +174,3 @@ function GuestHome() {
   );
 }
 
-function RadarChart() {
-  const labels = ["Spicy", "Sweet", "Savory", "Local", "Adventurous", "Social"];
-  // TODO: derive from saved reviews; static for now
-  const values = [0.7, 0.4, 0.85, 0.9, 0.55, 0.65];
-  const cx = 120, cy = 120, maxR = 85;
-  const n = labels.length;
-
-  function toPoint(idx: number, val: number) {
-    const angle = (idx * (2 * Math.PI) / n) - Math.PI / 2;
-    return { x: cx + val * maxR * Math.cos(angle), y: cy + val * maxR * Math.sin(angle) };
-  }
-
-  function ringPath(val: number) {
-    return Array.from({ length: n }, (_, i) => {
-      const p = toPoint(i, val);
-      return `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
-    }).join(" ") + " Z";
-  }
-
-  const dataPath = values.map((v, i) => {
-    const p = toPoint(i, v);
-    return `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
-  }).join(" ") + " Z";
-
-  return (
-    <svg viewBox="0 0 240 240" className="w-full max-w-[260px] mx-auto">
-      {[0.25, 0.5, 0.75, 1].map((v) => (
-        <path key={v} d={ringPath(v)} fill="none" stroke="#e4bebc" strokeWidth="1" />
-      ))}
-      {labels.map((_, i) => {
-        const p = toPoint(i, 1);
-        return <line key={i} x1={cx} y1={cy} x2={p.x.toFixed(1)} y2={p.y.toFixed(1)} stroke="#e4bebc" strokeWidth="1" />;
-      })}
-      <path d={dataPath} fill="rgba(183,16,42,0.15)" stroke="#b7102a" strokeWidth="2" />
-      {values.map((v, i) => {
-        const p = toPoint(i, v);
-        return <circle key={i} cx={p.x.toFixed(1)} cy={p.y.toFixed(1)} r="4" fill="#b7102a" />;
-      })}
-      {labels.map((label, i) => {
-        const p = toPoint(i, 1.28);
-        return (
-          <text key={i} x={p.x.toFixed(1)} y={p.y.toFixed(1)} textAnchor="middle" dominantBaseline="middle" fontSize="10" fontWeight="600" fill="#5b403f">
-            {label}
-          </text>
-        );
-      })}
-    </svg>
-  );
-}
-
-function AuthenticatedHome({
-  user,
-  reviewCount,
-  onChatPrefill,
-}: {
-  user: { name: string; avatar: string };
-  reviewCount: number;
-  onChatPrefill: (text: string) => void;
-}) {
-  const level = Math.floor(reviewCount / 5) + 1;
-  const personaTitles = ["Curious Taster", "Flavor Seeker", "Taste Connoisseur", "Flavor Oracle"];
-  const personaTitle = personaTitles[Math.min(level - 1, 3)];
-  const levelPct = Math.min(((reviewCount % 5) / 5) * 100, 100);
-  const firstName = user.name.split(" ")[0];
-
-  const cravings = [
-    { emoji: "🌶️", label: "Spicy & Bold", query: "spicy bold food Lagos" },
-    { emoji: "🛵", label: "Street Food", query: "street food Lagos" },
-    { emoji: "🍚", label: "Rice Dishes", query: "rice dishes jollof Nigeria" },
-    { emoji: "🍲", label: "Soups & Stews", query: "pepper soup egusi stew" },
-    { emoji: "🔥", label: "Grilled", query: "grilled suya barbecue" },
-    { emoji: "🍰", label: "Sweets", query: "dessert sweets pastry" },
-  ];
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 md:px-16 py-10">
-      <p className="text-sm text-on-surface-variant italic mb-2">Correct taste only.</p>
-
-      {/* Welcome header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
-        <div>
-          <h1 className="text-4xl font-black text-on-surface mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
-            Welcome back, <span className="text-primary">{firstName}.</span>
-          </h1>
-          <p className="text-on-surface-variant">Your palate is sharp today. Ready to explore the best spots?</p>
-        </div>
-        <div className="glass rounded-2xl p-5 min-w-64">
-          <div className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Current Persona</div>
-          <div className="font-bold text-lg text-on-surface mb-0.5">{personaTitle}</div>
-          <div className="text-xs text-on-surface-variant mb-3">{reviewCount} review{reviewCount !== 1 ? "s" : ""} simulated</div>
-          <div className="flex gap-2 items-center">
-            <div className="flex-1 bg-surface-container-high rounded-full h-2 overflow-hidden">
-              <div className="bg-primary h-full rounded-full transition-all" style={{ width: `${levelPct}%` }} />
-            </div>
-            <span className="text-xs font-bold text-on-surface-variant whitespace-nowrap">Level {level}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Quick actions */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-        <Link href="/simulator" className="glass rounded-2xl p-5 text-left hover:shadow-lg transition-all active:scale-95">
-          <span className="material-symbols-outlined text-primary text-3xl mb-2 block">rate_review</span>
-          <div className="font-bold text-on-surface">Simulate a Review</div>
-          <div className="text-xs text-on-surface-variant mt-1">Predict any restaurant</div>
-        </Link>
-        <Link href="/recommend" className="glass rounded-2xl p-5 text-left hover:shadow-lg transition-all active:scale-95">
-          <span className="material-symbols-outlined text-tertiary text-3xl mb-2 block">explore</span>
-          <div className="font-bold text-on-surface">Find Flavor</div>
-          <div className="text-xs text-on-surface-variant mt-1">Chat or form mode</div>
-        </Link>
-        <Link href="/profile" className="glass rounded-2xl p-5 text-left hover:shadow-lg transition-all active:scale-95">
-          <span className="material-symbols-outlined text-secondary text-3xl mb-2 block">person</span>
-          <div className="font-bold text-on-surface">My Flavor Profile</div>
-          <div className="text-xs text-on-surface-variant mt-1">Badges &amp; activity</div>
-        </Link>
-        <Link href="/simulator" className="glass rounded-2xl p-5 text-left hover:shadow-lg transition-all active:scale-95">
-          <span className="material-symbols-outlined text-on-surface-variant text-3xl mb-2 block">emoji_events</span>
-          <div className="font-bold text-on-surface">Daily Challenge</div>
-          <div className="text-xs text-on-surface-variant mt-1">Try a new spot today</div>
-        </Link>
-      </div>
-
-      {/* Radar + Browse + Daily Challenge */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Flavor Radar */}
-        <div className="glass rounded-2xl p-6">
-          <h2 className="font-bold text-xl mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>Your Flavor Radar</h2>
-          <p className="text-xs text-on-surface-variant mb-4">Based on your taste profile</p>
-          <RadarChart />
-        </div>
-
-        {/* Browse by Craving */}
-        <div className="glass rounded-2xl p-6">
-          <h2 className="font-bold text-xl mb-4" style={{ fontFamily: "Montserrat, sans-serif" }}>Browse by Craving</h2>
-          <div className="grid grid-cols-3 gap-3">
-            {cravings.map(({ emoji, label, query }) => (
-              <button
-                key={label}
-                onClick={() => onChatPrefill(query)}
-                className="flex flex-col items-center gap-1 p-3 bg-surface-container-low rounded-xl hover:bg-primary-fixed transition-colors"
-              >
-                <span className="text-2xl">{emoji}</span>
-                <span className="text-xs font-semibold text-center leading-tight">{label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Daily Challenge */}
-        <div className="glass rounded-2xl p-6 flex flex-col">
-          <div className="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Daily Challenge 🏆</div>
-          <div className="bg-secondary/10 border border-secondary/20 rounded-xl p-4 mb-4 flex-grow">
-            <div className="text-2xl mb-2">🍲</div>
-            <div className="font-bold text-on-surface mb-1">Try a pepper soup spot you&apos;ve never visited</div>
-            <div className="text-sm text-on-surface-variant">
-              Earn the &apos;Pepper Soup Pioneer&apos; badge and 50 Flavor Points.
-            </div>
-            {/* TODO: real daily challenge logic in Phase 2 */}
-          </div>
-          <Link
-            href="/simulator"
-            className="w-full bg-secondary text-white px-4 py-3 rounded-xl text-sm font-semibold text-center hover:bg-orange-800 transition-all active:scale-95"
-          >
-            Accept Challenge
-          </Link>
-
-          <div className="mt-4 border-t border-outline-variant/20 pt-4">
-            <div className="text-sm font-bold text-on-surface mb-3">Community Gist 💬</div>
-            <div className="space-y-3">
-              <div className="flex gap-2 items-start">
-                <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs font-bold flex-shrink-0">C</div>
-                <div>
-                  <div className="text-xs font-bold">Chidi K. <span className="text-on-surface-variant font-normal">2m ago</span></div>
-                  <div className="text-xs text-on-surface-variant italic">&ldquo;The jollof at Yellow Chilli is actually spiritual. No cap.&rdquo;</div>
-                </div>
-              </div>
-              <div className="flex gap-2 items-start">
-                <div className="w-7 h-7 rounded-full bg-tertiary flex items-center justify-center text-white text-xs font-bold flex-shrink-0">A</div>
-                <div>
-                  <div className="text-xs font-bold">Amina O. <span className="text-on-surface-variant font-normal">15m ago</span></div>
-                  <div className="text-xs text-on-surface-variant italic">&ldquo;Just earned the &apos;Spice Explorer&apos; badge!&rdquo;</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
