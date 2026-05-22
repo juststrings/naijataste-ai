@@ -34,18 +34,18 @@ function GuestHome() {
           <p className="text-lg text-on-surface-variant mb-8">
             We recommend spots that match the Nigerian taste. Spice, smoke, and soul.
           </p>
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/simulator"
-              className="bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-red-800 transition-all active:scale-95 shadow-lg"
+              href="/login"
+              className="w-full sm:w-auto text-center bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-red-800 transition-all active:scale-95 shadow-lg"
             >
-              Simulate a Review →
+              Login
             </Link>
             <Link
-              href="/recommend"
-              className="border-2 border-primary text-primary px-8 py-3 rounded-full font-bold hover:bg-primary hover:text-white transition-all"
+              href="/simulator"
+              className="w-full sm:w-auto text-center border-2 border-primary text-primary px-8 py-3 rounded-full font-bold hover:bg-primary hover:text-white transition-all"
             >
-              Find My Next Meal
+              Try as Guest →
             </Link>
           </div>
         </div>
