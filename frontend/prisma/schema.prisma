@@ -19,6 +19,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   savedReviews  SavedReview[]
+  adjustments   ReviewAdjustment[]
 }
 
 model Account {
@@ -62,6 +63,18 @@ model SavedReview {
   location       String?
   reviewText     String
   rating         Float
+  createdAt      DateTime @default(now())
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ReviewAdjustment {
+  id             String   @id @default(cuid())
+  userId         String
+  feedback       String?
+  signalType     String
+  reviewTone     String?
+  reviewRating   Float?
+  restaurantType String?
   createdAt      DateTime @default(now())
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

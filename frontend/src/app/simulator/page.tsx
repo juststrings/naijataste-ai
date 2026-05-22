@@ -110,6 +110,7 @@ function SimulatorContent() {
   const [feedbackText, setFeedbackText] = useState("");
   const [isAdjusting, setIsAdjusting] = useState(false);
   const [lastPersona, setLastPersona] = useState<Record<string, unknown>>({});
+  const [pastAdjustments, setPastAdjustments] = useState<Record<string, unknown>[]>([]);
 
   const [showVoiceHint, setShowVoiceHint] = useState(false);
   const { isListening, startListening, supported: voiceSupported, interim } = useVoiceInput(
@@ -124,6 +125,38 @@ function SimulatorContent() {
     }
   }
 
+  // Fetch past adjustment signals once user is authenticated
+  useEffect(() => {
+    if (!user) return;
+    fetch("/api/adjustments")
+      .then((r) => r.ok ? r.json() : [])
+      .then((data: unknown) => {
+        if (Array.isArray(data)) setPastAdjustments(data as Record<string, unknown>[]);
+      })
+      .catch(() => {});
+  }, [user]);
+
+  // Fire-and-forget signal recording — never blocks UI
+  function postSignal(
+    signalType: string,
+    feedback?: string,
+    overrideResult?: { rating: number; tone_label: string } | null,
+  ) {
+    if (!user) return;
+    const rev = overrideResult !== undefined ? overrideResult : result;
+    fetch("/api/adjustments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        signalType,
+        feedback: feedback ?? null,
+        reviewTone: rev?.tone_label ?? null,
+        reviewRating: rev?.rating ?? null,
+        restaurantType: type,
+      }),
+    }).catch(() => {});
+  }
+
   function handleSave() {
     if (!result || !user) return;
     addReview({
@@ -135,10 +168,12 @@ function SimulatorContent() {
     });
     setIsSaved(true);
     toast.success("Review saved to your profile!");
+    postSignal("saved");
   }
 
   async function handleAdjust() {
     if (!feedbackText.trim() || !result) return;
+    postSignal("adjusted", feedbackText);
     setIsAdjusting(true);
     try {
       const adjusted = await adjustReview({
@@ -149,11 +184,20 @@ function SimulatorContent() {
       setResult(adjusted);
       setIsSaved(false);
       setFeedbackText("");
+      setPastAdjustments((prev) => [
+        { signalType: "adjusted", feedback: feedbackText, reviewTone: result.tone_label, reviewRating: result.rating, restaurantType: type },
+        ...prev,
+      ]);
     } catch {
       toast.error("Couldn't adjust the review. Try again.");
     } finally {
       setIsAdjusting(false);
     }
+  }
+
+  function handleRegenerateAuth() {
+    postSignal("regenerated");
+    generateAuthenticated();
   }
 
   useEffect(() => {
@@ -252,6 +296,7 @@ function SimulatorContent() {
           ? [selectedFood]
           : ["nice ambience", "good service"],
       ...(preferredLanguage && { preferred_language: preferredLanguage }),
+      past_adjustments: pastAdjustments,
     };
 
     setLastPersona(persona as Record<string, unknown>);
@@ -563,9 +608,10 @@ function SimulatorContent() {
                   reviewerHabit="balanced"
                   restaurantType={type}
                   reviewText={result.review_text}
-                  onRegenerate={generateAuthenticated}
+                  onRegenerate={handleRegenerateAuth}
                   onSave={handleSave}
                   isSaved={isSaved}
+                  onCopy={() => postSignal("copied")}
                 />
 
                 {/* Feedback / adjustment */}

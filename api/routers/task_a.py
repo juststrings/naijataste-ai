@@ -18,6 +18,7 @@ class SimulateReviewRequest(BaseModel):
     location: str
     features: list[str]
     preferred_language: Optional[str] = None
+    past_adjustments: list[dict] = []
 
 
 class SimulateReviewResponse(BaseModel):
@@ -30,6 +31,82 @@ class AdjustReviewRequest(BaseModel):
     original_review: str
     feedback: str
     original_persona: dict = {}
+
+
+def _extract_patterns(adjustments: list[dict]) -> str:
+    if not adjustments:
+        return ""
+
+    patterns: list[str] = []
+
+    # ── Explicit adjustment feedback keywords ──────────────────────────────
+    feedbacks = [
+        (a.get("feedback") or "").lower()
+        for a in adjustments
+        if a.get("signalType") == "adjusted"
+    ]
+    combined = " ".join(feedbacks)
+
+    shorter_hits = combined.count("shorter") + combined.count("short") + combined.count("brief")
+    if shorter_hits >= 3:
+        patterns.append("User prefers concise reviews")
+
+    hype_hits = combined.count("less hype") + combined.count("less hyp") + combined.count("understated") + combined.count("toned down")
+    if hype_hits >= 2:
+        patterns.append("User prefers understated tone")
+
+    low_rating_hits = combined.count("lower rating") + combined.count("drop the rating") + combined.count("reduce rating")
+    if low_rating_hits >= 2:
+        patterns.append("User tends to rate conservatively")
+
+    detail_hits = combined.count("more detail") + combined.count("detailed") + combined.count("elaborate")
+    if detail_hits >= 2:
+        patterns.append("User prefers detailed reviews")
+
+    # ── Saved review patterns ─────────────────────────────────────────────
+    saved = [a for a in adjustments if a.get("signalType") == "saved"]
+    if len(saved) >= 3:
+        ratings = [float(a["reviewRating"]) for a in saved if a.get("reviewRating") is not None]
+        if ratings:
+            avg = sum(ratings) / len(ratings)
+            if 3.8 <= avg <= 4.7:
+                patterns.append("User tends to save reviews rated 4.0-4.5 stars")
+
+    saved_tones = [
+        (a.get("reviewTone") or "").lower()
+        for a in saved
+        if a.get("reviewTone")
+    ]
+    if saved_tones.count("pidgin-heavy") >= 3:
+        patterns.append("User prefers Pidgin-heavy tone")
+    if saved_tones.count("casual") >= 3:
+        patterns.append("User prefers casual tone")
+
+    # ── Regeneration patterns ─────────────────────────────────────────────
+    regen = [a for a in adjustments if a.get("signalType") == "regenerated"]
+    regen_tones = [
+        (a.get("reviewTone") or "").lower()
+        for a in regen
+        if a.get("reviewTone")
+    ]
+    if regen_tones.count("formal") >= 3:
+        patterns.append("User dislikes formal tone — avoid it")
+
+    regen_types = [
+        (a.get("restaurantType") or "").lower()
+        for a in regen
+        if a.get("restaurantType")
+    ]
+    for rtype in set(regen_types):
+        if regen_types.count(rtype) >= 3:
+            patterns.append(f"User is harder to please for {rtype} — set expectations accurately")
+
+    # ── Copy-without-save pattern ─────────────────────────────────────────
+    copied = [a for a in adjustments if a.get("signalType") == "copied"]
+    if len(copied) >= 2 and len(saved) == 0:
+        patterns.append("User copies reviews but rarely saves — keep quality high every time")
+
+    return "\n".join(f"- {p}" for p in patterns)
 
 
 @router.post("/simulate-review", response_model=SimulateReviewResponse)
@@ -53,6 +130,15 @@ def simulate_review(body: SimulateReviewRequest):
     }
 
     prompt = build_review_prompt(persona, item)
+
+    # Silently apply learned style preferences
+    patterns = _extract_patterns(body.past_adjustments)
+    if patterns:
+        prompt += (
+            "\n\nSTYLE PREFERENCES (learned from this user's past behaviour, apply automatically):\n"
+            + patterns
+            + "\n\nApply these preferences without being told. Do not mention them in the review."
+        )
 
     # Append language rule
     prompt += (

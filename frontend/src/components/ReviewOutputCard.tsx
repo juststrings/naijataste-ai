@@ -12,6 +12,7 @@ interface Props {
   onRegenerate: () => void;
   onSave?: () => void;
   isSaved?: boolean;
+  onCopy?: () => void;
 }
 
 function Stars({ rating }: { rating: number }) {
@@ -42,10 +43,12 @@ export default function ReviewOutputCard({
   onRegenerate,
   onSave,
   isSaved,
+  onCopy,
 }: Props) {
   function handleCopy() {
     navigator.clipboard.writeText(`"${reviewText}"`).then(() => {
       toast.success("Review copied to clipboard!");
+      onCopy?.();
     });
   }
 

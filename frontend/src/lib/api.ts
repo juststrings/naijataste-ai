@@ -17,6 +17,7 @@ export interface SimulateReviewPayload {
   location: string;
   features: string[];
   preferred_language?: string;
+  past_adjustments?: Record<string, unknown>[];
 }
 
 export interface SimulateReviewResponse {
