@@ -1,4 +1,5 @@
 import json
+import re
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException
@@ -64,9 +65,28 @@ class RecommendedItem(BaseModel):
     cultural_note: str
 
 
+class RecommendResponse(BaseModel):
+    items: list[RecommendedItem]
+    detected_language: str
+
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
+
+def _detect_language(query: str) -> str:
+    """Server-side language detection from query text."""
+    lower = query.lower()
+    if re.search(r'\b(jẹ|ká|àwọn|mo\s*fẹ|bẹẹni|o\s*dara|ibẹ|isale|mofe|ewa\b|ra\b|fẹ\b)\b', query, re.I):
+        return "yo"
+    if re.search(r'\b(mai\s*kyau|ina\s*neman|abinci|bari\s*mu|sannu|nagode|yana\s*da)\b', lower):
+        return "ha"
+    if re.search(r'\b(ọ\s*dị|ka\s*anyị|nwetara|rie\s*nri|dịmma|n\'okpuru|ebe\s*maka)\b', lower):
+        return "ig"
+    if re.search(r'\b(dey|wetin|abeg|oga|naija|chop|wahala|no\s*be|na\s*so|ehen|correct)\b', lower):
+        return "pidgin"
+    return "en"
 
 
 def _persona_from_cold_start(signals: dict) -> dict:
@@ -110,23 +130,14 @@ def _build_places_prompt(
     return (
         f'You are a Nigerian food recommendation AI. '
         f'A user is looking for: "{query}" in {location}.\n\n'
-        f"LANGUAGE DETECTION — CRITICAL:\n"
-        f"Detect the language the user is writing in and respond in that SAME language throughout.\n\n"
-        f"Supported languages:\n"
-        f"- English → respond in English\n"
-        f"- Nigerian Pidgin → respond in Pidgin (e.g. 'how e dey', 'na so', 'correct chop')\n"
-        f"- Yoruba → respond in Yoruba (e.g. 'o dara', 'jẹ ká jẹun')\n"
-        f"- Hausa → respond in Hausa (e.g. 'mai kyau', 'bari mu ci')\n"
-        f"- Igbo → respond in Igbo (e.g. 'ọ dị mma', 'ka anyị rie nri')\n\n"
-        f"Rules:\n"
-        f"- If the user writes in Yoruba, your ENTIRE response must be in Yoruba\n"
-        f"- If the user writes in Hausa, your ENTIRE response must be in Hausa\n"
-        f"- If the user writes in Igbo, your ENTIRE response must be in Igbo\n"
-        f"- If the user writes in Pidgin, your ENTIRE response must be in Pidgin\n"
-        f"- If the user writes in English, respond in English\n"
-        f"- If language is unclear or mixed, default to Nigerian Pidgin\n"
-        f"- Keep Nigerian food/restaurant names as-is regardless of language\n"
-        f"- Never mix languages in a single response\n\n"
+        f"LANGUAGE RULE:\n"
+        f"The user's message may be in English, Nigerian Pidgin, Yoruba, Hausa, Igbo, "
+        f"or any other language.\n"
+        f"Automatically detect what language the user wrote in.\n"
+        f"Respond ENTIRELY in that same language — including the reason and "
+        f"cultural_note fields in your JSON response.\n"
+        f"Do not default to English or Pidgin. Match the user's language exactly.\n"
+        f"If you cannot detect the language, default to Nigerian Pidgin.\n\n"
         f"## User Profile\n"
         f"- Price sensitivity: {price_sensitivity} "
         f'({"budget-conscious" if price_sensitivity == "high" else "premium spender" if price_sensitivity == "low" else "moderate budget"})\n'
@@ -137,11 +148,6 @@ def _build_places_prompt(
         f"## Your Task\n"
         f"Recommend the 5 best matches from the list above for this user's query.\n"
         f"ONLY recommend restaurants from the list above — NEVER invent new ones.\n\n"
-        f"LANGUAGE RULE FOR FIELDS: Every text field you return (reason, cultural_note) "
-        f"MUST be written in the SAME language you detected from the user's query. "
-        f"If the user wrote in Yoruba, reason and cultural_note must be in Yoruba. "
-        f"If Pidgin, write those fields in Pidgin. If English, use English. "
-        f"Never write reason or cultural_note in a different language from the query.\n\n"
         f"CRITICAL: Return ONLY a raw JSON array of exactly 5 objects. "
         f"No markdown. No explanation. Start with [ end with ].\n"
         f"Each object must have:\n"
@@ -157,7 +163,7 @@ def _build_places_prompt(
 # ---------------------------------------------------------------------------
 
 
-@router.post("/recommend", response_model=list[RecommendedItem])
+@router.post("/recommend", response_model=RecommendResponse)
 def recommend(body: RecommendRequest):
     # Resolve persona
     if body.user_id:
@@ -178,6 +184,7 @@ def recommend(body: RecommendRequest):
         or " ".join(persona.get("tone_keywords", []))
         or "Nigerian restaurant"
     )
+    detected_language = _detect_language(query)
     location = _extract_location(query, body.cold_start_signals)
 
     # Fetch real restaurants: cache → Google Places → hardcoded fallback
@@ -218,13 +225,16 @@ def recommend(body: RecommendRequest):
         for r in real_restaurants
     }
 
-    return [
-        RecommendedItem(
-            item_name=str(r.get("item_name", "")),
-            business_id=place_id_map.get(r.get("item_name", "").lower()),
-            reason=str(r.get("reason", "")),
-            predicted_rating=float(r.get("predicted_rating", 3.0)),
-            cultural_note=str(r.get("cultural_note", "")),
-        )
-        for r in result[:5]
-    ]
+    return RecommendResponse(
+        items=[
+            RecommendedItem(
+                item_name=str(r.get("item_name", "")),
+                business_id=place_id_map.get(r.get("item_name", "").lower()),
+                reason=str(r.get("reason", "")),
+                predicted_rating=float(r.get("predicted_rating", 3.0)),
+                cultural_note=str(r.get("cultural_note", "")),
+            )
+            for r in result[:5]
+        ],
+        detected_language=detected_language,
+    )

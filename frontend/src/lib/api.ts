@@ -100,9 +100,14 @@ export async function getTopPicks(
   return res.json();
 }
 
+export interface RecommendResponse {
+  items: RecommendationItem[];
+  detected_language: string;
+}
+
 export async function getRecommendations(
   payload: RecommendPayload
-): Promise<RecommendationItem[]> {
+): Promise<RecommendResponse> {
   const res = await fetch(`${API_BASE}/recommend`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
