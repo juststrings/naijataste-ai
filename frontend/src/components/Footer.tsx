@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="relative z-10 bg-inverse-surface text-inverse-on-surface py-10 mt-auto">
       <div className="max-w-7xl mx-auto px-4 md:px-16 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div>
+        <div className="text-center md:text-left">
           <div className="font-bold text-xl mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
             NaijaTaste AI
           </div>
