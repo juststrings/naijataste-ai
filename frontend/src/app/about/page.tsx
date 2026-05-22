@@ -70,6 +70,16 @@ export default function AboutPage() {
               than &apos;Morning Akara&apos; and adjusts accordingly.
             </p>
           </div>
+          <div className="md:col-span-2 p-6 bg-surface-container-low rounded-xl border border-outline-variant/20">
+            <div className="flex items-center gap-2 mb-3 text-on-surface">
+              <span className="material-symbols-outlined">language</span>
+              <h3 className="font-bold">Multilingual</h3>
+            </div>
+            <p className="text-sm text-on-surface-variant">
+              Understands and responds in <strong>English</strong>, <strong>Yoruba</strong>, <strong>Hausa</strong>, <strong>Igbo</strong>, and <strong>Nigerian Pidgin</strong>.
+              Type in your language and NaijaTaste AI replies in kind — no switching required.
+            </p>
+          </div>
         </div>
       </div>
 

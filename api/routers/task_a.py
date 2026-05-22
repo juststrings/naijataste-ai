@@ -47,6 +47,27 @@ def simulate_review(body: SimulateReviewRequest):
 
     prompt = build_review_prompt(persona, item)
 
+    # Append language detection instruction
+    prompt += (
+        "\n\nLANGUAGE DETECTION — CRITICAL:\n"
+        "Detect the language the user is writing in and respond in that SAME language throughout.\n\n"
+        "Supported languages:\n"
+        "- English → respond in English\n"
+        "- Nigerian Pidgin → respond in Pidgin (e.g. 'how e dey', 'na so', 'correct chop')\n"
+        "- Yoruba → respond in Yoruba (e.g. 'o dara', 'jẹ ká jẹun')\n"
+        "- Hausa → respond in Hausa (e.g. 'mai kyau', 'bari mu ci')\n"
+        "- Igbo → respond in Igbo (e.g. 'ọ dị mma', 'ka anyị rie nri')\n\n"
+        "Rules:\n"
+        "- If the user writes in Yoruba, your ENTIRE response must be in Yoruba\n"
+        "- If the user writes in Hausa, your ENTIRE response must be in Hausa\n"
+        "- If the user writes in Igbo, your ENTIRE response must be in Igbo\n"
+        "- If the user writes in Pidgin, your ENTIRE response must be in Pidgin\n"
+        "- If the user writes in English, respond in English\n"
+        "- If language is unclear or mixed, default to Nigerian Pidgin\n"
+        "- Keep Nigerian food/restaurant names as-is regardless of language\n"
+        "- Never mix languages in a single response"
+    )
+
     # Append strict output instruction so Gemini doesn't stray from the schema
     prompt += (
         "\n\nIMPORTANT: Return ONLY this JSON object — no explanation, no markdown:\n"

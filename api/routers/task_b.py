@@ -110,6 +110,23 @@ def _build_places_prompt(
     return (
         f'You are a Nigerian food recommendation AI. '
         f'A user is looking for: "{query}" in {location}.\n\n'
+        f"LANGUAGE DETECTION — CRITICAL:\n"
+        f"Detect the language the user is writing in and respond in that SAME language throughout.\n\n"
+        f"Supported languages:\n"
+        f"- English → respond in English\n"
+        f"- Nigerian Pidgin → respond in Pidgin (e.g. 'how e dey', 'na so', 'correct chop')\n"
+        f"- Yoruba → respond in Yoruba (e.g. 'o dara', 'jẹ ká jẹun')\n"
+        f"- Hausa → respond in Hausa (e.g. 'mai kyau', 'bari mu ci')\n"
+        f"- Igbo → respond in Igbo (e.g. 'ọ dị mma', 'ka anyị rie nri')\n\n"
+        f"Rules:\n"
+        f"- If the user writes in Yoruba, your ENTIRE response must be in Yoruba\n"
+        f"- If the user writes in Hausa, your ENTIRE response must be in Hausa\n"
+        f"- If the user writes in Igbo, your ENTIRE response must be in Igbo\n"
+        f"- If the user writes in Pidgin, your ENTIRE response must be in Pidgin\n"
+        f"- If the user writes in English, respond in English\n"
+        f"- If language is unclear or mixed, default to Nigerian Pidgin\n"
+        f"- Keep Nigerian food/restaurant names as-is regardless of language\n"
+        f"- Never mix languages in a single response\n\n"
         f"## User Profile\n"
         f"- Price sensitivity: {price_sensitivity} "
         f'({"budget-conscious" if price_sensitivity == "high" else "premium spender" if price_sensitivity == "low" else "moderate budget"})\n'
