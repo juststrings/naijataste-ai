@@ -75,6 +75,27 @@ function GuestHome() {
         </div>
       </section>
 
+      {/* WhatsApp banner */}
+      <section className="max-w-7xl mx-auto px-4 md:px-16 py-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border-2 border-[#25D366]/30 bg-[#25D366]/5 px-6 py-4">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">📱</span>
+            <div>
+              <p className="font-bold text-on-surface text-sm">Also available on WhatsApp</p>
+              <p className="text-xs text-on-surface-variant">Chat with our AI food guru in Pidgin, Yoruba, Hausa or Igbo</p>
+            </div>
+          </div>
+          <a
+            href="https://wa.me/14155238886?text=join%20dress-newspaper"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 bg-[#25D366] text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-[#1da851] transition-all active:scale-95"
+          >
+            Try on WhatsApp
+          </a>
+        </div>
+      </section>
+
       {/* Persona cards */}
       <section className="bg-surface-container-low py-16 relative">
         <div className="adire-bg" style={{ position: "absolute", opacity: 0.04 }} />

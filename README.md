@@ -24,6 +24,27 @@ Given a user persona (or cold-start signals for new users), the agent recommends
 
 ---
 
+## WhatsApp Agent 📱
+
+NaijaTaste AI is available on WhatsApp! Get restaurant recommendations and
+simulate reviews directly from your WhatsApp chat.
+
+### Features on WhatsApp
+- Restaurant recommendations in any Nigerian language
+- Conversational AI that understands Pidgin, Yoruba, Hausa, Igbo and English
+- Multilingual responses — chat in your language, get answers in your language
+
+### How to test (Sandbox)
+1. Save +1 415 523 8886 to your contacts
+2. Send `join dress-newspaper` to that number on WhatsApp
+3. Start chatting! Try: "Best suya in Abuja" or "Mo fe je amala"
+
+### Coming Soon
+Full WhatsApp Business API integration with a dedicated Nigerian number —
+no join code needed. Users will message NaijaTaste AI directly.
+
+---
+
 ## Nigerian Advantage
 
 The competition brief awards marks for agents that behave and sound like Nigerians. This is our primary differentiator.

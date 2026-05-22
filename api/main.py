@@ -179,14 +179,25 @@ _whatsapp_sessions: dict[str, dict] = {}
 
 
 def _format_whatsapp_recommendations(items: list[dict], intro_message: str) -> str:
+    import urllib.parse
+
     lines = [intro_message, ""]
     for i, item in enumerate(items, 1):
         name = item.get("item_name", "")
         rating = item.get("predicted_rating", "")
         reason = item.get("reason", "")
+        place_id = item.get("business_id")
+
+        if place_id:
+            maps_url = f"https://maps.google.com/?cid={place_id}"
+        else:
+            q = urllib.parse.quote(name)
+            maps_url = f"https://maps.google.com/maps?q={q}"
+
         lines.append(f"{i}. *{name}* ⭐ {rating}")
         if reason:
             lines.append(f"   {reason}")
+        lines.append(f"   🗺️ {maps_url}")
         lines.append("")
     lines.append("Reply with your next craving or ask for something else!")
     return "\n".join(lines)
@@ -194,6 +205,7 @@ def _format_whatsapp_recommendations(items: list[dict], intro_message: str) -> s
 
 @app.post("/whatsapp/webhook")
 async def whatsapp_webhook(Body: str = Form(...), From: str = Form(...)):
+    from twilio.rest import Client
     from twilio.twiml.messaging_response import MessagingResponse
     from routers.task_b import get_recommendations_from_gemini
 
@@ -207,6 +219,20 @@ async def whatsapp_webhook(Body: str = Form(...), From: str = Form(...)):
     )
 
     print(f"[WHATSAPP] from={user_phone} msg={user_message!r}")
+
+    # Send immediate acknowledgment so user knows we're processing
+    twilio_sid = os.getenv("TWILIO_ACCOUNT_SID")
+    twilio_token = os.getenv("TWILIO_AUTH_TOKEN")
+    twilio_number = os.getenv("TWILIO_WHATSAPP_NUMBER")
+    if twilio_sid and twilio_token and twilio_number:
+        try:
+            Client(twilio_sid, twilio_token).messages.create(
+                from_=twilio_number,
+                to=user_phone,
+                body="🔍 Dey find am for you, chill small...",
+            )
+        except Exception as e:
+            print(f"[WHATSAPP] thinking-indicator send failed: {e}")
 
     result = get_recommendations_from_gemini(
         query=user_message,
