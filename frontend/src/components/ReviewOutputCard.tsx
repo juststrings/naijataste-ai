@@ -10,6 +10,8 @@ interface Props {
   restaurantType: string;
   reviewText: string;
   onRegenerate: () => void;
+  onSave?: () => void;
+  isSaved?: boolean;
 }
 
 function Stars({ rating }: { rating: number }) {
@@ -38,6 +40,8 @@ export default function ReviewOutputCard({
   restaurantType,
   reviewText,
   onRegenerate,
+  onSave,
+  isSaved,
 }: Props) {
   function handleCopy() {
     navigator.clipboard.writeText(`"${reviewText}"`).then(() => {
@@ -91,7 +95,7 @@ export default function ReviewOutputCard({
           className="flex-1 flex items-center justify-center gap-2 text-sm font-semibold text-on-surface-variant py-2 hover:bg-surface-container-high rounded-xl transition-colors"
         >
           <span className="material-symbols-outlined text-base">content_copy</span>
-          Copy Review
+          Copy
         </button>
         <button
           onClick={onRegenerate}
@@ -100,6 +104,22 @@ export default function ReviewOutputCard({
           <span className="material-symbols-outlined text-base">refresh</span>
           Regenerate
         </button>
+        {onSave && (
+          <button
+            onClick={onSave}
+            disabled={isSaved}
+            className={`flex-1 flex items-center justify-center gap-2 text-sm font-semibold py-2 rounded-xl transition-colors ${
+              isSaved
+                ? "bg-teal-500/10 text-teal-600 cursor-default"
+                : "bg-primary text-white hover:bg-red-800"
+            }`}
+          >
+            <span className="material-symbols-outlined text-base">
+              {isSaved ? "check_circle" : "bookmark"}
+            </span>
+            {isSaved ? "Saved ✓" : "Save Review"}
+          </button>
+        )}
       </div>
     </div>
   );

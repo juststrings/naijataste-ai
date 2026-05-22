@@ -2,7 +2,8 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { simulateReview } from "@/lib/api";
+import { simulateReview, adjustReview } from "@/lib/api";
+import toast from "react-hot-toast";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ReviewOutputCard from "@/components/ReviewOutputCard";
 import { useAuth, makeAvatar, getPersona } from "@/contexts/AuthContext";
@@ -104,6 +105,12 @@ function SimulatorContent() {
   // Auth-only state
   const [selectedFood, setSelectedFood] = useState<string | null>(null);
 
+  // Save + feedback state
+  const [isSaved, setIsSaved] = useState(false);
+  const [feedbackText, setFeedbackText] = useState("");
+  const [isAdjusting, setIsAdjusting] = useState(false);
+  const [lastPersona, setLastPersona] = useState<Record<string, unknown>>({});
+
   const [showVoiceHint, setShowVoiceHint] = useState(false);
   const { isListening, startListening, supported: voiceSupported, interim } = useVoiceInput(
     (t) => setRestaurant(t)
@@ -114,6 +121,38 @@ function SimulatorContent() {
     if (showVoiceHint) {
       setShowVoiceHint(false);
       localStorage.setItem("voiceHintSeen", "1");
+    }
+  }
+
+  function handleSave() {
+    if (!result || !user) return;
+    addReview({
+      id: Date.now().toString(),
+      restaurant: restaurant || "Nigerian Restaurant",
+      review: result.review_text,
+      rating: result.rating,
+      date: new Date().toISOString(),
+    });
+    setIsSaved(true);
+    toast.success("Review saved to your profile!");
+  }
+
+  async function handleAdjust() {
+    if (!feedbackText.trim() || !result) return;
+    setIsAdjusting(true);
+    try {
+      const adjusted = await adjustReview({
+        original_review: result.review_text,
+        feedback: feedbackText,
+        original_persona: lastPersona,
+      });
+      setResult(adjusted);
+      setIsSaved(false);
+      setFeedbackText("");
+    } catch {
+      toast.error("Couldn't adjust the review. Try again.");
+    } finally {
+      setIsAdjusting(false);
     }
   }
 
@@ -144,23 +183,24 @@ function SimulatorContent() {
 
   async function generate() {
     const avgMap = { harsh: 2.5, balanced: 3.5, generous: 4.5 };
+    const persona = {
+      user_id: "demo_user",
+      avg_rating: avgMap[habit],
+      rating_tendency: habit,
+      price_sensitivity: price,
+      tone_keywords: ["jollof", "service", "price", "portion", "food", "ambience"],
+      total_reviews: 30,
+      sample_reviews: [
+        habit === "harsh"
+          ? "The food was okay but too expensive for the portion size"
+          : "Good food and reasonable prices",
+        habit === "harsh"
+          ? "Service was slow and the AC was not working"
+          : "Lovely atmosphere and great service",
+      ],
+    };
     const payload = {
-      persona: {
-        user_id: "demo_user",
-        avg_rating: avgMap[habit],
-        rating_tendency: habit,
-        price_sensitivity: price,
-        tone_keywords: ["jollof", "service", "price", "portion", "food", "ambience"],
-        total_reviews: 30,
-        sample_reviews: [
-          habit === "harsh"
-            ? "The food was okay but too expensive for the portion size"
-            : "Good food and reasonable prices",
-          habit === "harsh"
-            ? "Service was slow and the AC was not working"
-            : "Lovely atmosphere and great service",
-        ],
-      },
+      persona,
       item_name: restaurant || "Yellow Chilli Victoria Island",
       item_type: type,
       location: location || "Lagos",
@@ -168,6 +208,9 @@ function SimulatorContent() {
       ...(preferredLanguage && { preferred_language: preferredLanguage }),
     };
 
+    setLastPersona(persona as Record<string, unknown>);
+    setIsSaved(false);
+    setFeedbackText("");
     setState("loading");
     try {
       const data = await simulateReview(payload);
@@ -190,16 +233,17 @@ function SimulatorContent() {
     }
 
     const avgMap = { harsh: 2.5, balanced: 3.5, generous: 4.5 };
+    const persona = {
+      user_id: user.email,
+      avg_rating: avgMap[ratingHabit],
+      rating_tendency: ratingHabit,
+      price_sensitivity: "medium" as const,
+      tone_keywords: ["jollof", "service", "flavour", "portion", "vibes", "ambience"],
+      total_reviews: savedReviews.length,
+      sample_reviews: savedReviews.slice(-2).map((r) => r.review),
+    };
     const payload = {
-      persona: {
-        user_id: user.email,
-        avg_rating: avgMap[ratingHabit],
-        rating_tendency: ratingHabit,
-        price_sensitivity: "medium" as const,
-        tone_keywords: ["jollof", "service", "flavour", "portion", "vibes", "ambience"],
-        total_reviews: savedReviews.length,
-        sample_reviews: savedReviews.slice(-2).map((r) => r.review),
-      },
+      persona,
       item_name: restaurant || "Nigerian Restaurant",
       item_type: type,
       location: location || "VI, Lagos",
@@ -210,18 +254,14 @@ function SimulatorContent() {
       ...(preferredLanguage && { preferred_language: preferredLanguage }),
     };
 
+    setLastPersona(persona as Record<string, unknown>);
+    setIsSaved(false);
+    setFeedbackText("");
     setState("loading");
     try {
       const data = await simulateReview(payload);
       setResult(data);
       setState("result");
-      addReview({
-        id: Date.now().toString(),
-        restaurant: restaurant || "Nigerian Restaurant",
-        review: data.review_text,
-        rating: data.rating,
-        date: new Date().toISOString(),
-      });
     } catch (e) {
       setErrorMsg(e instanceof Error ? e.message : "Something went wrong.");
       setState("error");
@@ -524,7 +564,35 @@ function SimulatorContent() {
                   restaurantType={type}
                   reviewText={result.review_text}
                   onRegenerate={generateAuthenticated}
+                  onSave={handleSave}
+                  isSaved={isSaved}
                 />
+
+                {/* Feedback / adjustment */}
+                <div className="glass p-4 rounded-2xl">
+                  <p className="text-sm font-semibold text-on-surface-variant mb-3">
+                    Not quite right? Tell me how to adjust it
+                  </p>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={feedbackText}
+                      onChange={(e) => setFeedbackText(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleAdjust()}
+                      placeholder="e.g. make it shorter, less hype, drop the rating to 3 stars"
+                      className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-2.5 text-sm"
+                      disabled={isAdjusting}
+                    />
+                    <button
+                      onClick={handleAdjust}
+                      disabled={isAdjusting || !feedbackText.trim()}
+                      className="px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-bold hover:bg-red-800 transition-colors disabled:opacity-50 shrink-0"
+                    >
+                      {isAdjusting ? "..." : "Adjust"}
+                    </button>
+                  </div>
+                </div>
+
                 <button
                   onClick={() => {
                     setState("idle");
@@ -777,15 +845,42 @@ function SimulatorContent() {
           )}
 
           {state === "result" && result && (
-            <ReviewOutputCard
-              rating={result.rating}
-              toneLabel={result.tone_label}
-              reviewerName={name || "Emeka"}
-              reviewerHabit={habit}
-              restaurantType={type}
-              reviewText={result.review_text}
-              onRegenerate={generate}
-            />
+            <>
+              <ReviewOutputCard
+                rating={result.rating}
+                toneLabel={result.tone_label}
+                reviewerName={name || "Emeka"}
+                reviewerHabit={habit}
+                restaurantType={type}
+                reviewText={result.review_text}
+                onRegenerate={generate}
+              />
+
+              {/* Feedback / adjustment */}
+              <div className="glass p-4 rounded-2xl mt-4">
+                <p className="text-sm font-semibold text-on-surface-variant mb-3">
+                  Not quite right? Tell me how to adjust it
+                </p>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={feedbackText}
+                    onChange={(e) => setFeedbackText(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleAdjust()}
+                    placeholder="e.g. make it shorter, less hype, drop the rating to 3 stars"
+                    className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-2.5 text-sm"
+                    disabled={isAdjusting}
+                  />
+                  <button
+                    onClick={handleAdjust}
+                    disabled={isAdjusting || !feedbackText.trim()}
+                    className="px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-bold hover:bg-red-800 transition-colors disabled:opacity-50 shrink-0"
+                  >
+                    {isAdjusting ? "..." : "Adjust"}
+                  </button>
+                </div>
+              </div>
+            </>
           )}
 
           {state === "error" && (

@@ -26,6 +26,12 @@ class SimulateReviewResponse(BaseModel):
     tone_label: str
 
 
+class AdjustReviewRequest(BaseModel):
+    original_review: str
+    feedback: str
+    original_persona: dict = {}
+
+
 @router.post("/simulate-review", response_model=SimulateReviewResponse)
 def simulate_review(body: SimulateReviewRequest):
     # Resolve persona
@@ -66,6 +72,30 @@ def simulate_review(body: SimulateReviewRequest):
     # Append strict output instruction so Gemini doesn't stray from the schema
     prompt += (
         "\n\nIMPORTANT: Return ONLY this JSON object — no explanation, no markdown:\n"
+        '{"rating": <integer 1-5>, "review_text": "<review>", '
+        '"tone_label": "<pidgin-heavy|mixed|formal|casual>"}'
+    )
+
+    result = generate_json(prompt)
+
+    return SimulateReviewResponse(
+        rating=int(result["rating"]),
+        review_text=str(result["review_text"]),
+        tone_label=str(result["tone_label"]),
+    )
+
+
+@router.post("/adjust-review", response_model=SimulateReviewResponse)
+def adjust_review(body: AdjustReviewRequest):
+    persona = body.original_persona
+    tone_hint = persona.get("rating_tendency", "balanced")
+
+    prompt = (
+        f'Here is a simulated restaurant review written by a {tone_hint} Nigerian reviewer:\n'
+        f'"{body.original_review}"\n\n'
+        f"The user wants these adjustments: {body.feedback}\n\n"
+        "Rewrite the review incorporating the feedback while keeping the same Nigerian voice and persona style.\n\n"
+        "IMPORTANT: Return ONLY this JSON object — no explanation, no markdown:\n"
         '{"rating": <integer 1-5>, "review_text": "<review>", '
         '"tone_label": "<pidgin-heavy|mixed|formal|casual>"}'
     )

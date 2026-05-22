@@ -56,6 +56,24 @@ export async function simulateReview(
   return res.json();
 }
 
+export interface AdjustReviewPayload {
+  original_review: string;
+  feedback: string;
+  original_persona: Record<string, unknown>;
+}
+
+export async function adjustReview(
+  payload: AdjustReviewPayload
+): Promise<SimulateReviewResponse> {
+  const res = await fetch(`${API_BASE}/adjust-review`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error(`API error ${res.status}`);
+  return res.json();
+}
+
 export interface PlaceDetails {
   name: string | null;
   address: string | null;
