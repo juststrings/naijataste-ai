@@ -14,7 +14,7 @@ export default function AboutPage() {
         <span className="text-primary italic">Deep Intelligence.</span>
       </h1>
       <p className="text-lg text-on-surface-variant mb-10">
-        NaijaTaste AI isn&apos;t just an algorithm. It&apos;s a digital connoisseur trained on the vibrant pulse
+        NaijaTaste isn&apos;t just an algorithm. It&apos;s a digital connoisseur trained on the vibrant pulse
         of Nigerian kitchens, markets, and buka traditions.
       </p>
 
@@ -77,7 +77,7 @@ export default function AboutPage() {
             </div>
             <p className="text-sm text-on-surface-variant">
               Understands and responds in <strong>English</strong>, <strong>Yoruba</strong>, <strong>Hausa</strong>, <strong>Igbo</strong>, and <strong>Nigerian Pidgin</strong>.
-              Type in your language and NaijaTaste AI replies in kind — no switching required.
+              Type in your language and NaijaTaste replies in kind — no switching required.
             </p>
           </div>
         </div>

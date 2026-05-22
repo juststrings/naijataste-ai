@@ -106,7 +106,7 @@ function GuestHome() {
             Who are you eating like today?
           </h2>
           <p className="text-center text-on-surface-variant mb-10">
-            Choose a persona to see how NaijaTaste AI reads the city for you.
+            Choose a persona to see how NaijaTaste reads the city for you.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <PersonaCard

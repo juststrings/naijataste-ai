@@ -47,7 +47,7 @@ export default function NavBar() {
             <path d="M70 80 C70 60 130 60 130 80" stroke="#00685d" strokeWidth="12" fill="none" strokeLinecap="round" />
             <text x="100" y="115" fontFamily="Montserrat,sans-serif" fontSize="22" fontWeight="bold" fill="#001f29" textAnchor="middle">NT AI</text>
           </svg>
-          <span className="font-bold text-xl text-primary" style={{ fontFamily: "Montserrat, sans-serif" }}>NaijaTaste AI</span>
+          <span className="font-bold text-xl text-primary" style={{ fontFamily: "Montserrat, sans-serif" }}>NaijaTaste</span>
         </Link>
 
         {/* Desktop nav */}

@@ -66,7 +66,7 @@ function BookSidebar({ delay }: { delay: number }) {
           </div>
         </div>
       </div>
-      <div className="mt-4 text-xs opacity-50">Powered by NaijaTaste AI Cross-Domain Engine</div>
+      <div className="mt-4 text-xs opacity-50">Powered by NaijaTaste Cross-Domain Engine</div>
     </div>
   );
 }

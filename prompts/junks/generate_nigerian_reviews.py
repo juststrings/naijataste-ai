@@ -1,5 +1,5 @@
 """
-NaijaTaste AI - Nigerian Review Dataset Generator
+NaijaTaste - Nigerian Review Dataset Generator
 Uses Gemini 2.0 Flash to synthesize structured Nigerian restaurant reviews
 grounded in real Outscraper Google Maps data + handcrafted samples.
 

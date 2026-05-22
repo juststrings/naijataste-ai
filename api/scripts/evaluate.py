@@ -242,7 +242,7 @@ def save_results(task_a_results, task_b_results):
 
 # ── Main ───────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    print("NaijaTaste AI — Evaluation Suite")
+    print("NaijaTaste — Evaluation Suite")
     print("Running against:", API_BASE)
 
     task_a = evaluate_task_a(sample_size=50)

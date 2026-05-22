@@ -8,7 +8,7 @@ import NextAuthProvider from "@/components/SessionProvider";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "NaijaTaste AI | Correct Taste, Every Time",
+  title: "NaijaTaste | Correct Taste, Every Time",
   description:
     "The AI-powered food engine for the Nigerian palate. Simulate reviews and get hyper-local restaurant recommendations.",
   icons: {

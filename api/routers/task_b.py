@@ -120,7 +120,7 @@ def _build_conversational_prompt(
     )
 
     return (
-        f"You are NaijaTaste AI, an intelligent Nigerian food recommendation chatbot.\n\n"
+        f"You are NaijaTaste, an intelligent Nigerian food recommendation chatbot.\n\n"
         f"You can understand any message in English, Pidgin, Yoruba, Hausa, or Igbo.\n\n"
         f"INTENT HANDLING:\n"
         f"- If the user is greeting you, respond warmly and ask what they are craving. Return empty items [].\n"

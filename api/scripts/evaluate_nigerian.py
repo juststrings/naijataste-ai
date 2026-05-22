@@ -1,5 +1,5 @@
 """
-NaijaTaste AI — Nigerian Evaluation Suite
+NaijaTaste — Nigerian Evaluation Suite
 Streams test cases from the full Yelp dataset (NDJSON, line-by-line).
 Falls back to the sample JSON files if the full dataset is not found.
 
@@ -18,6 +18,8 @@ import random
 import re
 import sys
 from pathlib import Path
+
+import time
 
 import requests
 
@@ -224,7 +226,8 @@ def evaluate_task_a(user_reviews: dict, biz_lookup: dict) -> dict | None:
     review_texts: list[str] = []
     results: list[dict] = []
 
-    for uid in sampled:
+    total = len(sampled)
+    for i, uid in enumerate(sampled):
         user_revs = sorted(eligible[uid], key=lambda r: r.get("review_id", ""))
         history = user_revs[:-1]
         test = user_revs[-1]
@@ -245,6 +248,8 @@ def evaluate_task_a(user_reviews: dict, biz_lookup: dict) -> dict | None:
         }
 
         try:
+            print(f"  [{i+1}/{total}] Calling /simulate-review... (3s delay)")
+            time.sleep(3)
             resp = requests.post(f"{API_BASE}/simulate-review", json=payload, timeout=30)
             if resp.status_code == 200:
                 data = resp.json()
@@ -333,7 +338,8 @@ def evaluate_task_b(user_reviews: dict, biz_lookup: dict) -> dict | None:
     nigerian_hits = 0
     relevance_hits = 0
 
-    for uid in sampled:
+    total = len(sampled)
+    for i, uid in enumerate(sampled):
         user_revs = user_reviews[uid]
         liked = [r for r in user_revs if r["stars"] >= 4]
 
@@ -365,6 +371,8 @@ def evaluate_task_b(user_reviews: dict, biz_lookup: dict) -> dict | None:
         }
 
         try:
+            print(f"  [{i+1}/{total}] Calling /recommend... (3s delay)")
+            time.sleep(3)
             resp = requests.post(f"{API_BASE}/recommend", json=payload, timeout=30)
             if resp.status_code == 200:
                 recs = resp.json()
@@ -438,7 +446,7 @@ def evaluate_task_b(user_reviews: dict, biz_lookup: dict) -> dict | None:
 if __name__ == "__main__":
     API_BASE = sys.argv[1] if len(sys.argv) > 1 else API_BASE
 
-    print("NaijaTaste AI — Nigerian Evaluation Suite")
+    print("NaijaTaste — Nigerian Evaluation Suite")
     print(f"API: {API_BASE}")
 
     user_reviews, biz_lookup = load_data()

@@ -1,4 +1,4 @@
-# NaijaTaste AI 🍛
+# NaijaTaste 🍛
 > Correct taste, every time.
 
 **DSN × Bluechip Technologies LLM Agent Challenge, Hackathon 3.0**
@@ -14,7 +14,7 @@ An intelligent Nigerian user behaviour modelling and recommendation system that 
 
 ## What It Does
 
-NaijaTaste AI is a unified agent system powered by one shared brain: the **Nigerian Persona Engine**. It drives two core abilities:
+NaijaTaste is a unified agent system powered by one shared brain: the **Nigerian Persona Engine**. It drives two core abilities:
 
 **Task A: Review Simulator**  
 Given a user persona and a restaurant, the agent predicts exactly how that user would review it: star rating, written review text, tone, and language patterns. Reviews come out in authentic Nigerian Pidgin English.
@@ -26,7 +26,7 @@ Given a user persona (or cold-start signals for new users), the agent recommends
 
 ## WhatsApp Agent 📱
 
-NaijaTaste AI is available on WhatsApp! Get restaurant recommendations and
+NaijaTaste is available on WhatsApp! Get restaurant recommendations and
 simulate reviews directly from your WhatsApp chat.
 
 ### Features on WhatsApp
@@ -41,7 +41,7 @@ simulate reviews directly from your WhatsApp chat.
 
 ### Coming Soon
 Full WhatsApp Business API integration with a dedicated Nigerian number —
-no join code needed. Users will message NaijaTaste AI directly.
+no join code needed. Users will message NaijaTaste directly.
 
 ---
 
