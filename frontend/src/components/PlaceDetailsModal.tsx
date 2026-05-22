@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { getPlaceDetails, PlaceDetails } from "@/lib/api";
 import { formatPrice } from "@/lib/utils";
 
@@ -26,6 +27,9 @@ export default function PlaceDetailsModal({ isOpen, onClose, placeId, restaurant
   const [error, setError] = useState<string | null>(null);
   const [photoIdx, setPhotoIdx] = useState(0);
   const [hoursOpen, setHoursOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -54,7 +58,7 @@ export default function PlaceDetailsModal({ isOpen, onClose, placeId, restaurant
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
   const mapsUrl =
     placeData?.google_maps_url ||
@@ -62,7 +66,7 @@ export default function PlaceDetailsModal({ isOpen, onClose, placeId, restaurant
       ? `https://maps.google.com/?q=${placeData.lat},${placeData.lng}`
       : `https://maps.google.com/?q=${encodeURIComponent(restaurantName)}`);
 
-  return (
+  return createPortal(
     <>
       {/* Backdrop */}
       <div className="fixed inset-0 bg-black/50 z-[55]" onClick={onClose} />
@@ -128,8 +132,8 @@ export default function PlaceDetailsModal({ isOpen, onClose, placeId, restaurant
           {/* ── Error ── */}
           {placeId && error && !loading && (
             <div className="px-5 pb-6">
-              <p className="text-error text-sm mb-4">
-                Search Google Maps to see live details
+              <p className="text-on-surface-variant text-sm mb-4">
+                Live details unavailable — open in Google Maps to see reviews and hours.
               </p>
               <a
                 href={mapsUrl}
@@ -298,6 +302,7 @@ export default function PlaceDetailsModal({ isOpen, onClose, placeId, restaurant
           )}
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 }
