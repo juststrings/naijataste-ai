@@ -152,21 +152,21 @@ export default function FlavorFinderPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-16 py-10">
       {/* Welcome header */}
-      <div className="mb-8 flex items-center justify-between w-full gap-4 px-0">
+      <div className="flex items-center justify-between w-full mb-6">
         <div className="flex-1">
-          <h1 className="text-4xl text-on-surface mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
-            <span className="font-normal block">Welcome Back,</span>
-            <span className="font-black text-primary">{firstName}.</span>
-          </h1>
-          <p className="text-on-surface-variant italic text-sm">Correct taste Wey fit your mood today.</p>
+          <h1 className="text-3xl font-bold text-on-surface">Welcome Back,</h1>
+          <h1 className="text-3xl font-bold text-primary">{firstName}.</h1>
+          <p className="text-on-surface-variant italic mt-1 text-sm">Correct taste Wey fit your mood today.</p>
         </div>
-        <Link
-          href="/simulator"
-          className="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 md:py-2 rounded-xl font-bold text-sm hover:bg-red-800 transition-all active:scale-95 md:flex-shrink-0"
-        >
-          <span className="material-symbols-outlined text-base">edit</span>
-          Simulate Review
-        </Link>
+        <div className="flex-shrink-0">
+          <Link
+            href="/simulator"
+            className="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 md:py-2 rounded-xl font-bold text-sm hover:bg-red-800 transition-all active:scale-95"
+          >
+            <span className="material-symbols-outlined text-base">edit</span>
+            Simulate Review
+          </Link>
+        </div>
       </div>
 
       {/* Daily Challenge */}
