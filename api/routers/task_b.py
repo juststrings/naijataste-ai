@@ -156,47 +156,49 @@ def _build_conversational_prompt(
 
 
 # ---------------------------------------------------------------------------
-# Endpoint
+# Core logic (importable by webhook and HTTP endpoint)
 # ---------------------------------------------------------------------------
 
 
-@router.post("/recommend", response_model=RecommendResponse)
-def recommend(body: RecommendRequest):
-    # Resolve persona
-    if body.user_id:
-        from core.yelp_loader import PersonaEncoder
-        persona = PersonaEncoder(body.user_id)
-    elif body.cold_start_signals:
-        persona = _persona_from_cold_start(body.cold_start_signals)
-    else:
-        raise HTTPException(
-            status_code=422,
-            detail="Provide either user_id or cold_start_signals.",
-        )
+def get_recommendations_from_gemini(
+    query: str,
+    cold_start_signals: Optional[dict] = None,
+    user_lat: Optional[float] = None,
+    user_lng: Optional[float] = None,
+    persona: Optional[dict] = None,
+) -> dict:
+    """
+    Shared logic used by both the HTTP endpoint and the WhatsApp webhook.
+    Returns a plain dict: {intent, message, items, detected_language}.
+    """
+    if persona is None:
+        if cold_start_signals:
+            persona = _persona_from_cold_start(cold_start_signals)
+        else:
+            persona = {
+                "user_id": "anonymous",
+                "avg_rating": 3.5,
+                "rating_tendency": "balanced",
+                "price_sensitivity": "medium",
+                "tone_keywords": [],
+                "total_reviews": 0,
+                "sample_reviews": [],
+                "_city": "",
+            }
 
-    # Determine search query and location
-    query = (
-        body.query
-        or (body.cold_start_signals or {}).get("preferred_food", "")
-        or " ".join(persona.get("tone_keywords", []))
-        or "Nigerian restaurant"
-    )
-    location = _extract_location(query, body.cold_start_signals)
-
-    # Fetch real restaurants — empty list is OK; Gemini handles non-food intents gracefully
+    location = _extract_location(query, cold_start_signals)
     real_restaurants = search_real_restaurants(
-        query, location, user_lat=body.user_lat, user_lng=body.user_lng
+        query, location, user_lat=user_lat, user_lng=user_lng
     )
 
     display_location = (
-        f"near the user's current location ({body.user_lat:.4f}, {body.user_lng:.4f})"
-        if body.user_lat and body.user_lng
+        f"near the user's current location ({user_lat:.4f}, {user_lng:.4f})"
+        if user_lat and user_lng
         else location
     )
     prompt = _build_conversational_prompt(query, display_location, persona, real_restaurants)
     result = generate_json(prompt, max_tokens=4000)
 
-    # Extract all fields from Gemini's conversational response
     if isinstance(result, dict):
         intent = str(result.get("intent", "FOOD_QUERY"))
         message = str(result.get("message", ""))
@@ -205,35 +207,81 @@ def recommend(body: RecommendRequest):
         if not isinstance(items_list, list):
             items_list = []
     elif isinstance(result, list):
-        # Gemini ignored the wrapper format — treat as a flat recommendation list
         intent = "FOOD_QUERY"
         message = ""
         detected_language = "en"
         items_list = result
     else:
-        raise HTTPException(
-            status_code=502,
-            detail=f"Unexpected response shape from Gemini: {type(result).__name__}",
-        )
+        intent = "FOOD_QUERY"
+        message = ""
+        detected_language = "en"
+        items_list = []
 
-    # Map place_id → business_id for API compatibility
-    place_id_map = {
-        r.get("name", "").lower(): r.get("place_id")
-        for r in real_restaurants
+    place_id_map = {r.get("name", "").lower(): r.get("place_id") for r in real_restaurants}
+
+    items = [
+        {
+            "item_name": str(r.get("item_name", "")),
+            "business_id": place_id_map.get(r.get("item_name", "").lower()),
+            "reason": str(r.get("reason", "")),
+            "predicted_rating": float(r.get("predicted_rating", 3.0)),
+            "cultural_note": str(r.get("cultural_note", "")),
+        }
+        for r in items_list[:5]
+    ]
+
+    return {
+        "intent": intent,
+        "message": message,
+        "items": items,
+        "detected_language": detected_language,
     }
 
+
+# ---------------------------------------------------------------------------
+# Endpoint
+# ---------------------------------------------------------------------------
+
+
+@router.post("/recommend", response_model=RecommendResponse)
+def recommend(body: RecommendRequest):
+    if body.user_id:
+        from core.yelp_loader import PersonaEncoder
+        persona = PersonaEncoder(body.user_id)
+    elif body.cold_start_signals:
+        persona = None  # get_recommendations_from_gemini builds it from signals
+    else:
+        raise HTTPException(
+            status_code=422,
+            detail="Provide either user_id or cold_start_signals.",
+        )
+
+    query = (
+        body.query
+        or (body.cold_start_signals or {}).get("preferred_food", "")
+        or "Nigerian restaurant"
+    )
+
+    result = get_recommendations_from_gemini(
+        query=query,
+        cold_start_signals=body.cold_start_signals,
+        user_lat=body.user_lat,
+        user_lng=body.user_lng,
+        persona=persona if body.user_id else None,
+    )
+
     return RecommendResponse(
-        intent=intent,
-        message=message,
+        intent=result["intent"],
+        message=result["message"],
         items=[
             RecommendedItem(
-                item_name=str(r.get("item_name", "")),
-                business_id=place_id_map.get(r.get("item_name", "").lower()),
-                reason=str(r.get("reason", "")),
-                predicted_rating=float(r.get("predicted_rating", 3.0)),
-                cultural_note=str(r.get("cultural_note", "")),
+                item_name=item["item_name"],
+                business_id=item.get("business_id"),
+                reason=item["reason"],
+                predicted_rating=item["predicted_rating"],
+                cultural_note=item.get("cultural_note", ""),
             )
-            for r in items_list[:5]
+            for item in result["items"]
         ],
-        detected_language=detected_language,
+        detected_language=result["detected_language"],
     )

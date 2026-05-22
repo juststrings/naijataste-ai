@@ -9,3 +9,5 @@ sentence-transformers
 googlemaps
 numpy
 requests
+twilio>=8.0.0
+python-multipart

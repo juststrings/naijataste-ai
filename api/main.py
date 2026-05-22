@@ -1,7 +1,8 @@
 import os
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from routers import task_a, task_b
 
 app = FastAPI(title="DSN Bluechip API", version="1.0.0")
@@ -167,3 +168,60 @@ async def get_place_details(place_id: str):
     except Exception as e:
         print(f"[PLACE DETAILS ERROR] {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------------------------------------------------------------------------
+# WhatsApp webhook (Twilio)
+# ---------------------------------------------------------------------------
+
+# Per-user conversation state: phone → {city, preferred_food, price_range}
+_whatsapp_sessions: dict[str, dict] = {}
+
+
+def _format_whatsapp_recommendations(items: list[dict], intro_message: str) -> str:
+    lines = [intro_message, ""]
+    for i, item in enumerate(items, 1):
+        name = item.get("item_name", "")
+        rating = item.get("predicted_rating", "")
+        reason = item.get("reason", "")
+        lines.append(f"{i}. *{name}* ⭐ {rating}")
+        if reason:
+            lines.append(f"   {reason}")
+        lines.append("")
+    lines.append("Reply with your next craving or ask for something else!")
+    return "\n".join(lines)
+
+
+@app.post("/whatsapp/webhook")
+async def whatsapp_webhook(Body: str = Form(...), From: str = Form(...)):
+    from twilio.twiml.messaging_response import MessagingResponse
+    from routers.task_b import get_recommendations_from_gemini
+
+    user_message = Body.strip()
+    user_phone = From.strip()
+
+    # Build or reuse a cold-start persona for this session
+    session = _whatsapp_sessions.setdefault(
+        user_phone,
+        {"city": "Lagos", "preferred_food": "Nigerian food", "price_range": "mid"},
+    )
+
+    print(f"[WHATSAPP] from={user_phone} msg={user_message!r}")
+
+    result = get_recommendations_from_gemini(
+        query=user_message,
+        cold_start_signals=session,
+    )
+
+    intent = result["intent"]
+    message = result["message"]
+    items = result["items"]
+
+    if intent == "FOOD_QUERY" and items:
+        bot_reply = _format_whatsapp_recommendations(items, message)
+    else:
+        bot_reply = message or "I'm here to help you find great Nigerian food! What are you craving?"
+
+    twiml = MessagingResponse()
+    twiml.message(bot_reply)
+    return Response(content=str(twiml), media_type="application/xml")
