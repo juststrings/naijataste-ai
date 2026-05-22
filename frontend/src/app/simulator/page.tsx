@@ -95,7 +95,7 @@ function SimulatorContent() {
   const [selectedFood, setSelectedFood] = useState<string | null>(null);
 
   const [showVoiceHint, setShowVoiceHint] = useState(false);
-  const { isListening, startListening, supported: voiceSupported } = useVoiceInput(
+  const { isListening, startListening, supported: voiceSupported, interim } = useVoiceInput(
     (t) => setRestaurant(t)
   );
 
@@ -355,10 +355,11 @@ function SimulatorContent() {
                       <div className="flex gap-2">
                         <input
                           type="text"
-                          value={restaurant}
-                          onChange={(e) => setRestaurant(e.target.value)}
-                          placeholder="e.g. Yellow Chilli"
-                          className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
+                          value={isListening ? interim : restaurant}
+                          onChange={(e) => !isListening && setRestaurant(e.target.value)}
+                          placeholder={isListening ? "Listening..." : "e.g. Yellow Chilli"}
+                          readOnly={isListening}
+                          className={`flex-grow bg-white border-2 rounded-xl px-4 py-3 text-sm transition-colors ${isListening ? "border-red-400 text-on-surface-variant italic" : "border-outline/20"}`}
                         />
                         {voiceSupported && (
                           <button
@@ -616,10 +617,11 @@ function SimulatorContent() {
                 <div className="flex gap-2">
                   <input
                     type="text"
-                    value={restaurant}
-                    onChange={(e) => setRestaurant(e.target.value)}
-                    placeholder="e.g. Yellow Chilli Victoria Island"
-                    className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
+                    value={isListening ? interim : restaurant}
+                    onChange={(e) => !isListening && setRestaurant(e.target.value)}
+                    placeholder={isListening ? "Listening..." : "e.g. Yellow Chilli Victoria Island"}
+                    readOnly={isListening}
+                    className={`flex-grow bg-white border-2 rounded-xl px-4 py-3 text-sm transition-colors ${isListening ? "border-red-400 text-on-surface-variant italic" : "border-outline/20"}`}
                   />
                   {voiceSupported && (
                     <button

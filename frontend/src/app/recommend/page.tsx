@@ -143,8 +143,8 @@ export default function RecommendPage() {
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const [showVoiceHint, setShowVoiceHint] = useState(false);
 
-  const { isListening, startListening, supported: voiceSupported } = useVoiceInput(
-    (t) => setChatInput((prev) => (prev ? prev + " " : "") + t)
+  const { isListening, startListening, supported: voiceSupported, interim } = useVoiceInput(
+    (t) => setChatInput(t)
   );
 
   function handleMicClick() {
@@ -323,11 +323,12 @@ export default function RecommendPage() {
                 <div className="flex gap-2">
                   <input
                     type="text"
-                    value={chatInput}
-                    onChange={(e) => setChatInput(e.target.value)}
+                    value={isListening ? interim : chatInput}
+                    onChange={(e) => !isListening && setChatInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && sendChat()}
-                    placeholder="Type your craving..."
-                    className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
+                    placeholder={isListening ? "Listening..." : "Type your craving..."}
+                    readOnly={isListening}
+                    className={`flex-grow bg-white border-2 rounded-xl px-4 py-3 text-sm transition-colors ${isListening ? "border-red-400 text-on-surface-variant italic" : "border-outline/20"}`}
                   />
                   {voiceSupported && (
                     <button

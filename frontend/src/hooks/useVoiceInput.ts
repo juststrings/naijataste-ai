@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 export function useVoiceInput(onResult: (transcript: string) => void) {
   const [isListening, setIsListening] = useState(false);
   const [supported, setSupported] = useState(false);
+  const [interim, setInterim] = useState("");
   const callbackRef = useRef(onResult);
   callbackRef.current = onResult;
 
@@ -24,19 +25,41 @@ export function useVoiceInput(onResult: (transcript: string) => void) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rec: any = new Ctor();
     rec.continuous = false;
-    rec.interimResults = false;
+    rec.interimResults = true;
     rec.lang = "en-NG";
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     rec.onresult = (e: any) => {
-      callbackRef.current(e.results[0][0].transcript as string);
+      let interimText = "";
+      let finalText = "";
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const t = e.results[i][0].transcript as string;
+        if (e.results[i].isFinal) {
+          finalText += t;
+        } else {
+          interimText += t;
+        }
+      }
+      if (finalText) {
+        setInterim("");
+        callbackRef.current(finalText.trim());
+      } else {
+        setInterim(interimText);
+      }
     };
-    rec.onend = () => setIsListening(false);
-    rec.onerror = () => setIsListening(false);
+
+    rec.onend = () => {
+      setInterim("");
+      setIsListening(false);
+    };
+    rec.onerror = () => {
+      setInterim("");
+      setIsListening(false);
+    };
 
     rec.start();
     setIsListening(true);
   }
 
-  return { isListening, startListening, supported };
+  return { isListening, startListening, supported, interim };
 }
