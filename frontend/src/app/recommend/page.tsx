@@ -7,6 +7,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import RecCard from "@/components/RecCard";
 import PlaceDetailsModal from "@/components/PlaceDetailsModal";
 import { resolveLocation, UserLocation, ResolvedLocation } from "@/lib/location";
+import { useVoiceInput } from "@/hooks/useVoiceInput";
 
 type ChatMsg = { type: "user" | "bot"; text: string };
 type RecMode = "chat" | "form";
@@ -123,6 +124,23 @@ export default function RecommendPage() {
   const [priceRange, setPriceRange] = useState<"budget" | "mid" | "premium">("budget");
 
   const chatWindowRef = useRef<HTMLDivElement>(null);
+  const [showVoiceHint, setShowVoiceHint] = useState(false);
+
+  const { isListening, startListening, supported: voiceSupported } = useVoiceInput(
+    (t) => setChatInput((prev) => (prev ? prev + " " : "") + t)
+  );
+
+  function handleMicClick() {
+    startListening();
+    if (showVoiceHint) {
+      setShowVoiceHint(false);
+      localStorage.setItem("voiceHintSeen", "1");
+    }
+  }
+
+  useEffect(() => {
+    if (!localStorage.getItem("voiceHintSeen")) setShowVoiceHint(true);
+  }, []);
 
   useEffect(() => {
     const prefill = sessionStorage.getItem("chatPrefill");
@@ -284,21 +302,41 @@ export default function RecommendPage() {
                   </button>
                 ))}
               </div>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={chatInput}
-                  onChange={(e) => setChatInput(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && sendChat()}
-                  placeholder="Type your craving..."
-                  className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
-                />
-                <button
-                  onClick={sendChat}
-                  className="bg-primary text-white w-12 h-12 flex items-center justify-center rounded-xl hover:bg-red-800 active:scale-95 transition-all flex-shrink-0"
-                >
-                  <span className="material-symbols-outlined">send</span>
-                </button>
+              <div>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && sendChat()}
+                    placeholder="Type your craving..."
+                    className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
+                  />
+                  {voiceSupported && (
+                    <button
+                      onClick={handleMicClick}
+                      title="Speak your craving"
+                      className={`w-12 h-12 flex items-center justify-center rounded-xl flex-shrink-0 transition-all ${
+                        isListening
+                          ? "bg-red-500 text-white animate-pulse"
+                          : "bg-surface-container-high text-on-surface-variant hover:bg-surface-container"
+                      }`}
+                    >
+                      <span className="material-symbols-outlined">mic</span>
+                    </button>
+                  )}
+                  <button
+                    onClick={sendChat}
+                    className="bg-primary text-white w-12 h-12 flex items-center justify-center rounded-xl hover:bg-red-800 active:scale-95 transition-all flex-shrink-0"
+                  >
+                    <span className="material-symbols-outlined">send</span>
+                  </button>
+                </div>
+                {showVoiceHint && (
+                  <p className="text-xs text-on-surface-variant text-center mt-2">
+                    🎤 Speak or type in English, Yoruba, Hausa, Igbo or Pidgin — I go respond in your language
+                  </p>
+                )}
               </div>
             </div>
           )}

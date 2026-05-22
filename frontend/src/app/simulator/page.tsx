@@ -6,6 +6,7 @@ import { simulateReview } from "@/lib/api";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ReviewOutputCard from "@/components/ReviewOutputCard";
 import { useAuth, makeAvatar, getPersona } from "@/contexts/AuthContext";
+import { useVoiceInput } from "@/hooks/useVoiceInput";
 
 const PERSONAS = {
   professional: {
@@ -92,6 +93,23 @@ function SimulatorContent() {
 
   // Auth-only state
   const [selectedFood, setSelectedFood] = useState<string | null>(null);
+
+  const [showVoiceHint, setShowVoiceHint] = useState(false);
+  const { isListening, startListening, supported: voiceSupported } = useVoiceInput(
+    (t) => setRestaurant(t)
+  );
+
+  function handleMicClick() {
+    startListening();
+    if (showVoiceHint) {
+      setShowVoiceHint(false);
+      localStorage.setItem("voiceHintSeen", "1");
+    }
+  }
+
+  useEffect(() => {
+    if (!localStorage.getItem("voiceHintSeen")) setShowVoiceHint(true);
+  }, []);
 
   useEffect(() => {
     if (personaParam && PERSONAS[personaParam]) {
@@ -334,13 +352,33 @@ function SimulatorContent() {
                       <label className="block text-sm font-semibold text-on-surface-variant mb-1">
                         Restaurant Name
                       </label>
-                      <input
-                        type="text"
-                        value={restaurant}
-                        onChange={(e) => setRestaurant(e.target.value)}
-                        placeholder="e.g. Yellow Chilli"
-                        className="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
-                      />
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={restaurant}
+                          onChange={(e) => setRestaurant(e.target.value)}
+                          placeholder="e.g. Yellow Chilli"
+                          className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
+                        />
+                        {voiceSupported && (
+                          <button
+                            onClick={handleMicClick}
+                            title="Speak restaurant name"
+                            className={`w-12 h-12 flex items-center justify-center rounded-xl flex-shrink-0 transition-all ${
+                              isListening
+                                ? "bg-red-500 text-white animate-pulse"
+                                : "bg-surface-container-high text-on-surface-variant hover:bg-surface-container"
+                            }`}
+                          >
+                            <span className="material-symbols-outlined">mic</span>
+                          </button>
+                        )}
+                      </div>
+                      {showVoiceHint && (
+                        <p className="text-xs text-on-surface-variant mt-1">
+                          🎤 Speak or type in English, Yoruba, Hausa, Igbo or Pidgin — I go respond in your language
+                        </p>
+                      )}
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
@@ -575,13 +613,33 @@ function SimulatorContent() {
                 <label className="block text-sm font-semibold text-on-surface-variant mb-1">
                   Restaurant Name
                 </label>
-                <input
-                  type="text"
-                  value={restaurant}
-                  onChange={(e) => setRestaurant(e.target.value)}
-                  placeholder="e.g. Yellow Chilli Victoria Island"
-                  className="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
-                />
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={restaurant}
+                    onChange={(e) => setRestaurant(e.target.value)}
+                    placeholder="e.g. Yellow Chilli Victoria Island"
+                    className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm"
+                  />
+                  {voiceSupported && (
+                    <button
+                      onClick={handleMicClick}
+                      title="Speak restaurant name"
+                      className={`w-12 h-12 flex items-center justify-center rounded-xl flex-shrink-0 transition-all ${
+                        isListening
+                          ? "bg-red-500 text-white animate-pulse"
+                          : "bg-surface-container-high text-on-surface-variant hover:bg-surface-container"
+                      }`}
+                    >
+                      <span className="material-symbols-outlined">mic</span>
+                    </button>
+                  )}
+                </div>
+                {showVoiceHint && (
+                  <p className="text-xs text-on-surface-variant mt-1">
+                    🎤 Speak or type in English, Yoruba, Hausa, Igbo or Pidgin — I go respond in your language
+                  </p>
+                )}
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
