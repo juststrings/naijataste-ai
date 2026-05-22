@@ -146,17 +146,21 @@ naijataste-ai/
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| LLM | Gemini 2.5 Flash / 2.0 Flash (Google AI Studio) |
-| Backend | FastAPI (Python 3.11) |
-| Frontend | Next.js 15, TypeScript, Tailwind CSS |
-| Restaurant Data | Google Places API (real-time) |
-| Cache | JSON file cache (MD5-keyed, zero repeat API calls) |
-| Containerisation | Docker |
-| Deployment | Render (primary), Railway (secondary) |
-| Uptime Monitoring | UptimeRobot (5-min ping, never sleeps) |
-| Data Processing | Pandas, Python |
+| Component | Technology | Platform |
+|-----------|-----------|----------|
+| LLM | Gemini 2.5 Flash + 2.5 Flash Lite + 3.5 Flash + 3.1 Flash Lite (6-key × 4-model rotation = 24 attempts) | Google AI Studio |
+| Restaurant Data | Google Places API (real-time, geolocation-aware) | Google Cloud |
+| Cache | MD5-keyed JSON (places_cache.json) | Persistent storage |
+| Backend | FastAPI (Python 3.11) | Render (primary) + Railway (secondary) |
+| Frontend | Next.js 15, TypeScript, Tailwind CSS | Render |
+| Database | PostgreSQL via Prisma | Render Postgres |
+| Auth | NextAuth.js + Google OAuth + Email/Password | Render |
+| WhatsApp Bot | Twilio Sandbox + FastAPI webhook | Render |
+| Uptime | UptimeRobot (5-min ping, never sleeps) | External |
+
+**Live Demo:** https://naijataste-ai.onrender.com  
+**API Docs:** https://naijataste-api.onrender.com/docs  
+**WhatsApp:** Send `join dress-newspaper` to +1 415 523 8886
 
 ---
 
@@ -318,21 +322,79 @@ python scripts/evaluate.py
 
 Results are saved to `api/evaluation_results.json`.
 
-| Metric | Score |
-|--------|-------|
-| Task A: RMSE | Run script to generate |
-| Task A: MAE | Run script to generate |
-| Task B: NDCG@10 | Run script to generate |
-| Task B: Hit Rate@10 | Run script to generate |
+### Task A — Review Simulation Metrics
+
+| Metric | Score | Notes |
+|--------|-------|-------|
+| RMSE | 1.63 | Yelp dataset (n=30); inflated by US-Nigerian domain mismatch |
+| MAE | 1.13 | Average absolute error on 5-point scale |
+| Within 1 Star | 70.0% | Majority of predictions within acceptable range |
+| Nigerian Rating Accuracy | 100% | Nigerian-specific evaluation (n=10) |
+| Pidgin Usage Rate | 100% | Nigerian evaluation — every review has Pidgin markers |
+| Avg Rating Error | 0.50 stars | Half-star average deviation on Nigerian test suite |
+
+### Ablation Study — Nigerian Voice Layer
+
+| Condition | Pidgin Usage | Rating Accuracy |
+|-----------|-------------|-----------------|
+| Full system (144 few-shot samples) | 100% | 100% |
+| Zero-shot baseline (no few-shot) | 20% | 80% |
+
+The Nigerian Voice Layer contributes 80 percentage points to Pidgin usage and 20 percentage points to rating accuracy.
+
+### Task B — Recommendation Metrics
+
+| Metric | Score | Notes |
+|--------|-------|-------|
+| Coverage Rate | 100% | All queries returned 3+ recommendations |
+| Nigerian Grounding Rate | 100% | All results grounded in Nigerian city context |
+| Category Relevance | 36.8% | Gemini reasons reference user food category |
+| NDCG@10 (Yelp) | 0.00 | Expected: Yelp ground truth is US restaurants; ours are Nigerian |
+| Nigerian Cold-Start Coverage | 100% | All 5 Nigerian scenarios returned accurate results |
+
+**Note on NDCG@10:** The 0.00 score reflects structural domain mismatch — Yelp ground truth contains US restaurants (Tim Hortons, Philadelphia cheesesteaks) while NaijaTaste recommends Nigerian restaurants (Nkoyo Abuja, Mama Cass Lagos). There is no overlap by design. A meaningful NDCG evaluation requires a Nigerian restaurant dataset that does not currently exist publicly.
+
+### Agent Reasoning Flow (ReAct Framework)
+
+NaijaTaste uses a ReAct-inspired (Reason + Act + Observe) framework where the agent reasons about language, intent, location and persona before acting and returning structured recommendations.
+
+```
+USER QUERY: "Mo fe je amala for Lagos"
+
+THOUGHT: User is writing in Yoruba. They want Amala in Lagos.
+         This is a local Nigerian dish — prioritize bukas and local spots.
+         User persona is Curious Taster (Level 1) — budget-friendly preferred.
+
+ACTION 1 — Detect language: "yo" (Yoruba via Gemini detection)
+ACTION 2 — Classify intent: FOOD_QUERY
+ACTION 3 — Resolve location: Lagos → GPS coords (6.5244, 3.3792)
+ACTION 4 — Cache lookup: MD5("amala lagos|6.5244,3.3792") → MISS
+ACTION 5 — Google Places API: search "amala restaurant Lagos" within 5km radius
+ACTION 6 — Gemini ranking: rank by persona fit, generate Yoruba match reasons
+ACTION 7 — Cache store: save results for future identical queries
+
+OBSERVATION: Found 6 real places. Top match: Just Amala (4.5★, budget, Surulere)
+             Deduplicated — 1 duplicate removed
+             All match_reason and cultural_note fields in Yoruba
+
+OUTPUT: {
+  intent: "FOOD_QUERY",
+  detected_language: "yo",
+  items: [...ranked Nigerian restaurants with Yoruba explanations],
+  message: "Mo ri 5 ibi fun e! Wo awon ibi isale 👇"
+}
+```
 
 ---
 
 ## Roadmap
 
 - [x] Geolocation-based search: 5km radius from user's actual position
-- [ ] Real authentication: NextAuth + Google OAuth
-- [ ] Neon Postgres: persist reviews and profiles across devices
-- [ ] Real persona engine on backend: derive taste traits from review history
+- [x] Real authentication: NextAuth + Google OAuth
+- [x] Postgres: persist reviews and profiles across devices (Render Postgres + Prisma)
+- [x] Implicit learning engine: derive style preferences from interaction signals
+- [x] WhatsApp bot: multilingual recommendations via Twilio
+- [ ] Real persona engine on backend: derive taste traits from full review history
 - [ ] Yelp and Goodreads live integration
 - [ ] Expand beyond Nigeria: diaspora cities (London, Houston, Toronto)
 
