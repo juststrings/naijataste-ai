@@ -12,15 +12,14 @@ from google.genai import types
 load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 # ---------------------------------------------------------------------------
-# Model fallback chain
+# Model fallback chain (priority order — best quality first)
 # ---------------------------------------------------------------------------
 
 _MODEL_CHAIN: list[str] = [
-    "models/gemini-2.5-flash",
-    "models/gemini-2.0-flash",
-    "models/gemini-1.5-flash",
-    "models/gemini-2.5-flash-lite-preview-06-17",
-    "models/gemini-3.5-flash",
+    "models/gemini-2.5-flash",           # best quality
+    "models/gemini-2.5-flash-lite",      # fast fallback
+    "models/gemini-3.5-flash",           # fresh RPD, good fallback
+    "models/gemini-3.1-flash-lite",      # highest RPD limit, last resort
 ]
 
 # ---------------------------------------------------------------------------
@@ -28,7 +27,7 @@ _MODEL_CHAIN: list[str] = [
 # ---------------------------------------------------------------------------
 
 _keys: list[str] = []
-for _i in range(1, 20):  # support up to 19 keys
+for _i in range(1, 10):  # support up to 9 keys
     _val = os.getenv(f"GEMINI_API_KEY_{_i}")
     if _val and _val.strip():
         _keys.append(_val.strip())
@@ -72,24 +71,23 @@ def _strip_fences(text: str) -> str:
 
 def generate(prompt: str, temperature: float = 0.8, max_tokens: int = 4000) -> str:
     """
-    Try each API key in order. For each key, walk the model chain.
-    - 429 (rate limit)   → skip remaining models, move to next key immediately
-    - 503 (unavailable)  → skip this model, try next model on same key
-    - other error        → skip this model, try next model on same key
+    Rotation: outer loop = model, inner loop = key.
+    - 429 on a key → try next key, same model
+    - All 6 keys exhausted on a model → rotate to next model, restart keys
+    - All 4 models × 6 keys (24 attempts) exhausted → raise RuntimeError
     """
     if not _keys:
         raise RuntimeError(
-            "No Gemini API keys found. Add GEMINI_API_KEY_1 (and optionally "
-            "GEMINI_API_KEY_2, GEMINI_API_KEY_3) to api/.env"
+            "No Gemini API keys found. Add GEMINI_API_KEY_1 … GEMINI_API_KEY_6 to api/.env"
         )
 
     attempts: list[str] = []
 
-    for key_idx, api_key in enumerate(_keys):
-        client = genai.Client(api_key=api_key)
-        label = f"key-{key_idx + 1}"
+    for model in _MODEL_CHAIN:
+        for key_idx, api_key in enumerate(_keys):
+            client = genai.Client(api_key=api_key)
+            label = f"key-{key_idx + 1}"
 
-        for model in _MODEL_CHAIN:
             try:
                 response = client.models.generate_content(
                     model=model,
@@ -109,20 +107,18 @@ def generate(prompt: str, temperature: float = 0.8, max_tokens: int = 4000) -> s
                 if code == 429:
                     print(f"[gemini] 429  {label} / {model} — rate limited, trying next key")
                     attempts.append(f"{label}/{model}: 429 rate-limited")
-                    break  # stop trying models on this key
-
-                elif code == 503:
-                    print(f"[gemini] 503  {label} / {model} — unavailable, trying next model")
-                    attempts.append(f"{label}/{model}: 503 unavailable")
-                    # continue to next model
+                    # continue to next key, same model
 
                 else:
                     print(f"[gemini] err  {label} / {model} — {short}")
                     attempts.append(f"{label}/{model}: {short}")
-                    # continue to next model
+                    # continue to next key, same model
+
+        # all keys exhausted for this model → move to next model
+        print(f"[gemini] all keys exhausted on {model}, rotating to next model")
 
     raise RuntimeError(
-        "All Gemini API keys and models exhausted.\n"
+        "All Gemini keys and models exhausted (24 attempts).\n"
         "Attempts:\n" + "\n".join(f"  {a}" for a in attempts)
     )
 
