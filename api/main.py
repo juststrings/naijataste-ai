@@ -1,6 +1,6 @@
 import os
 
-from fastapi import FastAPI, Form, HTTPException
+from fastapi import BackgroundTasks, FastAPI, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from routers import task_a, task_b
@@ -203,24 +203,29 @@ def _format_whatsapp_recommendations(items: list[dict], intro_message: str) -> s
     return "\n".join(lines)
 
 
-@app.post("/whatsapp/webhook")
-async def whatsapp_webhook(Body: str = Form(...), From: str = Form(...)):
+def _process_whatsapp_message(user_message: str, user_phone: str, session: dict) -> None:
+    """Background task: call Gemini and send result via Twilio REST API."""
     from twilio.rest import Client
-    from twilio.twiml.messaging_response import MessagingResponse
     from routers.task_b import get_recommendations_from_gemini
 
-    user_message = Body.strip()
-    user_phone = From.strip()
+    try:
+        result = get_recommendations_from_gemini(
+            query=user_message,
+            cold_start_signals=session,
+        )
 
-    # Build or reuse a cold-start persona for this session
-    session = _whatsapp_sessions.setdefault(
-        user_phone,
-        {"city": "Lagos", "preferred_food": "Nigerian food", "price_range": "mid"},
-    )
+        intent = result["intent"]
+        message = result["message"]
+        items = result["items"]
 
-    print(f"[WHATSAPP] from={user_phone} msg={user_message!r}")
+        if intent == "FOOD_QUERY" and items:
+            bot_reply = _format_whatsapp_recommendations(items, message)
+        else:
+            bot_reply = message or "I'm here to help you find great Nigerian food! What are you craving?"
+    except Exception as e:
+        print(f"[WHATSAPP] Gemini processing failed: {e}")
+        bot_reply = "E be like network wahala. Try again small time!"
 
-    # Send immediate acknowledgment so user knows we're processing
     twilio_sid = os.getenv("TWILIO_ACCOUNT_SID")
     twilio_token = os.getenv("TWILIO_AUTH_TOKEN")
     twilio_number = os.getenv("TWILIO_WHATSAPP_NUMBER")
@@ -229,25 +234,33 @@ async def whatsapp_webhook(Body: str = Form(...), From: str = Form(...)):
             Client(twilio_sid, twilio_token).messages.create(
                 from_=twilio_number,
                 to=user_phone,
-                body="🔍 Dey find am for you, chill small...",
+                body=bot_reply,
             )
         except Exception as e:
-            print(f"[WHATSAPP] thinking-indicator send failed: {e}")
+            print(f"[WHATSAPP] reply send failed: {e}")
 
-    result = get_recommendations_from_gemini(
-        query=user_message,
-        cold_start_signals=session,
+
+@app.post("/whatsapp/webhook")
+async def whatsapp_webhook(
+    background_tasks: BackgroundTasks,
+    Body: str = Form(...),
+    From: str = Form(...),
+):
+    from twilio.twiml.messaging_response import MessagingResponse
+
+    user_message = Body.strip()
+    user_phone = From.strip()
+
+    session = _whatsapp_sessions.setdefault(
+        user_phone,
+        {"city": "Lagos", "preferred_food": "Nigerian food", "price_range": "mid"},
     )
 
-    intent = result["intent"]
-    message = result["message"]
-    items = result["items"]
+    print(f"[WHATSAPP] from={user_phone} msg={user_message!r}")
 
-    if intent == "FOOD_QUERY" and items:
-        bot_reply = _format_whatsapp_recommendations(items, message)
-    else:
-        bot_reply = message or "I'm here to help you find great Nigerian food! What are you craving?"
+    background_tasks.add_task(_process_whatsapp_message, user_message, user_phone, session)
 
+    # Return thinking message immediately to satisfy Twilio's 15s timeout
     twiml = MessagingResponse()
-    twiml.message(bot_reply)
+    twiml.message("🔍 Dey find am for you, chill small...")
     return Response(content=str(twiml), media_type="application/xml")
