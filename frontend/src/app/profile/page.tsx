@@ -96,13 +96,6 @@ export default function ProfilePage() {
 
   const recentReviews = [...savedReviews].reverse().slice(0, 5);
 
-  const flavorTags = [
-    reviewCount >= 5 ? "🌶️ High Spice Tolerance" : "🍽️ Exploring Flavors",
-    "💰 Budget: Moderate",
-    "🍢 Street Food Fan",
-    "🍰 Pastry Lover",
-  ];
-
   function handleLogout() {
     logout();
     router.push("/");
@@ -135,8 +128,9 @@ export default function ProfilePage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Left column: user card + connect data */}
+        {/* Left column: 1) User card  2) Flavor Radar */}
         <div className="space-y-4">
+          {/* 1. User card */}
           <div className="glass rounded-2xl p-6 text-center">
             <div className="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-white font-black text-3xl mx-auto mb-4">
               {user.avatar || user.name.charAt(0).toUpperCase()}
@@ -155,7 +149,17 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          {/* Connect Your Data */}
+          {/* 2. Flavor Radar */}
+          <div className="glass rounded-2xl p-6">
+            <h3 className="font-bold text-xl mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>Your Flavor Radar</h3>
+            <p className="text-xs text-on-surface-variant mb-4">Based on your taste profile</p>
+            <RadarChart />
+          </div>
+        </div>
+
+        {/* Right columns: 3) Connect Your Data  4) Badges  5) Recent Activity */}
+        <div className="md:col-span-2 space-y-6">
+          {/* 3. Connect Your Data */}
           <div className="glass rounded-2xl p-5">
             <div className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-3">
               Connect Your Data
@@ -184,27 +188,8 @@ export default function ProfilePage() {
               <p className="text-xs text-on-surface-variant text-center pt-1 italic">Coming in Phase 2</p>
             </div>
           </div>
-        </div>
 
-        {/* Right columns: flavor profile + badges + activity */}
-        <div className="md:col-span-2 space-y-6">
-          {/* Flavor Profile */}
-          <div className="glass rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-              <h3 className="font-bold text-xl" style={{ fontFamily: "Montserrat, sans-serif" }}>Your Flavor Profile</h3>
-            </div>
-            <div className="flex flex-wrap gap-2 mb-5">
-              {flavorTags.map((tag) => (
-                <span key={tag} className="profile-tag bg-tertiary text-white">{tag}</span>
-              ))}
-            </div>
-            <div className="bg-surface-container-low rounded-xl p-4 italic text-sm text-on-surface-variant border-l-4 border-primary">
-              &ldquo;Chief, your taste buds get clear direction. You no dey joke with pepper at all!&rdquo;
-            </div>
-          </div>
-
-          {/* Badges */}
+          {/* 4. Badges */}
           <div className="glass rounded-2xl p-6">
             <h3 className="font-bold text-xl mb-4" style={{ fontFamily: "Montserrat, sans-serif" }}>Badges</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -234,14 +219,7 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          {/* Flavor Radar */}
-          <div className="glass rounded-2xl p-6">
-            <h3 className="font-bold text-xl mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>Your Flavor Radar</h3>
-            <p className="text-xs text-on-surface-variant mb-4">Based on your taste profile</p>
-            <RadarChart />
-          </div>
-
-          {/* Recent Activity */}
+          {/* 5. Recent Activity */}
           <div className="glass rounded-2xl p-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-bold text-xl" style={{ fontFamily: "Montserrat, sans-serif" }}>Recent Activity</h3>
