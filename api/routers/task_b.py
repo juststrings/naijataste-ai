@@ -1,5 +1,4 @@
 import json
-import re
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException
@@ -75,20 +74,6 @@ class RecommendResponse(BaseModel):
 # ---------------------------------------------------------------------------
 
 
-def _detect_language(query: str) -> str:
-    """Server-side language detection from query text."""
-    lower = query.lower()
-    if re.search(r'\b(jẹ|ká|àwọn|mo\s*fẹ|bẹẹni|o\s*dara|ibẹ|isale|mofe|ewa|ra\b|fẹ\b)\b', lower):
-        return "yo"
-    if re.search(r'\b(mai\s*kyau|ina\s*neman|abinci|bari\s*mu|sannu|nagode|yana\s*da)\b', lower):
-        return "ha"
-    if re.search(r'\b(ọ\s*dị|ka\s*anyị|nwetara|rie\s*nri|dịmma|n\'okpuru|ebe\s*maka)\b', lower):
-        return "ig"
-    if re.search(r'\b(dey|wetin|abeg|oga|naija|chop|wahala|no\s*be|na\s*so|ehen|correct)\b', lower):
-        return "pidgin"
-    return "en"
-
-
 def _persona_from_cold_start(signals: dict) -> dict:
     raw_price = str(signals.get("price_range", "")).lower().strip()
     price_sensitivity = _PRICE_RANGE_MAP.get(raw_price, "medium")
@@ -148,13 +133,21 @@ def _build_places_prompt(
         f"## Your Task\n"
         f"Recommend the 5 best matches from the list above for this user's query.\n"
         f"ONLY recommend restaurants from the list above — NEVER invent new ones.\n\n"
-        f"CRITICAL: Return ONLY a raw JSON array of exactly 5 objects. "
-        f"No markdown. No explanation. Start with [ end with ].\n"
-        f"Each object must have:\n"
-        f"- item_name: exact restaurant name from the list above (max 6 words)\n"
-        f"- reason: why it matches this query, IN THE DETECTED LANGUAGE (max 12 words)\n"
-        f"- predicted_rating: float 1.0–5.0\n"
-        f"- cultural_note: short cultural tip IN THE DETECTED LANGUAGE (max 10 words)\n"
+        f"CRITICAL: Return ONLY a raw JSON object. No markdown. No explanation. Start with {{ end with }}.\n"
+        f"The object must have exactly these top-level keys:\n"
+        f"- detected_language: 2-letter code for the language the user wrote in:\n"
+        f"    'en' (English), 'yo' (Yoruba), 'ha' (Hausa), 'ig' (Igbo), 'pcm' (Pidgin)\n"
+        f"  Examples:\n"
+        f"    'I want beans' → 'en'\n"
+        f"    'Mo fe je amala' → 'yo'\n"
+        f"    'Achọ m ihe oriri' → 'ig'\n"
+        f"    'I wan chop' → 'pcm'\n"
+        f"    'Ina so da nama' → 'ha'\n"
+        f"- items: array of exactly 5 objects, each with:\n"
+        f"    - item_name: exact restaurant name from the list above (max 6 words)\n"
+        f"    - reason: why it matches this query, IN THE DETECTED LANGUAGE (max 12 words)\n"
+        f"    - predicted_rating: float 1.0–5.0\n"
+        f"    - cultural_note: short cultural tip IN THE DETECTED LANGUAGE (max 10 words)\n"
     )
 
 
@@ -184,7 +177,6 @@ def recommend(body: RecommendRequest):
         or " ".join(persona.get("tone_keywords", []))
         or "Nigerian restaurant"
     )
-    detected_language = _detect_language(query)
     location = _extract_location(query, body.cold_start_signals)
 
     # Fetch real restaurants: cache → Google Places → hardcoded fallback
@@ -206,18 +198,25 @@ def recommend(body: RecommendRequest):
     prompt = _build_places_prompt(query, display_location, persona, real_restaurants)
     result = generate_json(prompt, max_tokens=4000)
 
-    # Normalise: Gemini occasionally returns a dict with a nested list
+    # Extract detected_language and items list from Gemini's wrapper object
     if isinstance(result, dict):
-        for v in result.values():
-            if isinstance(v, list):
-                result = v
-                break
-
-    if not isinstance(result, list):
+        detected_language = str(result.get("detected_language", "en"))
+        items_list = result.get("items", [])
+        if not isinstance(items_list, list):
+            # fallback: find any list value in the dict
+            items_list = next((v for v in result.values() if isinstance(v, list)), [])
+    elif isinstance(result, list):
+        # Gemini ignored the wrapper format and returned a flat list
+        detected_language = "en"
+        items_list = result
+    else:
         raise HTTPException(
             status_code=502,
             detail=f"Unexpected response shape from Gemini: {type(result).__name__}",
         )
+
+    if not items_list:
+        raise HTTPException(status_code=502, detail="No items in Gemini response")
 
     # Map place_id → business_id for API compatibility
     place_id_map = {
@@ -234,7 +233,7 @@ def recommend(body: RecommendRequest):
                 predicted_rating=float(r.get("predicted_rating", 3.0)),
                 cultural_note=str(r.get("cultural_note", "")),
             )
-            for r in result[:5]
+            for r in items_list[:5]
         ],
         detected_language=detected_language,
     )
