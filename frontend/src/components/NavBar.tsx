@@ -12,7 +12,7 @@ const GUEST_NAV = [
 ];
 
 const AUTH_NAV = [
-  { href: "/flavor-finder", label: "Flavor Finder" },
+  { href: "/flavor-finder", label: "Home" },
   { href: "/recommend", label: "Recommendations" },
   { href: "/simulator", label: "Review Simulator" },
   { href: "/profile", label: "My Profile" },
@@ -74,7 +74,7 @@ export default function NavBar() {
                 {user.name.split(" ")[0]}
               </span>
             </Link>
-            <button onClick={handleLogout} className="text-xs text-on-surface-variant hover:text-error transition-colors">
+            <button onClick={handleLogout} className="hidden md:block text-xs text-on-surface-variant hover:text-error transition-colors">
               Logout
             </button>
           </div>
@@ -112,6 +112,16 @@ export default function NavBar() {
               {label}
             </Link>
           ))}
+          {user && (
+            <div className="border-t border-outline-variant/20 pt-2">
+              <button
+                onClick={() => { handleLogout(); setMenuOpen(false); }}
+                className="text-sm font-semibold py-2 text-error w-full text-left"
+              >
+                Log out
+              </button>
+            </div>
+          )}
         </div>
       )}
     </header>

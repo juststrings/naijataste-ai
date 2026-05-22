@@ -81,6 +81,13 @@ export default function FlavorFinderPage() {
           Welcome Back, <span className="text-primary">{firstName}.</span>
         </h1>
         <p className="text-on-surface-variant italic text-sm">Correct taste Wey fit your mood today.</p>
+        <Link
+          href="/simulator"
+          className="mt-4 flex md:hidden items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl font-bold text-sm hover:bg-red-800 transition-all active:scale-95"
+        >
+          <span className="material-symbols-outlined text-base">edit</span>
+          Simulate Review
+        </Link>
       </div>
 
       {/* Daily Challenge */}

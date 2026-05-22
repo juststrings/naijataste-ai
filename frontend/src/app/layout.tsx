@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/contexts/AuthContext";
 import NextAuthProvider from "@/components/SessionProvider";
@@ -37,8 +38,9 @@ export default function RootLayout({
           <AuthProvider>
             <div className="adire-bg" />
             <NavBar />
-            <main className="flex-grow relative z-10">{children}</main>
+            <main className="flex-grow relative z-10 pb-16 md:pb-0">{children}</main>
             <Footer />
+            <BottomNav />
             <Toaster position="top-right" />
           </AuthProvider>
         </NextAuthProvider>
