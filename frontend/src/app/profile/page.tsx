@@ -131,7 +131,7 @@ export default function ProfilePage() {
           {/* 1. User card */}
           <div className="glass rounded-2xl p-6 text-center">
             <div className="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-white font-black text-3xl mx-auto mb-4">
-              {user.avatar || user.name.charAt(0).toUpperCase()}
+              {user?.avatar || user?.name?.charAt(0).toUpperCase() || "U"}
             </div>
             <h2 className="font-bold text-2xl text-on-surface mb-1">{user.name}</h2>
             <p className="text-sm text-on-surface-variant mb-1">{user.email}</p>

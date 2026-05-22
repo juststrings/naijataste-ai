@@ -68,13 +68,13 @@ export default function NavBar() {
           <div className="flex items-center gap-3">
             <Link href="/profile" className="flex items-center gap-2 hover:bg-surface-container md:px-3 md:py-2 md:rounded-xl transition-colors">
               <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
-                {user.name.charAt(0).toUpperCase()}
+                {user?.name?.charAt(0).toUpperCase() || "U"}
               </div>
               <span className="text-sm font-semibold text-on-surface hidden md:block">
                 {user.name.split(" ")[0]}
               </span>
             </Link>
-            <button onClick={handleLogout} className="hidden md:block text-xs text-on-surface-variant hover:text-error transition-colors">
+            <button onClick={handleLogout} className="text-xs text-on-surface-variant hover:text-error transition-colors">
               Logout
             </button>
           </div>
