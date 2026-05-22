@@ -122,15 +122,17 @@ export default function FlavorFinderPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-16 py-10">
       {/* Welcome header */}
-      <div className="mb-8">
-        <h1 className="text-4xl text-on-surface mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
-          <span className="font-normal block">Welcome Back,</span>
-          <span className="font-black text-primary">{firstName}.</span>
-        </h1>
-        <p className="text-on-surface-variant italic text-sm">Correct taste Wey fit your mood today.</p>
+      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 className="text-4xl text-on-surface mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
+            <span className="font-normal block">Welcome Back,</span>
+            <span className="font-black text-primary">{firstName}.</span>
+          </h1>
+          <p className="text-on-surface-variant italic text-sm">Correct taste Wey fit your mood today.</p>
+        </div>
         <Link
           href="/simulator"
-          className="mt-4 flex md:hidden items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl font-bold text-sm hover:bg-red-800 transition-all active:scale-95"
+          className="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 md:py-2 rounded-xl font-bold text-sm hover:bg-red-800 transition-all active:scale-95 md:flex-shrink-0"
         >
           <span className="material-symbols-outlined text-base">edit</span>
           Simulate Review
