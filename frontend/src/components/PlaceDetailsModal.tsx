@@ -129,7 +129,7 @@ export default function PlaceDetailsModal({ isOpen, onClose, placeId, restaurant
           {placeId && error && !loading && (
             <div className="px-5 pb-6">
               <p className="text-error text-sm mb-4">
-                Could not load details. Try opening in Google Maps instead.
+                Search Google Maps to see live details
               </p>
               <a
                 href={mapsUrl}

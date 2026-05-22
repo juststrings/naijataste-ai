@@ -158,7 +158,7 @@ export default function RecommendPage() {
 
     setChatMsgs((prev) => [...prev, { type: "user", text: msg }]);
     setChatInput("");
-    setChatMsgs((prev) => [...prev, { type: "bot", text: "my oga abeg no vex, chill for me as i dey try reason am" }]);
+    setChatMsgs((prev) => [...prev, { type: "bot", text: "my oga abeg no vex, chill for me as i dey try reason am..." }]);
 
     const signals = parseMessage(msg);
     const loc = resolveLocation(msg, userLocation);
