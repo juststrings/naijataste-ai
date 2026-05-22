@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: "NaijaTaste AI | Correct Taste, Every Time",
   description:
     "The AI-powered food engine for the Nigerian palate. Simulate reviews and get hyper-local restaurant recommendations.",
+  icons: {
+    icon: "/screen.png",
+    shortcut: "/screen.png",
+    apple: "/screen.png",
+  },
 };
 
 export default function RootLayout({
@@ -20,6 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/screen.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/screen.png" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap"
