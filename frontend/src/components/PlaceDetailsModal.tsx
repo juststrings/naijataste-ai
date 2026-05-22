@@ -133,7 +133,7 @@ export default function PlaceDetailsModal({ isOpen, onClose, placeId, restaurant
           {placeId && error && !loading && (
             <div className="px-5 pb-6">
               <p className="text-on-surface-variant text-sm mb-4">
-                Live details unavailable — open in Google Maps to see reviews and hours.
+                Open in Google Maps to get reviews, hours and directions.
               </p>
               <a
                 href={mapsUrl}
