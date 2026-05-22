@@ -3,7 +3,7 @@
 
 **DSN × Bluechip Technologies LLM Agent Challenge, Hackathon 3.0**
 
-An intelligent Nigerian user behaviour modelling and recommendation system that understands how Nigerians write, what they value, and what they will choose next.
+An intelligent Nigerian user behaviour modelling and recommendation system that understands how Nigerians write, what they value, and what they will choose next. Features implicit learning — review style improves automatically from your behaviour.
 
 **Live Demo:** https://naijataste-ai.onrender.com  
 **API Base URL:** https://naijataste-api.onrender.com  
@@ -17,10 +17,45 @@ An intelligent Nigerian user behaviour modelling and recommendation system that 
 NaijaTaste is a unified agent system powered by one shared brain: the **Nigerian Persona Engine**. It drives two core abilities:
 
 **Task A: Review Simulator**  
-Given a user persona and a restaurant, the agent predicts exactly how that user would review it: star rating, written review text, tone, and language patterns. Reviews come out in authentic Nigerian Pidgin English.
+Given a user persona and a restaurant, the agent predicts exactly how that user would review it: star rating, written review text, tone, and language patterns. Reviews come out in authentic Nigerian Pidgin English. An implicit learning engine observes every interaction and silently shapes future reviews to match the user's taste.
 
 **Task B: Recommendation Engine**  
 Given a user persona (or cold-start signals for new users), the agent recommends real Nigerian restaurants the user would genuinely enjoy, ranked by predicted preference, with cultural context attached to each pick. When location access is granted, the system uses the user's actual GPS coordinates to search Google Places within a 5km radius, returning restaurants that are literally nearby, not just in the same city.
+
+---
+
+## Implicit Learning Engine
+
+NaijaTaste learns your review style silently over time without asking you to set preferences.
+
+Every interaction is a signal:
+
+| Signal | What it teaches |
+|--------|----------------|
+| Saving a review | You liked that style and tone |
+| Regenerating a review | That style did not match your taste |
+| Copying a review | You approved the content |
+| Adjusting a review | Explicit preference captured and remembered |
+
+Over time the system learns:
+- Your preferred rating range
+- Your preferred tone (Pidgin-heavy, formal, casual)
+- How detailed you like your reviews
+- Which restaurant types you rate harder or easier
+- Your writing style preferences
+
+These patterns are extracted from your interaction history and injected silently into the Gemini prompt on every new generation. The model applies them automatically — no setup required, no settings page. The more you use NaijaTaste, the more accurate your review simulations become.
+
+**How it works technically:**
+- Every save, regenerate, copy, and adjust action is persisted to Postgres via `/api/adjustments`
+- On each review generation, the last 50 signals are fetched and passed to the backend as `past_adjustments`
+- `_extract_patterns()` in `task_a.py` scans the signal history for recurring patterns:
+  - Feedback keywords (shorter, less hype, lower rating, more detail) with frequency thresholds
+  - Saved review rating averages
+  - Tone save and regenerate tallies
+  - Restaurant type regeneration counts
+  - Copy-without-save behaviour
+- Matched patterns are appended to the Gemini prompt before generation
 
 ---
 
