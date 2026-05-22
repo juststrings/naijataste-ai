@@ -30,6 +30,7 @@ export interface RecommendPayload {
     preferred_food: string;
     price_range: "budget" | "mid" | "premium";
   };
+  query?: string;
   user_lat?: number;
   user_lng?: number;
 }

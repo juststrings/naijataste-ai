@@ -194,8 +194,12 @@ export default function RecommendPage() {
     try {
       const data = await getRecommendations({
         cold_start_signals: signals,
+        query: msg,
         ...(loc.lat !== undefined && { user_lat: loc.lat, user_lng: loc.lng }),
       });
+      console.log("[recommend] API response:", data);
+      console.log("[recommend] detected_language:", data.detected_language, "| items:", data.items.length);
+      console.log("[recommend] confirm msg:", getConfirmMsg(data.detected_language, data.items.length));
       setChatMsgs((prev) => {
         const next = [...prev];
         next[next.length - 1] = {

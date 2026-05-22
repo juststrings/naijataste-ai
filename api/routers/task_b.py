@@ -78,7 +78,7 @@ class RecommendResponse(BaseModel):
 def _detect_language(query: str) -> str:
     """Server-side language detection from query text."""
     lower = query.lower()
-    if re.search(r'\b(jẹ|ká|àwọn|mo\s*fẹ|bẹẹni|o\s*dara|ibẹ|isale|mofe|ewa\b|ra\b|fẹ\b)\b', query, re.I):
+    if re.search(r'\b(jẹ|ká|àwọn|mo\s*fẹ|bẹẹni|o\s*dara|ibẹ|isale|mofe|ewa|ra\b|fẹ\b)\b', lower):
         return "yo"
     if re.search(r'\b(mai\s*kyau|ina\s*neman|abinci|bari\s*mu|sannu|nagode|yana\s*da)\b', lower):
         return "ha"
