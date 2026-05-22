@@ -118,19 +118,11 @@ export default function ProfilePage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-16 py-10">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-8 gap-4">
-        <div>
-          <h1 className="text-3xl font-black text-on-surface" style={{ fontFamily: "Montserrat, sans-serif" }}>
-            Welcome back, {user.name.split(" ")[0]}.
-          </h1>
-          <p className="text-on-surface-variant text-sm mt-1">Your Flavor Gist, all in one place.</p>
-        </div>
-        <Link
-          href="/simulator"
-          className="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 md:py-2 rounded-xl text-sm font-semibold hover:bg-red-800 transition-all active:scale-95"
-        >
-          <span className="material-symbols-outlined text-base">edit</span> Simulate Review
-        </Link>
+      <div className="mb-8">
+        <h1 className="text-3xl font-black text-on-surface" style={{ fontFamily: "Montserrat, sans-serif" }}>
+          Welcome back, {user.name.split(" ")[0]}.
+        </h1>
+        <p className="text-on-surface-variant text-sm mt-1">Your Flavor Gist, all in one place.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
