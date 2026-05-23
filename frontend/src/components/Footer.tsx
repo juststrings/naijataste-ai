@@ -7,7 +7,7 @@ export default function Footer() {
   const { user } = useAuth();
 
   return (
-    <footer className={`relative z-10 bg-inverse-surface text-inverse-on-surface py-10 mt-auto ${user ? "hidden md:block" : "block"}`}>
+    <footer className={`relative z-10 bg-inverse-surface text-inverse-on-surface py-10 pb-20 md:pb-10 mt-auto ${user ? "hidden md:block" : "block"}`}>
       <div className="max-w-7xl mx-auto px-4 md:px-16 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="text-center md:text-left">
           <div className="font-bold text-xl mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
