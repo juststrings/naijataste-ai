@@ -4,23 +4,30 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 
-const TABS = [
+const AUTH_TABS = [
   { href: "/flavor-finder", label: "Home",      icon: "home" },
   { href: "/simulator",     label: "Simulate",  icon: "edit" },
   { href: "/recommend",     label: "Recommend", icon: "auto_awesome" },
   { href: "/profile",       label: "Profile",   icon: "person" },
 ];
 
+const GUEST_TABS = [
+  { href: "/",              label: "Home",      icon: "home" },
+  { href: "/simulator",     label: "Simulate",  icon: "edit" },
+  { href: "/recommend",     label: "Recommend", icon: "auto_awesome" },
+  { href: "/about",         label: "About",     icon: "info" },
+];
+
 export default function BottomNav() {
   const { user } = useAuth();
   const pathname = usePathname();
 
-  if (!user) return null;
+  const tabs = user ? AUTH_TABS : GUEST_TABS;
 
   return (
     <nav className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t border-outline-variant/20 flex h-16">
-      {TABS.map(({ href, label, icon }) => {
-        const active = pathname === href || (href === "/flavor-finder" && pathname === "/flavor-finder");
+      {tabs.map(({ href, label, icon }) => {
+        const active = pathname === href;
         return (
           <Link
             key={href}
