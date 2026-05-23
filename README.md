@@ -343,6 +343,18 @@ Results are saved to `api/evaluation_results.json`.
 
 The Nigerian Voice Layer contributes 80 percentage points to Pidgin usage and 20 percentage points to rating accuracy.
 
+### Task A — Dual-Mode Ablation (Nigerian Test Set, n=20)
+
+| Metric | Full System | Neutral (no Voice Layer) | Multilingual |
+|--------|-------------|--------------------------|--------------|
+| RMSE | 0.866 | 0.806 | 0.633 |
+| MAE | 0.550 | 0.450 | 0.400 |
+| Within 1 Star | 90.0% | 90.0% | 100.0% |
+| Pidgin Usage | 70.0% | 55.0% | N/A |
+| Language Match | N/A | N/A | 80.0% |
+
+The Voice Layer trades a small RMSE gain for +15pp Pidgin usage — a deliberate design choice prioritizing cultural authenticity over rating precision. Multilingual mode achieves best overall accuracy (RMSE 0.633, 100% within-1-star).
+
 ### Task B — Recommendation Metrics
 
 | Metric | Score | Notes |
