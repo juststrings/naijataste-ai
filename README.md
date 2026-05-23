@@ -128,7 +128,7 @@ naijataste-ai/
 │   ├── core/
 │   │   ├── persona.py               # PersonaEncoder
 │   │   ├── voice.py                 # Nigerian Voice Layer
-│   │   ├── gemini_client.py         # LLM client: 3-key rotation + model fallback
+│   │   ├── gemini_client.py         # LLM client: 6-key x 4-model rotation (24 attempts before failure)
 │   │   └── yelp_loader.py           # Dataset loader
 │   └── scripts/
 │       └── sample_yelp.py           # Yelp dataset sampler
@@ -151,7 +151,7 @@ naijataste-ai/
 | LLM | Gemini 2.5 Flash + 2.5 Flash Lite + 3.5 Flash + 3.1 Flash Lite (6-key × 4-model rotation = 24 attempts) | Google AI Studio |
 | Restaurant Data | Google Places API (real-time, geolocation-aware) | Google Cloud |
 | Cache | MD5-keyed JSON (places_cache.json) | Persistent storage |
-| Backend | FastAPI (Python 3.11) | Render (primary) + Railway (secondary) |
+| Backend | FastAPI (Python 3.11) | Render (primary). Railway maintained as failover. |
 | Frontend | Next.js 15, TypeScript, Tailwind CSS | Render |
 | Database | PostgreSQL via Prisma | Render Postgres |
 | Auth | NextAuth.js + Google OAuth + Email/Password | Render |
@@ -239,7 +239,6 @@ Health check. Returns `{"status": "ok"}`.
 |---------|--------|-------|
 | Yelp Academic Dataset | yelp.com/dataset | Primary training data for persona engine |
 | Nigerian Google Maps Reviews | Outscraper API | 500 real Nigerian restaurant reviews as cultural anchors |
-| Naijaweb corpus | HuggingFace, saheedniyi/naijaweb | Reference for Nigerian language patterns |
 | Synthesized Reviews | Gemini 2.5 Flash | 144 structured Nigerian review samples from real data |
 
 ---
@@ -303,7 +302,7 @@ Cost and speed. The same query (e.g. "suya Abuja") gets asked repeatedly. One AP
 Cultural grounding. Combined with explicit Nigerian Pidgin prompting and real restaurant data as context, responses feel authentic rather than generic.
 
 **Why multi-key rotation?**  
-Free tier rate limits. Three API keys in round-robin means 3x the quota, critical for demo traffic during judging.
+Free tier rate limits. Six API keys in round-robin across four models means 24 attempts before failure, critical for demo traffic during judging.
 
 **Why geolocation over city-based search?**  
 City-center coordinates (Lagos: 6.52°N 3.38°E) can be 20+ km from where a user actually is. A user in Ajah searching for suya should not get results from Ikeja. Browser geolocation with 5km radius returns results that are actually walkable or driveable, making recommendations immediately actionable, not just informative.
@@ -333,6 +332,8 @@ Results are saved to `api/evaluation_results.json`.
 | Pidgin Usage Rate | 100% | Nigerian evaluation — every review has Pidgin markers |
 | Avg Rating Error | 0.50 stars | Half-star average deviation on Nigerian test suite |
 
+**Note:** Pidgin Usage Rate measures instruction-following compliance. A more robust fidelity signal — BERTScore against held-out real Google Maps reviews — is identified as the primary next evaluation step.
+
 ### Ablation Study — Nigerian Voice Layer
 
 | Condition | Pidgin Usage | Rating Accuracy |
@@ -354,9 +355,18 @@ The Nigerian Voice Layer contributes 80 percentage points to Pidgin usage and 20
 
 **Note on NDCG@10:** The 0.00 score reflects structural domain mismatch — Yelp ground truth contains US restaurants (Tim Hortons, Philadelphia cheesesteaks) while NaijaTaste recommends Nigerian restaurants (Nkoyo Abuja, Mama Cass Lagos). There is no overlap by design. A meaningful NDCG evaluation requires a Nigerian restaurant dataset that does not currently exist publicly.
 
+**Note on sample sizes:** Results are exploratory given small sample sizes (n=10 Task A, n=5 Task B cold-start). Expanding to n=50+ is the most important validation next step.
+
 ### Agent Reasoning Flow (ReAct Framework)
 
 NaijaTaste uses a ReAct-inspired (Reason + Act + Observe) framework where the agent reasons about language, intent, location and persona before acting and returning structured recommendations.
+
+NaijaTaste implements an agentic recommendation workflow where Gemini 2.5 Flash acts as the reasoning engine across three tool types:
+- **Retrieval tool:** Google Places API for real-time restaurant data
+- **Detection tool:** Language and intent classification from raw query
+- **Ranking tool:** Persona-conditioned cultural relevance scoring
+
+The agent selects location resolution strategy (GPS vs city centroid vs fallback) based on query semantics, not hardcoded rules.
 
 ```
 USER QUERY: "Mo fe je amala for Lagos"
@@ -384,6 +394,24 @@ OUTPUT: {
   message: "Mo ri 5 ibi fun e! Wo awon ibi isale 👇"
 }
 ```
+
+---
+
+## Beyond the Brief
+
+The following features are fully working in production but were not required by the hackathon brief:
+
+**WhatsApp Bot (Twilio Sandbox)**  
+Users can chat with NaijaTaste directly on WhatsApp. The bot handles restaurant recommendations and review simulation in any Nigerian language. Webhook: `https://naijataste-api-vcp4.onrender.com/whatsapp/webhook`. To test: send `join dress-newspaper` to +1 415 523 8886.
+
+**Multilingual Support**  
+Gemini detects the input language automatically and responds in kind — English (EN), Yoruba (YO), Hausa (HA), Igbo (IG), and Nigerian Pidgin (PCM) are all supported without any user configuration.
+
+**Implicit Learning Engine**  
+Five behavioral signals are captured and used to silently shape future review generations: save, regenerate, copy, adjust, and language preference. No settings page — the model improves automatically from how you interact with it.
+
+**Voice Input**  
+The Review Simulator and Recommendation Engine accept voice queries via the Web Speech API. Users can speak their request and the transcript is passed directly to the agent.
 
 ---
 

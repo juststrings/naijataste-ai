@@ -78,8 +78,8 @@ function GuestHome() {
           </div>
           <div className="lg:col-span-2 bg-primary text-white rounded-2xl p-6 shadow-lg">
             <div className="text-3xl mb-3">🤖</div>
-            <div className="font-bold mb-1">98% Cultural Match</div>
-            <div className="text-sm opacity-80">Nigerian Persona Engine trained on real Lagos reviews</div>
+            <div className="font-bold mb-1">100% Nigerian Grounding</div>
+            <div className="text-sm opacity-80">Every recommendation grounded in Nigerian food culture</div>
           </div>
           {/* Row 2 — 40% / 60% */}
           <div className="lg:col-span-2 bg-tertiary-container text-white rounded-2xl p-6 shadow-sm">

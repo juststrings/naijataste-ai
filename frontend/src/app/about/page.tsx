@@ -114,7 +114,7 @@ export default function AboutPage() {
             </div>
             <h3 className="font-bold mb-2">Correctness Check</h3>
             <p className="text-sm text-on-surface-variant">
-              Gemini 2.5 Flash with 3-key rotation + model fallback ensures cultural authenticity.
+              Gemini 2.5 Flash with 6-key × 4-model rotation (24 attempts before failure) ensures cultural authenticity.
             </p>
           </div>
         </div>
