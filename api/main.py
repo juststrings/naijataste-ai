@@ -3,7 +3,7 @@ import os
 from fastapi import BackgroundTasks, FastAPI, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
-from routers import task_a, task_b
+from routers import task_a, task_b, books
 
 app = FastAPI(title="DSN Bluechip API", version="1.0.0")
 
@@ -26,6 +26,7 @@ app.add_middleware(
 
 app.include_router(task_a.router, tags=["Task A - Review Simulation"])
 app.include_router(task_b.router, tags=["Task B - Recommendations"])
+app.include_router(books.router, tags=["Cross-Domain - Books"])
 
 
 @app.api_route("/health", methods=["GET", "HEAD"])

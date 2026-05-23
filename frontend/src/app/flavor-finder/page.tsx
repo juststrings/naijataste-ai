@@ -9,20 +9,18 @@ import PlaceDetailsModal from "@/components/PlaceDetailsModal";
 import { resolveLocation, UserLocation } from "@/lib/location";
 import { getTopPicks, TopPickPlace } from "@/lib/api";
 
-const BOOKS = [
+const FALLBACK_BOOKS = [
   {
     title: "My Sister, the Serial Killer",
     author: "Oyinkan Braithwaite",
-    note: "Matches the dark, spicy intensity of the Buka spot recommendation. A sharp, satirical Lagos noir.",
-    link: "ADD TO LIBRARY",
-    emoji: "📖",
+    reason: "A sharp, satirical Lagos noir — matches the spicy energy of any buka pick.",
+    goodreads_url: "https://www.goodreads.com/search?q=My+Sister+the+Serial+Killer+Oyinkan+Braithwaite",
   },
   {
     title: "Stay With Me",
     author: "Ayobami Adebayo",
-    note: "Pairs with the complex, nostalgic flavors of Yellow Chilli's traditional recipes.",
-    link: "BUY ON GOODREADS",
-    emoji: "📚",
+    reason: "Pairs with complex, nostalgic flavours of traditional Nigerian recipes.",
+    goodreads_url: "https://www.goodreads.com/search?q=Stay+With+Me+Ayobami+Adebayo",
   },
 ];
 
@@ -99,6 +97,10 @@ export default function FlavorFinderPage() {
   const [topPicksLoading, setTopPicksLoading] = useState(true);
   const topPicksFetched = useRef<string | null>(null);
 
+  type BookItem = { title: string; author: string; reason: string; goodreads_url: string };
+  const [books, setBooks] = useState<BookItem[]>([]);
+  const [booksLoading, setBooksLoading] = useState(false);
+
   const { level, title: personaTitle } = getPersona(savedReviews.length);
 
   useEffect(() => {
@@ -122,7 +124,30 @@ export default function FlavorFinderPage() {
     topPicksFetched.current = locationKey;
     setTopPicksLoading(true);
     getTopPicks(userLocation?.lat, userLocation?.lng, personaTitle)
-      .then(setTopPicks)
+      .then((picks) => {
+        setTopPicks(picks);
+        if (picks.length > 0) {
+          setBooksLoading(true);
+          fetch("/api/books", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              restaurants: picks.slice(0, 5).map((p) => ({
+                name: p.name ?? "",
+                vicinity: p.vicinity ?? "",
+                types: p.types ?? [],
+              })),
+              persona: personaTitle,
+            }),
+          })
+            .then((r) => r.ok ? r.json() : null)
+            .then((data) => {
+              if (data?.books?.length) setBooks(data.books);
+            })
+            .catch(() => {})
+            .finally(() => setBooksLoading(false));
+        }
+      })
       .catch(() => {})
       .finally(() => setTopPicksLoading(false));
   }, [user, userLocation, personaTitle]);
@@ -438,25 +463,54 @@ export default function FlavorFinderPage() {
           <div className="glass rounded-2xl p-5">
             <div className="mb-4">
               <div className="text-sm font-bold text-on-surface">While you chop, read this 📖</div>
-              <div className="text-xs text-on-surface-variant mt-0.5">A book that matches your food vibe today</div>
+              <div className="text-xs text-on-surface-variant mt-0.5">
+                {booksLoading ? "Finding your vibe..." : "A book that matches your food vibe today"}
+              </div>
             </div>
 
             <div className="text-xs font-bold uppercase tracking-wider text-primary mb-3">Reading for the Vibe</div>
-            <div className="space-y-4">
-              {BOOKS.map((book) => (
-                <div key={book.title} className="flex gap-3">
-                  <div className="text-3xl flex-shrink-0">{book.emoji}</div>
-                  <div className="min-w-0">
-                    <div className="font-bold text-sm text-on-surface leading-tight">{book.title}</div>
-                    <div className="text-xs text-on-surface-variant mb-1">{book.author}</div>
-                    <div className="text-xs text-on-surface-variant italic leading-tight mb-2 line-clamp-2">
-                      &ldquo;{book.note}&rdquo;
+
+            {booksLoading ? (
+              <div className="space-y-4 animate-pulse">
+                {[0, 1].map((i) => (
+                  <div key={i} className="flex gap-3">
+                    <div className="w-8 h-8 bg-surface-container-high rounded flex-shrink-0" />
+                    <div className="flex-1 space-y-2">
+                      <div className="h-3 bg-surface-container-high rounded w-3/4" />
+                      <div className="h-2 bg-surface-container-high rounded w-1/2" />
+                      <div className="h-2 bg-surface-container-high rounded" />
+                      <div className="h-2 bg-surface-container-high rounded w-2/3" />
                     </div>
-                    <button className="text-xs font-bold text-primary hover:underline">{book.link}</button>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {(books.length > 0 ? books : FALLBACK_BOOKS).map((book, i) => (
+                  <a
+                    key={book.title}
+                    href={book.goodreads_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex gap-3 group"
+                  >
+                    <div className="text-3xl flex-shrink-0">{i === 0 ? "📖" : "📚"}</div>
+                    <div className="min-w-0">
+                      <div className="font-bold text-sm text-on-surface leading-tight group-hover:text-primary transition-colors">
+                        {book.title}
+                      </div>
+                      <div className="text-xs text-on-surface-variant mb-1">{book.author}</div>
+                      <div className="text-xs text-on-surface-variant italic leading-tight mb-2 line-clamp-2">
+                        &ldquo;{book.reason}&rdquo;
+                      </div>
+                      <span className="text-xs font-bold text-primary group-hover:underline">
+                        View on Goodreads →
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Engine Reasoning */}
