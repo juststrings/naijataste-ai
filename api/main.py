@@ -10,9 +10,8 @@ app = FastAPI(title="DSN Bluechip API", version="1.0.0")
 origins = [
     "http://localhost:3000",
     "https://naijataste.up.railway.app",        # Railway
-    "https://naijataste-frontend.onrender.com", # Render
-    "https://naijataste-ai.onrender.com",       # Render
-    "https://naijataste-api.onrender.com",      # Render
+    "https://naijataste.onrender.com",           # Render (frontend)
+    "https://naijataste-api-vcp4.onrender.com", # Render (backend)
     "https://*.onrender.com",                   # Render wildcard
 ]
 

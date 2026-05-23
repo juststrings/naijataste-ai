@@ -4,7 +4,7 @@ import requests
 import numpy as np
 from pathlib import Path
 
-API_BASE = "https://naijataste-api.onrender.com"  # change to localhost for local runs
+API_BASE = "https://naijataste-api-vcp4.onrender.com"  # change to localhost for local runs
 
 # ── Load Yelp sample data ──────────────────────────────────────────────────
 REVIEWS_PATH = Path(__file__).parent.parent.parent / "prompts" / "yelp_sample_reviews.json"

@@ -38,7 +38,7 @@ FULL_BUSINESSES_PATH = (
 SAMPLE_REVIEWS_PATH = REPO_ROOT / "prompts" / "yelp_sample_reviews.json"
 SAMPLE_BUSINESSES_PATH = REPO_ROOT / "prompts" / "yelp_sample_businesses.json"
 
-API_BASE = "https://naijataste-api.onrender.com"
+API_BASE = "https://naijataste-api-vcp4.onrender.com"
 
 # ── Constants ──────────────────────────────────────────────────────────────
 PIDGIN_MARKERS = [

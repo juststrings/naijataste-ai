@@ -1,0 +1,105 @@
+{
+  "evaluation_date": "2026-05-20",
+  "api_base": "https://naijataste-api-vcp4.onrender.com",
+  "task_a": {
+    "rmse": 1.6583123951777,
+    "mae": 1.25,
+    "samples": 12,
+    "results": [
+      {
+        "user_id": "NUtIAX-ygn474tDg5nmesg",
+        "actual": 5.0,
+        "predicted": 4,
+        "error": 1.0
+      },
+      {
+        "user_id": "uAu772KpSkb-tPFgZmU-lA",
+        "actual": 3.0,
+        "predicted": 5,
+        "error": 2.0
+      },
+      {
+        "user_id": "CysTz612pTix75Fye6-D4Q",
+        "actual": 1.0,
+        "predicted": 5,
+        "error": 4.0
+      },
+      {
+        "user_id": "n-lBS02-3yvlY5Q91mmwDA",
+        "actual": 3.0,
+        "predicted": 2,
+        "error": 1.0
+      },
+      {
+        "user_id": "d0FbFaZuJWfai0RYsUS7qw",
+        "actual": 5.0,
+        "predicted": 3,
+        "error": 2.0
+      },
+      {
+        "user_id": "fr1Hz2acAb3OaL3l6DyKNg",
+        "actual": 3.0,
+        "predicted": 4,
+        "error": 1.0
+      },
+      {
+        "user_id": "_BcWyKQL16ndpBdggh2kNA",
+        "actual": 3.0,
+        "predicted": 3,
+        "error": 0.0
+      },
+      {
+        "user_id": "GZkFjlhsCmIxkxPywouEKQ",
+        "actual": 4.0,
+        "predicted": 3,
+        "error": 1.0
+      },
+      {
+        "user_id": "K17847uudqPFPIjSPgxs2A",
+        "actual": 3.0,
+        "predicted": 3,
+        "error": 0.0
+      },
+      {
+        "user_id": "Y_2jMUKz6pvJ0JSWG3u10A",
+        "actual": 4.0,
+        "predicted": 4,
+        "error": 0.0
+      },
+      {
+        "user_id": "WuiEYopWZOWOuWQD87fVSw",
+        "actual": 4.0,
+        "predicted": 3,
+        "error": 1.0
+      },
+      {
+        "user_id": "R-c5M0iJkMxxTxIqTQQZ8w",
+        "actual": 2.0,
+        "predicted": 4,
+        "error": 2.0
+      }
+    ]
+  },
+  "task_b": {
+    "ndcg_at_10": 0.0,
+    "hit_rate": 0.0,
+    "samples": 1,
+    "results": [
+      {
+        "user_id": "Xw7ZjaGfr0WNVt6s_5KZfA",
+        "ndcg": 0.0,
+        "hit": 0,
+        "recommended": [
+          "The Joint",
+          "Central City BBQ",
+          "Blue Oak BBQ"
+        ],
+        "ground_truth": [
+          "LA Smokehouse",
+          "Batture",
+          "Target"
+        ]
+      }
+    ]
+  }
+}

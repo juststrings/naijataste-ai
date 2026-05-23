@@ -5,9 +5,9 @@
 
 An intelligent Nigerian user behaviour modelling and recommendation system that understands how Nigerians write, what they value, and what they will choose next. Features implicit learning — review style improves automatically from your behaviour.
 
-**Live Demo:** https://naijataste-ai.onrender.com  
-**API Base URL:** https://naijataste-api.onrender.com  
-**Interactive Docs:** https://naijataste-api.onrender.com/docs  
+**Live Demo:** https://naijataste.onrender.com  
+**API Base URL:** https://naijataste-api-vcp4.onrender.com  
+**Interactive Docs:** https://naijataste-api-vcp4.onrender.com/docs  
 **Team:** NaijaTaste
 
 ---
@@ -158,8 +158,8 @@ naijataste-ai/
 | WhatsApp Bot | Twilio Sandbox + FastAPI webhook | Render |
 | Uptime | UptimeRobot (5-min ping, never sleeps) | External |
 
-**Live Demo:** https://naijataste-ai.onrender.com  
-**API Docs:** https://naijataste-api.onrender.com/docs  
+**Live Demo:** https://naijataste.onrender.com  
+**API Docs:** https://naijataste-api-vcp4.onrender.com/docs  
 **WhatsApp:** Send `join dress-newspaper` to +1 415 523 8886
 
 ---
@@ -286,7 +286,7 @@ GOOGLE_PLACES_API_KEY=your_key
 
 **Frontend (frontend/.env.local):**
 ```
-NEXT_PUBLIC_API_URL=https://naijataste-api.onrender.com
+NEXT_PUBLIC_API_URL=https://naijataste-api-vcp4.onrender.com
 ```
 
 ---
