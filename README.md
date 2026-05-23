@@ -347,13 +347,42 @@ The Nigerian Voice Layer contributes 80 percentage points to Pidgin usage and 20
 
 | Metric | Score | Notes |
 |--------|-------|-------|
-| Coverage Rate | 100% | All queries returned 3+ recommendations |
-| Nigerian Grounding Rate | 100% | All results grounded in Nigerian city context |
-| Category Relevance | 36.8% | Gemini reasons reference user food category |
-| NDCG@10 (Yelp) | 0.00 | Expected: Yelp ground truth is US restaurants; ours are Nigerian |
+| Coverage Rate | 100% | All queries returned 3+ recommendations (Yelp eval) |
+| Nigerian Grounding Rate | 100% | All results grounded in Nigerian city context (Yelp eval) |
+| Category Relevance | 36.8% | Gemini reasons reference user food category (Yelp eval) |
+| **Mean NDCG@10** | **0.8675** | Nigerian-grounded evaluation (n=18) |
+| **Mean Hit Rate@5** | **1.0000** | Every persona had relevant result in top 5 (n=18) |
 | Nigerian Cold-Start Coverage | 100% | All 5 Nigerian scenarios returned accurate results |
 
-**Note on NDCG@10:** The 0.00 score reflects structural domain mismatch — Yelp ground truth contains US restaurants (Tim Hortons, Philadelphia cheesesteaks) while NaijaTaste recommends Nigerian restaurants (Nkoyo Abuja, Mama Cass Lagos). There is no overlap by design. A meaningful NDCG evaluation requires a Nigerian restaurant dataset that does not currently exist publicly.
+### NDCG by City
+
+| City | NDCG@10 |
+|------|---------|
+| Enugu | 1.000 |
+| Kano | 1.000 |
+| Benin City | 0.965 |
+| Lagos | 0.912 |
+| Abuja | 0.898 |
+| Port Harcourt | 0.785 |
+| Ibadan | 0.742 |
+| Warri | 0.544 |
+
+### NDCG by Restaurant Type
+
+| Type | NDCG@10 |
+|------|---------|
+| Rooftop bar and grill | 1.000 |
+| Suya spot | 1.000 |
+| Local buka | 0.990 |
+| Seafood restaurant | 0.952 |
+| Restaurant (general) | 0.891 |
+| Grilled fish spot | 0.885 |
+| Amala joint | 0.876 |
+| Fast food | 0.779 |
+| Fine dining | 0.668 |
+| Pepper soup joint | 0.608 |
+
+**Note on NDCG@10:** The Yelp NDCG=0.00 reflects structural domain mismatch (US ground truth vs Nigerian recommendations) and is reported separately for transparency. The Nigerian-grounded evaluation (n=18) achieves NDCG@10=0.8675 using author-constructed ground truth derived from 144 real Nigerian reviews and 30 real named Nigerian restaurants. No public Nigerian restaurant interaction dataset currently exists; author-constructed ground truth is the only feasible evaluation protocol in this domain. See evaluation script: `api/scripts/evaluate_nigerian_grounded.py`
 
 **Note on sample sizes:** Results are exploratory given small sample sizes (n=10 Task A, n=5 Task B cold-start). Expanding to n=50+ is the most important validation next step.
 
