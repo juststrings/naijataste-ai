@@ -1,0 +1,1612 @@
+{
+  "20afd4230d6bcd0eef5584016d208883": {
+    "query": "amala restaurant Lagos",
+    "location": "Lagos",
+    "restaurants": [
+      {
+        "name": "Amala Sky - Lekki Lagos",
+        "rating": 4.2,
+        "address": "Beside Fidelity Bank, Admiralty Way, Lekki Phase 1, Eti-Osa, Lagos 101233, Lagos, Nigeria",
+        "place_id": "ChIJAdv3PDb1OxAR_7Ewnijuw5o",
+        "price_level": 2,
+        "user_ratings_total": 447,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uni_DWYrp62cH-3yEe-Glz8xHvgSMjggz4ZWSi5yHfbeZngO7SHna_5w2vQtjd_TKDI7zz7CVQRaIpDT5vWZVYJ_hW6RyOVXOluAkCYbmKrxxxdwbnHgX526ZNMEXludLpGLrNJKj1mAfQZywjuB1eX5Srp4I6pZq9jk8RNi6f-mFZ--C-wzMllUR1D8-CdCuAjkLMCC0jU0esyktft7VE54UB2KTHYWhexMONzj6zbO99SF7Z7O-OrWF5QoKyPELGO-aBEozhdYbGCFQtFqgghnyqi0TZ8ZsvxJCa7fvinJJcSyZ-cyQbIXV9s5A309GnaTiQzEgJ8JkeIRqa5-6bT5BP_AvBsSr3bbTBD7SVuOdEoJu5CGJ33JEsLS6bk_tgK13Cxd95Ioc3whko5uYSX7X7ICjyCXE6OfxTwibOGV2n"
+      },
+      {
+        "name": "Amala Sky",
+        "rating": 3.8,
+        "address": "12 Victoria Arobieke St, Lekki Phase 1, Lekki 101245, Lagos, Nigeria",
+        "place_id": "ChIJ-bgcC2T7OxAR7O1Wmhrozbo",
+        "price_level": 2,
+        "user_ratings_total": 360,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vJj9KX9l99Wbvbv2oRzbpyYcNi-5POrCI6XAJwFzJwb8URPZOngMtm0YD5gfYiCIeipdb9eb-7duHMCDana3R4w98xz-iGDwDqUJihbne-wrHAtLAgJtkbeNACxKAQlo4uEybS-34jBBRKvFavbdQk5SsUaCgC-UfAKu3HPxPR4Kf9wkZ70bWUdeKvYqtwxnJDRnBKxkq3FyZb7IlvbE14OFKtxLBWBjNjMRsbJk62Pr9pEy5jIIs4o9NJZzl3vqZx_rJabG64T2lKsDA2zp8uZHENg_7UZzDw32L0_pNFfA"
+      },
+      {
+        "name": "Amala Ibadan HQ",
+        "rating": 4.1,
+        "address": "Nobex Bus Stop, 162 Ikotun - Idimu Rd, Ikotun, Lagos 102213, Lagos, Nigeria",
+        "place_id": "ChIJcwsuh-iROxARb0myaXkv3KY",
+        "price_level": 2,
+        "user_ratings_total": 249,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-ujKx4Hb05MJ0GJFvxgeuoZC5-v4VB4lNBTONGRTZKfKbUMFA3SU0o--rNzJEUIxYHqD3OdFm4WAdq7RYjUW18FTiTzE-u4MGh-AOLFs1w1gstQNlITtt9geWS7uyX50ZDjb5_fGtUE4AeHqak9XWLLbfmbZ-NLwAc2LkGaDB03HYi0KqM77EyB4FVQ_UgIzbF7g2Rp4N4qHtfRUciUmjZLJeLOXczlRkPUpL1_Ss2tm-Zn2eVRntH3BckJ2uxctu2fkq6_yTQdV_KAThw7nY9LzrBtOzIx3w5XGziTfLdN7lNYxRD8DNc_8NRLNZY99Frv3VpZbkIz4dG2LyKsPbBL0S2pOGEe6FRHzeEVK3TYTjMc_6d1KZgNycdihugRvaN4lm6erF397tJwM_eUjPwfzJYqvfD6FOUJOBSXY0uqNLWP0qZMhiQ92lGjljCZ"
+      },
+      {
+        "name": "Amala restaurant",
+        "rating": 4.0,
+        "address": "25 Kosobameji St, Idi Oro, Lagos 102215, Lagos, Nigeria",
+        "place_id": "ChIJ1-tYqTiNOxARPs2LwFX5Bqc",
+        "price_level": 2,
+        "user_ratings_total": 0,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": null
+      },
+      {
+        "name": "Amoke Oge amala Joint",
+        "rating": 4.2,
+        "address": "50 Oguntolu St, Somolu, Lagos 102216, Lagos, Nigeria",
+        "place_id": "ChIJ9-POzxONOxARR5Am7HNRwyk",
+        "price_level": 1,
+        "user_ratings_total": 1016,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sn-J6jwS--DjMEnd9WDlYyQ_4Hx8jN6adBgaGfGEV5jPM-hxtyzWxcVMHZESYee4ZEkKywQR_OLRECWDCp7fUuL1x1_BVBh7OMGNb4ThCwa06CauHU2glZ8fSJ6fbIf6BhlH5SVJhOjXOLJYYmej3MdYLaKVi2p0apvF-jYXMndx3M55LlLRy3dYAUXDwNqzj1bvSruHAmjYo3Sr4aGJXc_2G_C3CArvurLcuozIFJ8KR_4N6UVgOmHA3XUOz7EaqHzzWDCkDBALMSZ1BxqxEs82ks-4bLfD8gIjS0qDXOELQE7LHCj2ZN5IuDrx02B7Wyb0vKLCL7foPv1MVeoNtwHQkl5WzW1QcqOzb6mOtk7WqSifcjNQBpyjf4jgVTXZSRMoBwBmUHLbYTaXt2u_rBS7PCOG-9yI9LX05n6SWbsb4"
+      },
+      {
+        "name": "Amoke Oge Restaurant",
+        "rating": 4.1,
+        "address": "1 Bawala St, Pedro, Lagos 102216, Lagos, Nigeria",
+        "place_id": "ChIJP_W35aGNOxARFO8Gn7G0K4U",
+        "price_level": 2,
+        "user_ratings_total": 1648,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tiCf28nyz4A-ArOOGZ-bMhA2Pd9xhvyx-4rCLNA5Mxmw4mhR1U4iPydtuOKbqHLQYE7QUGqoKsmZ3ilZKz-qASmrlTZmXD-tHv3TmW6_d0PVkBS0kkdd__196zWnXRy9395UHG-zVNNgSUibxpXMu7D2JfY2ROkKPTz1m6zMQkiIJcTpZiVP3JbQ-LsZPdufuMvfQn7r1d4X_Kw2ddMQuFUX1THI_JMyW1bDqW3cZokTcHR77v8e_HYf7eJk7m7pDfDB_rS3lum7a5eMZgDHzycnuLRxQKZJSLY2x371g1gI9CcMXVcOMTSPp_APFEh6lJwLyGI9vDP6VtZqdG2Ov2-NPpwqD94tabiNnhHOXqBqDtkDuYomDAKpeFKdo7cqZ1ZjC-iiFgQ_uS12pEWrs923xksP1Nel3MIFqCrgJ3vQ"
+      },
+      {
+        "name": "Amala Yahoo Spot",
+        "rating": 4.2,
+        "address": "Bosun Anifowoshe St, Olakunle Ajibade St, off Olakunle Rd, Ojota, Lagos 105102, Lagos, Nigeria",
+        "place_id": "ChIJ3fsZ9YySOxARbMNTFPK6Or0",
+        "price_level": 2,
+        "user_ratings_total": 222,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sh-CgoNq_XHOuzKspDPxBlBGPA9AXFsdA2aXspiLQmngIiepKWC8ph4Dud5uaabe95vY8ZU1OsoML9cbicp1JttmBGiKgQe_hMMELOS31kioJ1mFQuydF8Pp0KCxtSWuOdvxmRVdggB1-X_KZjwvyMnDvhAqoyTrIdUp9-Lr6H__pZL1h1ydg8GGIscNJJKw2HdZATdzKbpR3rVljhR4iDw4UM2NC8Sqf1Ecmt2jxYB-3ey-D3M58IlVboAIP4Sht-7W1X0J8kwbYx4XrSHvthJobP3Cfx6ecPM68mJ5kG5qUsGM4wpOg6zZ0MXUhyEovoPDtJGLehE7H7fhqbFkPrW7avz8d7b0JfI1FEVvFN_8tbdSBChIGISIKD2sz1qMNmNxwspc8SpyApOGqQP_7v96JELyL0z9UwuG2C9T332g"
+      },
+      {
+        "name": "Amala Junction Restaurant",
+        "rating": 4,
+        "address": "Amala junction Bus stop, 29 Dayo Adeniji St, Ifako-Ijaiye, Lagos 101232, Lagos, Nigeria",
+        "place_id": "ChIJn_PhJLSWOxARfWJVmUKuDgc",
+        "price_level": 2,
+        "user_ratings_total": 1073,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vGtvr2fUnaNS4WPqwDinldVpsVrqm9W4ypKg9OarMfHKbp7alFsObcgmqrBm-KPBfTZa1_bAQ25-tIVK_g298uFkRkwMGe5sYqOcvOBbQZEoPO0esLgRqeqMTAS8bw1JuvbKKZWqfNd_Pzdv6yC7gKK_WVdRiDBf7fcQcrz7cFzGmLBUOZ0iUnvQ2_UyFxUMFl8axQs5iUCNIPHOrDXWIDaDaJt0eLebFKm_QnL8eI6s9GiRJkGYUk-fkU8ayWf97l3GWSvN6eq_3bWeA471JbwBZ_FRZo5zN8aYFixRuhZoKfC69IH4qdqCIr5YkXW_0qPrpNR_H1L5pw8L05_xPL6GnFWIaYacaONoOIE4Fd0deWbaYMxZ-_8I5IVf8z-HTBVrqVflyZ_ktTu4trArPTzh1CFO-OiGO1iZeggURmVF4"
+      },
+      {
+        "name": "University Of Amala",
+        "rating": 4.2,
+        "address": "3 Ogunrombi St, Idimu, Lagos 102213, Lagos, Nigeria",
+        "place_id": "ChIJba6HhSiQOxARnZ0K7aMq4t0",
+        "price_level": 2,
+        "user_ratings_total": 554,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-teZ0f0WUBzcwFo34WOQAQeaVFGEHA6LbapNq0m_rdg4SpjbQeuNR-IROPexwg7MYevcG3lx0bGf3yB2662uGNwmmhGLTS1Wnlk9oyvIHS9JzyGKqTJoWvD9zux5H1UFjQ3SgdQFJuwO6-FkIybAMd4kBOFUqEIzNQca443qJIoLCsFofz0uCWvQCBR_Nxjack_VeIqom4xNugaWBmr4bnAnFQEN0r4vPvkey8ACmHKHDEmM599ELlHHiH4YeBBflt6gtRstENHe1oAkzOT-5ffM4kzq47NKw6Up-YN17a54JGeigdD525hT0hv9x7wcQWhIBKMCmzPLXLc_FU1jD8OOr344KiaGIWlcPbXmSz5Le8Ga3pBQCyXonyDc9htAkX2gyiMuBdmrp-_Qe5JuYqRItHtb0vqnQiOZCxrkgL1VGM"
+      },
+      {
+        "name": "Amala Zone",
+        "rating": 4,
+        "address": "F7FR+2R6, 12 Road, Festac Town, Lagos 102102, Lagos, Nigeria",
+        "place_id": "ChIJCa7UkNCIOxARePgEgV4cjYw",
+        "price_level": 2,
+        "user_ratings_total": 139,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-utDXGq0WzCGrukyVO6S9FyEMJEFhNe_IOzef38DeZ1LrAkYk3csjryraCRM90aVNPqTZ7dImYpSFj328uu9TcROYvqFpLtFn4tOIwnTpEhsEiY3qcc_9AceNBz_zdfWW9CmVgD0g8XAH7TpVw_PJcrHOY0T3Dycgz9x8GhHDJO_N7eeS7EUAc11y1IobQMkiu4xRK8zTDrwHwYhpMpUdjNlOL89cAF5XhaATg8di5-pRZb3LczxqS7frkMhrWapKoqcTSDz2SSz0QvjV2ZnZM17RKsZ2AVntgeeAbLEcQvHd9JTlVXwkhVu3U9XhwhULIr4lAC5nSg_ig7R_c69aW-MTcHfxUQ5pjkBjJn_M4feRGKEHL51ACnw3IwTDIzuoiinSFe4Fbwyr2IK1F_mcgWcNhAdKNNGUAsho51TBYJig"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:21.380159",
+    "hit_count": 1
+  },
+  "bfcda89b853be2d8613f586859f66aa4": {
+    "query": "suya Abuja",
+    "location": "Abuja",
+    "restaurants": [
+      {
+        "name": "Abuja Ram Suya",
+        "rating": 4.2,
+        "address": "2044 Aguiyi Ironsi St, Maitama, Abuja 900271, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJP5-DY2cLThARJ9P9yLo0X9A",
+        "price_level": 2,
+        "user_ratings_total": 90,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tHQgnxQXtf91zO-XQFQtAQzXFXtxKnsZWh7OKw3ATYHM5K12FF5N3gQx495kS1qkjifOB9zJLNLva-KSJSVSej6vmN3CK9NZF0RhdpoAq92O4e1_s-yzr8zRI4gdaeB77orJbYjvKznblmVr714LwzdaGKcBFh8vbmcHuKOmbD41wdyFOmMovcx2e_XanvnvIieEPoP_IineGC0BYrXqrS5Ct9iuAWiEFpCCrWI-H4HGsUzVvQY5grStBxCDLyqzEyTub3W9dvqsXhbhyGCIiVWBe-ECZU5FCO1o9qq01aHg"
+      },
+      {
+        "name": "Yahuza Suya Spot Nigeria Limited",
+        "rating": 4.2,
+        "address": "7 Bozoum, Wuse 2, Abuja 904101, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJbRTIkP4KThARmpQekEEN1f8",
+        "price_level": 2,
+        "user_ratings_total": 2587,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uN2mn-i2tVGo0rwhoIFGYtB4ii4EuAn41lGedU1WWIIB5RnFTbgjyXPmHmFDz8h3f8ISRRCAjwR3_wwgKk8NhPTMKR4DuZlF8ZZ0qaDq4Zi6QfsWTWs6U1H4nSDxdnHyjZ6O4i9LW6u0RuxRnglXkwjn_qESSZWo_BCAxvaO1NMHJM4E3-Vs95-B4bZNcerZEIRchD6B8cjz6PzElHnWzRJDZavYKeiXWgOtR6dg0M1TbRlZEazS6zvLPoyvoioU8_Dc3cL62CGZzRjzjxiQSkic0-8zbzDdktaHGeSjZe-npCaq8q6xSGgYdqq9ib9EL9kss6tR6sCwycxm0B6ZRhrcLUCf8_ioq5ZD3iA66uwJ_r2VI1pKcv_zMHgaTNMaCcdMvXJAXinlWKK8XFaWAJD9VhwOm73T3vMjLd6tYujxw"
+      },
+      {
+        "name": "Suya & Co (suya and shisha)",
+        "rating": 4.2,
+        "address": "N44 Aguiyi Ironsi St, Maitama, Abuja 900261, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJ1bvQbmsLThARxob-6oM_0Yc",
+        "price_level": 2,
+        "user_ratings_total": 245,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant",
+          "tourist_attraction"
+        ],
+        "photo_reference": "Ab43m-sM4O3U2Z4gwDNR9ai99Fk3fQeAVElKPFAUEUwuNn7-afNXxeu8Yku95zmmlgZSvp04Hz0_Rrt9qcffTj7_iDBXTfxueyEvoGXrqq3cNrYGlqfLrMtTRxLL5Gkj1pQ1MDy_BSYXC6R1KflFKq8rB_YEIMZ41DdSi7d99g48GozDEOHAkGONWYnpoccNzTiqtig-L8GzYOQouqa2TvtVuRmMY3JQhsr4hP4CJcj2bhomEp_p9ZuN3-RafJnWrFFRg99JaMa10EtEU10Nw-m_FLx3KBZz_Fqoje-Whsjiq_QKWw"
+      },
+      {
+        "name": "Yahuza Suya",
+        "rating": 4.2,
+        "address": "3F7Q+CV6, Sani Abacha Wy, Wuse, Abuja 904101, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJUTIY1a0LThARn-QY_gU3j_8",
+        "price_level": 2,
+        "user_ratings_total": 941,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uJjLUzcQ-3ITKdYOepW7a7IwpE5AYWF9ViYBs-9D5U2UA_eD5eRgsLJJI-WIHMn4b0mYKzs_po5K4tgXzE0-t0x3qBjBi8mHD_PIp8Ld3LbfC9rajt2xdFPKSCWdanVrAjy9GxzACK-DxqyATrsTqEoU7J7wcnf9qFU_tVY5H37u_3-Wc987diCNuI1keRYQIO3u60K0XMhrDyKEugAfEwCEoDbLNOzY_NERKVKtlv5jQU3VYOqJWu0K2lEU4FF0RZRDjb0588_cxoYLP1Q1g_ukin51lnJ2DWWbL1L1J_w987BhlSdhaL6puCYPEcZ6sZk3slyTyUpXiZl4nDbeOaE09SVTik4FM92U7njPRnqBVyPYDsoueDkwy98tDUsAuVMA3SrlhVn4QHA3XcwXxGQF6Ris2yISU_WxOHcvWD3w"
+      },
+      {
+        "name": "I.S Special Suya",
+        "rating": 4.3,
+        "address": "2GXG+34C, Maitama Sule St, Asokoro, Abuja 900103, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJkZAMEfcJThARiOVkAEbgbGU",
+        "price_level": 2,
+        "user_ratings_total": 88,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-s9HTYR6fdQhyQmXGxtmuGO6zcDwycfcVheeVvrCmAyj643MXNDwFRPSBa6RiAVEZ74Gn-5JiErPMbTTH5t0dFQmKNgQudL7DlMISjLqDJ6V5yL8xKmU1SZzCTdtNwDxF39UyX1Azf9ilxu3rv-4W3WTVR-6exmdXgzXPvUjnu_PEJTKlCFrRxQsOKnJTmu9n9fCGIdnNkjnRfSzX2Tbr-pYwG6Zvpi2n5x4C3lAfZeRbx1eOmPw1ZL_ISILUY_h_GWAfR1N1SWEZm2nXUzXwsZsGC3Mq2jHOy9JOyI5noPB-esKp0xc0aIvdWes9mRv4zE3yr-IjIdxPWA3lD2hiXzaJAsU0tNvQBooEoaUe-uzMu8VkURNG6sDM1_TjWYMKyREhnvLwj4DNch2ktIMyfAj5lwC5fbgajmLqoB7MjHfquh"
+      },
+      {
+        "name": "Crave Suya",
+        "rating": 5,
+        "address": "135 Adetokunbo Ademola Cres, Wuse 2, Abuja 904101, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJcTUi_QoLThAR4Ppprjm6ZSc",
+        "price_level": 2,
+        "user_ratings_total": 12,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tSQ-LX4R7QPJ0WgsrcxvPeAiUfartnRV_T39Ltai2AlvqcBLLt6FEBHPzK0tdg7y6q_aE-nocCbxO7cSfP7NlTsmcCKyA_DSvJMfSKNOvq2EOGig66hMYjhLwm-rADKPOWQOlTaZlItiVdHfIM402-kFlF4I9BmzkuvcmUxBJF75Z32kPmgd535XtNJifVKVmdifWPNYeaBRqRM82pnNCA6VuOeaJtSKrCvkXa0tfLmYb03yTU7Ee_bIoCo7QZioQ88Qsbv_MFocP9ons9tL7R6WlCvx_RxR0CYogZcvs6iw"
+      },
+      {
+        "name": "University of Suya Joint (JB Suya)",
+        "rating": 4.3,
+        "address": "3F6H+RF6, Casamance St, Wuse, Abuja 904101, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJiwfeHwcLThARSaYXZqvr66E",
+        "price_level": 2,
+        "user_ratings_total": 633,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-svSEcoMIUSSfSPiCvGfN3y3_mdvIOKH2owPq4svw0e3uXG8uwi9JT8AtpjGFIbtF4DIZ5__OAi3gm5WpHKjzR8K-UdWZRyPxOe3YxBc8H1mJPe3RV1p19qZAF8_ALFYuuHR4Rqe_XfNZfbMeCCrqY6rwSpxEcDvCj0z7o0wzN5GiC_No0uc2tOoUn52FSy5WBvy5k3z_nBss6px31aYGBRjKoXJGETHYlH6TotLXmlZ3S9HX15lQNySaoqjFx0Vd69XAsDaPq0S3UyXJRCrojmodU7Y9BrDeTg1upA6olWRu5qP_LQnGPuTd-1zVZVDMNZ0mfqgTqgsOo9HUM_7Xg3DhGhP4rBZ4quC3jmakx9CWJt9kjW0tt10MnBWhKDxwpAWpxkcZQy-tu1CrNjHPxu6_wAX3IjaMVgllrk5YAZyOc3"
+      },
+      {
+        "name": "SUYA SPOT",
+        "rating": 4.1,
+        "address": "Abuja 900107, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJqVu8tWoNThARoTMgkKLyebE",
+        "price_level": 2,
+        "user_ratings_total": 71,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uFObcfgfDWosLMOXjv9FHpZ4QE6bAoy54yH8nudOVPzjDoA55z7D3uqzRl8vyg9_TvFFrVmY3QNnZQe-FaC-9-0Hfms-HMxGOCnzggD6nay8Zd7l7hduMc7UIRi22clbfoNrq86rUH_mtew_YkZ884oBYksPAfmJ1KE72GBtUtkY9QA_oNsO5kmUWRi_Xry15ZI8AlhaooxxV3CEhHOTDo-s0t0cKLQS_bgNLq6srDnOCjN382gSCtOPLsNzvie5N5A5HzW7s4IsRh0Z8Oe3hn4K3JzOZVOqE_OMyciEJdFHMIBulmT-fxBmBUIt6ZzKQx9P3tTnanwoV8A2L1vvVdo98YmMThIW5TqZA7UqAOyM9x4UgKP9UqPAEiRC3eWmm82LGCxs2s4zMOVAZ2b6sCbwDB8tXZtE-0YEAmKM4"
+      },
+      {
+        "name": "Yahuza Suya Spot",
+        "rating": 4.1,
+        "address": "Gwarinpa Estate, Gwarinpa 900108, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJNRU3-WZ1ThARpusgwPL9mXk",
+        "price_level": 2,
+        "user_ratings_total": 1678,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sT5FUF7hvChUBJObD25dnwQB-93zdwDEclMDahi0J9uSyfpKaI38p0QnMoVsz_2H4eqHKG6uIrhTfq0l-1aopp8IjYpsp47CQ1GeDoURb01K7sSyBCLX9LoJm55Y0V2E5jDyooH8cRPA5YW0vxeKSh7E8kq4r5ziMHc4oxN9Ilb5CEPQSri5dX7tDmK6ORQExC8w6g8QVcL7RWSVtzccON0pK4psX29U7-Ni-Px8GhxD3ze-oyBEgbRam8hQ_6BiOSLqWzk2bY0oiG7yfjTS-qzXN8ovtvyiFYlVgvZ_CWZQ"
+      },
+      {
+        "name": "Suya Spot",
+        "rating": 4.1,
+        "address": "32 Road, Jabi, Gwarinpa 900108, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJcwSkbGB1ThARmWSZ5bBUbMU",
+        "price_level": 2,
+        "user_ratings_total": 293,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tyt6FWx3MIxbwtN21FAenUXf0KiqIS7aK9PoeagVruRc856k5ZeAJdWKU8E4mWrm-nMGGWMJoPEYzUeYyWzqhH_a6qfeoI2SP95RiUwsJdAFxIRt5AWhszJSX7hzhWHmbubcFr69R2bbG_oUeNv0e9XFq5YyAgTxg-wSlgbOKiBOAXI9PVHlS5SkhqlpEN1B4-L_8j8O2M6cgSRlel-P5lvj6WoSnR1nbhuDbSHpqRFsgRQcEAjnKhRmUijO3ZOXhu6j55eeMuvkxgJW_YUznIGcvqbvwrvt725fMBPD0KYMoS36whxT0a4T5c3rTtA39ETDtuu6lwrmJTbEhP8uoBWSvvruAyTVMBMrEG8RZ0mW8lJvDJVuMMYbM2Byo8esYr1iXlDFAxALVPDY-ayBHTcvq-aHD3_uDf73pe652a8A"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:24.328000",
+    "hit_count": 1
+  },
+  "a0b29b1e5940b969b554af2612fc73a0": {
+    "query": "pepper soup Lagos",
+    "location": "Lagos",
+    "restaurants": [
+      {
+        "name": "Peppersoup place",
+        "rating": 5,
+        "address": "6 Onayade St, Igbobi, Lagos 100001, Lagos, Nigeria",
+        "place_id": "ChIJ_xxIxsmNOxARpkkV-xZMOqI",
+        "price_level": 2,
+        "user_ratings_total": 1,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": null
+      },
+      {
+        "name": "The Peppersoup Lounge",
+        "rating": 4.6,
+        "address": "6 Agungi Ajiran Rd, LGA, Lekki 105108, Lagos, Nigeria",
+        "place_id": "ChIJm1aCWAv3OxARNoNIxhGX0kc",
+        "price_level": 2,
+        "user_ratings_total": 47,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vWtdQKEd-RdrX3OFNY6KLr8PToF7AS8yW_1unFOqfgNeaMDHhEDW4ar0YzM1sSpouN2dQ19ujVXLcafndQeStlCvmkWI7kygUO0Q-z0NuTy4y8EM-1x2q5BelTyzqnOlymFdAzGXPYGR_JdlYYebBZYJbK7R9h9hwzXU7pydCXzp7MAsKqTuIOP-hgPRqS9zSBQZdlSZrFL0DNycxMGNLs_g-2F6Dwswhlct65-qW9j5L-G8xYgq5YjO0zI1kxhNHeEcSwCbBySdRX3gPWAkPOSlVeN1LPUrCzDaPG333RJw"
+      },
+      {
+        "name": "Uju's Peppersoup Palace",
+        "rating": 4,
+        "address": "79 Durojaiye St, off Michael Ogun Street, Surulere, Lagos 101241, Lagos, Nigeria",
+        "place_id": "ChIJJ8aJSjyMOxARSl5Tx1cvg-Q",
+        "price_level": 2,
+        "user_ratings_total": 38,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uH_y1iH9OSAQGtVRCTQrEHk49HZfmpCA7Rpj6o3vaBSN3IDPFRi-8keU_NtblwUVI81RQs8ScHtZqKGz5aMxl5uMeME2SQLPNz70wnMAKd0bJOEloYwOUmRPs0hDmDDimwOGpoXGZpOXQH4boqDEubzok2FJ7axv2uRYZTLuFVyeu_SEDyJRFnqrww0Y4SZUfqMANkdX6Ei4zWIgh4DJE-rUAH4Er1Ebn3iohP0C6VxdL_mCorKtTzRvIztfWcvEQjqpgZs-xDYcKi3ZzS_irrKgYUH2maZ-IpUchZSmqTyQ"
+      },
+      {
+        "name": "PEPPER SOUP PALACE (PSP)",
+        "rating": 4.0,
+        "address": "University Rd, opposite Atun cemetery, Yaba, Lagos 101245, Lagos, Nigeria",
+        "place_id": "ChIJgRkc1rWNOxARB7urPY1ElHI",
+        "price_level": 2,
+        "user_ratings_total": 0,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tJnPzswhI29zkuix2FWLm0nQhhfR2nlvvFawVJ4Hkwq2C3CtUWcUHcfHsGUioHyepyB05JC6hiOYsjSzL1-WAWyziEMUjobLC31KkGGeLlxYMue46PtP45ZX86-0L00di6SPVWuV7OZtwyjFZHRVk1QjkEVeSFpff4d9b-LWwTNBCuRJLlW6cwwg3dzFh11j_lzzoyCRDh6qKe84lI9N3rKk019l6v7yZLF_O9FI5tYcE0YsJBfGIoEvAISKQvDkYBY5pu3Lw8rmJaILhS-quWiV0E9S43eduqRUiw1KQkPw"
+      },
+      {
+        "name": "BFF Lagos",
+        "rating": 4.3,
+        "address": "4 Jibowu St, Jibowu, Lagos 101245, Lagos, Nigeria",
+        "place_id": "ChIJA1J81p6NOxARH1yahCW8Ca0",
+        "price_level": 2,
+        "user_ratings_total": 155,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uiQ3p-clFeEC4D9xPY1bSIHVR68JKPRACkFgYZfx8low0yb_aEnAQPcu4zR2q8vd7aclRIykwPbKxLZix-OoUKWyj3UsqJeZLSN_-3JtV1bRJWqnm368hVlORZPGG6FG941l0AiUWwYGfgnp-zuENu6PMKnNSN1BcAYlzyQwZdmbuC2wGtr1-RKTGL10tn2BXiuNKLzomvwzWiHh0PDzpCoeje0jdXsCJvP9IRhWa-7vcDbZnBfi0yP8r9fAw8IEnukAEh2mBxy1AMkxqiVflIL3h5QimAl-kWvyNH7RWNHA"
+      },
+      {
+        "name": "Ofada Heaven | Restaurant in Surulere Lagos",
+        "rating": 4.3,
+        "address": "62 Adeniran Ogunsanya St, opposite Glo Office, beside Lotus Bank, Surulere, Lagos 101211, Lagos, Nigeria",
+        "place_id": "ChIJGwOT5YOTOxARhcar-XbVgAY",
+        "price_level": 2,
+        "user_ratings_total": 199,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vHUBH1480KGP60a3g29gEBIJ5yoMepSHMLyXTtaz030LF4vvgK81zWi7DeJrO-lgNuOQTudqwPbvTxtowSw-9xRQdp2SPU6gjxHgYaMjHaC7z0Y41u11vtgyHcQo5nU4YSRyrZ3t7K2CYkkZ0jdrT_bwbeWzjPRI_MJ7z5t2nZR0P2jotGQ539_tVcljEhXESHuIe3IU18f9N_Z9_nEURImuPHG4FdAzr-NHJbUOyynpBfZFOcQ7jrbYuyI5eGjawAKVRfGr_bZmm09-u4xjThiZw6y21iVg_IrIoUNBisVaa6rnPIgBrVCe3eEtKMPbqKmin1R8YvF2W7klPNXx71wdvH-gcDVzBDtttG-Vx5PTvOF7LJs4rPrgQaQf0j7Z8Ym8TFatygXm1bmKIFAlop4t1852_Bn4syFljC99blX54"
+      },
+      {
+        "name": "Peppersoup Box",
+        "rating": 2.8,
+        "address": "7b Niyi Okunubi St, Lekki Phase I, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJKZBPCgD1OxAR15_E7iX0rNY",
+        "price_level": 2,
+        "user_ratings_total": 6,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-s1MpbCg-DDC-c0QxPPvkuYZRtU6SuvJ-V6vaza_lC1c2b1xM4qWlTWHyJGjVV9H-Q_AzMhieI4MLCJVpxqSVhNsycNRXLbVDObgX7BWOQMwjZCTu8_qd34BB7NpIemXTzlYf_O4XEcjAsT4hCFZu-Y4RWnDBQkp6GbClRFUB-CuhqNe84Si5Xqk1HPCGmq0H4_BFgW-bU9s3HAiicIQwNT6r8epzaJ4PkVebMvNg5SL3ilICtwlGQbC-OPl2xpwIXy-Y5tBCAtF6sMjauNpbHkJht6CEnlA4aPnFB_Jpd-nWNE04Yl4Rmf-OvvkmWX0z7vTzkezFJSW1kZT9OMyWyJo7LYMtitrm55_5BtoDxwI3WBLXLOm7FoqL4I-oyX_OenxQVHarxPAW7qmkRI5aF9DwlntjgESp_uLdOHsPS0KJep"
+      },
+      {
+        "name": "Sankofa Lounge and Bar | Restaurant & Club | Surulere, Lagos",
+        "rating": 4.2,
+        "address": "62 Adeniran Ogunsanya St, Surulere, Lagos 101241, Lagos, Nigeria",
+        "place_id": "ChIJhZLz-f2NOxAR-yXjuGFUOLY",
+        "price_level": 2,
+        "user_ratings_total": 235,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "night_club",
+          "point_of_interest",
+          "restaurant",
+          "store"
+        ],
+        "photo_reference": "Ab43m-vTufaQ_v5OqJTMZaZeCkW7iUb6G5aJRsSjo-zv2GR976hdlPT9RlNPzpMSbfkkKdwKYxbbfMksGWT_0CMa2M6-Cd66STaHj7tr-bzZYUrXqsWZia5DiGPB9P2JdWC1vxP9mtQ01rfzQtdMculzTJ5nWLEUbleBKNrCgLYq8uaj5VzSMVWJQ_qW1y6ljJb6NS3WOERQRxCtUTcm2giDocCVyyVrlLUkOkttP9faytSWkqXLVaOzFXjFsWqGRT9PoT6N0EI1O5VBMtEZ89NV7OSN-O7-7Rx4UJyewNq4oPLFromhnPC4eCmgLfoakDaoxptienkY8oF8mVNrcU9R65WevKFRTX0FzqTxkTxH3kEHmHw-KENLzJwTFNf4lpvGeDEO0i4lHas9pDdApMHZjDCkEABtcO6SZbL4W6JpvTarXmzfRrAfR9K8-XwNbhrY"
+      },
+      {
+        "name": "MARA\u2019S PEPPERSOUP",
+        "rating": 3.6,
+        "address": "Shop 4, Education Red Bricks, opp. School of Postgraduate, University Of Lagos, Lagos 101245, Lagos, Nigeria",
+        "place_id": "ChIJn8aFpseNOxARjLPgcSVsPTU",
+        "price_level": 2,
+        "user_ratings_total": 5,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-t8rx1fiBKzWCje556fzhsx4Jqz3nkAOxWNlGNjjp-CmwiOHHB4alpQjBQxzibTkYFxszbrdQU4gx9QXz0wM0Pu5IZWvZoRnpj31DZTboq9Bp93JrNl9GB9ziknRt8lZBPiDAloNVjzTOrYgcWe9pl8xjfdf55iHX1uKr3zV3sXJc9fkHNRDkIrs5V67IR9NtfPPQ-nMQNeXRP6EvVVDRg8QfcG2o7PpcdFNY8B-UQZCMnd-0BzGFsgA9bN2gby9FtZntBxJVvhXtcAOya-f8dUootXT87pMhsIz8agJNcJBQ"
+      },
+      {
+        "name": "The Scope by PIER Lagos",
+        "rating": 4.6,
+        "address": "14 Montgomery Rd, Yaba, Lagos 101245, Lagos, Nigeria",
+        "place_id": "ChIJKd_E2gWNOxARK-a0JYgJzwo",
+        "price_level": 2,
+        "user_ratings_total": 212,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sz17kNSyfvHKbrow75sY_MPn2jXoOOJlgOdJY0vAM-A94DuNbW2UYknSqfzmyCnnNzjuvdGtSWtHupHZls8KRDeuW4dm6XrrJ7Ni3SwUV9Juztd_NXnKnWH9ct5XfCka5BNZBVO4FeWV59VBPIHULDUUIG-gf3X7q-bHYKWaHem5k0aZgniSxcG73EpNQAjCTt2LdrzcL80DcFOHjNjAgjYAcsmhk1a1D8Q687hWmV25DMBfmBi4rSkSxUHeRJ1vYkdo4V72CVTWI6lIKAjS-rs1usRfbp941U8FzW-ZLPfg"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:27.707984",
+    "hit_count": 1
+  },
+  "1575a41dd1ce898037a7a908e1d8a9ca": {
+    "query": "fine dining Victoria Island Lagos",
+    "location": "Lagos",
+    "restaurants": [
+      {
+        "name": "SLoW",
+        "rating": 4.4,
+        "address": "2 Musa Yar' Adua St, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJZ3qIQs-LOxARZM3CF_BLJfU",
+        "price_level": 2,
+        "user_ratings_total": 997,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vC-2SNtwhJiaPLLp3TwDuLjbcRLCNAOvnuHI5MoK9m8LCgAaCAlxZNNu-6R0IBqLOKgNo6MkLvYtNoVlXDaa3AbCbzlfR2gFbYQx4C60YKrFEnr8q_KLdj5yYN0UszGPkdVtoy6-vxdTUoSxIA7Mdab0Gy95oQ3p0sEL_cUbIEjUpZnAa9bFjlVsiBP5s48SJNWEcXRx5SzrIwfwdpr68pGiNWYQ5ZYxvTrFtiFcs7hJAxUc2QBwR_iBUEPdsFOjgLATvsnx_q362L5-zqAJBeunDr5vqTLEVZH9aGB8i7EwwC5hNGZFIaEIAiEwBOAqegvaY_X-f8M1qXnVBvmVE3TMNKCUJoJZyYyPtH2OxpiGoQxBjZHamZNVWUf6YfKzh5gFspUYEM4Tdz7vfi0l2N7pl3ZgnEHS5wR0VrxxHFeA"
+      },
+      {
+        "name": "The SIG Lagos",
+        "rating": 4.5,
+        "address": "7/9 Molade Okoya Thomas St, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJy_Qy7FD1OxAR3-mzdlqIH3Q",
+        "price_level": 2,
+        "user_ratings_total": 205,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uf2lbms3e5eTkh0xCL0oecleAVGEqNImuD9JipnwCgUd-8IsWZfc84fkLBUoWMxN-RlQuA8xkyszPEe2q8S7igfKhnbUE_9RSoDoVI6vQwEOrqUVqfQ0kfgvYCRXE5kYrta9l3Gz4FeKOU-ZzGTvbn4hmzdrOjYxtBBy0Njcw8MumSsWoC1R4qfaw0G31X3r9KhuppgBU-Dc33wDDeketOFsJqikC7MWzcGF00mjbtG7TLl6yN6pVBL__h0F_gIx68KdtaUQdKFTOrxasQRrUpDsKsl08TdqPTOf3PcNOLUg"
+      },
+      {
+        "name": "Gras Restaurant Lagos",
+        "rating": 4.4,
+        "address": "65 Adeola Odeku St, Victoria Island, Lagos 101233, Lagos, Nigeria",
+        "place_id": "ChIJ_cmkL8_1OxARVhqu_Yld5XI",
+        "price_level": 4,
+        "user_ratings_total": 282,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sjNnB5ZIizgkaYQG85qzE2uAg71VzFB8PfBF7-jw3nOsuxuamxjduE_Gotz9wF6JAJPDu0DGlCkYGCzYOK__qwTF31Y1V63zJJd3293NuV1Xl-H5SlvU8xDzW7kg-WnlXAEughjsirJNu-eGuXDAf0Jy5PSrIVDg5bq_S5ENWY2ulT_Un_8UFso6655huJYp2ASD1XNiWX5ssxIkiH5C7Ga4xW_EDQUpLvdYeNAGLSjqmFzyNtXkirC5RYa0EDL4oEUoi7FssX3xR8uqfUfSWv8MGj6VZZilq4Ebtvd9lzbw"
+      },
+      {
+        "name": "360Restaurant by Vertigo",
+        "rating": 4.5,
+        "address": "23 Idejo St, off Adeola Odeku Street, Victoria Island, Lagos 100001, Lagos, Nigeria",
+        "place_id": "ChIJrZgf31uLOxARPB1XRaVFHaU",
+        "price_level": 2,
+        "user_ratings_total": 107,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vzl1AUssyfqGkeI_x1kmEcHxEdIUoW3J63I2DTuP5PGtvh55B6bEz-ypKgPfEXUl53NKm-U-g2Ve4xxdNT5mjU48_K-jZzKr8Ab1hOjLvp2W1SHUWhxQXr10p2slBhnYmJ9QH49oOPOYHYOPu31qoH88Jh7LDHfe6CcMpCk44O7N3LirEpwhkxCIWVt2Y3bbAQg5TsGwaL5v3Wjkq_cTrG0VlYEjCkVwt7vB50A-K1DnDR3654LRTEI-tChkIW4TbEwzMs-yHcC7vo4A05uKVcxJbTZ6c0cogJy_k8iOkoRg"
+      },
+      {
+        "name": "The Ona Lagos Restaurant Lounge Victoria Island Lagos",
+        "rating": 4.2,
+        "address": "1701 Violet Yough Cl, Victoria Island, 106104, Lagos, Nigeria",
+        "place_id": "ChIJaYKZEZT1OxARVVQ4hzeXeNs",
+        "price_level": 2,
+        "user_ratings_total": 154,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-shLiR9Za2shL5PpuHNktT2MtetUodqPkqAKMngsxQH1eTMU1JFGgitJ3faN3URWzFhFN1_I_fjd16yUqyGEsCaRrEKcKGJreqMXR7VhrjKs37BtH-LvS0d1tUoS3oK1b0jrUQhFGGKLcVkhV34st6UtqOpkYMkSkNyVF19Fe34qPhg3xNH5tbE3WA3b7nTaQqxaZZa3V7YOahaRaOcK9SCRJV-bqTbptFSHM5cgzOY_H4PHBosEd5dCbBDJTEEB1wRQqDyB-jjc2-BKxpSHCLE-UIZzWromV189cRyjYqtmXNKtioMa-0HczqCopMp8lzZaymzUSneTHgmuj001wy-LyQG4xlPHGgbVZCMdFtVuXQMFgIWuxzEu7VffT1YAiuLtTudeh_7BYXtmJv6hcl7ZR6-wvwcqrbHqBOMAU23qw"
+      },
+      {
+        "name": "RSVP restaurant",
+        "rating": 4.4,
+        "address": "9 Eletu Ogabi St, Victoria Island, Lagos 101001, Lagos, Nigeria",
+        "place_id": "ChIJG072Yi31OxARgmoBpC6gNCA",
+        "price_level": 3,
+        "user_ratings_total": 2749,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tvU7QCMMZbhedAm1VgTrX1Lm2kqeh7SyGFlDdkFRvY_QrNTSULzRdukcIJJCR8yQqPDpyWkmwrZ4Ec6VYYcs5EkAoYwC0SH57RSWC_YPJadPkzs47EwThEHp6sNCpEqh4KUrbr_3FRGvYy4X5CKd9yB7yaxeZbedBmBx0ToWLJDW5FrGSEuHcOav4yldBPqo1E3du6D31Q1DH6P8wkkqSreCsA4JLaECBBPHXqpgzgiV-qdcQ7uPlcgzXq1fsnWJH-JqwN21M8zHYnN_rAbf3b7OFn0U6IIcIYkh1cifjOFt1xltpQYnwjXvXDdn3GetJLGZCWFwcSbOpuG28aZE-r9duRBrNRdik12BSkVPLSjirdAiyhoU0eIUMCBa1laVmb7D_tUh92HuXVe_X2wrZIAZdQ3_M0VT-KLxy0B15NEg"
+      },
+      {
+        "name": "The GoodLife Restaurant by SRS",
+        "rating": 4.6,
+        "address": "Afritowers, 14 A.J. Marinho Dr, Victoria Island, Lagos 101244, Lagos, Nigeria",
+        "place_id": "ChIJ6758W3T1OxAR5rVe7hR6g8Q",
+        "price_level": 2,
+        "user_ratings_total": 120,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uljeQ6JBWb5Wa3OAisn2vc7oTFYwSTgsWGDr0zdYQwUivFSdYUBo9aSWqQ2G1PgHq_3ESjnafsQ879YTwZCgpwKa4DDSEk506l18mh9E1CbqNPJmZ8ape71-pTJqVdKvDlEnk-R67yqKX69yLMiJeLhocvwy_S5bofrFINxu09k2BY1ykk-Q5YYsEUGti7aKfDy58ycq4khFzKovVx_FCUHOXCrz9QGoWR3kS0VoTXcBDsurSKsvxMwuA5oCSkVtTJFlTdgXUIPdaeServyDiHgZqek1WBGmq6-8-gsO8soQ"
+      },
+      {
+        "name": "Sketch Restaurant Lagos",
+        "rating": 4.4,
+        "address": "CCJH+RMV, 5 Adeola Hopewell St, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJsTxnZl_1OxARaAj0umW7JsY",
+        "price_level": 2,
+        "user_ratings_total": 436,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-trIfhVSEg2w3u1NrD7PX6eFiT_7Z9ROkRTjutHLdut-Qg0O6qs9xjEK1czwSrzwnd8hAnNDN6imbFvCZlXqQcZDoDTjAZyAXEpyuVJp_oipE4o0r3EIyNb3AdPDmsXMfFJaVCykh8HPtcmSzQV4YV97QUmS2czUsaroKwkfNTDWCXKJ4aONE6FaWR5AWpf-dJrunl82ULnUu8aSiaN5TTirdlpjsrb78WWPmcOEDHThoDMdtuLJlRFMBnqbeuvcHM9VTKqhBNr8GUG-zsMp4i23Pa-b59mgUUeDS7cWyoVFNJ60TMOoAPd3__Zh11M5tS6rNKqOgsikHcnsR2vwI-rAKAhJJI-IyA7aveZdtBojoHW59Mg5uf69DqH4bUD9olJEMdL7FwxZp-ZO6dQWjy5qY4hCnEhoqT4MSat9am1jY0"
+      },
+      {
+        "name": "Gaby Lagos",
+        "rating": 4.4,
+        "address": "6a Agoro Odiyan St, Victoria Island, Lagos 101241, Lagos, Nigeria",
+        "place_id": "ChIJvYyCV82KOxARg4Kq5Lwgy8I",
+        "price_level": 2,
+        "user_ratings_total": 106,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tSISTyIdC7gcEaLnFFrwoZXyL2NuyIXU9sfTjIpn4jxdpcgtdGn3TT28YZcjd8fSlZPjbZpwjKWKgqJneb4Jk3_QytW8-hiFqTW4bVtKkUhL5lgN5d8dyk_j8VBSaS4y-yDXIWMKpZtktYgswGhiDMfRNoa_L0SmQN4pUEE69l8QkYiS6n9cwUxZ71zo4iJlaFIYv6YDQp6g1EPJ5C0oZIyFWjR71eOL9sOF7oNw6hqJXxPYRHTiG9v1NN2eEiw3JnqcC8lrl5k2oVrow-i3RSry4BXss9Aa7iOOfkAabJAA"
+      },
+      {
+        "name": "Cilantro Lagos",
+        "rating": 4.4,
+        "address": "7 Musa Yar' Adua St, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJebhzjNiLOxARFx7TosW2FgI",
+        "price_level": 3,
+        "user_ratings_total": 1949,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vpS5CWau1ASjsLvETy6iBPUZyJZPVLRjABcllVAmPacC8OuKHbMDAo-zKyI7ZObpnks6HGW6P2O30j_DIM6u_Yrs2LPrkk5j0erypo6C4skFp9JW6qDUQS2pIbQV6Z6ZI5adavF1PzPZKnDXB3wGUh6z1IG3521N_Cyl_CuYZjIUmFmKUn0rh8DCrMIs8NYlEOkTF7eig9m-smp5tovqwEOgbghdHGY7PtcmrKDhwzwRMm7pEDP7LrRgEYY9XfzsNOq-oLgGvJy8d1oneTio7nJN0IRnSG1_FQpN3IzctaUg"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:31.399444",
+    "hit_count": 1
+  },
+  "1209d4fe54a79441f6dc10bcd0afe221": {
+    "query": "buka Ibadan",
+    "location": "Ibadan",
+    "restaurants": [
+      {
+        "name": "Tamberma Ibadan",
+        "rating": 4.3,
+        "address": "1 Oba Aleshinolye Crescent, Iyaganku, Ibadan 200261, Oyo, Nigeria",
+        "place_id": "ChIJWzMw932NORARtLhm49cNyZs",
+        "price_level": 3,
+        "user_ratings_total": 1596,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-twKR-8a7w7JFVONoCMbpHtJnC0jOWz6yxVkfB9aPW4LA8ED1RvSO2xjNChGk6Z1l-XtkngCyeLTzGMjQ2amcpp8229BVRcDUZFVWVOtD-zKoDFvcrGEDOP-xa0X31RRNk7hoADPb52R3SEWsWkjJ8XTC-XnlRa0lGHFpbW0uFJCpQ-mm0RW8bf0z1dHW9fmxgZAY6OCZco7nhwV1mpID8teX8UWeXioQwLK8tr0mHdtbs77EB3JDkSqR-T2zjFsaNQ2Bi_Qd_4UsXdYZQiAllNMY-sWQgLw_0FlpCFv59yOg"
+      },
+      {
+        "name": "The Patio Ibadan",
+        "rating": 4.3,
+        "address": "Basorun Rd, Ibadan 200258, Oyo, Nigeria",
+        "place_id": "ChIJAa_XjQ-TORARQzuGHO8zL54",
+        "price_level": 2,
+        "user_ratings_total": 79,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "night_club",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vxDBACqJqm4ZvdKYvV9maOAxKM3b6BsdM_rKqzwGrUxjXchXQ7s3X1zqk-0TLjy_1hB_VD3U0PcNJltfdBzaUabSm5QjnpBMrB3ATH5rVmEIgv1FN4lhLV_NQCpZcZuu2mJ66Jl2CPRvPjpEyo22d32jmIT4IqFbvhaAu5ta-bY3BBP5i556bJSODOwruOvK9H-wDlNxLFss0DaNTnL4tVnJWS1ASc56h_PW10c76Ex7-WcflN9hqfTRx2ei5nK_Vz88bdQ_YcXmyqKK94sLwoIdsUDTjneS6lOLpaODZepQ"
+      },
+      {
+        "name": "Latitude Caf\u00e9 & Lounge",
+        "rating": 4.2,
+        "address": "V2/V3 Ventura Mall, Sango-Ojoo Road, Ibadan 200285, Oyo, Nigeria",
+        "place_id": "ChIJ4fSUT6nyORARpsPy7mhG79A",
+        "price_level": 3,
+        "user_ratings_total": 1069,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "night_club",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-s23BZJ7rFLokwxtlIVJeSmzfOGvXJnc_EQOPnFjd3zUyEUQ69UEyOU1sbpqLsCTZAfdGop6FIb7tNFHGX8CdzkKFUzVu1DI3CM1CJ1srRagzQI4Ufp1OE208gReDbuD7_XJO9RFPWTXcNPeI5sgaoC5GCInVdUQGMWhoBAmr59EzZO9CmX7RmtG7uvjTUZx0LDXIaUNJGxrXh6h6CJe3os6iF5ycl86qM5apO4M5nNpYuVJ3xNWsUATDwGr9TXYG8JRtYBcyAXHzaOkZwH9zQS4rowO24u_sUxiKA1INADmODvBqsNXP071eOCpH4KnMXdKDU-_zRWg2K3BHY0-I4LA8K4IlZpR2FEoaJ0ju5yyzVCbQBzMcC_8fAWXGyK6SjJPPUAanqcWgKqDRGdfCY-s7uz1sD7g-rbFym9as74vwjT"
+      },
+      {
+        "name": "Stone Caf\u00e9 Bar & Grill",
+        "rating": 4.2,
+        "address": "6 MKO Abiola Way, Oluyole, Ibadan 200273, Oyo, Nigeria",
+        "place_id": "ChIJJVWrBquNORARSD_r2G48DFc",
+        "price_level": 2,
+        "user_ratings_total": 852,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tlWZ22B03O2sd0FM2_uwbktjW7_XVVlcsuTKPXSgwSXn3_AkcZBfAIhcjU9F49_AqJDA65s3xQDL6e9YhIxWi4lVUVL-JKvdyr_cfMZ_RaDe2-qsMPIXShUtVfTAgsHdOK30IhkDh2-hgsZfYDeyCCXtvVAS0RUb-1R9auHRHvnIYlgm_THbECCCBQpWVxduEd5gH0Md8jrFKeePLLWVHAP4IFgQIt0QrcQRQ5cOO7DA27cBwQCfBItAfO_VOA_Q9WglBwgqd0jXzGLEhGFXugqJ47_-hOEhM6i7wmnhjYZh59s1KAuXwhhzccSaW1V10GHZx9TAhqYRiQW30gazepwBeBFV0NtJPTrFjTpNgaBpsV2DWeEBzvdLyQM_rkzlsZmKSg0BLtDaSZIV-nFyUW1m337VY2lXnpzu2uIxQrBQ"
+      },
+      {
+        "name": "IBACHI - Ibadan Chinese Restaurant",
+        "rating": 4.3,
+        "address": "1 Theophilus Akinyele Way, Ibadan 200285, Oyo, Nigeria",
+        "place_id": "ChIJ7e4qCK6SORARxRgMoKG7tOw",
+        "price_level": 2,
+        "user_ratings_total": 817,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vPRNtYgXo9pVw14XZITlmmnZ5JLs4hCu4RvYnjG_JQoLXtIdWeFYGDtwTlkNR7KkJ5dQXl9YiIAgL24WIZbc8T3br3-eW5uOfFi7v_IIL04FEn9FKt3ITM6qATR12wmQx7mCUo8ZG6C7BM9rE0jDR09xQcalWbQ2aF449Lq87MJpvnAAS4F5uTzqSEleRcxL8Uvey4esskM5PIgaHHqAXgSoBlmfVaUPYkKa0Vl5d0dToyy02zpG3HwLeXxMAMPMqNSmE-999lmWbKoPfU6S64VjRsnMq7gGkRYgs9gHMbcw"
+      },
+      {
+        "name": "Five Continents",
+        "rating": 4.4,
+        "address": "Golden Tulip, Jericho, Ibadan 200284, Oyo, Nigeria",
+        "place_id": "ChIJYWDibuuNORARVWDpfPBL5gA",
+        "price_level": 2,
+        "user_ratings_total": 267,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tSP7Z1v5jn26ATyyvaZsi4appywjhBlchYp8rHODk5r_TvO6ZiCOXBfFb5L8XH2rnkgTkRDzL54mVb7sR-tzHblnYdwPntcJDgMI_kG2lbbYm0CiTFIXqXJHGYUMXiEgEGfpSnYW9fThj8QQqnUh5JOszRsgbkfLMTI0JI8kv30UrGmE7F2ITVH5rOs_gxGAxk7cHbgYm0FIORWOuY7Wou-lAR29EMsRd06HjC2F1gf-iN6R24ttQEFn49yWRpuDH4lxYyF5am4FAUdvVtMAUWpj5PH4Tj-cAfZ_OEVlj-ew"
+      },
+      {
+        "name": "Ultima Restaurant, Bodija",
+        "rating": 4,
+        "address": "Secretariat Rd, UI Road, adjacent NSCDC Command, Customs, Old Bodija, Ibadan 200285, Oyo, Nigeria",
+        "place_id": "ChIJ87V5zq6SORAR_t3R-zTZd9o",
+        "price_level": 2,
+        "user_ratings_total": 2722,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-v4UpF5H5Zg6b8_ngNVaRxeiB4fIK8J9klrcq2LlwQgYHmArbbSfNfemJpSDBIbMfLdjfZTVUIRm0eg6uxDF4ZJBA_kHgFRqAeaCnV15jDbfFqAFKvQ-Zk5ItTNl99rwDyeaMxGvlL2ito8gPR0zIvmH90dfL3LZPMJ1DVv2YEmr1lgKDmMaxTQxtlvD5dxo0sca217QOC26yyJNRs2FehHKurr-jJOiPHsMBiR3p1eLseTd3CSPmvHsYRSHhKKZJveHSaN-aFjcdNlUKVlTxb447DtbRbjxSxX_baencjRBw"
+      },
+      {
+        "name": "Bayleaf Resto Lounge",
+        "rating": 4.4,
+        "address": "CWPV+4V9, Road, Akobo, Ibadan 200132, Oyo, Nigeria",
+        "place_id": "ChIJYyOu-NbtORARtBfVQtBER9w",
+        "price_level": 2,
+        "user_ratings_total": 227,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vsQV2SzAHACv1WvMfuEEjNJF7a5NsQGfaXJGUHvzNnRUSE44KMojxvYTajhjUInWjRKuvTUQSIXBD3WWj6sTxKsunk92Td0ymfN06vi22ZI4B3tl81fP5riDN5DA7wOj1X_7IoYsW2pW4znu2cF_99B2LoFx1JA1jHw67pLY6UbWsSqx32Yfx4vGAa1IBWgkAcy9S6VhyT57_q2p3mn1rQvLYzHnFvXOqAlclw55XCgqJW2aK1O625JgnpJw1BpoQOBqa5nrTQbe-kCnzw-_QFV6aLAtPlP7d8aTaMK03kecyJfyfu3sj29AxDmBvgW_3EjNT6Z5MJ8IA9wVj-EgFfat0LQDpGhbF6ia1AVGgtBoniAZWDuVgQwaM6nZUq_GwLIRp08Hxi5rWCYGTt39udlidaYI5AzPuhya52-TzA1jwZ"
+      },
+      {
+        "name": "Shandy's Restaurant & Grill",
+        "rating": 4.3,
+        "address": "270B Oyo Rd, Mokola, Ibadan 200284, Oyo, Nigeria",
+        "place_id": "ChIJp03_khaNORARlBIJdqejCXY",
+        "price_level": 2,
+        "user_ratings_total": 188,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-shYYIrTowq_22781Z0G0DvSoR0oDaBTZb3CXS6cYt-wYcoOa1Ou-m5oXsNUr4UFrte9c0NgZxOCaLT0UDHs1spAYuowIc31Mh5G0Lr0isrG4oxfjfjKGi2QUuX-gYyht4N1tu8b4t7DzRYej6lMQYpitrKVlLNQXocJ0rm_JXoInQljp2Fn9gDRTCd6CnkGZVfp957kdLUTsktMdQRBmjllFCibrEhf_MCTJSIltZQtRTpBNtpRmfTTqj418yXi4dyCiyVSZNzmHkMS7oI-77EskUZ8_QSQrh0otP3QDnnPXMFyt7h_2ZXRR7hDnGU4dX9MphSMKNHx7TEGBSCWxU8QMQzk5Nf40R2EuMsfO_lyLMaVcxnd8RQKr3zOXix5fiWwUk7BdhmIVGpluxXMHKsfF9SnK4BnNgDvuh43sXQ-eotvBi7oLY7CYrQiE2H"
+      },
+      {
+        "name": "Kokodome Plus",
+        "rating": 4.1,
+        "address": "Cocoa House complex, Dugbe, Ibadan Nigeria, Ibadan 200223, Oyo, Nigeria",
+        "place_id": "ChIJuS1PNQ6NORAR8Zdyd1VLtfY",
+        "price_level": 2,
+        "user_ratings_total": 943,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "night_club",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-soKg_hY5TvuWfpaqzBmNql1uEVNYyJo8mX1uN-LKiL9Do4v2PPNKpXKM3COF53vYWnB9zgtVYiToizMFu7TMdxpqS3LzEfWcFPinNH8WaILz3ju8NvsSIwBPTk_TO-MDJBiIbn9D0qNH5SKu09zQkmBHSPrusuZE7PFHT7q3GJMKRv7-9psyIzTC-wsWZwhJquTEEUVj1ibk_ZlrpOGv60XPrGOReK3hdqUZ3utVo30yQHWJ8nhX695IZ85AjZbpmt_gO7qlJMyIpw04jazXHnJcM5enWIdv_msUfBS1twZw"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:34.262305",
+    "hit_count": 1
+  },
+  "e7ae8096f3cbd0c988c333c09d69ae8c": {
+    "query": "jollof rice Lagos",
+    "location": "Lagos",
+    "restaurants": [
+      {
+        "name": "Jollof Bay Buka",
+        "rating": 4.3,
+        "address": "106, Jakande Isheri Oshun Rd, adjacent Echo Springs Hotel, Bucknor, Lagos 102214, Lagos, Nigeria",
+        "place_id": "ChIJh21-ommPOxAReCkycC9wJSA",
+        "price_level": 2,
+        "user_ratings_total": 79,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-v0nQlylpWCQ65x-q_7JiA96edyWcMMhJkRxIWztAamTz7MRn1tbft73VllINVOLN0MWExUw-HkA46y-Se7aGEYVzfoGo4EI4XD68F-4HkpER_3qgqMjiJOVf1-niJKe4k1KIx4qitYWjJheS93Ao0HQk3pLEGRqRWJcrEm8eyXkCAsfHR_vNUaxvJznx7ti6FNWpHeYG0IK-rdwi8tRLCL7FaUgE268VIgrH7BBBqF7FbamCJmhKgObL7-Ci_YRYPNn30_wqZKTWzw2r-X8Z9H7n8u90UQh5mEpKx1GMenyXI_-LJKHzSHnkEWlNsQ5pGkjkioGbp5CKOh3yYCSOehYZf4RulKCOCCBcgWTltffBe6Blwu-x5ilezUHQj0qt8HfOlB3yVz2eUQqBr9LS4BlI-kkl19ibb_l2m3klI"
+      },
+      {
+        "name": "Ofada Heaven | Restaurant in Surulere Lagos",
+        "rating": 4.3,
+        "address": "62 Adeniran Ogunsanya St, opposite Glo Office, beside Lotus Bank, Surulere, Lagos 101211, Lagos, Nigeria",
+        "place_id": "ChIJGwOT5YOTOxARhcar-XbVgAY",
+        "price_level": 2,
+        "user_ratings_total": 199,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sWj_a2LNz6m5sJvP4AqztaYRhLDxXR_7i92J42PdGb4SbdalpPyO82SPPf0lnj38EknsieAJTOcSiLT5IuJ7M-ykx-uFY7oCzznIO1iy2T6WW_IXa0TtqVcop9CS4hbeKdo-7HwGX_k6p2gKeyokpQliaYTF8hN4tP6z8GD1yGne6Sc4xlBn9IfpoC06sooW_i4wt7W0Ef1cKLt90kDmZOHQUm2F7FWKfv8Gl4xnM62tVIerdt6tyrBEVerUqPodc6kA9FWOAMwi8cQGdkVFEVSWY8P-xDH86ZXcGX5nunb3yi-PQ0jt7D4ojdLq8ApRTBUUuTT2CDsORupAnIE4DYN01NXUXcpJXvfvLzGRJXnw5vpexZIr1d8bxZ2vARRJkyeXZvd3H4L-dRPN-3i6i1X6oRYnEdlWUgp0FcYUaRBGI"
+      },
+      {
+        "name": "BFF Lagos",
+        "rating": 4.3,
+        "address": "4 Jibowu St, Jibowu, Lagos 101245, Lagos, Nigeria",
+        "place_id": "ChIJA1J81p6NOxARH1yahCW8Ca0",
+        "price_level": 2,
+        "user_ratings_total": 155,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vA_uuY-X-1I5WqkxQaTjQxP53PjOU8feyM9ZuMcxZYzPt4RvAi2LmaUwIzQr35mAcq3QSC5oQEVxkPXQcIMwLs9VuX9WQHjIhE7-vIHzzmvpfITe96k0m7brWO-w27ubSnoRxRf1WTA85xUdz9G6PqqR2E2msCoCJtrxIqCkJd04ljiNvTixE5FX4romTtgX1aYbSjS7tPqzTnJ_DuqBkwxLktcuSvEKMsV3UrCJicnlp04WXkpjuq0WxhikqYHgSOXvp7Q-5zkC_UIk-QBeDRdcCVznkM2cb1EDnbUvqisA"
+      },
+      {
+        "name": "Sankofa Lounge and Bar | Restaurant & Club | Surulere, Lagos",
+        "rating": 4.2,
+        "address": "62 Adeniran Ogunsanya St, Surulere, Lagos 101241, Lagos, Nigeria",
+        "place_id": "ChIJhZLz-f2NOxAR-yXjuGFUOLY",
+        "price_level": 2,
+        "user_ratings_total": 235,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "night_club",
+          "point_of_interest",
+          "restaurant",
+          "store"
+        ],
+        "photo_reference": "Ab43m-tnNDTfnGkY7In0KlGDbUMMpYX0jUz0y1GUYDyILZgQzXxIhO7F5NtbNED8q_rx8BvivvsnD1or0FCmvFPiFxc1NeMX8mT6FiFEcGVaK1L7xHSH7i_qklzgjk-c_MP1fAkzC9KnIUi6dE5hkceuj9IL8m0EV-_308YXHxszsVUVe6u4Wc6ATcDxw732_sqY9bsiu1c4ubikOsB7oR_rKpxCrlNahS5-dLIXbt1Hs-J6TBg27YOAb_diou2liBxyiFSqjp0WbDvBCD8A33qEC-TIDAX0ug0FMVOI9mmEsIIxyFpGqJ2NOXc1-SGxnKBceJJ3rO5aBUIxvOuQjtAKvZCV0FcLOGMSOYPWTQbj8_WlM1q7TH73HcdqJ4R4vfy3B6Snki3G2XuU-KFeyKSAUONDfbdcNspR0qU_eXBOZlcOenvuwgG13-V52lVKAuCu"
+      },
+      {
+        "name": "Amoke Oge Restaurant",
+        "rating": 4.1,
+        "address": "1 Bawala St, Pedro, Lagos 102216, Lagos, Nigeria",
+        "place_id": "ChIJP_W35aGNOxARFO8Gn7G0K4U",
+        "price_level": 2,
+        "user_ratings_total": 1648,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tFL39aSdQKHRwCRYBheO2mrBrskrr3fwBg49yVG9es3zXSHOa_VQxPTxGDHnZeDBMYUpbpyvU2g9GL146IqJBIQ046965cnhNfVo0KPTMvp0rdJUSIciNVCS9SEk3sXYr_32lXNHGsoajMVaOYv7elr7EkLI-QvvV18cZZayBHiq23MkzG0Hfx_E_wX6eClqW9hou6jVkdo0l6WWJvtidXFtlzWPdQRgrj4nfTtkzUGVKBj73wKkNfABwlEAy0hA9sBl-o56RwQ1Y0005MVY3g73NPdEivchHj3a-6-Lv-u6XfiFOCROybgfsRDMaQ5SQfqBVaoZurioM4AxsJ2lDja0j6lFIOQCehqGdLQyZdBnwk5Ao96oUgL2jmmymxC2gmjWSPh-zVVcjuRd1tgWZ_sNPQr-QnX3zGlw-iox_Dng"
+      },
+      {
+        "name": "THE HOUSE Lagos",
+        "rating": 4.5,
+        "address": "4 A.J. Marinho Dr, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJ2f_sIDv1OxARBEzAClMHqlw",
+        "price_level": 2,
+        "user_ratings_total": 2408,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "night_club",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-u3s-2TWe_kYj_8ZvMwPEQ8Ycd9hnNw0m2yQDxmcUS6gt2HESdY05iAHiDZKqKGV8fFFRygxboMHApoiV5Gr70LtpGJfWjxZeTmIklzTgYYVG9nn02-XMhHQ_i5JkVBtCKC3kM9WvrEYLFmlK61mzeQcbSy4oSaM1UYVXCMVKW6q1pwpIrhQt5-OD_ydEMFX6awUz79gMm5eObInfj5taT5gyK6xw_tP6jm8iMzMh_YzOLA_j2ILvo7MgQXifl9yV-_jFfLOwrWZA0GxBxRsJlRypDoi1IStXsqLtoKvK7yU0Lt_HEVQPZmeIo7K88jgLPiUU5c3wfLxpuRpRxPIQpgYl0C_LKk741hIC677FnJ2uuhqXlDJI-h7cSIWbLnNAr1yDPbf9HfVP6pe-X-fsU3hNKU0jd_kp_u7iDkOp0NMiee"
+      },
+      {
+        "name": "Lagos Smokey Jollof",
+        "rating": 4.0,
+        "address": "Crystal estate, mainland, Ilupeju, Lagos 102215, Lagos, Nigeria",
+        "place_id": "ChIJYx6XWCCNOxARVzyRP7VxA9E",
+        "price_level": 2,
+        "user_ratings_total": 0,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-taAYNUSEYZl01Iym1Iy7YKrVUNCVDWuNUizm7FbCOSgaE7LeNLak1eJi7De-6mKNDvINmo3CdAUNmdMmPD-dT6LiE6CFWZXMjtJTPZu_e81LpuVlyAX42XnbKqcNcLYw-BrtdOGfGoYa3bkrX6YIcCulbvZD9FmEJGyPuDCR9YYOaLI_HXAiR_A819pJjQ_Yd6IAwtK1s9x1flQBH2m-WfUsSVRpAcZt7pRXd6_oJ9jLZzbML0tksNSePxODD7I8g2FEpNLfT1SRRr3Qs5iU7wcoU86dMtmUwhsvhQJliw4w"
+      },
+      {
+        "name": "Smokey Jollof",
+        "rating": 4.8,
+        "address": "11A Oguntona Cresent, behind Olamide Baddoo Bus stop, Gbagada, Lagos 102216, Lagos, Nigeria",
+        "place_id": "ChIJkXgif-WNOxARDo09oDdmx9k",
+        "price_level": 2,
+        "user_ratings_total": 173,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sFPKjv7zCwMgrCaVxrVy7wOCrzbwXase5qZPr5QUGEKA82KywWMIGXY2nnSbHNwRQC9vGpyft6eMAMpiw8KtZClNsKQxI9Y1quyIlALSKB17T-unORZuPuy-dUqpTHoxd76scyzcIx6snQZYYw-zQOcL2n7iNMpm0uH-XFajJK7skIk_L8g5NDRRRXkQK_-IVqEkcPJjmQgK9NMaZLI5FQgZzcovIbF4GcmvTga7ntBbJ366t7WokxjkJvVwVPeEovhs47OOZDvnKSV6C4OELb89mXgXHgtF-XQ_KaCgQYnQ"
+      },
+      {
+        "name": "Ibile Foods & Lounge Ilupeju | Best Restaurants in Lagos Nigeria",
+        "rating": 4.2,
+        "address": "9 Ilupeju Byepass, Ilupeju, Lagos 100001, Lagos, Nigeria",
+        "place_id": "ChIJNaThepWNOxARPWEY9_aaC30",
+        "price_level": 2,
+        "user_ratings_total": 2695,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sL_OIcAWJJHdIDZkv-HkhoxAW3odoZhMpTR1pSFCdA3E4_MQnVswwIf3Kmz-HRq_MZ-kTlvwBwZFK_WZuG6s6nE8DYEcsJriXI1jz3Ra4yrsSASOcfkbXYMz0ya3jpTF72eiyrfVfBBPVgaI8rL8GmGTH7a1ZaVShRnRnopoT-hE6d1V6nm76pYzxU0yBIN1AYrlfh4Ety-mhwycaivYtMG2khgl5JrVD3STNtpUToBiJ5jXYMOKRdEpJBxnpIwDTYLDtSEUIw-0QLuVjmIzFX06LTlKntD_7jMFvmHvTjlF4dTCQxFH16S9nIbl1I4U2D1YD352derH6mkL-IE2kyAyaoaqZZC6Qbiv8BGxhmB4dDgsI5cZQFEHkxC9SCgo3o0FmjUQsbMBiJFVKsldQ7ZhMSEHt1VzX4xOyoNub7965t"
+      },
+      {
+        "name": "Firewood Jollof",
+        "rating": 4.2,
+        "address": "10 Admiralty Wy, Lekki Phase 1, Eti Osa 105102, Lagos, Nigeria",
+        "place_id": "ChIJAT_a94n1OxARmuZTWG9s0H8",
+        "price_level": 2,
+        "user_ratings_total": 65,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-syZnHG-xI7dPbiXXH7Du4ltIc9w_3eUoqO5tG2lCTRPD-w6nUNbVyhjfUEfnjvhXQoMCZjdyQfnDaZeAricqsqBhat6oxj5LnAwRYUfb8IMIa0MVXQQdl231aEALd1CjkFKCLlv-1m4NCcvz0PN8xvOeQcpsOLA74rhZiLMcNaAsedWWRomrl8XAVWUncsTbrSEe8uSgPOTfKUEygMPODAIW309Ape7C_BqJgehTzWIxXs0d0YHMxxNVCNz_CtxxcOBMZShC6D07VpjdMWqytn3TxkXejZl-8egMYg2R0HC8qethH2MtKBla2If3poml9OJ2sfLdLrX_tgligPKtC-eHkjpbZM6vbZFYW26ERy6BFzNUhLxD53iAj71Wtn9IYhtt24a6T8gToapKWcrGPbUX6kAjnUksD20kArI7EaiHcSSUWXT2hNoRPUcQgC"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:36.845528",
+    "hit_count": 1
+  },
+  "50d218b6f50d2d8aef9c056b3bab2f6f": {
+    "query": "seafood Lagos Island",
+    "location": "Lagos",
+    "restaurants": [
+      {
+        "name": "THE LAGOON",
+        "rating": 4.2,
+        "address": "1c Ozumba Mbadiwe Ave, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJ6dHQ1tWKOxARCrHT1udlppk",
+        "price_level": 3,
+        "user_ratings_total": 2692,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sMiFehx3Ut2_YI8Stj7V2uYJ9EbR9mZV62tHf_1LmR1hoASvw2RiGSdPEM-YsO5S0ZNbEC1Wh21dSSVhpi9OuDMp4vLvpLs1ROSDc_B2uGddyUgr4COwq4JwSfe4hxQchaTtgvD75AZkA7v5G_ctidTZkvjiYKUJeOJijEd7qn4w_a_hQJhjUpwHZRIq-qTS-KNZK85RgU81nZm9Cr9msBafGIxiYqVAogAuILUJNaqo6rpMy-yudnL7QWqcUoRodKfegQQ5uYbY0MOsAwPi44tQ-hdoV4AFD3dffjBWg"
+      },
+      {
+        "name": "SABOR LAGOS",
+        "rating": 4.3,
+        "address": "134 Ahmadu Bello Wy, beside Silverbird Cinema, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJy6PIcyj1OxARuMP_Nq9vUnE",
+        "price_level": 3,
+        "user_ratings_total": 834,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sAd8jfb7bmExTSL5BTCvKfQtdvVv5VKyJUHt23B6kfX8HCOq6-uIRUoADqI7MHOWAK-LmG7arJlRopfK6CSbiT4QHVLmjBzuJdMagWjdshXZH7CryfQ5fGb6Fpde90DljUkEZkiVB2p1Hr52d9Mn0kYtop2zruVWyqgBqh9BPd9YvMCYLLTGGRK8c6mQ7zvKp9T2DlEsdLFkD9A6gA67Y0kzHLwSUZ7tRME-p7Qm0kuJVwu-6SFvQPQui5OmQv2adkTTI7h7Go9sajWvtMOulab8y8OikVr3eCsU5gMAZpKw"
+      },
+      {
+        "name": "Ocean Basket Victoria Island",
+        "rating": 4.4,
+        "address": "35 Akin Adesola St, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJdZcmMDH1OxARbbyuNZRxqLs",
+        "price_level": 2,
+        "user_ratings_total": 2370,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tQJy27IvKbh5rwaZGo-598JKWANCBRfNWXYkg4WgZXfqxwMlQILzCGbObjBEW1ddCEdYx4UKV_porrUQLphVXiRIbQd4nT38QeHssBugl4B2dbQmgimYN64QSieVqvRBjftDi6VeTk_cDaLcL0-T4agq6nfq7FNp2ckApYv5CDz3FajTtcPiEcT6BA98rWRXwaXyHnmO1t5vSmXda0WikiU3LcqA8eh3xECBR6MREDfEJ6GDI4WJwB3mi_irSvN6BXvNpmUkHUNhaskRy0KPLJ1AnnyoN6cqNPAa2WEsShGw"
+      },
+      {
+        "name": "SLoW",
+        "rating": 4.4,
+        "address": "2 Musa Yar' Adua St, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJZ3qIQs-LOxARZM3CF_BLJfU",
+        "price_level": 2,
+        "user_ratings_total": 997,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-t-Qy3pKiyE3mXqm1474vMQz-DciMJEgesiKyFKGeD3i1uXGzDZ2SUYR2fapp7FPq8ncxXvs36No_oN7SPZ8f_Fcu9oOQqfrpPF3mkEgrmRMSZpCRfo46goH46tmqNFN3Amz5kIh9jLmH23FhT9ymofNSUXRQsLrTqhJgkxTiXUZj60G-Tf0MpxUopQFfG7-b1uv89ZSpZqqy-12-KK5U3g5xEWkdCfMKZ4ujKD1_RVirXCO84dNjgzVRetd1xGnWVHV919nN9VWw9gh3tuuZ7LgdiHP9ixTA678g3FSBO_uQCY4N-iR3_t6GHLKRSUoo1eNgR3ZYxNJkxQ5N-puXwhJDEup1TIrZt7PYgNQlh0liTLRNiDxv8OnSxuoOLEKHAcunoItFCkdBDAHJrdfawekxVrNYi4s9AASSqpBxFDbA"
+      },
+      {
+        "name": "Kapadoccia Lagos",
+        "rating": 4.4,
+        "address": "22 Idowu Taylor St, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJlVbXQ2D1OxARV8B028phuX0",
+        "price_level": 2,
+        "user_ratings_total": 747,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uGP7uwRZe0DP_4yv9RAQdsxuNivlsLa0lka2XTWbNeWNdYR7aCjD1Qg_Sc13YmHQQAUuGFQo0LdhndFAkkcO775MvHj3qpcuBk9JstVkqR05XYP0obsMHwNHMrvT3OPyR2fqvlduXeRNBXR6cM1S3d0TYD1tiXzthWdT4G5WXJjN3O1QpIr87hM1p8yymgy5N4u6wnmtrEbRGSS9OxK9UAiEvRdD52sYUhEcBq19E6Cilufk6jA7y7AYBXU8uWiJpH6WB0t-ANZ-t9zHEr6slRV-53rRzwuIoYVXqV8WKeqTeogd_Zqly2QmLmBPbqDrVqIFBeuj0OVpgEJWywYmwtUmA8hEa_qt_p2CqY2lrPqanIv-Sh8oMgYFQDBYfPDTOc5I0Q1IfKmHT5k9tEfusYvXT81qyR0ZrPVkCncI0"
+      },
+      {
+        "name": "THE HOUSE Lagos",
+        "rating": 4.5,
+        "address": "4 A.J. Marinho Dr, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJ2f_sIDv1OxARBEzAClMHqlw",
+        "price_level": 2,
+        "user_ratings_total": 2408,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "night_club",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uuHwkmjFSPGiz6yZDlleVNafvHPf7Vt-BO36C_-DZ5EToiFqR0Su4m8lkxM0nbElouvvuNDnqdzeoYlkgWdGIDQ8uynj4TolsajFaDG6Me-_W1K-iHsJ08Iw7Yyaca3bIq7qwTlCNLhNRyrJIqJsIQJad3psfiDTThtXagMhTC6roXDkqsozi42WCXotomeUFIRpRs1B7pTEd-3DzF70NOpBggFk0bxDqGD4IUYkA3ddjKAIVAlepnHqdhqiBSXVWvpiB6DTodw6xbEgcwkrYRY38955acKARXL2yt1Zgd64YkywsPdEQ7PBFxTtTSQ4TGxBjhGZBH3fs29SmEP0WOa3l195Hirymr2bWMKj6bdkivZe3JbExpXqwBSZtY5VUPleuZN2Arq6jRRsbSXPmulGID5n0TSloWQQzeIELUawXa"
+      },
+      {
+        "name": "Fish Farm Lagos",
+        "rating": 4.2,
+        "address": "1, 3 Ogudu Rd, Ogudu, Lagos 105102, Lagos, Nigeria",
+        "place_id": "ChIJO9TEydeTOxARLruXFknb_vo",
+        "price_level": 2,
+        "user_ratings_total": 1688,
+        "types": [
+          "bar",
+          "car_wash",
+          "establishment",
+          "food",
+          "night_club",
+          "parking",
+          "point_of_interest",
+          "restaurant",
+          "store"
+        ],
+        "photo_reference": "Ab43m-vkU9y8bWZD2TqTt5I-OX0zAP9RJPOzOSGRBB-01YnF95-hUndfd-f15hU9dpaNUHsTuUHXTsa32RT0Ul2l4awd0-nMl9furdZbvtEDyjJvLPONpDX4dF0-_emxKP4BER3rhSnoE0coO2ZkpxT7GiV9Ut5u_w7MfgiYheMLo4utL1r38lHEnwng--uFXmxsaCA9A83V9XpnZzCfZh5DiEm9Ka12g9frrGty1N169shmcu01xEkZ-bHSQmpL9MKOs3NVjpcS_sNZNN7Y_qOoQTmVjaMukrXnlV4lSJUVMpljxQ"
+      },
+      {
+        "name": "Gras Restaurant Lagos",
+        "rating": 4.4,
+        "address": "65 Adeola Odeku St, Victoria Island, Lagos 101233, Lagos, Nigeria",
+        "place_id": "ChIJ_cmkL8_1OxARVhqu_Yld5XI",
+        "price_level": 4,
+        "user_ratings_total": 282,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tUpJ50SFvMwLnwjvL3uAtmYOvq6H80WdHRuoZAZ8cIw8W1NpuEe6mt2xZOEvnlhg_NDNpKQXS6V2Sc_GO9OXFfcgzagcNtvMv3maxk0eTJpcCW7oVgcheSUSjKhesILKqLRFfiu7IX-FiT0zUilPBE5aPhWBQdNRoOGG0zI7LrJQJS38QbTCHpyv_vRVlmIwDTfy-R61TMfBwIWiTG96J1Vgh5u88d-EMIADEltyfGPXi_O9F3MkGiXCVY82mD9xUXpPDDONjgKsHqfcVJqha5bfLgQcxMRXf9CWiFN7rWPw"
+      },
+      {
+        "name": "Eni Seafood",
+        "rating": 4.5,
+        "address": "Oluwole Street Lekki Phase I Lekki, Eti-Osa, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJ5_6lFkv0OxARwNKON_iEEG4",
+        "price_level": 2,
+        "user_ratings_total": 27,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vbOnc7gspUGO5GogL27sdZ9kqPFg3rCjppQh6de_-ecoudxYqnUEaTBiCyD-yW_6M-wyc-Bl75q86Fax8e04NIlWo9HqRLvnXBojjaqf-QzMEuXJNyAT5igVIr97uYcmqnW8-poqxyRynaiZdz6RepP9AlmIT_0I6Qjb0W7H7aOTK_hnPJVE9ZmUPlu-xIAaigLxg7YHCqOGJqeSHfsnzr3y6vBwW5OGFZkOzLzbmvLP5_cPZdGdEwlVbSUY9b4q5zZd4M0lwU5F-hJ-IDO1lYfFbWxjhD6HLEMJV4vXF2pg"
+      },
+      {
+        "name": "The SIG Lagos",
+        "rating": 4.5,
+        "address": "7/9 Molade Okoya Thomas St, Victoria Island, Lagos 106104, Lagos, Nigeria",
+        "place_id": "ChIJy_Qy7FD1OxAR3-mzdlqIH3Q",
+        "price_level": 2,
+        "user_ratings_total": 205,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-undXzyz78macAVM7K-KtGI0gJLdYrZLyN5oZasurNv86mr5AGmwRhjPQcNkATlyx9ebdv3gPM6L7iOYbSVUr9RHCaU2eAwV952NFi3CSinjELA9_dJ2B8dkrzlj-pLhISU8jj0RwEd79_sIUGDdtTnGFVw0RlvkVfmSSmnr1aGLQ66UaFmlw5l7wo4WsPROP5Ko9BMqIqYf2AeFjWhSS0mw-0FQAJihavF_FOhi85iDFODyKHI88FAYPJH8e-o9jVHyAnD801-w-szVzxAg8YTCn9Ky2PekqsG3e5KtgSpPw"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:39.386168",
+    "hit_count": 1
+  },
+  "5ea1d82696deb6f3909a0efd21cab855": {
+    "query": "fast food Abuja",
+    "location": "Abuja",
+    "restaurants": [
+      {
+        "name": "Sammies Fast Food Abuja",
+        "rating": 4.2,
+        "address": "114 Aminu Kano Cres, Wuse, Abuja 900288, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJh_PP9HcLThAR_Ya3CdpHAX0",
+        "price_level": 2,
+        "user_ratings_total": 29,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-u-28kn4q3mLsGsGpGSyOFnTAuL2-lFvaVkN5_SbJ6yn7DxBpHZFfwAMPhPMljLFNw0K4h4_49tJkci9BNuyOrA14TaS0KYSo_caQzdwjIH_DJi17WaPF7j21Y1R34PHN35coYsajH7LR-T-YUMvvCj0gfQqertdbsMTgiL6U3-dObgQHG8aEA98FrNEcUCK3VSHN2teJyWQAgX8j8jkLUZR3aCqpedFAAG4ue6Y3zQy1Kp6T_xpbgmUQua5JIWd7naTgoKjFYmdGYYl_D7vMUpubY8OdqI8ms4og356plcuA"
+      },
+      {
+        "name": "Johnny Rockets",
+        "rating": 4.2,
+        "address": "215 Konoko Cres, Wuse, Abuja 900288, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJcWzqB_wKThAR_uk6Ta4xe-k",
+        "price_level": 3,
+        "user_ratings_total": 1333,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tuCf8gYNJb_Z_WGloOAhM17ZJpGFcQwYa1-ocJGoPTy0tLlyFJKMlvXAoTA-FZuf8-1I88JCd2AZ58GEyFDLVtlzlNuk_xnT3dk5tw2aDvSNNSZo5hasa32zwZr3Le1QVHR5wsLAFAARPB9MZzI0rAmQnpNJ8yRowLwCNYZoOi3VC7u6F5GXudryNWgFNYhrxx8as8hkEJ91sEEO-YZ2swGPow6lIlpXsKB-UCoIftNC15T3co9Nl_tBs_Jqo-iL6UfT7we_v6XHnrmbwpipODoQvI5JgfaqOT1Kn6GHTq_1Mv6II4l0gSIRrunEYu1TvCNvUhtgcY8Y5-dvo5H_P7tc6xATpvarm_uQVfvypmMzqx8_yvRNh-7LBpa6qWdaCTS5omS2hchsl6i5L4Lmp6D0OHkfDR8py1RlkGDJ5y39A"
+      },
+      {
+        "name": "Chester Fries Fast Food",
+        "rating": 3.8,
+        "address": "by keystone bank, Bamako St, Zone 1, Wupa 904101, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJjxa1FRYLThARVKmi3_F-NdI",
+        "price_level": 2,
+        "user_ratings_total": 1316,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vLDy8kW_SgS998lPIlaI-tJt24Ue2aqJbnGfnG1Gw5VlOmaZ46_Xfs3-Jf5lHPLjZ1OYyVUjE8oIUHUdrLJbVoEIdY1cV6EYSB2MXtFLE7mj6iMgqZbIrhjwj_XqJo2LiZJVLBO0Kt8MxwBrSONFJ8M-bbc8JbNhPk3xxWxImC_7oPL_CK6f1JpV3dfmlLq558ihInfLU7HUWy4P2vBz-HBfiWq0qAHXC1HIeMCTS4PXHq9tTGzMTAG8X2vJbNOfjLqPbP07CFLQWr9_PHiVepkK-SgCxB-RxpslGqNdPm67quuY8Ks8zryYa1NuWVpFOTRParz3EzZqxV_mY2kGhqcEP4Js44K6zD16dhgu9BUNSrlo2QDg9BpXkCogo1S5oGRR_nxxrbyf7bPHzGh9KFcWatT1FISB_5hVMlU9SQjgqn"
+      },
+      {
+        "name": "Downtown Takeaway/Wuse2",
+        "rating": 4.2,
+        "address": "138 Adetokunbo Ademola Cres, Wuse, Abuja 900211, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJZcChNe4LThARLRE38AWY-Kk",
+        "price_level": 2,
+        "user_ratings_total": 104,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uJINo_w1yjW4wKCB0xHv7nOdLmMhnXDCZqhdwwR2GDOZ9EI4eN6sePD-EOUf5XkO5E3yGIt9cgAFYwsxVcGp8vWSnxg3cOjovUu9BCXj1BnN1994Q5lm6yRYXT-A0ng_ZvmTdpqh18aKvnFZTgl7yNUsVNw5sSAjxNnftqAcc6yR7XOEec4kzXfCU4AgKA64n-OXvU6mOiTHVbE8znOHM86fGaBvWbXADVlZ9XlAjGoJlpUSae9C5Ndx3TFQtL0vtQTmV7BGyoHcZV1YQZuy_GB8geXf6sf-UFhwJ7ZCzKyA"
+      },
+      {
+        "name": "CHICKEN CAPITOL",
+        "rating": 4.1,
+        "address": "4 Lingu Cres, off Aminu Kano Crescent, behind Hyde filling station, Wuse II, Abuja 900288, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJxyLXteMKThARXl6buT1BQ48",
+        "price_level": 2,
+        "user_ratings_total": 4102,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant",
+          "store"
+        ],
+        "photo_reference": "Ab43m-sbY2mIYLeLYpnNqo_CXyFnQfJUiexL9V3PoAvbn9OMpxEw0v5moODuir4T_mflB3TnQjQq52PTHyUs8WMN5Pbu_PWXH5F1ZW3EQzzOzROZZyg30StP8PJUjnNrmynRyPgsbiri9WtbNGXqAhBdrAvaAo8XmUqFhhbT1hfhF1soy0PO3j7pT7eDkkvI7XalzaHQmMdT5xap5FqPWDMxUxPaiXq33ey35JoqggZkwqSZW_mcHMEfUEZ0ruuv2EWYLshWiSIrJpldsRd05vjbCZCHA3QeKJxHM_x8SmmVrL5t_KpmXIK_GKqJXYBzqthvatG5fOdLNCXjy1L3Bl_gk2JwCEU0v1e184Uup3xq6QLVhNZC2STf_TbfL8e3w2EKUxmOlU9C2myxPWraisTMFltm5BAg9E0IwcO9fIMlb6Kvyw"
+      },
+      {
+        "name": "Drumstix",
+        "rating": 4,
+        "address": "32 Aminu Kano Cres, Wuse 2, Abuja 904101, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJ_w1pPe8KThARz77Cof1OBSk",
+        "price_level": 2,
+        "user_ratings_total": 2918,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sRd3Aw4sZZH2QfYgRRMiYSVWXRLMukyNdJu-2gZllTO1QsuqEek5nazxRjA-ycQ0RCRKH-5RC_zSPhOml1iXH0l_6Q3rxPhZKoIpfXdhXFQrGiYEu145eKG_UemYOa5bxxd7JDQgTiR7_fCaCcEhDpT_i_CdNmTptgyuXCsqri6GwDrOqUQDPJKyTO8ol0t0LHrqOraZKzXQLktJlMQ1b7fBKUECYDlNC-8DJ56xJ2_S7tuA-sVpe9qZl47_Ko2fptx5U2hxDkgHA7_XtyVQj5bLwPcTKUg_Y2VafrpWt8fB1aoqqNSYqttzV8jaO_b1o-hpv1z8zLlvERnGIFCScIOfrD7zvcNAhtaLW7NNv9sWGwkeoT5dLzKK6czD53FTZ39leDvhnC-L3G62k_jPl0HWEk9xn_0C_r7ER2Mxo"
+      },
+      {
+        "name": "Bukkateria Fast Food - Wuse Zone 7, Abuja",
+        "rating": 3.4,
+        "address": "Zone 7, 55 Lome Cres, opposite SON HQ, Wuse, Wupa 904101, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJP77QUQ8LThAR99Gg6AF801w",
+        "price_level": 2,
+        "user_ratings_total": 21,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sC2APJSn3dmPy3tLvW5w3noKvJr92A_Qzd0wiuncuHv3rl7xb8Fa8laL7VRlz-9qDjataaZAasZV9gMr9QjYsuZ15EzmnjJKK-8La5VFT2kIcc293uuJqrHHxR9Dt1Vlayb3m7ElwR4fQRDyBPKqepQgfKx46_AjKDUMYbyB-t3ErXtjc972riJJaTSKZwmi5AD2ZgxGU-s1M00fOAdF3Drzv1XowDKYIgykasi6quT13JzL23IbE7hQ9J3pBG9c0qSFso3TIqNYvUNcoqLpd1cQzNKf9v3p6epdNanPGAyw"
+      },
+      {
+        "name": "Farm City abuja",
+        "rating": 4.3,
+        "address": "near Wuse 2, Wuse, Abuja 904101, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJCway-WkLThAR4VnG9b86rQM",
+        "price_level": 2,
+        "user_ratings_total": 976,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-ux0to4TzkaOVbIq5pIoKCZkgR4phBmSiypcDYUUzfVZQqeXdvrio0q0Ti92y51Y4Zu6k9EsH5AT4il09W67SOEPmtI0dnVv3MPPLu9dCC_TczrLqetXfrWyptoJ2QkAolLd8vj63jcMXcFZf5MYWbKxnzgknucaBlO9bCmt9Kyp96nBN0181sjVLXlYSNHE7OR0sUp2PyTy9bp_TzSs8puEwD-wpvBEefXzFsGQmM1h4PM6X5Inds5jxykEVGvhOXipK36Yt15pdjU1lhX92JoNq_WjLFAs0sZOxCUkdtQ6_yuzZZ05t2JliOKa3ci4H8Z5514z17WpboIsUPHTsMj_iOemfuRQ7iv9AdJCG257hNAt2d850-cKPimdFPmjulfWRjCfaGBsD6gWpkYF2-r3dWtEbz-fUDRfg7xiBQ2zM_L"
+      },
+      {
+        "name": "Southern Fried Chicken",
+        "rating": 3.9,
+        "address": "252 Obafemi Awolowo Wy, Utako, Abuja 900108, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJKzZUC910ThARjd9CZvsHSuU",
+        "price_level": 2,
+        "user_ratings_total": 1569,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-shQXmtTflaujlb_9FZhzM5p2SkZNHZVYDCQlDFICNFoL4Zx2tng1zzJNNoqLh4UMi6dtaD7F3g17iOUii9BEr7S1ijVHTBo_IOkusxrwQutFg3lfyoK1Fwaila8KrjVXrfAAGB06GAKT5hK07fDpTtEmBShflWkCx4EjvC6KoIhJiN36CBN67lhMjqQLxe5ZoBmcLUopixGRYhtxCn_xYbo8uyYQKinprIGYin9aTJxQ8tAYJAtQuBX9ADV-qbVJWvdWu9XrB3wQXsh3EsQa1Slr7ZaDaS_Yb12QIvbqy6kpUa3sLX8x_qzFSH5Moa_BOQDmBcx2DcODZ1FCnRKsXV4Y4TkuXoLa9vHHdkZVaKGvsfsEix5AJPZXpsl8Fz_2o0DOKukslGX87LPKNIetWXlhlaxolDj6lCOwbF6SY"
+      },
+      {
+        "name": "Pinnacle grill",
+        "rating": 4,
+        "address": "165B Adetokunbo Ademola Cres, Wuse 2, Abuja 900288, Federal Capital Territory, Nigeria",
+        "place_id": "ChIJN-n8fXILThARUmbi5VZ1m1Q",
+        "price_level": 2,
+        "user_ratings_total": 110,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vkCSDU-GLWD0Kndtbg9JiAUNPpovLkfSmuoiq6KzEJjipuXC_YvudhW2eikTO5jyTKm0Aik_L1w5VCsb5ZqBGVA3tOwf8FGLq005MJid_-iI8JSX0jvpTDVPxue92Asg9KIOynd1UuTv2Qii-jK6udDg3pLninL5Pu1YePqnl94BMiWC03HZ6dpkjTOlf9dyQ1UHsqnrnB5VqW8rdR8UasfBsjHzOdgJOUKN4QigDKYkNp6AAf9RbqJ2-pX4P84HRIeXSQxdL8xzxJzir5sWlVeKZmi1XZV7CTxVw87Xuu0QUh3xb99Y1OjA8z64F7B5j8z0gMuKDlVGNdp8zjH0QhkmEbUlzM_4eRFi4H6W2wm6D7jKXa-12VDxLv4uSOT7_2wushEpUf1hyD5m7T2rH-4mkkmbMyCq_v7Uhx20_4084"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:42.172974",
+    "hit_count": 1
+  },
+  "88f4a00b1987158ff115d0e984a95ad9": {
+    "query": "grilled fish Port Harcourt",
+    "location": "Port Harcourt",
+    "restaurants": [
+      {
+        "name": "Best Barbecue / Grills In Port Harcourt",
+        "rating": 4.6,
+        "address": "Flexon Bar, 112 Port Harcourt - Aba Expy, near Eco Bank, beside Royal Diamond Hotel, Mgbuesilara, Port Harcourt 500102, Rivers, Nigeria",
+        "place_id": "ChIJueNlJnvTaRARlXwzA9J0RRQ",
+        "price_level": 2,
+        "user_ratings_total": 87,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-v0rWARvHN_v9TFN00gd85bLj9r4XqS3qNHIOcSP1oQ6BfntNM0gtSJLVcEtv1wMNDMs6N5oWFtbjYjy2vO0fj3EqosRjpDCvXwa1uSQITOpzcCuvkc3uLkputWyT6rCpJO3ggKaNQHvZSrhPA10CbG5wOgggxxgAFuwp1q4G6J-qMRALCAHRiy3ro5UwCXmlech2FWMDV5NYO0dRaYmBb2Ch4SVpG-1hMgcm9QxVYXv--4oRsQWs6buDW9gmOI-NzpTfmMAoCmD8-6Jtkyf01xr5pQ83c-H-N3sL64bpDOGhKKb9jANacft_GkWHsvrb2zfRcAVY1Top_8PSzw6GN3vRX-ZoI1i8YqtfTOX_rCn_LyWkFJ3DEHeH2no172xJJSJH-WD25GJhsQiyea16s0WtqmvDZuNTCck5XglVPzMP4S7iRG-k1EzT-joKDP"
+      },
+      {
+        "name": "Fish Delight BBQ Services | Port Harcourt",
+        "rating": 4.9,
+        "address": "Art Native Nigeria, no 2 Ambrose Ogbonna Off Stadium Road by atrium event center Port Harcourt Obi Akpor, Rumuola, Port-Harcourt 500102, Rivers, Nigeria",
+        "place_id": "ChIJeyahnwDNaRARpbQ0T_8kGYc",
+        "price_level": 2,
+        "user_ratings_total": 10,
+        "types": [
+          "bar",
+          "establishment",
+          "food",
+          "meal_delivery",
+          "meal_takeaway",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-schBbvO5EZi0XMZ8e7hs2xyFYOSn1tNGhAQr2kCvmvUpVAf02ej8ekC_1yJ0LmhtIfMr6ZTxFGVIHImYyWb3d-ZFX8byxztnjpEiQhuKyj4DrxAK2LuXYNGDFUf1JKkyw27YtAB_pq0hKo9IyfXOXuoSm_bS4oMtFThbwgJvR18T4OcuT9vVOz13Ph5rXurolgQNShLY3_DWRr-zJyLFuuFkKjgTnSh8mtiuRuYB_87QFhDwIyp1FxFpZx_rM4shgV-isiafRZcBlCD7RW6Dmeacgth7pfnA2xLrpE2FN6dQ"
+      },
+      {
+        "name": "Flip grills",
+        "rating": 4.8,
+        "address": "Ada-George Road, Rumuafrikom, Port Harcourt 500102, Rivers, Nigeria",
+        "place_id": "ChIJHxuwJtLPaRARDo9WR38hpQQ",
+        "price_level": 2,
+        "user_ratings_total": 52,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vf7NSh6voBki4JKW-2l4q0UbLqUBPtAVFojpGH1TiDvZJiFIolSO6CH30jwJl8k8P32RJ6ojry7ehNRcYFygQ3TVxMVk84aelS0JkzExAhDfa_HXXs3uXTkb9lMsLBPz3BbR56KJZQZRxUIl75CTQgmm3R_hyrQq2P1VcQHlhxJ9XIWdKCjUzOK0QNezZY8um1ew4FWA6G5oPzvf3M6lExjY6gjoc93_9F0RC6cmQyVX8Dk03S3N6NRkBYs-HXuQpNWMQl9iUIOSo6TF2acZqchrHJniAECcf0bdcIO7JhIQ"
+      },
+      {
+        "name": "EXPENDEEQUE GRILLS",
+        "rating": 4.7,
+        "address": "The pour house Echinchinwo street, Elekahia, Port Harcourt 100035, Rivers, Nigeria",
+        "place_id": "ChIJlRGy3PHbaRARJ-GioQVVqgc",
+        "price_level": 2,
+        "user_ratings_total": 43,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vegNsTr9Qf4ZRXNZH64rZ2X7Ua0koK0tPQJbxB_e3C6O4fxIr2o-qofSDE1kW3sCh1922H4wmNbi46tVRJJ-OJTi0kmNXwUjXhgL95N5UNj1NGiCWVcVfu50HmjK8mLGBQdfEiyjlU5_sy8XqXLzbm7FW_d7EttN4CEV7DixKPVV7J-0dzC2fpYWwOHCkQC5mBmYGHdYBvrNfJDNNehVLsa69m4B28Jzx-P-THfwxh9qiBJhwxKIask4C8CgcNH8MIdogO6iILdWrSo8IMlSG32X9_lvVYTtJnJbnsVEhHZA"
+      },
+      {
+        "name": "Chophouse bistro and grills",
+        "rating": 4.2,
+        "address": "merciland, No 3 Prince Okey St, Road, off NTA Road, wali, Port Harcourt 500102, Rivers, Nigeria",
+        "place_id": "ChIJGeYTilrRaRAR2LCSQPYqHgY",
+        "price_level": 2,
+        "user_ratings_total": 126,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-u9cGZMV6N7CpcJwW2yV3Mvq1actk7IZkgDNfs9SgIEsFYbKjmOy44J4XIlhU5lmReAmZIm6o6IYJGCv88G3ZJ4haR3rMxnqZLMsVUsu8Q0kdAMCjE9xWTzlfmaQagwZpc6gi4MY-lF_OXu1Zr6V116ZDr3PTTHu7k6ok7L-DT_iVJsZrcb5VXWfDllx2x2MQSF-v_aafWB8O0MZiYyEGBPNNEOXGLsYyY80rdIbsAwt8yTbmDJDgKj0bYBX0ZZdkC-Rdmh1fPrK8S4Zen41iH1pof_odiZMPeuPjJQfw51tYmR-ZTihFaUAd-muC7JzHh8WewSd0wDsrmaY48BbG1B1o65wVwgGCcP7yBuB8s8VfwQiZeYdG9iMUHvlefznE6sgwUA_zTREXTca3XVFAqj0Y04qCiiztMw3qzGArEQGNDpRuhIexhy7TKE9YIt"
+      },
+      {
+        "name": "Fish Tank",
+        "rating": 4.8,
+        "address": "6 Tobin W Cres, Abuloma, Port Harcourt 500101, Rivers, Nigeria",
+        "place_id": "ChIJ3QuxJ17MaRARXfByTEjrhWw",
+        "price_level": 2,
+        "user_ratings_total": 20,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-svrpDaw0sS_QkqjT-kA4vSwC2XhRbW6BVPwf-MzWNRIqCRK6vZRLLtBy7gQT18UysvTH4OTlGZD4yFnUZ8ImCJhiAc9c0G_2MxVHtgOJl5jNKOH63Bt-UzlOT8GW_5eoHa0ftkcMIKa87m6UiSstNNuqg2TCEeU6SQeX80QZUtlCNjcVdZYgwkJHzXYVVcagzLvj5irxuuJvP_7zf1CIhfyduX0EyRo8XX3etW00HPq5K9Dp25XVi4lo9dLvY9wv5F6WuHXsI3Qzv-4FtgkCCTvSfK0qTHO4_HyG85FeTXQw"
+      },
+      {
+        "name": "The Waterside Restaurant & Lounge",
+        "rating": 4.4,
+        "address": "industrial layout, opposite FCMB bank, Bozgomero estate, 30 Abuloma Rd, Trans Amadi, Port Harcourt 500001, Rivers, Nigeria",
+        "place_id": "ChIJNTTGjxLNaRARvNY7WlgcInA",
+        "price_level": 2,
+        "user_ratings_total": 67,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vQoT5z3NJKexAeiZ_t5SqlFrUPo_8wKZhVQAvuxEYfM5hv02QSZnJamUpWTW83gYRPx0SjadD56TJ-o1WswU7OcvQKUJE9WlgnR30cUciJwK1qTzyZo5oZIXsqKFov1gg2WwQVjn3egM5C2UI7GAHR4d79I4YPCAI8lNQ__8Jbor5T5HVOiaT8BGrkg6_NiwM3eMb53AKdAAnRsshU2QzgTOcYZKMcDTeBA1Y1hfPsKIBVlyg1C9SrqaBXfwRP4abU3xVbxJ5U930AsZTz5-wZe0K3hsXx-9s2gqzeqGPMkw"
+      },
+      {
+        "name": "Michael Garden Restaurant",
+        "rating": 4.4,
+        "address": "Port Harcourt - Aba Expy, City Centre, Port Harcourt 500102, Rivers, Nigeria",
+        "place_id": "ChIJrVBQTHPNaRARRERjTuzjlkI",
+        "price_level": 2,
+        "user_ratings_total": 1003,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-te2TRV99b49g9wpGmtpQew1F_N6ZLnkj8Gm0Cjk-rKr0Ffv6BTk5Z6fiHefIbi2RD8yAgHbvUhy_CRcLDmVQ8JgxWLYnEAKtPperFWxONZnI503Q2vf2ASzUGRGofGbLse5NHrVlwLtWIZRVztQkgCxe19DwsNAB_6T-Lc_apLkdfE05ELc9dBNPWaJufxp8HoIe-zLASNVAz6Q-OsHiqtCPURyZ5W-QL4M1jpyPRN_Bi74yFO4C0QfDddtB-1p_PySKIcKxtFgsefLPK0ELy60mMRQ65_gGtqHKHQ7mgh8uNDFLZZXraRrVv_uzXqOg6StO8MfGOnJmVOhJMBqOYTtMiLs0DLflekUB4GiyMWIABNUh40wkiSRu3U53cTL5P5uddoSN0l4n56zIBh20HIeZFVzhUOj1j7c3BJxcuuOQ"
+      },
+      {
+        "name": "Ubana Grill House",
+        "rating": 4.1,
+        "address": "23 Rumuibekwe Road, Off Aba Rd, opp. Shell Residential, Rumuibekwe, Port Harcourt 500211, Rivers, Nigeria",
+        "place_id": "ChIJq7SBqNDNaRARLisYgxB3K_Q",
+        "price_level": 2,
+        "user_ratings_total": 226,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vfsQqVtpkdfOUXiMzMvIPiGtfWYAUwXHKZ9zEWg0a262e-nqGc2qELSJsR-3xEuCMj1kHFOjXRMjvocUBvB_O0UciNWfib62ZPHHJ3DEdmyO8g1FuZjcs4mGV3uXa_HmCZdixfYK4_O9M6q-JTtnECe--q6PyfTjgy1WkJF0gPXQGwGe49hNRdQMuIU4etRiB-lAUC-Bd-jD53Nc7aNxoVWnCvvJpDexSaxycW_8rzaquQoWbXLNIZqYBkCTZJwDlmy3doWcFV03PLAssHjhn2mn5Ae_ouLp4_cqerIK549A"
+      },
+      {
+        "name": "Native Tray GRA PHC",
+        "rating": 4.3,
+        "address": "Bimko Crescent, behind Divinity house, off Woji Road, GRA, Port Harcourt 500272, Rivers, Nigeria",
+        "place_id": "ChIJhesOI4HOaRARQiN_0S2_cvs",
+        "price_level": 2,
+        "user_ratings_total": 1191,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-v_OyyywIxzbuylbcHQnuBYJLwa-60VmcI9BFNwVqckEu7yywCo3jm3FoZtu8-rx5lBKMxAOfuClWomH9mSSGOHCJg6fjoSFOtDM7sZdk2C5TpJMTcbaERhf28mh1-VSnRFEB6NObM2aEtyhGjOSVeKaMuvl0MIo3he2XFN5BqlswJA0EkvS9zxZl-IMov1SLplmvtnu6WrKTz0ofMs10GWbtYbAfIeeIuyCNuzRMs9gAK9XYFqYuNR_rv6g2yWM_jQ_0W8d1MLdz8Wfvzco0GkLd0iWt88pSGg1UxvuymIOQ"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:44.911974",
+    "hit_count": 1
+  },
+  "9064c3feb49e5b938a7a1316898cc787": {
+    "query": "local food Kano",
+    "location": "Kano",
+    "restaurants": [
+      {
+        "name": "C\u00e1lido Rooftop",
+        "rating": 4.2,
+        "address": "No. 4 Ibrahim Natsugune Road, Kofar Mata, Kano 700214, Kano, Nigeria",
+        "place_id": "ChIJB5vwr0mBrhERjs7TSctr7m0",
+        "price_level": 2,
+        "user_ratings_total": 236,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-s5qcBXf6fCYErld9D3Uu9ibJ2J3VpudLiq_h83Ny8eUfwet5vHgCNSk92vseDC3YnIVgRRvjLjrgJg15vYOpFTqcxqxWrG8nsU4wfY8E9Wi3vOJvUS6a-pxehIAqT0HOEL32ee8AkpG3YFgGjHEgQNMLN-gEh06r62Qb6BHSA9Foly9XhajXipeJwPLfxjJJxyxAPq1-2v2o9V1jSyZ1IIGCrRVaYSpVGm3RuLkCIvgM9imKt4UwAd_X-hItz9KlFvN2AoE3M0rFBl5SxxAox4laD-gwVUxYTLQsZzRi926g"
+      },
+      {
+        "name": "Gusto Restaurant",
+        "rating": 4.4,
+        "address": "17 Lodge Rd, Nassarawa, Kano 700282, Kano, Nigeria",
+        "place_id": "ChIJ32gKlRWBrhERUPmki1XZ1eg",
+        "price_level": 3,
+        "user_ratings_total": 1304,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uSX9r-CONPPPCPDbZeOaIth-8hivvIi_0x84_o6_bqfJ07U9Q--BnYoZuvSzC2j2tqE6EK6nOov_nxCyoS2hITmnqFCo-dH2JOnLmdZaS7jl0_kkBlPVHhIibJtnOZ8ILGHEMaaO7Jv4zR9IHXPCGWwZlb8F8BecyXiWulppx72LrpYSqeWuI_yZhi-n3xJsFHoeZPpZi8vAwXxA9eDig0FEwLla5IIa2GGJkmqH6XOYqnMvaE_q8lPCQBsi-NCJu3PQk9RaZzLXBLocfE2dStaRrMqsDMXcBCzgjNkYGXEA"
+      },
+      {
+        "name": "ZAZU Restaurant",
+        "rating": 4.3,
+        "address": "Sultan Road, Giginyu, XHV5+MQ9, Sultan Rd, Nassarawa, Kano 700213, Kano, Nigeria",
+        "place_id": "ChIJUxB6B0iBrhERcIzd9KKtP74",
+        "price_level": 2,
+        "user_ratings_total": 310,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-vhLXYTOL9tsslcBmJEcBN6JriVJ6ejeobgYKh8ORGQokIFyFIhFb_PhLpwLMwFjdvhiRNL9Tm75C72Dh3oT9-v1u-mdzRLGgR5iNmaMPATEOsW2cwqZoiqFJ70AsFzBkWW3heYFZJ3KwDat7S5Oq-bMb35GpHm1_XiBChDOwe3lU85Cv-pdYF0w3l3WAnc68M8q0BIGr0wZd-DbGpUo8p3WVqGh7NbZTEx-g3y4eD1D5PRQOVfCnaVsLEQegYb1chXJ8qj2t7hCaRBwUBHu23zSQe9nCnGvKMZJ7m2keBsHg"
+      },
+      {
+        "name": "Novo Bistro and Cafe",
+        "rating": 4.4,
+        "address": "145 Sultan Rd, Nassarawa, Kano 700213, Kano, Nigeria",
+        "place_id": "ChIJ5S62sjOBrhERz-W7bk8lqe8",
+        "price_level": 2,
+        "user_ratings_total": 144,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uh5dK9pzLz5hlfJD-VGtZ1raZGe9SvxJPR5fcQRj6UgrpESwNSK8_A9ejSArY0oMZ4DPRMWSI3g_ZLmatL7rTIiJ1Aa7r86X0D5KbvJPPhLpll2T0NUV7-qmgfc6ruhG0H_Ch-oA_DGaq8ZcDWWa_amStNEzAiZbRPGLbcbKNbZ5jFX9eX_E2msBooJj9DcTh_P0143ZIRxDmjlx6MLGTuJErzGvmUEVyNOkqlDIAWKOTC7V4s2Ae6r4ZUSJU4puNumCly-o7VmKsHsO52MAk1FAvs4gM27rwHnX_Bs7ciwcX7pBzQC6q29-VO2nf1M-D8GNDJn1c-mHIK8jFLBnoEta-I5meNoA9E2RMFlmgUZEVjRS3ownwld88FE6P5qk-pgxZJ6rcczMlO2mD-LwZ0Tc1mau0myD2uNkpWEU39aQ"
+      },
+      {
+        "name": "355 Restaurant & Lounge Kano",
+        "rating": 4.2,
+        "address": "172 Mission Rd, Bompai, Kano 700213, Kano, Nigeria",
+        "place_id": "ChIJoYPZ8faBrhERea04PVxb5zE",
+        "price_level": 2,
+        "user_ratings_total": 220,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-s5DBIOG_Ce5RP2tqAaQY6f-1g2RLu0OvppRfbIVOLp7l0FNczvwvp68Uc00ROBQm3aJBuH-Dzg2L5xOjyzQ2r49-RIp1NQ6dGIarZuBi5hRIZ3jRnf-v_qTA_jXEqD38Zq1wAD23UItSlCenTPtIh8ex7XDRPhgmOAGX36V6tYQT0SNLupKsClLSCz87RGOwXu6RxIAEJaeKcsW7kIeg-7FyvozXJ73OKmas1yQoEGqAqbTSuM9cgBpfVZJ1buXHua8wjcO2RxwuT5WF8qmVMpxcJlHW4c7EFP3pNTT09tTg"
+      },
+      {
+        "name": "The Junkyard Grills Kano",
+        "rating": 4.1,
+        "address": "24 Audu Bako Way, Nassarawa, Kano 700212, Kano, Nigeria",
+        "place_id": "ChIJZc8LcpCBrhERXh4i2fgbOtg",
+        "price_level": 2,
+        "user_ratings_total": 85,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tyvQIzrishcZUjo0dpVv9b5kIY3UwYv4P64PfpbDErFXLUNaNRqkyWJ1hhNdzsHvwrat0Trxaf_a4PO4ADxeRbWs1zfbDAKmPlTxL1gLs6hniph5J6mz98uWIeMkohSoF6SDqSYOhec_gb8p3ytAakl9kRjRZ3v0XUMEBDxYRQ57G3JCyO_soabFPoY5zHU50PuO1cHBhvj7igMkkCsDyPG8C80FKftHm2U-Bubl9mvpm33p32oy3AGpZnys4vl5nmkyoWHIdNID6mA7kiCQ7hxL3ehcccaV1qujf9ArnBsbWKyYdxMkbOL3GHv7kDJAeN6uVCz4oVJAUdWR3dDk7TCRE24Q4DJr8zv2ONyGxl4PsHQkXyrKv4vtBfn4bmf-jbpt0Lzb2Kle5yD8X59BivWx2202ppkXo0E1biqtw"
+      },
+      {
+        "name": "Ten to Ten Restaurant",
+        "rating": 4.1,
+        "address": "Alu Ave, Nassarawa, Kano 700213, Kano, Nigeria",
+        "place_id": "ChIJwd8M5S-BrhERLMtzF0P4Aas",
+        "price_level": 2,
+        "user_ratings_total": 1167,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-s9_b9fwalyEKXy1HUrNcmHpYtNOmov9l8tdWGV-Uakab3KPJ5Y4iwnr2k___rJ3ZpeeXyqE_BgWpiPyUWF6ndSQ2kV0iyZ29kF_g5EYJvJlO5J0aURaBEG1plSQFRlCPOlmvUIwfXfWwRddU2GDY4t0afmGw-c1nb0bbhUc-y2g-1FwM-JInZboebvdKEBSLhHlLWD1d7asIKZWvrTVNHMMpDE5KodrrCL_dcgLPFwfdLdHl0F9O1HOTyI2kHgiBIDMAapPozi8D8EJOxOxZIrwn2cfIYw4y5hciGEY_HrdKXXaXqBTXxf-kgxT5A0tmWwJ1Y8QCzWA75y3_jjLQ6E3H_2Ln3LxxuXftG-V5DcBFUDu4_0-1DFy1YhC3sQ9M8BB9dq68oKU2oQRrvfqr-KTW9TISSs6sS1j9ovR4CE7Q"
+      },
+      {
+        "name": "Vogue garden",
+        "rating": 4,
+        "address": "962, Nassarawa, Funtime, Nassarawa, Kano 700213, Kano, Nigeria",
+        "place_id": "ChIJw8E8CpiBrhER2Wccfm19NkQ",
+        "price_level": 2,
+        "user_ratings_total": 167,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-tz1anX4ze2c0JfV0Z5-CTWskY568pHtOVt-VxQaKLZ5hNtfEWmFlnLJy_RqPQNPjIYVKG6pvtcQ6rGA765jlKEHBZ6FfTX_WpKDiUciGhV5PXYkc4vTKMkpvn2u_mpUYlKTL9rLUaMlKTrLKcDb9EUc0Ey835E32eHnL1RQhLyj4s3ZtalM_U_3pDQ87VN3gKKL5mKIvhFKonNX3OeJP0ksA-icbxxSxluPyxZadkSY_9tptbqLbfk_7whWIjtLJnbeorikcr8vILPd_Ty5v9ujqP2kS2ESa1yeRYfR9z6e5_gBJQLbzv4uREkJwmSab_inMALk7SAYau8-IoBu5BLWWlOlxO3VkRp83AZQoJhm6MO2GoXe2RV2sNvbn63YodBwi13hmmqLq-uHIYaq838ab0_J63E8F9nb2TZTgI"
+      },
+      {
+        "name": "Rashko Park",
+        "rating": 4.3,
+        "address": "2H42+V76, Club Rd, GRA, Kano 700221, Kano, Nigeria",
+        "place_id": "ChIJc-aXYWCBrhERr-xgzalphfc",
+        "price_level": 2,
+        "user_ratings_total": 154,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-sjd84hDygm7D4-vXwxVQITgQLkLthio3ej0yZxykavypNpRT7Sr4_2w645qTrWpCeqM2Wm4REQkj9KkU8VkYR9VM94KINQ7EPkoKFPZCPKde3QwSVn8_oyPclmR_x63TrWyXCzHjw2adJtN0q0BLbxzmKty_fIKX1z6LuwWphjweff5E9pb18k1LDfZMXUySWnBem2aw4VzsOsXCpKvtEUp0Vdt9caOj2bvFJul6eJvs8DsdYaCCIMpJJmyBKHXg_-1Jq3dfjmXBvnAgITTsjcO5UG3PoQEvOvIuqWCQ-LWKLC8Ch9vj0-Pd5WGS_JuFRD-YY0xU9k7Yh8ex-ae1tU11xI3Q-3prIenuE4OR2KHQkNzN3xAodk_tkOkk7OtIKboEN7pGqMx3rFBnggy9WdEuWcuuWQpH69XA8bygd-8Ik"
+      },
+      {
+        "name": "Cilantro Kano",
+        "rating": 4.2,
+        "address": "Old No.67, New, 23 Sultan Rd, Giginyu, Kano 700213, Kano, Nigeria",
+        "place_id": "ChIJ2W6bu3qBrhERhK7iJ25_Ndo",
+        "price_level": 2,
+        "user_ratings_total": 904,
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "photo_reference": "Ab43m-uNedPh8iHICBPywUUW4w7usgLxZBjbLb3_xxKaFMp9G1uRNr3mCvZBXmH-B3va5pBpKSvxnvp6IWqAypXl6Me8N7QlQ5syrJVW0rVKBaoyR7eX7Y0Gvy1Ic1r8hEjfYpAGHhiJy3JZkqzPKZCyRpP5vEqKUT_KQwe56lfsEuWEm4zchor9OuwfF2451_USk3aLJyXy6PX5XfRawFHkcludvrrlTeadKvyOvwQRMx0zjhu3Z0ZKhdPmjXgoevRP1ZA9-wg88_4OmNUxwYsZfQ6nJwljGQkUp-E0rVPcLOb84w"
+      }
+    ],
+    "cached_at": "2026-05-23T19:41:47.471998",
+    "hit_count": 1
+  }
+}
