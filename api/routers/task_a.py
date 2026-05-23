@@ -19,6 +19,7 @@ class SimulateReviewRequest(BaseModel):
     features: list[str]
     preferred_language: Optional[str] = None
     past_adjustments: list[dict] = []
+    skip_voice_layer: bool = False
 
 
 class SimulateReviewResponse(BaseModel):
@@ -129,7 +130,7 @@ def simulate_review(body: SimulateReviewRequest):
         "features": body.features,
     }
 
-    prompt = build_review_prompt(persona, item)
+    prompt = build_review_prompt(persona, item, skip_voice_layer=body.skip_voice_layer)
 
     # Silently apply learned style preferences
     patterns = _extract_patterns(body.past_adjustments)
@@ -140,18 +141,20 @@ def simulate_review(body: SimulateReviewRequest):
             + "\n\nApply these preferences without being told. Do not mention them in the review."
         )
 
-    # Append language rule
-    prompt += (
-        "\n\nLANGUAGE RULE:\n"
-        "You are writing this review as a Nigerian user. Detect the language from the "
-        "restaurant name, location, and features provided.\n"
-        "If the context contains Yoruba words, write the review in Yoruba.\n"
-        "If Hausa, write in Hausa. If Igbo, write in Igbo. If Pidgin, write in Pidgin.\n"
-        "If English only, write in English. If unclear, default to Nigerian Pidgin.\n"
-        "If preferred_language is explicitly provided, use that language regardless "
-        "of auto-detection.\n"
-        "The review_text must be entirely in one language. Do not mix languages."
-    )
+    # Append language rule — omitted in neutral mode (skip_voice_layer=True)
+    if not body.skip_voice_layer:
+        prompt += (
+            "\n\nLANGUAGE RULE:\n"
+            "You are writing this review as a Nigerian user. Detect the language from the "
+            "restaurant name, location, and features provided.\n"
+            "If the context contains Yoruba words, write the review in Yoruba.\n"
+            "If Hausa, write in Hausa. If Igbo, write in Igbo. If Pidgin, write in Pidgin.\n"
+            "If English only, write in English. If unclear, default to Nigerian Pidgin.\n"
+            "If preferred_language is explicitly provided, use that language regardless "
+            "of auto-detection.\n"
+            "The review_text must be entirely in one language. Do not mix languages."
+        )
+
     if body.preferred_language:
         prompt += f"\nWrite this review in {body.preferred_language} only."
 

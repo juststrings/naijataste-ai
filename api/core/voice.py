@@ -4,6 +4,19 @@ from pathlib import Path
 from typing import Optional
 
 # ---------------------------------------------------------------------------
+# Tone mapping: rating_tendency values → few_shot_master.json tone values
+# Fixes: build_review_prompt() was passing rating_tendency ("harsh"/"balanced"/
+# "generous") directly as the tone filter, but few_shot_master.json stores
+# tone as "pidgin-heavy"/"formal"/"mixed"/"casual" — those never matched.
+# ---------------------------------------------------------------------------
+
+TENDENCY_TO_TONE: dict[str, list[str]] = {
+    "harsh":     ["pidgin-heavy", "formal"],
+    "balanced":  ["mixed", "casual"],
+    "generous":  ["mixed", "casual"],
+}
+
+# ---------------------------------------------------------------------------
 # Path resolution (works locally and inside Docker at /app)
 # ---------------------------------------------------------------------------
 
@@ -120,9 +133,12 @@ def _format_shot(shot: dict) -> str:
 # ---------------------------------------------------------------------------
 
 
-def get_few_shots(city: str, price_sensitivity: str, tone: str, n: int = 3) -> str:
+def get_few_shots(city: str, price_sensitivity: str, tone: "str | list[str]", n: int = 3) -> str:
     """
     Return n few-shot examples as a formatted string ready for prompt injection.
+
+    tone may be a string or a list of acceptable tone values (use TENDENCY_TO_TONE
+    to map rating_tendency → list before calling this).
 
     Filtering priority:
       1. city match + price_sensitivity match + tone match
@@ -142,7 +158,10 @@ def get_few_shots(city: str, price_sensitivity: str, tone: str, n: int = 3) -> s
         return s.get("price_sensitivity", "") == price_sensitivity
 
     def tone_matches(s: dict) -> bool:
-        return s.get("tone", "") == tone
+        t = s.get("tone", "")
+        if isinstance(tone, list):
+            return t in tone
+        return t == tone
 
     # Build candidate pool with progressive fallback
     pool: list[dict] = []
@@ -175,17 +194,22 @@ def get_few_shots(city: str, price_sensitivity: str, tone: str, n: int = 3) -> s
 # ---------------------------------------------------------------------------
 
 
-def build_review_prompt(persona: dict, item: dict) -> str:
+def build_review_prompt(persona: dict, item: dict, skip_voice_layer: bool = False) -> str:
     """
     Build a Gemini-ready prompt that asks it to simulate a Nigerian user review.
 
-    persona  — output of PersonaEncoder
-    item     — {item_name, item_type, location, features: list[str]}
+    persona          — output of PersonaEncoder
+    item             — {item_name, item_type, location, features: list[str]}
+    skip_voice_layer — when True, omit cultural few-shots (neutral evaluation mode)
     """
-    city             = item.get("location", "Nigeria")
+    city              = item.get("location", "Nigeria")
     price_sensitivity = persona.get("price_sensitivity", "medium")
-    tone             = persona.get("rating_tendency", "balanced")
-    few_shots        = get_few_shots(city, price_sensitivity, tone, n=3)
+    rating_tendency   = persona.get("rating_tendency", "balanced")
+    tone_filter       = TENDENCY_TO_TONE.get(rating_tendency, ["mixed", "casual"])
+    if skip_voice_layer:
+        few_shots = "(no style examples — neutral evaluation mode)"
+    else:
+        few_shots = get_few_shots(city, price_sensitivity, tone_filter, n=3)
 
     features_str = ", ".join(item.get("features", []))
     sample_reviews = persona.get("sample_reviews", [])
@@ -253,10 +277,11 @@ def build_recommendation_prompt(persona: dict, candidates: list[dict]) -> str:
     persona    — output of PersonaEncoder
     candidates — list of business/item dicts from Yelp (or any source)
     """
-    city             = candidates[0].get("city", "Nigeria") if candidates else "Nigeria"
+    city              = candidates[0].get("city", "Nigeria") if candidates else "Nigeria"
     price_sensitivity = persona.get("price_sensitivity", "medium")
-    tone             = persona.get("rating_tendency", "balanced")
-    few_shots        = get_few_shots(city, price_sensitivity, tone, n=1)
+    rating_tendency   = persona.get("rating_tendency", "balanced")
+    tone_filter       = TENDENCY_TO_TONE.get(rating_tendency, ["mixed", "casual"])
+    few_shots         = get_few_shots(city, price_sensitivity, tone_filter, n=1)
 
     keywords_str = ", ".join(persona.get("tone_keywords", [])) or "not available"
 
