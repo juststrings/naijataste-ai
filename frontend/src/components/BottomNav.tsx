@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -18,14 +19,9 @@ const GUEST_TABS = [
   { href: "/about",         label: "About",     icon: "info" },
 ];
 
-export default function BottomNav() {
-  const { user } = useAuth();
-  const pathname = usePathname();
-
-  const tabs = user ? AUTH_TABS : GUEST_TABS;
-
+function TabLinks({ tabs, pathname }: { tabs: typeof AUTH_TABS; pathname: string }) {
   return (
-    <nav className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t border-outline-variant/20 flex h-16">
+    <>
       {tabs.map(({ href, label, icon }) => {
         const active = pathname === href;
         return (
@@ -46,6 +42,52 @@ export default function BottomNav() {
           </Link>
         );
       })}
+    </>
+  );
+}
+
+export default function BottomNav() {
+  const { user } = useAuth();
+  const pathname = usePathname();
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    if (user) return;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 10) {
+        setVisible(true);
+      } else if (currentScrollY < lastScrollY.current) {
+        setVisible(true);
+      } else if (currentScrollY > lastScrollY.current + 5) {
+        setVisible(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [user]);
+
+  if (user) {
+    return (
+      <nav className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t border-outline-variant/20 flex h-16">
+        <TabLinks tabs={AUTH_TABS} pathname={pathname} />
+      </nav>
+    );
+  }
+
+  return (
+    <nav
+      className={`fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-outline-variant/20 flex h-16 transition-transform duration-300 ease-in-out md:hidden ${
+        visible ? "translate-y-0" : "translate-y-full"
+      }`}
+    >
+      <TabLinks tabs={GUEST_TABS} pathname={pathname} />
     </nav>
   );
 }
