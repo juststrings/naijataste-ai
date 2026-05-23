@@ -1,13 +1,8 @@
 fastapi
 uvicorn
-anthropic
 google-genai
 python-dotenv
 pandas
-chromadb
-sentence-transformers
 googlemaps
-numpy
-requests
 twilio>=8.0.0
 python-multipart

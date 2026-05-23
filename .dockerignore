@@ -1,0 +1,24 @@
+# Large data files
+Yel-JSON/
+
+# Frontend (not needed for API image)
+frontend/
+frontend-reference/
+
+# Dev artifacts
+papers/
+screen.png
+*.xlsx
+*.pyc
+__pycache__/
+.git/
+.claude/
+
+# Evaluation scripts (not needed at runtime)
+api/scripts/
+
+# Sensitive — env vars must be passed via docker run -e or secrets
+api/.env
+
+# Node
+node_modules/
