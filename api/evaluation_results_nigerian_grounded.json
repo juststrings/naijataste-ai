@@ -1,0 +1,507 @@
+{
+  "disclaimer": "Ground truth derived from prompts/few_shot_reviews.json (30 real Nigerian restaurants, author-labeled) and prompts/few_shot_master.json (144 synthesized reviews from 500 real Google Maps reviews via Outscraper API). Relevance labels are author-constructed; no public Nigerian restaurant interaction dataset currently exists.",
+  "api_base": "https://naijataste-api-vcp4.onrender.com",
+  "n_personas_evaluated": 18,
+  "aggregate": {
+    "mean_ndcg_at_10": 0.8675,
+    "mean_hit_rate_at_5": 1.0,
+    "coverage_rate": 0.9444,
+    "nigerian_grounding_rate": 0.6111
+  },
+  "results": [
+    {
+      "persona_id": "ABU-FAS-00",
+      "city": "Abuja",
+      "preferred_food": "fast food",
+      "price_range": "mid",
+      "tone": "formal",
+      "rating_tendency": "harsh",
+      "n_master_entries": 11,
+      "n_recommendations": 3,
+      "coverage": true,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        2,
+        1,
+        1
+      ],
+      "ndcg_at_10": 1.0,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "G Burger",
+        "CHICKEN CAPITOL",
+        "Johnny Rockets"
+      ]
+    },
+    {
+      "persona_id": "ABU-FIN-01",
+      "city": "Abuja",
+      "preferred_food": "fine dining",
+      "price_range": "premium",
+      "tone": "formal",
+      "rating_tendency": "balanced",
+      "n_master_entries": 8,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "ndcg_at_10": 0.7123,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "The Burgundy by Chef Stone",
+        "Zaya & Ryan's restaurant",
+        "Uncle T’s",
+        "The Vue",
+        "Kapadoccia Abuja"
+      ]
+    },
+    {
+      "persona_id": "ABU-GRI-02",
+      "city": "Abuja",
+      "preferred_food": "grilled fish spot",
+      "price_range": "mid",
+      "tone": "casual",
+      "rating_tendency": "generous",
+      "n_master_entries": 6,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        2,
+        0,
+        2,
+        0,
+        2
+      ],
+      "ndcg_at_10": 0.8855,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Ocean Basket Abuja",
+        "Ejanla Abuja",
+        "TATAFISH",
+        "Ibro Fish Wuse 2",
+        "Grillzhut by Derda Garden"
+      ]
+    },
+    {
+      "persona_id": "ABU-LOC-03",
+      "city": "Abuja",
+      "preferred_food": "local buka",
+      "price_range": "budget",
+      "tone": "mixed",
+      "rating_tendency": "harsh",
+      "n_master_entries": 8,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "ndcg_at_10": 1.0,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Today's Bukka",
+        "Talenu Buka & Garden",
+        "Coal City Bukka Gwarimpa",
+        "Nkoyo",
+        "Lagos Bistro"
+      ]
+    },
+    {
+      "persona_id": "ABU-RES-04",
+      "city": "Abuja",
+      "preferred_food": "restaurant",
+      "price_range": "mid",
+      "tone": "mixed",
+      "rating_tendency": "balanced",
+      "n_master_entries": 12,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        1,
+        2,
+        2,
+        1,
+        1
+      ],
+      "ndcg_at_10": 0.8908,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Cilantro Abuja",
+        "BluCabana Restaurant & Cafe",
+        "A Class Restaurant",
+        "Uncle T’s",
+        "The Vue"
+      ]
+    },
+    {
+      "persona_id": "BEN-LOC-05",
+      "city": "Benin City",
+      "preferred_food": "local buka",
+      "price_range": "mid",
+      "tone": "mixed",
+      "rating_tendency": "balanced",
+      "n_master_entries": 6,
+      "n_recommendations": 4,
+      "coverage": true,
+      "is_nigerian": false,
+      "detected_language": "en",
+      "relevances": [
+        2,
+        1,
+        2,
+        0
+      ],
+      "ndcg_at_10": 0.9652,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Food Court (Buka), UNIBEN",
+        "Mama Uzo Kitchen",
+        "Buka Queen",
+        "Buka Code Restaurant"
+      ]
+    },
+    {
+      "persona_id": "ENU-LOC-06",
+      "city": "Enugu",
+      "preferred_food": "local buka",
+      "price_range": "budget",
+      "tone": "formal",
+      "rating_tendency": "generous",
+      "n_master_entries": 6,
+      "n_recommendations": 3,
+      "coverage": true,
+      "is_nigerian": false,
+      "detected_language": "en",
+      "relevances": [
+        2,
+        2,
+        2
+      ],
+      "ndcg_at_10": 1.0,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Ntachi-Osa",
+        "Abacha Junction",
+        "OOMA Kitchen"
+      ]
+    },
+    {
+      "persona_id": "IBA-AMA-07",
+      "city": "Ibadan",
+      "preferred_food": "amala joint",
+      "price_range": "budget",
+      "tone": "mixed",
+      "rating_tendency": "generous",
+      "n_master_entries": 6,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ],
+      "ndcg_at_10": 0.8757,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Ose Olorun Food Canteen",
+        "Mama Adija Eatables",
+        "Iya Meta Food Canteen",
+        "Amala Oluyole",
+        "Abula Palace"
+      ]
+    },
+    {
+      "persona_id": "IBA-PEP-08",
+      "city": "Ibadan",
+      "preferred_food": "pepper soup joint",
+      "price_range": "mid",
+      "tone": "formal",
+      "rating_tendency": "balanced",
+      "n_master_entries": 6,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": false,
+      "detected_language": "en",
+      "relevances": [
+        0,
+        1,
+        1,
+        0,
+        2
+      ],
+      "ndcg_at_10": 0.6083,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "The PeppersoupVilla",
+        "Peppn’s Parol",
+        "Food and Soup Bowls by Ovo's Kitchen",
+        "Countryside Peppersoup",
+        "South South Kitchen"
+      ]
+    },
+    {
+      "persona_id": "KAN-FAS-09",
+      "city": "Kano",
+      "preferred_food": "fast food",
+      "price_range": "budget",
+      "tone": "pidgin-heavy",
+      "rating_tendency": "harsh",
+      "n_master_entries": 6,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": false,
+      "detected_language": "en",
+      "relevances": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ndcg_at_10": 1.0,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Gee's Burger Diner",
+        "Nibbles",
+        "Patoosh Cafe & Restaurant",
+        "ZAZU Restaurant",
+        "Grand city view"
+      ]
+    },
+    {
+      "persona_id": "LAG-FIN-11",
+      "city": "Lagos",
+      "preferred_food": "fine dining",
+      "price_range": "mid",
+      "tone": "mixed",
+      "rating_tendency": "balanced",
+      "n_master_entries": 8,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        0,
+        2,
+        0,
+        0,
+        2
+      ],
+      "ndcg_at_10": 0.6241,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Cilantro Ikeja",
+        "Maple Lagos",
+        "The Smiths",
+        "Shiro Lagos",
+        "Kapadoccia Lagos"
+      ]
+    },
+    {
+      "persona_id": "LAG-LOC-12",
+      "city": "Lagos",
+      "preferred_food": "local buka",
+      "price_range": "budget",
+      "tone": "pidgin-heavy",
+      "rating_tendency": "harsh",
+      "n_master_entries": 8,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        2,
+        2,
+        1,
+        2,
+        1
+      ],
+      "ndcg_at_10": 0.9864,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Commint Buka Surulere Lagos",
+        "Commint Buka",
+        "Bukka Hut",
+        "Xtabel Buka",
+        "Ofada Heaven"
+      ]
+    },
+    {
+      "persona_id": "LAG-ROO-14",
+      "city": "Lagos",
+      "preferred_food": "rooftop bar and grill",
+      "price_range": "premium",
+      "tone": "casual",
+      "rating_tendency": "generous",
+      "n_master_entries": 6,
+      "n_recommendations": 1,
+      "coverage": false,
+      "is_nigerian": false,
+      "detected_language": "en",
+      "relevances": [
+        2
+      ],
+      "ndcg_at_10": 1.0,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "The View Rooftop Lounge"
+      ]
+    },
+    {
+      "persona_id": "LAG-SEA-15",
+      "city": "Lagos",
+      "preferred_food": "seafood restaurant",
+      "price_range": "mid",
+      "tone": "formal",
+      "rating_tendency": "balanced",
+      "n_master_entries": 6,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        2,
+        2,
+        0,
+        1,
+        2
+      ],
+      "ndcg_at_10": 0.9518,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Ocean Basket Victoria Island",
+        "Ocean Basket, Ikeja GRA",
+        "Ejanla Surulere",
+        "THE LAGOON",
+        "Fish Farm Lagos"
+      ]
+    },
+    {
+      "persona_id": "LAG-SUY-16",
+      "city": "Lagos",
+      "preferred_food": "suya spot",
+      "price_range": "budget",
+      "tone": "mixed",
+      "rating_tendency": "generous",
+      "n_master_entries": 6,
+      "n_recommendations": 1,
+      "coverage": false,
+      "is_nigerian": true,
+      "detected_language": "en",
+      "relevances": [
+        2
+      ],
+      "ndcg_at_10": 1.0,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Glover Suya | Best Suya Spot"
+      ]
+    },
+    {
+      "persona_id": "POR-FAS-17",
+      "city": "Port Harcourt",
+      "preferred_food": "fast food",
+      "price_range": "mid",
+      "tone": "mixed",
+      "rating_tendency": "harsh",
+      "n_master_entries": 6,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": false,
+      "detected_language": "en",
+      "relevances": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "ndcg_at_10": 0.5706,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Kilimanjaro Restaurant GRA Junction",
+        "Skippers Fast Food",
+        "Wingside - Sani Abacha Rd",
+        "Wingside - King Perekule GRA",
+        "Buns & Batter"
+      ]
+    },
+    {
+      "persona_id": "POR-LOC-18",
+      "city": "Port Harcourt",
+      "preferred_food": "local buka",
+      "price_range": "budget",
+      "tone": "pidgin-heavy",
+      "rating_tendency": "harsh",
+      "n_master_entries": 6,
+      "n_recommendations": 4,
+      "coverage": true,
+      "is_nigerian": false,
+      "detected_language": "en",
+      "relevances": [
+        2,
+        2,
+        1,
+        0
+      ],
+      "ndcg_at_10": 1.0,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Collins Bukka Restaurant",
+        "Native Tray GRA PHC",
+        "Ofadalicious",
+        "Bukka By Choice Restaurant & Karaoke Bar"
+      ]
+    },
+    {
+      "persona_id": "WAR-FAS-19",
+      "city": "Warri",
+      "preferred_food": "fast food",
+      "price_range": "budget",
+      "tone": "pidgin-heavy",
+      "rating_tendency": "harsh",
+      "n_master_entries": 6,
+      "n_recommendations": 5,
+      "coverage": true,
+      "is_nigerian": false,
+      "detected_language": "en",
+      "relevances": [
+        0,
+        0,
+        2,
+        0,
+        2
+      ],
+      "ndcg_at_10": 0.5438,
+      "hit_rate_at_5": 1.0,
+      "top_recs": [
+        "Casa Nito Food Delivery",
+        "Sweet Smokey Grills",
+        "AJ fast food",
+        "TEMPLEGRILL",
+        "2Secs Arena"
+      ]
+    }
+  ]
+}
