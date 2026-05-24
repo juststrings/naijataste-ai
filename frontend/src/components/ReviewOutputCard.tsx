@@ -118,7 +118,12 @@ export default function ReviewOutputCard({
             }`}
           >
             <span className="flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-base">{isSaved ? "check_circle" : "bookmark"}</span>
+              <span
+                className="material-symbols-outlined text-base"
+                style={{ fontVariationSettings: "'FILL' 1" }}
+              >
+                {isSaved ? "check_circle" : "bookmark"}
+              </span>
               {isSaved ? "Saved ✓" : "Save Review"}
             </span>
           </button>
