@@ -220,6 +220,8 @@ def build_review_prompt(persona: dict, item: dict, skip_voice_layer: bool = Fals
     )
     keywords_str = ", ".join(persona.get("tone_keywords", [])) or "not available"
 
+    tone = rating_tendency
+
     prompt = f"""You are simulating an authentic Nigerian user writing a review.
 
 ## User Persona
