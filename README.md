@@ -7,7 +7,7 @@ An intelligent Nigerian user behaviour modelling and recommendation system that 
 
 **Live Demo:** https://naijataste.onrender.com  
 **API Base URL:** https://naijataste-api-vcp4.onrender.com  
-**Interactive Docs:** https://trailblazer.mintlify.app  
+**Interactive Docs:** https://trailblazer.mintlify.app/introduction  
 **Team:** NaijaTaste
 
 ---
@@ -159,7 +159,7 @@ naijataste-ai/
 | Uptime | UptimeRobot (5-min ping, never sleeps) | External |
 
 **Live Demo:** https://naijataste.onrender.com  
-**API Docs:** https://trailblazer.mintlify.app  
+**API Docs:** https://trailblazer.mintlify.app/introduction  
 **WhatsApp:** Send `join dress-newspaper` to +1 415 523 8886
 
 ---

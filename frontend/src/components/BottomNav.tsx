@@ -17,7 +17,7 @@ const GUEST_TABS = [
   { href: "/simulator",                         label: "Simulate", icon: "edit" },
   { href: "/recommend",                         label: "Recommend",icon: "auto_awesome" },
   { href: "/about",                             label: "About",    icon: "info" },
-  { href: "https://trailblazer.mintlify.app",   label: "Docs",     icon: "description", external: true },
+  { href: "https://trailblazer.mintlify.app/introduction",   label: "Docs",     icon: "description", external: true },
 ];
 
 type Tab = { href: string; label: string; icon: string; external?: boolean };

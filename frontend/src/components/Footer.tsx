@@ -20,7 +20,7 @@ export default function Footer() {
           <Link href="/simulator" className="hover:opacity-100 transition-opacity">Review Simulator</Link>
           <Link href="/recommend" className="hover:opacity-100 transition-opacity">Recommendations</Link>
           <Link href="/about" className="hover:opacity-100 transition-opacity">About</Link>
-          <a href="https://trailblazer.mintlify.app" target="_blank" rel="noreferrer" className="hover:opacity-100 transition-opacity">API Docs</a>
+          <a href="https://trailblazer.mintlify.app/introduction" target="_blank" rel="noreferrer" className="hover:opacity-100 transition-opacity">API Docs</a>
           <a href="https://github.com/juststrings/naijataste-ai" target="_blank" rel="noreferrer" className="hover:opacity-100 transition-opacity">GitHub</a>
         </div>
       </div>
