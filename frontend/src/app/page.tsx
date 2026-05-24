@@ -68,6 +68,23 @@ function GuestHome() {
               Try it →
             </span>
           </a>
+
+          {/* Mobile-only demo video — shown immediately after WhatsApp on small screens */}
+          <div className="lg:hidden mt-6">
+            <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">See NaijaTaste in Action</h2>
+            <p className="text-center text-gray-500 mb-4 text-sm">
+              Watch the full demo — recommendations, review simulation, WhatsApp bot and more
+            </p>
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ paddingBottom: '56.25%', height: 0 }}>
+              <iframe
+                src="https://www.youtube.com/embed/BJe7rEFbJjs"
+                title="NaijaTaste Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full"
+              />
+            </div>
+          </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
           {/* Row 1 — 60% / 40% */}
@@ -95,8 +112,8 @@ function GuestHome() {
         </div>
       </section>
 
-      {/* Demo video */}
-      <section className="w-full max-w-4xl mx-auto px-4 py-8">
+      {/* Demo video — desktop only; mobile version lives inside the hero column above */}
+      <section className="hidden lg:block w-full max-w-4xl mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">
           See NaijaTaste in Action
         </h2>
