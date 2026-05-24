@@ -111,16 +111,16 @@ export default function ReviewOutputCard({
           <button
             onClick={onSave}
             disabled={isSaved}
-            className={`flex-1 flex items-center justify-center gap-2 text-sm font-semibold py-2 rounded-xl transition-colors ${
+            className={`flex-1 flex items-center justify-center text-sm font-semibold py-2 rounded-xl transition-colors ${
               isSaved
                 ? "bg-teal-500/10 text-teal-600 cursor-default"
                 : "bg-primary text-white hover:bg-red-800"
             }`}
           >
-            <span className="material-symbols-outlined text-base">
-              {isSaved ? "check_circle" : "bookmark"}
+            <span className="flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-base">{isSaved ? "check_circle" : "bookmark"}</span>
+              {isSaved ? "Saved ✓" : "Save Review"}
             </span>
-            {isSaved ? "Saved ✓" : "Save Review"}
           </button>
         )}
       </div>
