@@ -87,7 +87,7 @@ function GuestHome() {
               </div>
             </div>
             <p className="md:hidden text-center text-sm text-red-700 font-medium mt-2">
-              Tap to watch on YouTube ↗
+              Tap to watch on YouTube
             </p>
           </div>
         </div>
