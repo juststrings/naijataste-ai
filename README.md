@@ -469,4 +469,4 @@ The Review Simulator and Recommendation Engine accept voice queries via the Web 
 
 ---
 
-*Built with 🍛 by Team NaijaTaste, DSN × Bluechip Technologies Hackathon 3.0*
+*Built with 🍛 by Team Foresight, DSN × Bluechip Technologies Hackathon 3.0*
