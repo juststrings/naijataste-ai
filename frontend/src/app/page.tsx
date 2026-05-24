@@ -25,7 +25,7 @@ function GuestHome() {
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-4 md:px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <div className="min-h-[85vh] flex flex-col justify-center px-4 py-8">
+          <div className="min-h-screen flex flex-col justify-center px-4 py-8">
           <h1
             className="text-4xl md:text-6xl font-black text-on-surface leading-tight mb-4"
             style={{ fontFamily: "Montserrat, sans-serif" }}
