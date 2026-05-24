@@ -8,7 +8,7 @@ An intelligent Nigerian user behaviour modelling and recommendation system that 
 **Live Demo:** https://naijataste.onrender.com  
 **API Base URL:** https://naijataste-api-vcp4.onrender.com  
 **Interactive Docs:** https://trailblazer.mintlify.app/introduction  
-**Team:** NaijaTaste
+**Team:** Foresight | **Product:** NaijaTaste
 
 ---
 
