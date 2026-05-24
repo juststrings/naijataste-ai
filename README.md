@@ -463,9 +463,9 @@ The Review Simulator and Recommendation Engine accept voice queries via the Web 
 - [x] Postgres: persist reviews and profiles across devices (Render Postgres + Prisma)
 - [x] Implicit learning engine: derive style preferences from interaction signals
 - [x] WhatsApp bot: multilingual recommendations via Twilio
-- [ ] Real persona engine on backend: derive taste traits from full review history
+- [x] Real persona engine on backend: derive taste traits from full review history
 - [ ] Yelp and Goodreads live integration
-- [ ] Expand beyond Nigeria: diaspora cities (London, Houston, Toronto)
+- [x] Global reach: works worldwide, built primarily for Nigeria
 
 ---
 
