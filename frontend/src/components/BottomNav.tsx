@@ -13,25 +13,25 @@ const AUTH_TABS = [
 ];
 
 const GUEST_TABS = [
-  { href: "/",              label: "Home",      icon: "home" },
-  { href: "/simulator",     label: "Simulate",  icon: "edit" },
-  { href: "/recommend",     label: "Recommend", icon: "auto_awesome" },
-  { href: "/about",         label: "About",     icon: "info" },
+  { href: "/",                                  label: "Home",     icon: "home" },
+  { href: "/simulator",                         label: "Simulate", icon: "edit" },
+  { href: "/recommend",                         label: "Recommend",icon: "auto_awesome" },
+  { href: "/about",                             label: "About",    icon: "info" },
+  { href: "https://trailblazer.mintlify.app",   label: "Docs",     icon: "description", external: true },
 ];
 
-function TabLinks({ tabs, pathname }: { tabs: typeof AUTH_TABS; pathname: string }) {
+type Tab = { href: string; label: string; icon: string; external?: boolean };
+
+function TabLinks({ tabs, pathname }: { tabs: Tab[]; pathname: string }) {
   return (
     <>
-      {tabs.map(({ href, label, icon }) => {
-        const active = pathname === href;
-        return (
-          <Link
-            key={href}
-            href={href}
-            className={`flex-1 flex flex-col items-center justify-center gap-0.5 transition-colors ${
-              active ? "text-primary" : "text-on-surface-variant"
-            }`}
-          >
+      {tabs.map(({ href, label, icon, external }) => {
+        const active = !external && pathname === href;
+        const cls = `flex-1 flex flex-col items-center justify-center gap-0.5 transition-colors ${
+          active ? "text-primary" : "text-on-surface-variant"
+        }`;
+        const inner = (
+          <>
             <span
               className="material-symbols-outlined"
               style={{ fontSize: "22px", fontVariationSettings: `'FILL' ${active ? 1 : 0}` }}
@@ -39,6 +39,15 @@ function TabLinks({ tabs, pathname }: { tabs: typeof AUTH_TABS; pathname: string
               {icon}
             </span>
             <span className="text-[10px] font-semibold leading-none">{label}</span>
+          </>
+        );
+        return external ? (
+          <a key={href} href={href} target="_blank" rel="noreferrer" className={cls}>
+            {inner}
+          </a>
+        ) : (
+          <Link key={href} href={href} className={cls}>
+            {inner}
           </Link>
         );
       })}
