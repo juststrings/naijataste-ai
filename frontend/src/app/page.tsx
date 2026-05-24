@@ -25,7 +25,6 @@ function GuestHome() {
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-4 md:px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <div className="min-h-screen flex flex-col justify-center px-4 py-8">
           <h1
             className="text-4xl md:text-6xl font-black text-on-surface leading-tight mb-4"
             style={{ fontFamily: "Montserrat, sans-serif" }}
@@ -69,7 +68,6 @@ function GuestHome() {
               Try it →
             </span>
           </a>
-          </div>
 
           {/* Mobile-only demo video — shown immediately after WhatsApp on small screens */}
           <div className="lg:hidden mt-6 px-0 py-4">
