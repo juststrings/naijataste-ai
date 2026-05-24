@@ -5,14 +5,16 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 
-const GUEST_NAV = [
+type NavItem = { href: string; label: string; external?: boolean };
+
+const GUEST_NAV: NavItem[] = [
   { href: "/simulator", label: "Review Simulator" },
   { href: "/recommend", label: "Recommendations" },
   { href: "/about", label: "About" },
   { href: "https://trailblazer.mintlify.app/introduction", label: "API Docs", external: true },
 ];
 
-const AUTH_NAV = [
+const AUTH_NAV: NavItem[] = [
   { href: "/flavor-finder", label: "Home" },
   { href: "/recommend", label: "Recommendations" },
   { href: "/simulator", label: "Review Simulator" },
