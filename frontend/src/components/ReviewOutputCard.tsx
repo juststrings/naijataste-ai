@@ -111,7 +111,7 @@ export default function ReviewOutputCard({
           <button
             onClick={onSave}
             disabled={isSaved}
-            className={`flex-1 flex items-center justify-center text-sm font-semibold py-2 rounded-xl transition-colors ${
+            className={`flex-1 flex items-center justify-center text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors ${
               isSaved
                 ? "bg-teal-500/10 text-teal-600 cursor-default"
                 : "bg-primary text-white hover:bg-red-800"
