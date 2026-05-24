@@ -9,6 +9,7 @@ const GUEST_NAV = [
   { href: "/simulator", label: "Review Simulator" },
   { href: "/recommend", label: "Recommendations" },
   { href: "/about", label: "About" },
+  { href: "https://trailblazer.mintlify.app/introduction", label: "API Docs", external: true },
 ];
 
 const AUTH_NAV = [
@@ -52,15 +53,27 @@ export default function NavBar() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex gap-8 items-center text-sm font-semibold">
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`text-on-surface-variant hover:text-primary transition-colors ${pathname === href ? "text-primary border-b-2 border-primary pb-0.5" : ""}`}
-            >
-              {label}
-            </Link>
-          ))}
+          {NAV_LINKS.map(({ href, label, external }) =>
+            external ? (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-on-surface-variant hover:text-primary transition-colors"
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                key={href}
+                href={href}
+                className={`text-on-surface-variant hover:text-primary transition-colors ${pathname === href ? "text-primary border-b-2 border-primary pb-0.5" : ""}`}
+              >
+                {label}
+              </Link>
+            )
+          )}
         </nav>
 
         {/* Auth area + hamburger grouped so gap between Logout and ≡ is tight */}
@@ -104,16 +117,29 @@ export default function NavBar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-outline-variant/20 px-4 py-3 flex flex-col gap-3">
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`text-sm font-semibold py-2 ${pathname === href ? "text-primary" : "text-on-surface-variant"}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
+          {NAV_LINKS.map(({ href, label, external }) =>
+            external ? (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-semibold py-2 text-on-surface-variant"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                key={href}
+                href={href}
+                className={`text-sm font-semibold py-2 ${pathname === href ? "text-primary" : "text-on-surface-variant"}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            )
+          )}
           {user && (
             <div className="border-t border-outline-variant/20 pt-2">
               <button
