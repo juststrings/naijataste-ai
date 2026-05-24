@@ -70,20 +70,25 @@ function GuestHome() {
           </a>
 
           {/* Mobile-only demo video — shown immediately after WhatsApp on small screens */}
-          <div className="lg:hidden mt-6">
-            <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">See NaijaTaste in Action</h2>
-            <p className="text-center text-gray-500 mb-4 text-sm">
+          <div className="lg:hidden mt-6 px-0 py-4">
+            <h2 className="text-xl md:text-2xl font-bold text-center text-gray-900 mb-1 md:mb-2">See NaijaTaste in Action</h2>
+            <p className="hidden md:block text-center text-gray-500 mb-6">
               Watch the full demo — recommendations, review simulation, WhatsApp bot and more
             </p>
-            <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ paddingBottom: '56.25%', height: 0 }}>
-              <iframe
-                src="https://www.youtube.com/embed/VkwtAWm8jig"
-                title="NaijaTaste Demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full"
-              />
+            <div className="rounded-2xl overflow-hidden shadow-md bg-white p-2 md:p-0">
+              <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ paddingBottom: '56.25%', height: 0 }}>
+                <iframe
+                  src="https://www.youtube.com/embed/VkwtAWm8jig"
+                  title="NaijaTaste Demo"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                />
+              </div>
             </div>
+            <p className="md:hidden text-center text-sm text-red-700 font-medium mt-2">
+              Tap to watch on YouTube ↗
+            </p>
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
