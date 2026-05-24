@@ -77,7 +77,7 @@ function GuestHome() {
             </p>
             <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ paddingBottom: '56.25%', height: 0 }}>
               <iframe
-                src="https://www.youtube.com/embed/BJe7rEFbJjs"
+                src="https://www.youtube.com/embed/VkwtAWm8jig"
                 title="NaijaTaste Demo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -123,7 +123,7 @@ function GuestHome() {
         <div className="relative w-full rounded-2xl overflow-hidden shadow-lg"
              style={{ paddingBottom: '56.25%', height: 0 }}>
           <iframe
-            src="https://www.youtube.com/embed/BJe7rEFbJjs"
+            src="https://www.youtube.com/embed/VkwtAWm8jig"
             title="NaijaTaste Demo"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
