@@ -104,6 +104,9 @@ function SimulatorContent() {
 
   // Auth-only state
   const [selectedFood, setSelectedFood] = useState<string | null>(null);
+  const [customFoodInput, setCustomFoodInput] = useState("");
+  const [customFoodItems, setCustomFoodItems] = useState<string[]>([]);
+  const [authFeatures, setAuthFeatures] = useState("");
 
   // Save + feedback state
   const [isSaved, setIsSaved] = useState(false);
@@ -266,6 +269,14 @@ function SimulatorContent() {
     }
   }
 
+  function addCustomFood() {
+    const trimmed = customFoodInput.trim();
+    if (trimmed && !customFoodItems.includes(trimmed)) {
+      setCustomFoodItems((prev) => [...prev, trimmed]);
+    }
+    setCustomFoodInput("");
+  }
+
   async function generateAuthenticated() {
     if (!user) return;
 
@@ -291,10 +302,14 @@ function SimulatorContent() {
       item_name: restaurant || "Nigerian Restaurant",
       item_type: type,
       location: location || "VI, Lagos",
-      features:
-        selectedFood && selectedFood !== "Other..."
-          ? [selectedFood]
-          : ["nice ambience", "good service"],
+      features: (() => {
+        const f = [
+          ...(selectedFood && selectedFood !== "Other..." ? [selectedFood] : []),
+          ...customFoodItems,
+          ...(authFeatures ? authFeatures.split(",").map((s) => s.trim()).filter(Boolean) : []),
+        ];
+        return f.length > 0 ? f : ["nice ambience", "good service"];
+      })(),
       ...(preferredLanguage && { preferred_language: preferredLanguage }),
       past_adjustments: pastAdjustments,
     };
@@ -542,6 +557,60 @@ function SimulatorContent() {
                           </button>
                         ))}
                       </div>
+
+                      {/* Custom food input — shown when "Other..." is selected */}
+                      {selectedFood === "Other..." && (
+                        <div className="mt-3 space-y-2">
+                          <div className="flex gap-2">
+                            <input
+                              type="text"
+                              value={customFoodInput}
+                              onChange={(e) => setCustomFoodInput(e.target.value)}
+                              onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addCustomFood())}
+                              placeholder="e.g. Pounded yam, Ofe akwu, Nkwobi..."
+                              className="flex-grow bg-white border-2 border-outline/20 rounded-xl px-4 py-2.5 text-sm"
+                            />
+                            <button
+                              onClick={addCustomFood}
+                              disabled={!customFoodInput.trim()}
+                              className="px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-bold hover:bg-red-800 transition-colors disabled:opacity-40 shrink-0"
+                            >
+                              Add
+                            </button>
+                          </div>
+                          {customFoodItems.length > 0 && (
+                            <div className="flex flex-wrap gap-2">
+                              {customFoodItems.map((item) => (
+                                <span
+                                  key={item}
+                                  className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-xs font-semibold text-primary"
+                                >
+                                  {item}
+                                  <button
+                                    onClick={() => setCustomFoodItems((prev) => prev.filter((f) => f !== item))}
+                                    className="hover:text-red-700 transition-colors leading-none"
+                                  >
+                                    ×
+                                  </button>
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-on-surface-variant mb-1">
+                        Anything else to note?
+                      </label>
+                      <textarea
+                        value={authFeatures}
+                        onChange={(e) => setAuthFeatures(e.target.value)}
+                        placeholder="e.g. AC was cold, service was slow, portions were small, great ambience, long queue..."
+                        rows={2}
+                        className="w-full bg-white border-2 border-outline/20 rounded-xl px-4 py-3 text-sm resize-none"
+                      />
                     </div>
 
                     <div>
